@@ -27,5 +27,6 @@ function cca_options_page()
  */
 function CCA_Page_html()
 {
+    //include main-frontend tab file 
     include CCA_PLUGIN_DIR.'/includes/cca-main-frontend.php';   
 }

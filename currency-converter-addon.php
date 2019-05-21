@@ -20,6 +20,7 @@
  * @link     https://brainstormforce.com
 */
 
+//store plugin directory and plugin url in constant.
 define('CCA_PLUGIN_DIR', untrailingslashit(plugin_dir_path(__FILE__)));
 
 define('CCA_PLUGIN_URL', untrailingslashit(plugins_url('', __FILE__)));

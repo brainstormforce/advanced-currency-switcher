@@ -56,21 +56,12 @@ if (! class_exists('CCA_Loader') ) :
           */
         public function cca_pluginScript()
         { 
-             wp_enqueue_script('customscript', CCA_PLUGIN_URL.'/assets/js/cca.js');
-             wp_register_script( 'getrate', CCA_PLUGIN_URL.'/assets/js/cca.js' );
+            wp_enqueue_script('customscript', CCA_PLUGIN_URL.'/assets/js/cca.js');
+            wp_register_script( 'getrate', CCA_PLUGIN_URL.'/assets/js/cca.js' );
             wp_enqueue_script( 'getrate' );
             $options=get_option('cca_data'); 
 
-            //var_dump(get_option('mypricevalue'));
-           
-             $mypricedata = array(
-        
-            'pricevalue' => get_option('mypricevalue')
-            );
-            wp_localize_script( 'getrate', 'price1',$mypricedata);
-
-
-
+            //perform wp_localize_script() for currency rate and setting page value which use in javascript.
             $currency_rate = array(
         
             'actualrate' => get_option('inr')
@@ -96,11 +87,11 @@ if (! class_exists('CCA_Loader') ) :
             //     'actualrate4' => $os['price_value']
             // );
             // wp_localize_script( 'getrate', 'mydatarate4',$currency_rate4);
-            // $decimalpoint = array(
-            //     'decimaldata' => $options['decimalpoint'] 
-            // );
+            $decimalpoint = array(
+                'decimaldata' => $options['decimalpoint'] 
+            );
                 
-            // wp_localize_script( 'getrate', 'mydecimal',$decimalpoint);
+            wp_localize_script( 'getrate', 'mydecimal',$decimalpoint);
         }
 
     }

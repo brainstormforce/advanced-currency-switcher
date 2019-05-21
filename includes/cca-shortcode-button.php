@@ -25,8 +25,8 @@ function Currency_Convertor_Addon_button() {
   
   // var_dump(get_option('currency_button_type'));
   
-  foreach ( $currencybtn as $cur ) {?>
-	<input type="button" value="<?php echo $cur; ?>" id="inr"  onclick="changeto<?php echo $cur; ?>();">
+  foreach ( $currencybtn as $currencyname ) {?>
+	<input type="button" value="<?php echo $currencyname; ?>" id="inr"  onclick="changeto<?php echo $currencyname; ?>();">
 		<?php
 	}
 
