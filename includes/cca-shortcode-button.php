@@ -24,10 +24,12 @@ function Currency_Convertor_Addon_button() {
   $currencybtn = get_option( 'currency_button_type' );
   
   // var_dump(get_option('currency_button_type'));
+  
   foreach ( $currencybtn as $cur ) {?>
 	<input type="button" value="<?php echo $cur; ?>" id="inr"  onclick="changeto<?php echo $cur; ?>();">
 		<?php
 	}
+
     return ob_get_clean();
 }
 add_shortcode('currency_convert_button', 'Currency_Convertor_Addon_button');

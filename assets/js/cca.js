@@ -2,12 +2,10 @@
 function changetoINR()
 {           
             var pricemy=price1.pricevalue;
-            //console.log(pricemy);
             var actualrate=mydatarate.actualrate;
             var myarray=[];
             var rate_inr=actualrate;
-            //console.log(rate_inr);
-            jQuery(".cca-convertor-wrap-data-1").each(function ( index ) {    
+            jQuery(".cca-convertor-wrap-data-2").each(function ( index ) {    
                     var mydata=(jQuery(this).text() );
                     myarray.push(mydata);
                     var arrayLength = myarray.length;
@@ -30,7 +28,7 @@ function changetoEUR()
             var myarray=[];
             var rate_inr=actualrate;
               // console.log(rate_inr);
-            jQuery(".cca-convertor-wrap-data-1").each(function ( index ) {    
+            jQuery(".cca-convertor-wrap-data-2").each(function ( index ) {    
                     var mydata=(jQuery(this).text() );
                     myarray.push(mydata);
                     var arrayLength = myarray.length;
@@ -53,7 +51,7 @@ function changetoUSD()
             var myarray=[];
             var rate_inr=actualrate;
                //console.log(rate_inr);
-            jQuery(".cca-convertor-wrap-data-1").each(function ( index ) {    
+            jQuery(".cca-convertor-wrap-data-2").each(function ( index ) {    
                     var mydata=(jQuery(this).text() );
                     myarray.push(mydata);
                     var arrayLength = myarray.length;
@@ -76,7 +74,7 @@ function changetoAUD()
             var myarray=[];
             var rate_inr=actualrate;
                //console.log(rate_inr);
-            jQuery(".cca-convertor-wrap-data-1").each(function ( index ) {    
+            jQuery(".cca-convertor-wrap-data-2").each(function ( index ) {    
                     var mydata=(jQuery(this).text() );
                     myarray.push(mydata);
                     var arrayLength = myarray.length;

@@ -61,7 +61,7 @@ if (! class_exists('CCA_Loader') ) :
             wp_enqueue_script( 'getrate' );
             $options=get_option('cca_data'); 
 
-             //var_dump(get_option('mypricevalue'));
+            //var_dump(get_option('mypricevalue'));
            
              $mypricedata = array(
         

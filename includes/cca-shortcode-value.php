@@ -32,29 +32,23 @@ function Currency_Convertor_addon( $atts )
     $atts
    );
 	$getval = $attributes['value'];
-    $myprice=$attributes['value'];
-    if($myprice=='')
-    {
-       $myprice=$attributes['value'];
-    }else {
-   update_option('mypricevalue', $myprice);
-}
-//var_dump(get_option('mypricevalue'));
-	?>
+  $myprice=$attributes['value'];
+
+  ?>
  <!--  Create custom div and span for display price -->
     <div class="cca-converter-wrap" >
+       <span id="cca-convertor-wrap-2" class="cca-convertor-wrap-data-2">
+          <?php
+            echo $myprice;
+          ?>  
+        </span>
         <span id="cca-convertor-wrap-1" class="cca-convertor-wrap-data-1">
         	<?php
         		echo $getval;
         	?>	
         </span>
+        
     </div>
-<!--     <script type="text/javascript">
-        var getclass = document.getElementsByClassName( "cca-convertor-wrap-data-1" );
-        for(var i=0;i<getclass.length;i++) {
-           getclass[i].style.fontSize='65px';
-        }
-    </script> -->
     <?php
     return ob_get_clean();
 }
