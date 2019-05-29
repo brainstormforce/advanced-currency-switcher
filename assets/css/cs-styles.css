@@ -1,0 +1,20 @@
+/*hide the span tag which display main price value*/
+.cs-convertor-wrap-data-2 {
+    display: none;
+}
+
+/* css for manual and api key option */
+#cs-api-display {
+    display: none;
+}
+
+#cs-manual-dispaly{
+display: block;
+}
+
+
+.cs-mylist{
+  list-style-type: square;
+  margin: 10px 10px 10px 10px;
+}
+

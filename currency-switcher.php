@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name:     Currency Converter Addon
+ * Plugin Name:     Currency Switcher
  * Plugin URI:      https://www.brainstormforce.com/
  * Description:     To convert currency in native currency using Shortcode : [currency_converter].
- * Version:            1.0.0
+ * Version:         1.0.0
  * Author:          Ahemad Shaikh
  * Author URI:      https://www.brainstormforce.com/
- * Text Domain:     currency-convertor-addon
+ * Text Domain:     cs_currencyswitch
  * Domain Path:     /languages
  *
  * Main
@@ -18,11 +18,6 @@
  * @author   Display Name <ahemads@bsf.io>
  * @license  https://brainstormforce.com 
  * @link     https://brainstormforce.com
-*/
+ */
 
-//store plugin directory and plugin url in constant.
-define('CCA_PLUGIN_DIR', untrailingslashit(plugin_dir_path(__FILE__)));
-
-define('CCA_PLUGIN_URL', untrailingslashit(plugins_url('', __FILE__)));
-
-require plugin_dir_path(__FILE__).'classes/class-cca-loader.php';
+require_once 'classes/class-cs-loader.php';
