@@ -16,7 +16,14 @@
 <body>
 <h2> <?php _e('Description', 'cs_currencyswitch'); ?> </h2>
 
-<p> <?php _e('Currency Switcher plugin is used to convert the currency on a web-page, into respective currency by using short-code on a page.', 'cs_currencyswitch'); ?> </p>
+<p> 
+    <?php 
+        _e(
+            'Currency Switcher plugin is used to convert the currency on a web-page, into respective currency by using short-code on a page.', 
+            'cs_currencyswitch'
+        ); 
+    ?> 
+</p>
 
 <h3> <?php _e('Getting Started', 'cs_currencyswitch'); ?> </h3>
 

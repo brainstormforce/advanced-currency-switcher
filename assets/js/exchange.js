@@ -7,11 +7,11 @@ function manual_api_form() {
         if ( myselectedvalue==="apirate" ) {
 
             document.getElementById( "cs-api-display" ).style.display = "block";
-            document.getElementById( "cs-manual-dispaly" ).style.display = "none";
+            document.getElementById( "cs-manual-display" ).style.display = "none";
 
         } else {
 
-            document.getElementById( "cs-manual-dispaly" ).style.display = "block";
+            document.getElementById( "cs-manual-display" ).style.display = "block";
             document.getElementById( "cs-api-display" ).style.display = "none";
         }
     }
@@ -33,12 +33,12 @@ function showcurency( selectvalue ) {
         
         if ( optionvalue === selectvalue.value ) {
 
-            document.getElementById( "cs-manual-dispaly" ).style.display = "none";
+            document.getElementById( "cs-manual-display" ).style.display = "none";
             document.getElementById( "cs-api-display" ).style.display = "block";
 
           } else {
 
-            document.getElementById( "cs-manual-dispaly" ).style.display = "block";
+            document.getElementById( "cs-manual-display" ).style.display = "block";
             document.getElementById( "cs-api-display" ).style.display = "none";
             
           }

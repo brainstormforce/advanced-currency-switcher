@@ -54,22 +54,21 @@ if (! class_exists('CS_Menu_Page') ) {
                 'Currency Switcher',
                 'manage_options',
                 'currency_switch',
-                'CS_Page_html'
+                array( $this,'CS_Page_html')
             );
-
-            /**
+        }
+        /**
              * Main Frontpage.
              *
              * @since  1.0.0
              * @return void
              */
-            function CS_Page_html()
+            public function CS_Page_html()
             {
 
                 //require main-frontend tab file 
-                require_once CS_PLUGIN_DIR.'/includes/cs-main-frontend.php';   
+                require_once CSWP_PLUGIN_DIR.'/includes/cs-main-frontend.php';   
             }
-        }
 
     }
     $menup = new CS_Menu_Page();

@@ -48,7 +48,6 @@ if (! class_exists('CSCurrencyShortcode') ) {
          */
         public function currency_Convertoraddon( $atts )
         {
-            ob_start();
             $attributes = shortcode_atts(
                 array(
                 'value' => '',
@@ -58,12 +57,12 @@ if (! class_exists('CSCurrencyShortcode') ) {
 
             $getval = $attributes['value'];
             $myprice=$attributes['value'];
-
+            ob_start();
             ?>
 
             <!--  Create custom div and span for display price -->
             <div class="cs-converter-wrap" >
-                <span class="cs-convertor-wrap-symbol">$</span>
+                <span class="cs-convertor-wrap-symbol"></span>
                 <span id="cs-convertor-wrap" class="cs-convertor-wrap-data" valuemy="<?php echo $myprice; ?>">
                     <?php
                     echo $getval;

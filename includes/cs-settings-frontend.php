@@ -11,57 +11,61 @@
  * @link     https://brainstormforce.com
  */
 
-$getvalue = get_option( 'cs_data' );
 
-$cs_base_currency = '';
-$cs_form_select = '';
+//Store form inputs values in variable.
+$cswp_get_form_value =  CS_Loader::cswp_load_all_data();
+$cs_basecurency='';
+$cswp_form_select_value = '';
 $cs_api_key = '';
 $cs_frequency_reload = '';
 $cs_decimalpoint = '';
 
-if ( isset( $getvalue[ 'base_currency' ] ) ) {
-    $cs_base_currency = $getvalue[ 'base_currency' ];
+if ( isset( $cswp_get_form_value[ 'basecurency' ] ) ) {
+    $cs_basecurency = $cswp_get_form_value[ 'basecurency' ];
 }
 
-if ( isset( $getvalue[ 'form_select' ] ) ) {
-    $cs_form_select = $getvalue[ 'form_select' ];
+if ( isset( $cswp_get_form_value[ 'cswp_form_select' ] ) ) {
+    $cswp_form_select_value = $cswp_get_form_value[ 'cswp_form_select' ];
 }
 
-if ( isset( $getvalue[ 'api_key'] ) ) {
-    $cs_api_key = $getvalue[ 'api_key' ];
+if ( isset( $cswp_get_form_value[ 'api_key'] ) ) {
+    $cs_api_key = $cswp_get_form_value[ 'api_key' ];
 }
 
-if ( isset( $getvalue[ 'frequency_reload'] ) ) {
-    $cs_frequency_reload = $getvalue[ 'frequency_reload' ];
+if ( isset( $cswp_get_form_value[ 'frequency_reload'] ) ) {
+    $cs_frequency_reload = $cswp_get_form_value[ 'frequency_reload' ];
 }
 
-if ( isset( $getvalue[ 'decimalpoint' ] ) ) {
-    $cs_decimalpoint=$getvalue['decimalpoint'];
+if ( isset( $cswp_get_form_value[ 'decimalpoint' ] ) ) {
+    $cs_decimalpoint=$cswp_get_form_value['decimalpoint'];
 }
 
-$manualrate = get_option( 'manual_rate' );
+//Store Manual rate values in variable.
+$cswp_manualrate =  CS_Loader::cswp_load_manual_data();
 $cs_usd_rate = '';
 $cs_inr_rate = '';
 $cs_eur_rate = '';
 $cs_aud_rate = '';
 
-if ( isset( $manualrate[ 'usd_rate' ] ) ) {
-    $cs_usd_rate = $manualrate[ 'usd_rate' ];
+if ( isset( $cswp_manualrate[ 'usd_rate' ] ) ) {
+    $cs_usd_rate = $cswp_manualrate[ 'usd_rate' ];
 }
 
-if ( isset( $manualrate[ 'inr_rate'] ) ) {
-    $cs_inr_rate = $manualrate[ 'inr_rate' ];
+if ( isset( $cswp_manualrate[ 'inr_rate'] ) ) {
+    $cs_inr_rate = $cswp_manualrate[ 'inr_rate' ];
 }
 
-if ( isset( $manualrate[ 'eur_rate' ] ) ) {
-    $cs_eur_rate = $manualrate[ 'eur_rate' ];
+if ( isset( $cswp_manualrate[ 'eur_rate' ] ) ) {
+    $cs_eur_rate = $cswp_manualrate[ 'eur_rate' ];
 }
 
-if ( isset( $manualrate[ 'aud_rate' ] ) ) {
-    $cs_aud_rate = $manualrate[ 'aud_rate' ];
+if ( isset( $cswp_manualrate[ 'aud_rate' ] ) ) {
+    $cs_aud_rate = $cswp_manualrate[ 'aud_rate' ];
 }
 
-$convertbtn = get_option( 'currency_button_type' );
+//Store Switcher Button value.
+
+$convertbtn = CS_Loader::cswp_load_currency_button_data();
 $cs_usd_button = '';
 $cs_inr_button = '';
 $cs_eur_button = '';
@@ -82,67 +86,53 @@ if ( isset( $convertbtn['EUR'] ) ) {
 if ( isset( $convertbtn[ 'AUD' ] ) ) {
     $cs_aud_button = $convertbtn[ 'AUD' ];
 }
+
+
+//Store OpenExchangeRate value in a variable
+$cswp_apirate_values = CS_Loader::cswp_load_apirate_values_data();
+$apitext_inr = '';
+$apitext_usd = '';
+$apitext_eur = '';
+$apitext_aud = '';
+
+if ( isset( $cswp_apirate_values[ 'inr' ] ) ) {
+    $apitext_inr = $cswp_apirate_values[ 'inr' ];
+}
+
+if ( isset( $cswp_apirate_values[ 'usd' ] ) ) {
+    $apitext_usd = $cswp_apirate_values[ 'usd' ];
+}
+
+if ( isset( $cswp_apirate_values['eur'] ) ) {
+    $apitext_eur = $cswp_apirate_values[ 'eur' ];
+}
+
+if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
+    $apitext_aud = $cswp_apirate_values[ 'aud' ];
+}
+
+
 ?>
  <!-- Html code for frontend -->
 <form method="post" name="cca_settings_form">
   <!--  set the html code for select base currency and select currency type -->
      <table class="form-table" >
-        <tr>
-        <th scope="row">
-          <label for="SelectBaseCuurency"> <?php _e('Select Base currency:', 'cs_currencyswitch'); ?></label>
-        </th>
-        <td>
-            <select name="base_currency">
-            <?php
-            if (isset($cs_base_currency) ) {
-
-                if ('USD' === $cs_base_currency ) {
-                    echo '<option selected value="USD">USD</option>';
-                } else {
-                    echo '<option value="USD">USD</option>';
-                }
-                if ('INR' === $cs_base_currency ) {
-                    echo '<option selected value="INR">INR</option>';
-                } else {
-                    echo '<option value="INR">INR</option>';
-                }
-                if ('EUR' === $cs_base_currency ) {
-                    echo '<option selected value="EUR">EUR</option>';
-                } else {
-                    echo '<option value="EUR">EUR</option>';
-                }
-                if ('AUD' === $cs_base_currency ) {
-                    echo '<option selected value="AUD">AUD</option>';
-                } else {
-                    echo '<option value="AUD">AUD</option>';
-                }
-
-            } else {
-                ?>
-                      <option selected value="USD">USD</option>
-                      <option value="INR">INR</option>
-                      <option value="EUR">EUR</option>
-                      <option value="AUD">AUD</option>
-            <?php }?>
-                  </select>
-        </td>
-    </tr>
     <tr>
      <th scope="row">
       <label><?php _e('Select Type of Conversion:', 'cs_currencyswitch'); ?></label>
      </th>
       <td>
-        <select name="form_select" id="cs_currency_form" onchange="showcurency(this)">
+        <select name="cswp_form_select" id="cs_currency_form" onchange="showcurency(this)">
             <?php
-            if (isset($cs_form_select) ) {
+            if (isset($cswp_form_select_value) ) {
 
-                if ('manualrate' === $cs_form_select ) { ?>
+                if ('manualrate' === $cswp_form_select_value ) { ?>
                     <option id="manual-currency" selected value="manualrate"><?php _e('Manual Currency Rate', 'cs_currencyswitch');?></option>
                     <?php
                 } else { ?>
                     <option id="manual-currency" value="manualrate"><?php _e('Manual Currency Rate', 'cs_currencyswitch'); ?></option><?php
                 }
-                if ('apirate' === $cs_form_select ) { ?>
+                if ('apirate' === $cswp_form_select_value ) { ?>
                     <option id="api-currency" selected value="apirate"> <?php _e('Open Exchange Rate', 'cs_currencyswitch'); ?></option> <?php
                 } else { ?>
                     <option id="api-currency" value="apirate"><?php _e('Open Exchange Rate', 'cs_currencyswitch'); ?></option> <?php
@@ -160,77 +150,41 @@ if ( isset( $convertbtn[ 'AUD' ] ) ) {
   </table>
 
   <!--  set the html code for put manual currancy rate -->
-  <table class="form-table" id="cs-manual-dispaly">
-     <th><?php _e('Currency Convertor Settings', 'cs_currencyswitch'); ?></th>
-      <tr>
-      <th><label for="USD"><?php _e('United States Dollar(USD):', 'cs_currencyswitch'); ?></label></th>
-      <td>
-        <input type="text" name="usd"  value="<?php  echo $cs_usd_rate; ?>" placeholder="<?php _e('Enter the USD value', 'cs_currencyswitch'); ?>" ><b>$</b>
-      </td>
-      </tr>
-      <tr>
-      <th><label for="INR"><?php _e('Indian Rupee(INR):', 'cs_currencyswitch'); ?></label></th>
-       <td>
-        <input type="text" name="inr" value="<?php echo $cs_inr_rate; ?>" placeholder="<?php _e('Enter the INR value', 'cs_currencyswitch'); ?>"><b>₹</b>
-       </td>
-      </tr>
-      <tr>
-      <th><label><?php _e('European Union(EUR):', 'cs_currencyswitch'); ?></label></th>
-       <td>
-        <input type="text" name="eur"  value="<?php echo $cs_eur_rate; ?>" placeholder="<?php _e('Enter the EURO value', 'cs_currencyswitch'); ?>"><b>€</b>
-       </td>
-      </tr>
-      <tr>
-      <th><label><?php _e('Australian Dollar(AUD):', 'cs_currencyswitch'); ?></label></th>
-       <td>
-        <input type="text" name="aud"  value="<?php echo $cs_aud_rate;?>" placeholder="<?php _e('Enter the AUD value', 'cs_currencyswitch'); ?>"><b>A$</b>
-       </td>
-      </tr>
-  </table>
 
-  <!--  set the html code for Apikey value and frequency update time -->
-  <table class="form-table" id="cs-api-display" >
-        <tr>
-        <th scope="row">
-          <label for="ApiKey"> <?php _e('App ID(Api Key):', 'cs_currencyswitch'); ?></label>
-        </th>
-           <td>
-            <input type="text" name="appid" class="regular-text" value="<?php echo  $cs_api_key;?>">
-                
-                  <p class="description"><?php _e('Enter Your OpenExchangeRate App ID:', 'cs_currencyswitch'); ?> &nbsp;
-          <a href="https://openexchangerates.org/" target="_blank">https://openexchangerates.org/</a>&nbsp;
-             [ <?php _e('If you dont have then get it from OpenExchangeRates.', 'cs_currencyswitch'); ?> ]
-            </p>  
-          </td>
-        </tr>
-        <tr>
-            <th scope="row">
-              <label for="UpdateExchangeRate"><?php _e('Frequency to Update Exchange Rate:', 'cs_currencyswitch'); ?></label>
-            </th>
-            <td>
-                <select name="frequency_reload">
-                  <option value="hourly" <?php selected( $cs_frequency_reload, 'hourly') ?>>Hourly</option>
-                  <option value="daily" <?php selected( $cs_frequency_reload, 'daily') ?>>Daily</option>
-                  <option value="weekly" <?php selected( $cs_frequency_reload, 'weekly') ?>>Weekly</option>
-                  <option value="manual" <?php selected( $cs_frequency_reload, 'manual') ?>>Manual</option>
-                    </select> 
-            </td>
-        </tr>
-    </table>
-    <!--  set the html code select currency to convert and put to set decimal point after conversion -->
-    <table class="form-table">
-        <tr>
-            <th scope="row">
-              <label for="AvailableCurrencytoConvert"><?php _e('Available Currency to Convert:', 'cs_currencyswitch'); ?></label>
-            </th>
-            <td>
-            <?php 
-            //Apply conditions for show checked checkbox after save also
-             $convertbtn = get_option('currency_button_type');
+   <table class="form-table ccatable" id="cs-manual-display">
 
+      <tr>
+        <th class="cca-column">Base Currency</th>
+        <th class="cca-column">Currency</th> 
+        <th class="cca-column">Currency Display</th>
+        <th class="cca-column">Rate</th>
+      </tr>
+
+      <tr>
+        <td ><label class="currency-switcher-switch">
+           <?php
+            if (isset($cs_basecurency) ) {
+                if ('USD' === $cs_basecurency ) { 
+                    ?>
+                    <input type="radio"  value="USD" name="basecurency" class="cca_hidden" checked="checked" />
+               <?php } else {?>
+                <input type="radio"  value="USD" name="basecurency" class="cca_hidden" />
+           <?php } 
+            }else { ?>
+             <input type="radio"  value="USD" name="basecurency" class="cca_hidden" />
+
+         <?php } ?>
+
+        <span class="currency-switcher-slider round"></span></label></td>
+
+        <td><label for="USD"><?php _e('United States Dollar(USD):', 'cs_currencyswitch'); ?></label></td>
+        <td><label class="currency-switcher-switch">
+        <!-- <input type="checkbox"  name="currency_button[]" value="USD" class="cca_hidden"> -->
+         <?php
+         $convertbtn = CS_Loader::cswp_load_currency_button_data();
             if (isset($convertbtn) ) {
 
-                if ($convertbtn ==! '') {
+                if ($convertbtn !== '') {
 
                     if (isset($cs_usd_button) ) {
 
@@ -248,6 +202,46 @@ if ( isset( $convertbtn[ 'AUD' ] ) ) {
                  <input type="checkbox"  name="currency_button[]" value="USD">
                  USD</label><br> ';
                     }
+                  } else {
+                    echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button[]" value="USD">
+                 USD</label><br> ';
+                  }
+                }
+                ?>
+        <span class="currency-switcher-slider round"></span></label>
+        </td>
+        <td>
+        <input type="text" name="usd"  value="<?php  echo $cs_usd_rate; ?>" placeholder="<?php _e('Enter the USD value', 'cs_currencyswitch'); ?>" ><b>$</b>
+      </td>
+      </tr>
+
+      <tr>
+        <td><label class="currency-switcher-switch">
+            <?php
+            if (isset($cs_basecurency) ) {
+                if ('INR' === $cs_basecurency ) { 
+                    ?>
+                    <input type="radio"  value="INR" name="basecurency" class="cca_hidden" checked="checked"/>
+                <?php } else {?>
+                <input type="radio"  value="INR" name="basecurency" class="cca_hidden" />
+            <?php }
+            } else {?>
+             <input type="radio"  value="INR" name="basecurency" class="cca_hidden" />
+
+         <?php } ?>
+        
+        <span class="currency-switcher-slider round">
+        </span></label></td>
+        <td><label for="INR"><?php _e('Indian Rupee(INR):', 'cs_currencyswitch'); ?></label></td>
+        <td> <label class="currency-switcher-switch">  
+        <!-- <input type="checkbox"  name="currency_button[]" value="INR" class="cca_hidden"> -->
+         <?php
+        
+
+            if (isset($convertbtn) ) {
+
+                if ($convertbtn ==! '') {
 
                     if (isset($cs_inr_button) ) {
 
@@ -265,6 +259,49 @@ if ( isset( $convertbtn[ 'AUD' ] ) ) {
                  <input type="checkbox"  name="currency_button[]" value="INR">
                  INR</label><br> ';
                     }
+                  } else {
+                    
+                 echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button[]" value="INR">
+                 INR</label><br> ';
+                
+                  }
+                }
+                ?>
+        <span class="currency-switcher-slider round"></span></label>
+        </td>
+        <td>
+        <input type="text" name="inr" value="<?php echo $cs_inr_rate; ?>" placeholder="<?php _e('Enter the INR value', 'cs_currencyswitch'); ?>"><b>₹</b>
+       </td>
+      </tr>
+      <tr>
+         <td><label class="currency-switcher-switch">
+        <?php
+            if (isset($cs_basecurency) ) {
+                if ('EUR' === $cs_basecurency ) { 
+                    ?>
+                    <input type="radio"  value="EUR" name="basecurency" class="cca_hidden" checked="checked"/>
+                <?php } else {?>
+                <input type="radio"  value="EUR" name="basecurency" class="cca_hidden"/>
+            <?php }
+            } else {?>
+             <input type="radio"  value="EUR" name="basecurency" class="cca_hidden"/>
+
+         <?php } ?>
+       
+
+        <span class="currency-switcher-slider round"></span></label>
+
+        </td>
+        <td><label for="EUO"><?php _e('European Union(EUR):', 'cs_currencyswitch'); ?></label></td>
+        <td > <label class="currency-switcher-switch">  
+        <!-- <input type="checkbox"  name="currency_button[]" value="EURO" class="cca_hidden"> -->
+         <?php
+        
+
+            if (isset($convertbtn) ) {
+
+                if ($convertbtn ==! '') {
 
                     if (isset($cs_eur_button) ) {
 
@@ -282,6 +319,45 @@ if ( isset( $convertbtn[ 'AUD' ] ) ) {
                  <input type="checkbox"  name="currency_button[]" value="EUR">
                  EUR</label><br> ';
                     }
+                  } else {
+                    
+                    echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button[]" value="EUR">
+                 EUR</label><br> ';
+                }
+            }
+                ?>
+        <span class="currency-switcher-slider round"></span></label>
+        </td>
+        <td>
+        <input type="text" name="eur"  value="<?php echo $cs_eur_rate; ?>" placeholder="<?php _e('Enter the EURO value', 'cs_currencyswitch'); ?>"><b>€</b>
+       </td>
+      </tr>
+      <tr>
+         <td><label class="currency-switcher-switch">
+            <?php
+            if (isset($cs_basecurency) ) {
+                if ('AUD' === $cs_basecurency ) { 
+                    ?>
+                    <input type="radio"  value="AUD" name="basecurency" class="cca_hidden" checked="checked"/>
+                <?php } else {?>
+                <input type="radio"  value="AUD" name="basecurency" class="cca_hidden"/>
+            <?php }
+            } else {?>
+             <input type="radio"  value="AUD" name="basecurency" class="cca_hidden"/>
+
+         <?php } ?>
+        <span class="currency-switcher-slider round"></span></label></td>
+        <td><label for="AUD"><?php _e('Australian Dollar(AUD):', 'cs_currencyswitch'); ?></td>
+        <td > <label class="currency-switcher-switch"> 
+        <!-- <input type="checkbox"  name="currency_button[]" value="AUD" class="cca_hidden"> -->
+         <?php
+         
+
+            if (isset($convertbtn) ) {
+
+                if ($convertbtn ==! '') {
+
                     if (isset($cs_aud_button) ) {
 
                         if ('AUD' === $cs_aud_button ) {
@@ -298,26 +374,310 @@ if ( isset( $convertbtn[ 'AUD' ] ) ) {
                  <input type="checkbox"  name="currency_button[]" value="AUD">
                  AUD</label><br> ';
                     }
-
-                } else {
-                    echo'<label for="ForCurrencyButton">
-                 <input type="checkbox"  name="currency_button[]" value="USD">
-                 USD</label><br> ';
-                    echo'<label for="ForCurrencyButton">
-                 <input type="checkbox"  name="currency_button[]" value="INR">
-                 INR</label><br> ';
-                    echo'<label for="ForCurrencyButton">
-                 <input type="checkbox"  name="currency_button[]" value="EUR">
-                 EUR</label><br> ';
+                  } else {
                     echo'<label for="ForCurrencyButton">
                  <input type="checkbox"  name="currency_button[]" value="AUD">
                  AUD</label><br> ';
+                  }
+
                 }
-            }
-            ?>
+                ?>
+        <span class="currency-switcher-slider round"></span></label>
+        </td>
+        <td>
+        <input type="text" name="aud"  value="<?php echo $cs_aud_rate;?>" placeholder="<?php _e('Enter the AUD value', 'cs_currencyswitch'); ?>"><b>A$</b>
+       </td>
+      </tr>
+      <tr></tr>
+    </table>
+
+  <!--  set the html code for Apikey value and frequency update time -->
+  <table class="form-table" id="cs-api-display" >
+
+
+        <tr>
+        <th scope="row">
+          <label for="ApiKey"> <?php _e('App ID(Api Key):', 'cs_currencyswitch'); ?></label>
+        </th>
+           <td>
+            <input type="text" name="appid" class="regular-text" value="<?php echo  $cs_api_key;?>">
+                
+          </td>
+           <td><input type="button" name="Authenticate" value="Authenticate" class="bt button button-secondary"></td>
+           <td> message!</td>
+        </tr>
+
+        <tr>
+            <th scope="row">
+              <label for="UpdateExchangeRate"><?php _e('Frequency to Update Exchange Rate:', 'cs_currencyswitch'); ?></label>
+            </th>
+            <td>
+                <select name="frequency_reload">
+                  <option value="hourly" <?php selected( $cs_frequency_reload, 'hourly') ?>>Hourly</option>
+                  <option value="daily" <?php selected( $cs_frequency_reload, 'daily') ?>>Daily</option>
+                  <option value="weekly" <?php selected( $cs_frequency_reload, 'weekly') ?>>Weekly</option>
+                  <option value="manual" <?php selected( $cs_frequency_reload, 'manual') ?>>Manual</option>
+                  <!--   </select> <span class="dashicons dashicons-image-rotate"></span> -->
+            </td>
+          </tr>
+      <tr>
+        <th class="cca-column">Base Currency</th>
+        <th class="cca-column">Currency</th> 
+        <th class="cca-column">Currency Display</th>
+        <th class="cca-column">Rate</th>
+      </tr>
+
+      <tr>
+         <td><label class="currency-switcher-switch">
+        <?php
+            if (isset($cs_basecurency) ) {
+                if ('USD' === $cs_basecurency ) { 
+                    ?>
+                    <input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden" checked="checked"/>
+                <?php } else {?>
+                <input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden"/>
+            <?php }
+            } else {?>
+             <input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden"/>
+
+         <?php } ?>
+       
+
+        <span class="currency-switcher-slider round"></span></label>
+
+        </td>
+
+        <td><label for="USD"><?php _e('United States Dollar(USD):', 'cs_currencyswitch'); ?></label></td>
+        <td><label class="currency-switcher-switch">
+         <?php
+         $convertbtn = CS_Loader::cswp_load_currency_button_data();
+            if (isset($convertbtn) ) {
+
+                if ($convertbtn ==! '') {
+
+                    if (isset($cs_usd_button) ) {
+
+                        if ('USD' === $cs_usd_button ) {
+                            echo'<label for="ForCurrencyButton">
+                     <input type="checkbox" checked name="currency_button_api[]" value="USD">
+                     USD</label><br> ';
+                        } else {
+                            echo'<label for="ForCurrencyButton">
+                     <input type="checkbox"  name="currency_button_api[]" value="USD">
+                     USD</label><br> ';
+                        }
+                    } else {
+                        echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button_api[]" value="USD">
+                 USD</label><br> ';
+                    }
+                  } else {
+                    echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button_api[]" value="USD">
+                 USD</label><br> ';
+                  }
+                }
+                ?> 
+        <span class="currency-switcher-slider round"></span></label>
+        </td>
+        <td>
+        <input type="text" name="apitext_usd"  value="<?php  echo $apitext_usd; ?>" placeholder="<?php _e('Enter the USD value', 'cs_currencyswitch'); ?>" readonly><b>$</b>
+      </td>
+      </tr>
+
+      <tr>
+         <td><label class="currency-switcher-switch">
+        <?php
+            if (isset($cs_basecurency) ) {
+                if ('INR' === $cs_basecurency ) { 
+                    ?>
+                    <input type="radio"  value="INR" name="basecurencyapi" class="cca_hidden" checked="checked"/>
+                <?php } else {?>
+                <input type="radio"  value="INR" name="basecurencyapi" class="cca_hidden"/>
+            <?php }
+            } else {?>
+             <input type="radio"  value="INR" name="basecurencyapi" class="cca_hidden"/>
+
+         <?php } ?>
+       
+
+        <span class="currency-switcher-slider round"></span></label>
+
+        </td>
+        <td><label for="INR"><?php _e('Indian Rupee(INR):', 'cs_currencyswitch'); ?></label></td>
+        <td> <label class="currency-switcher-switch">  
+        <!-- <input type="checkbox"  name="currency_button[]" value="INR" class="cca_hidden"> -->
+        <?php
+        
+
+            if (isset($convertbtn) ) {
+
+                if ($convertbtn ==! '') {
+
+                    if (isset($cs_inr_button) ) {
+
+                        if ('INR' === $cs_inr_button ) {
+                            echo'<label for="ForCurrencyButton">
+                 <input type="checkbox" checked name="currency_button_api[]" value="INR">
+                 INR</label><br> ';
+                        } else {
+                            echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button_api[]" value="INR">
+                 INR</label><br> ';
+                        }
+                    } else {
+                        echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button_api[]" value="INR">
+                 INR</label><br> ';
+                    }
+                  } else {
+                    echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button_api[]" value="INR">
+                 INR</label><br> ';
+                  }
+                }
+                ?>
+        <span class="currency-switcher-slider round"></span></label>
+        </td>
+        <td>
+        <input type="text" name="apitext_inr" value="<?php echo $apitext_inr; ?>" placeholder="<?php _e('Enter the INR value', 'cs_currencyswitch'); ?>" readonly><b>₹</b>
+       </td>
+      </tr>
+      <tr>
+       
+         <td><label class="currency-switcher-switch">
+        <?php
+            if (isset($cs_basecurency) ) {
+                if ('EUR' === $cs_basecurency ) { 
+                    ?>
+                    <input type="radio"  value="EUR" name="basecurencyapi" class="cca_hidden" checked="checked"/>
+                <?php } else {?>
+                <input type="radio"  value="EUR" name="basecurencyapi" class="cca_hidden"/>
+            <?php }
+            } else {?>
+             <input type="radio"  value="EUR" name="basecurencyapi" class="cca_hidden"/>
+
+         <?php } ?>
+       
+
+        <span class="currency-switcher-slider round"></span></label>
+
+        </td>
+        <td><label for="EUO"><?php _e('European Union(EUR):', 'cs_currencyswitch'); ?></label></td>
+        <td > <label class="currency-switcher-switch">  
+        
+         <?php
+        
+
+            if (isset($convertbtn) ) {
+
+                if ($convertbtn ==! '') {
+
+                    if (isset($cs_eur_button) ) {
+
+                        if ('EUR' === $cs_eur_button ) {
+                            echo'<label for="ForCurrencyButton">
+                 <input type="checkbox" checked name="currency_button_api[]" value="EUR">
+                 EUR</label><br> ';
+                        } else {
+                            echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button_api[]" value="EUR">
+                 EUR</label><br> ';
+                        }
+                    } else {
+                        echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button_api[]" value="EUR">
+                 EUR</label><br> ';
+                    }
+                  } else {
+                    echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button_api[]" value="EUR">
+                 EUR</label><br> ';
+                  }
+
+                }
+                ?>
+        <span class="currency-switcher-slider round"></span></label>
+        </td>
+        <td>
+        <input type="text" name="apitext_eur"  value="<?php echo $apitext_eur; ?>" placeholder="<?php _e('Enter the EURO value', 'cs_currencyswitch'); ?>" readonly ><b>€</b>
+       </td>
+      </tr>
+      <tr>
+        
+         <td><label class="currency-switcher-switch">
+        <?php
+            if (isset($cs_basecurency) ) {
+                if ('AUD' === $cs_basecurency ) { 
+                    ?>
+                    <input type="radio"  value="AUD" name="basecurencyapi" class="cca_hidden" checked="checked"/>
+                <?php } else {?>
+                <input type="radio"  value="AUD" name="basecurencyapi" class="cca_hidden"/>
+            <?php }
+            } else {?>
+             <input type="radio"  value="AUD" name="basecurencyapi" class="cca_hidden"/>
+
+         <?php } ?>
+       
+
+        <span class="currency-switcher-slider round"></span></label>
+
+        </td>
+        <td><label for="AUD"><?php _e('Australian Dollar(AUD):', 'cs_currencyswitch'); ?></td>
+        <td > <label class="currency-switcher-switch"> 
+      
+        <?php
+         
+
+            if (isset($convertbtn) ) {
+
+                if ($convertbtn ==! '') {
+
+                    if (isset($cs_aud_button) ) {
+
+                        if ('AUD' === $cs_aud_button ) {
+                            echo'<label for="ForCurrencyButton">
+                 <input type="checkbox" checked name="currency_button_api[]" value="AUD">
+                 AUD</label><br> ';
+                        } else {
+                            echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button_api[]" value="AUD">
+                 AUD</label><br> ';
+                        }
+                    } else {
+                        echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button_api[]" value="AUD">
+                 AUD</label><br> ';
+                    }
+                  } else {
+                    echo'<label for="ForCurrencyButton">
+                 <input type="checkbox"  name="currency_button_api[]" value="AUD">
+                 AUD</label><br> ';
+                  }
+
+                }
+                ?>
+        <span class="currency-switcher-slider round"></span></label>
+        </td>
+        <td>
+        <input type="text" name="apitext_aud"  value="<?php echo $apitext_aud;?>" placeholder="<?php _e('Enter the AUD value', 'cs_currencyswitch'); ?> " readonly><b>A$</b>
+       </td>
+      </tr>
+
+    </table>
+
+   
+    <table class="form-table">
+         <tr>
+            <th>Display Type</th>
+            <td><select>
+                <option>Drop Down</option>
+                 <option>Button</option>
+                  <option>Toggle</option>
+                </select>
             </td>
         </tr>
-        <tr>
+         <tr>
             <th scope="row">
               <label for="DecimalPlaces"><?php _e('Decimal Places:', 'cs_currencyswitch'); ?></label>
             </th>
@@ -326,7 +686,7 @@ if ( isset( $convertbtn[ 'AUD' ] ) ) {
                 value="<?php echo $cs_decimalpoint;?>">
             </td>
         </tr>
-          <tr>
+        <tr>
         <th>
             <?php wp_nonce_field( 'cs-form-nonce', 'cs-form' ); ?>
             <input type="submit" name="submit" value="<?php _e('Submit', 'cs_currencyswitch'); ?>" class="bt button button-primary">
@@ -335,6 +695,3 @@ if ( isset( $convertbtn[ 'AUD' ] ) ) {
     </table>
 </form>
 
-<?php
-$getvalue=get_option('cs_data');
-var_dump($getvalue);

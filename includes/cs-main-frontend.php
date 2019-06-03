@@ -28,15 +28,12 @@ if (isset($_GET["tab"]) ) {
 
         $active_tab = "cs_settings";
 
-    }elseif ($_GET["tab"] == "buttonstyle" ) {
-
-        $active_tab = "buttonstyle";
-    }elseif ($_GET["tab"] == "user-manual" ) {
+    } elseif ($_GET["tab"] == "user-manual" ) {
 
         $active_tab = "user-manual";
 
     }
-}
+} 
 
 ?>
 
@@ -47,11 +44,7 @@ if (isset($_GET["tab"]) ) {
 } ?>">
         <?php _e('Global Setting', 'cs_currencyswitch'); ?>
     </a>
- <a href="?page=currency_switch&tab=buttonstyle" class="nav-tab tb <?php if ($active_tab == 'buttonstyle' ) {
-        echo 'nav-tab-active';
-} ?>">
-        <?php _e('button style', 'cs_currencyswitch'); ?> 
-    </a>
+
     <a href="?page=currency_switch&tab=user-manual" class="nav-tab tb <?php if ($active_tab == 'user-manual' ) {
         echo 'nav-tab-active';
 } ?>">
@@ -73,17 +66,11 @@ if (isset($_GET["tab"]) ) {
 
         require_once 'cs-user-manual.php';
 
-    } elseif ($_GET["tab"] == "buttonstyle" ) {
+    } 
 
-        require_once 'cs-buttonstyle.php';
 
-    }
-}
-
- else {
+} else {
 
     require_once 'cs-settings-frontend.php';
-
 }
-
 
