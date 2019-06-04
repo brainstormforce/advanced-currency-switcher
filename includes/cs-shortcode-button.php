@@ -106,14 +106,3 @@ if (! class_exists('CSCurrencyBtnShortcode') ) {
     $CSCurrencyBtnShortcode = new CSCurrencyBtnShortcode();
 }
 
-
-?>
-
-<!-- <style type="text/css">
-    
-.cs-currency-name{
-position: fixed;
- top: 200px;
- right: 0px;
- }
-</style> -->

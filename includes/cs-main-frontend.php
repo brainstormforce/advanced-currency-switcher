@@ -10,6 +10,26 @@
  * @license  https://brainstormforce.com 
  * @link     https://brainstormforce.com
  */
+
+
+
+if(get_option('cs_display1') == 'display') {
+
+    ?>
+<div id="message" class="notice is-dismissible notice-info">
+<p class="description">Generate Your OpenExchangeRate App ID:&nbsp;<a href="https://openexchangerates.org/" target="_blank">https://openexchangerates.org/</a>&nbsp;[ If you don't have then get it from OpenExchangeRate. ]
+</p>
+</div>
+<?php
+}
+if(get_option('cs_display') == 'display') {
+echo'<div class="updated fade ">
+<p><strong>Settings Saved.</strong></p>
+</div>';
+update_option('cs_display','nodisplay');
+
+}
+
 ?>
 
 <div class="pr_main_heading">

@@ -38,7 +38,8 @@ class CS_Loader
 
         self::includes();
         add_action('wp_enqueue_scripts', array( $this, 'cswp_load_Scripts' ), 100);
-        add_action('admin_enqueue_scripts', array( $this, 'cswp_load_Backend_Script' ));
+        add_action('admin_enqueue_scripts', array( $this, 'load_backend_script' ));
+        add_action( 'wp_ajax_ccs_validate', array( $this, 'validate_api_key' ));
         add_action('init',array($this,'cswp_save_form_data') );
         add_filter('cron_schedules', array($this,'my_cron_schedules'));
         add_action('cs_schedule_hook',array($this,'cs_schedule_event'));
@@ -84,6 +85,48 @@ class CS_Loader
         //$purchase_url = $this->bsf_get_product_info( $cswp_getcontent, 'basecurency' );
     }
     
+     function validate_api_key() {
+
+        $api_key = isset( $_POST['api_key'] ) ? sanitize_key( $_POST['api_key'] ) : '';
+
+        if( empty( $api_key ) ) {
+            wp_send_json_error( __('Empty API key!', 'cs') );
+        }
+
+        $data = (array) get_option( 'cswp_form_data', array() );
+
+        $cs_url = 'https://openexchangerates.org/api/latest.json?app_id=' . $api_key;
+        $cs_api_validate = curl_init();
+        curl_setopt($cs_api_validate, CURLOPT_URL, $cs_url);
+        curl_setopt($cs_api_validate, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($cs_api_validate, CURLOPT_HEADER, false);
+
+        // execute and return string (this should be an empty string '')
+        $cs_str = curl_exec($cs_api_validate);
+        curl_close($cs_api_validate);
+        $cs_jsondata = json_decode($cs_str, true);
+        // var_dump($json);
+        if(array_key_exists("error",$cs_jsondata))
+        {
+            $args = array(
+                'api_key' => $api_key,
+                'api_key_status' => 'fail',
+            );
+            $new_data = wp_parse_args( $args, $data );
+            update_option( 'cswp_form_data', $new_data );
+
+            wp_send_json_error( "Authentication Failed!" );
+        }
+
+         $args = array(
+            'api_key' => $api_key,
+            'api_key_status' => 'pass',
+        );
+        $new_data = wp_parse_args( $args, $data );
+        update_option( 'cswp_form_data', $new_data );
+
+        wp_send_json_success( "Authentication pass" );
+    }
     /**
      * Function that includes necessary files
      *
@@ -253,7 +296,6 @@ class CS_Loader
         } elseif ($_POST['cswp_form_select'] === 'apirate' ) {
 
             $data='';
-            // if ( file_exists( 'https://openexchangerates.org/api/latest.json?app_id='.$api_key.'&base='.$base_currency.'') ) {
 
             $data = file_get_contents('https://openexchangerates.org/api/latest.json?app_id='.$api_key.'&base='.$basecurency.'');
 
@@ -306,7 +348,7 @@ class CS_Loader
         //Store required data in database 
         if (isset($data) ) {
 
-            $inr=$data->rates->INR;
+        $inr=$data->rates->INR;
         $eur=$data->rates->EUR;
         $usd=$data->rates->USD;
         $aud=$data->rates->AUD;
@@ -322,16 +364,21 @@ class CS_Loader
     }
 
     /**
-     * Define cswp_load_Backend_Script.
+     * Define load_backend_script.
      *
      * @since  1.0.0
      * @return void
      */
-    public function cswp_load_Backend_Script()
+    public function load_backend_script()
     {
-
         wp_enqueue_script('newscript', CSWP_PLUGIN_URL.'assets/js/exchange.js');
         wp_enqueue_style('myccastyle', CSWP_PLUGIN_URL.'/assets/css/cs-styles.css');
+
+        $data = array(
+            'cs_data' => get_option( 'cs_data', array() ),
+            'ajax_url' => admin_url('admin-ajax.php'),
+        );
+        wp_localize_script( 'newscript', 'csVars', $data );
             
     }
     /**

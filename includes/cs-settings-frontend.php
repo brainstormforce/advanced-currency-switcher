@@ -17,6 +17,7 @@ $cswp_get_form_value =  CS_Loader::cswp_load_all_data();
 $cs_basecurency='';
 $cswp_form_select_value = '';
 $cs_api_key = '';
+$api_key_status = 'cswp-key-fail';
 $cs_frequency_reload = '';
 $cs_decimalpoint = '';
 
@@ -31,6 +32,14 @@ if ( isset( $cswp_get_form_value[ 'cswp_form_select' ] ) ) {
 if ( isset( $cswp_get_form_value[ 'api_key'] ) ) {
     $cs_api_key = $cswp_get_form_value[ 'api_key' ];
 }
+
+if ( isset( $cswp_get_form_value[ 'api_key_status'] ) ) {
+    $cs_api_key = $cswp_get_form_value[ 'api_key_status' ];
+}
+
+// if ( isset( $cswp_get_form_value[ 'api_key_status'] ) && 'pass' === $cswp_get_form_value[ 'api_key_status'] ) {
+//     $api_key_status = 'cswp-key-pass';
+// }
 
 if ( isset( $cswp_get_form_value[ 'frequency_reload'] ) ) {
     $cs_frequency_reload = $cswp_get_form_value[ 'frequency_reload' ];
@@ -122,29 +131,11 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
       <label><?php _e('Select Type of Conversion:', 'cs_currencyswitch'); ?></label>
      </th>
       <td>
-        <select name="cswp_form_select" id="cs_currency_form" onchange="showcurency(this)">
-            <?php
-            if (isset($cswp_form_select_value) ) {
-
-                if ('manualrate' === $cswp_form_select_value ) { ?>
-                    <option id="manual-currency" selected value="manualrate"><?php _e('Manual Currency Rate', 'cs_currencyswitch');?></option>
-                    <?php
-                } else { ?>
-                    <option id="manual-currency" value="manualrate"><?php _e('Manual Currency Rate', 'cs_currencyswitch'); ?></option><?php
-                }
-                if ('apirate' === $cswp_form_select_value ) { ?>
-                    <option id="api-currency" selected value="apirate"> <?php _e('Open Exchange Rate', 'cs_currencyswitch'); ?></option> <?php
-                } else { ?>
-                    <option id="api-currency" value="apirate"><?php _e('Open Exchange Rate', 'cs_currencyswitch'); ?></option> <?php
-                }
-
-            } else {
-                ?>
-          <option id="manual-currency" selected value="manualrate"><?php _e('Manual Currency Rate', 'cs_currencyswitch'); ?></option>
-          <option id="api-currency" value="apirate"><?php _e('Open Exchange Rate', 'cs_currencyswitch'); ?></option>
-          
-            <?php } ?>
-       </select>
+    <select name="cswp_form_select" id="cs_currency_form" onchange="showcurency(this)">
+        <option id="manual-currency" value="manualrate" <?php selected( $cswp_form_select_value, 'manualrate') ?>>Manual Currency Rate</option>
+        <option id="api-currency" value="apirate" <?php selected( $cswp_form_select_value, 'apirate') ?>>Open Exchange Rate</option>
+    </select> 
+        
       </td>
     </tr>
   </table>
@@ -393,20 +384,27 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
 
   <!--  set the html code for Apikey value and frequency update time -->
   <table class="form-table" id="cs-api-display" >
-
-
         <tr>
         <th scope="row">
           <label for="ApiKey"> <?php _e('App ID(Api Key):', 'cs_currencyswitch'); ?></label>
         </th>
            <td>
-            <input type="text" name="appid" class="regular-text" value="<?php echo  $cs_api_key;?>">
+            <input type="text" name="appid" class="cs-input-appid regular-text" value="<?php echo  $cs_api_key;?>">
                 
           </td>
-           <td><input type="button" name="Authenticate" value="Authenticate" class="bt button button-secondary"></td>
-           <td> message!</td>
-        </tr>
+           <td><input type="button" name="Authenticate" value="Authenticate" class="cs-authenticate bt button button-secondary"></td>
+           <td> <!-- <?php
+                    if(get_option('cswp_form_data') == 'pass') {
+                    echo'pass';
+                    }
 
+                ?> -->
+               
+           </td>
+        </tr>
+    <!-- </table> -->
+
+    <!-- <table id="cs-api-fields" class="form-table <?php echo esc_attr( $api_key_status ); ?>"> -->
         <tr>
             <th scope="row">
               <label for="UpdateExchangeRate"><?php _e('Frequency to Update Exchange Rate:', 'cs_currencyswitch'); ?></label>
@@ -417,7 +415,7 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
                   <option value="daily" <?php selected( $cs_frequency_reload, 'daily') ?>>Daily</option>
                   <option value="weekly" <?php selected( $cs_frequency_reload, 'weekly') ?>>Weekly</option>
                   <option value="manual" <?php selected( $cs_frequency_reload, 'manual') ?>>Manual</option>
-                  <!--   </select> <span class="dashicons dashicons-image-rotate"></span> -->
+                </select> 
             </td>
           </tr>
       <tr>
