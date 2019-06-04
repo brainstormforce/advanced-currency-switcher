@@ -160,9 +160,9 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
 
       <tr>
         <th class="cca-column">Base Currency</th>
-        <th class="cca-column">Currency</th> 
+        <th class="cca-column" style="padding-left: 10px;">Currency</th> 
         <th class="cca-column">Currency Display</th>
-        <th class="cca-column">Rate</th>
+        <th class="cca-column" style="padding-left: 10px;">Rate</th>
       </tr>
 
       <tr>
@@ -183,7 +183,7 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
         <span class="currency-switcher-slider round"></span></label></td>
 
         <td><label for="USD"><?php _e('United States Dollar(USD)', 'cs_currencyswitch'); ?></label></td>
-        
+
         <td><label class="currency-switcher-switch">
         <!-- <input type="checkbox"  name="currency_button[]" value="USD" class="cca_hidden"> -->
          <?php
@@ -428,9 +428,9 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
           </tr>
       <tr>
         <th class="cca-column">Base Currency</th>
-        <th class="cca-column">Currency</th> 
+        <th class="cca-column" style="padding-left: 10px;">Currency</th> 
         <th class="cca-column">Currency Display</th>
-        <th class="cca-column">Rate</th>
+        <th class="cca-column"style="padding-left: 10px;">Rate</th>
       </tr>
 
       <tr>

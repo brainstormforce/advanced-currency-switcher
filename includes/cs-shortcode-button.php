@@ -34,7 +34,7 @@ if (! class_exists('CSCurrencyBtnShortcode') ) {
         public function __construct()
         {
 
-            add_shortcode('currency_switcher_button', array($this,'currency_Switcherbutton'));
+            add_shortcode('currency-switch', array($this,'currency_Switcherbutton'));
         }
         /**
          * Define Currency_Converter_Addon_button.

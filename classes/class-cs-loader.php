@@ -318,6 +318,8 @@ class CS_Loader
                     'aud'=>$aud,
                 );
                 update_option('cswp_apirate_values',$cswp_apirate_values);
+                update_option('cs_display','display');
+                update_option('cs_display1','display');
             }
         }
 
@@ -361,6 +363,8 @@ class CS_Loader
             'aud'=>$aud,
         );
         update_option('cswp_apirate_values',$cswp_apirate_values);
+        update_option('cs_display','display');
+     update_option('cs_display1','display');
         }
     }
 
