@@ -38,7 +38,7 @@
 } )(jQuery);
 
 function manual_api_form() {
-console.log('hello');
+// console.log('hello');
     if( document.getElementById( "cs_currency_form" ) !== null ) {
 
         var myselectedvalue = document.getElementById( "cs_currency_form" ).value;
@@ -48,12 +48,12 @@ console.log('hello');
             document.getElementById( "cs-api-display" ).style.display = "block";
             document.getElementById( "cs-manual-display" ).style.display = "none";
            } else {
-
+//console.log('hello');
             document.getElementById( "cs-manual-display" ).style.display = "block";
             document.getElementById( "cs-api-display" ).style.display = "none";
             // document.getElementsByClassName("cswp-key-pass").setAttribute( 'style', 'display:none!important' );
-            document.getElementsByClassName('cswp-key-pass').classList.add("cswp-key-fail");
-            // document.getElementsByClassName("cswp-key-pass").style.display = "none";
+            //document.getElementsByClassName('cswp-key-pass').classList.add("cswp-key-fail");
+             // document.getElementsByClassName("cswp-key-pass").style.display = "none";
         }
     }
     
@@ -67,7 +67,7 @@ window.addEventListener( 'load', function() {
 
 //js for hide and display manula and API currency convert value. 
 function showcurency( selectvalue ) {
-console.log('hello2');
+//console.log('hello2');
     if ( selectvalue ) {
 
         optionvalue = document.getElementById( "api-currency" ).value;
@@ -78,12 +78,12 @@ console.log('hello2');
             document.getElementById( "cs-api-display" ).style.display = "block";
 
           } else {
-
+console.log('hello3');
             document.getElementById( "cs-manual-display" ).style.display = "block";
             document.getElementById( "cs-api-display" ).style.display = "none";
             // document.getElementsByClassName("cswp-key-pass").setAttribute( 'style', 'display:none!important' );
             // document.getElementsByClassName('cswp-key-pass').classList.add("cswp-key-fail");
-            
+            document.getElementsByClassName("cswp-key-pass").style.display = "none";
           }
     }
 }

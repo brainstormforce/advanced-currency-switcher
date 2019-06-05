@@ -62,10 +62,10 @@ if (! class_exists('CSCurrencyBtnShortcode') ) {
                 $curbtn[]=$mybase_value;
             }
             
+            if(is_array($curbtn)){
             array_push($curbtn,$base_value_select['basecurency']);
             $currencybtn=array_combine($curbtn, $curbtn);
-
-
+            } 
             
               
             if (is_array($currencybtn) ) {

@@ -23,6 +23,7 @@
  */   
 class CS_Loader
 {
+
   
     /**
      * Constructor
@@ -35,6 +36,7 @@ class CS_Loader
         $this->cswp_load_manual_data();
         $this->cswp_load_currency_button_data();
         $this->cswp_load_apirate_values_data();
+
 
         self::includes();
         add_action('wp_enqueue_scripts', array( $this, 'cswp_load_Scripts' ), 100);
@@ -59,7 +61,12 @@ class CS_Loader
     public static function cswp_load_currency_button_data() {
 
         $cswp_currency_button_type=get_option('cswp_currency_button_type');
+        if(!empty($cswp_currency_button_type)){
         return $cswp_currency_button_type;
+        } else{
+           $cswp_currency_button_type = array(); 
+            return $cswp_currency_button_type;
+        }
     }
     public static function cswp_load_apirate_values_data() {
 
@@ -72,6 +79,8 @@ class CS_Loader
      * @since  1.0.0
      * @return void
      */
+
+
     public function define_Constant()
     {
 
@@ -275,7 +284,8 @@ class CS_Loader
 
         //Store $update_option array value in database option table
         update_option('cswp_form_data', $savevalues);
-        
+         
+         
 
         //values from usermanual currency rate
         if ($_POST['cswp_form_select'] === 'manualrate' ) {
