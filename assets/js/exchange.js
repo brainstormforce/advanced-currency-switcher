@@ -38,7 +38,7 @@
 } )(jQuery);
 
 function manual_api_form() {
-
+console.log('hello');
     if( document.getElementById( "cs_currency_form" ) !== null ) {
 
         var myselectedvalue = document.getElementById( "cs_currency_form" ).value;
@@ -47,11 +47,13 @@ function manual_api_form() {
 
             document.getElementById( "cs-api-display" ).style.display = "block";
             document.getElementById( "cs-manual-display" ).style.display = "none";
-
-        } else {
+           } else {
 
             document.getElementById( "cs-manual-display" ).style.display = "block";
             document.getElementById( "cs-api-display" ).style.display = "none";
+            // document.getElementsByClassName("cswp-key-pass").setAttribute( 'style', 'display:none!important' );
+            document.getElementsByClassName('cswp-key-pass').classList.add("cswp-key-fail");
+            // document.getElementsByClassName("cswp-key-pass").style.display = "none";
         }
     }
     
@@ -65,7 +67,7 @@ window.addEventListener( 'load', function() {
 
 //js for hide and display manula and API currency convert value. 
 function showcurency( selectvalue ) {
-
+console.log('hello2');
     if ( selectvalue ) {
 
         optionvalue = document.getElementById( "api-currency" ).value;
@@ -79,6 +81,8 @@ function showcurency( selectvalue ) {
 
             document.getElementById( "cs-manual-display" ).style.display = "block";
             document.getElementById( "cs-api-display" ).style.display = "none";
+            // document.getElementsByClassName("cswp-key-pass").setAttribute( 'style', 'display:none!important' );
+            // document.getElementsByClassName('cswp-key-pass').classList.add("cswp-key-fail");
             
           }
     }

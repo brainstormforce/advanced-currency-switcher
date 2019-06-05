@@ -159,9 +159,9 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
    <table class="form-table ccatable" id="cs-manual-display">
 
       <tr>
-        <th class="cca-column">Base Currency</th>
+        <th class="cca-column" style="padding-left: 10px;">Base Currency</th>
         <th class="cca-column" style="padding-left: 10px;">Currency</th> 
-        <th class="cca-column">Currency Display</th>
+        <th class="cca-column" style="padding-left: 10px;">Currency Display</th>
         <th class="cca-column" style="padding-left: 10px;">Rate</th>
       </tr>
 
@@ -427,9 +427,9 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
             </td>
           </tr>
       <tr>
-        <th class="cca-column">Base Currency</th>
+        <th class="cca-column" style="padding-left: 10px;">Base Currency</th>
         <th class="cca-column" style="padding-left: 10px;">Currency</th> 
-        <th class="cca-column">Currency Display</th>
+        <th class="cca-column" style="padding-left: 10px;">Currency Display</th>
         <th class="cca-column"style="padding-left: 10px;">Rate</th>
       </tr>
 

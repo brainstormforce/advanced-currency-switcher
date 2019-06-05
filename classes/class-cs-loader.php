@@ -275,14 +275,14 @@ class CS_Loader
 
         //Store $update_option array value in database option table
         update_option('cswp_form_data', $savevalues);
-
+        
 
         //values from usermanual currency rate
         if ($_POST['cswp_form_select'] === 'manualrate' ) {
-            $usd_rate=sanitize_text_field($_POST['usd']);
-            $inr_rate=sanitize_text_field($_POST['inr']);
-            $eur_rate=sanitize_text_field($_POST['eur']);
-            $aud_rate=sanitize_text_field($_POST['aud']);
+            $usd_rate=$_POST['usd'];
+            $inr_rate=$_POST['inr'];
+            $eur_rate=$_POST['eur'];
+            $aud_rate=$_POST['aud'];
 
             $cswp_manual_rate = array(
                 'usd_rate'=>$usd_rate,
@@ -363,8 +363,7 @@ class CS_Loader
             'aud'=>$aud,
         );
         update_option('cswp_apirate_values',$cswp_apirate_values);
-        update_option('cs_display','display');
-     update_option('cs_display1','display');
+
         }
     }
 

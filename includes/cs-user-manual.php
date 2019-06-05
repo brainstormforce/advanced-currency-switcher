@@ -58,7 +58,7 @@
 
     <pre><code>[currency value=' ']</code></pre>
 
-    <p><?php _e('This shortcode help to insert the shortcode in the price info box in Eementor, Beaver Builder and other page builder.', 'cs_currencyswitch'); ?> <br><?php _e('By passing the value of currency in', 'cs_currencyswitch'); ?><b> value='22' </b> 
+    <p><?php _e('This shortcode help to insert the shortcode in the price info box in Eementor, Beaver Builder and other page builder.', 'cs_currencyswitch'); ?> <br><?php _e('By passing the value of currency in', 'cs_currencyswitch'); ?><b> Example: value='22' </b> 
     </p>
 
     <li class="cs-mylist"><?php _e('Shot-code for Currency switcher Button', 'cs_currencyswitch'); ?>  </li>
