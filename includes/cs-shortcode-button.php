@@ -34,7 +34,7 @@ if (! class_exists('CSCurrencyBtnShortcode') ) {
         public function __construct()
         {
 
-            add_shortcode('currency_switcher_button', array($this,'currency_Switcherbutton'));
+            add_shortcode('currency-switch', array($this,'currency_Switcherbutton'));
         }
         /**
          * Define Currency_Converter_Addon_button.
@@ -51,6 +51,7 @@ if (! class_exists('CSCurrencyBtnShortcode') ) {
             //var_dump($base_value_select['basecurency']);
 
             $currencybtn = CS_Loader::cswp_load_currency_button_data( $cswp_currency_button_type );
+            //var_dump($currencybtn);
             foreach ( $currencybtn as $mybase_value )
             {
                
@@ -61,9 +62,12 @@ if (! class_exists('CSCurrencyBtnShortcode') ) {
                 $curbtn[]=$mybase_value;
             }
             
+            if(is_array($curbtn)){
             array_push($curbtn,$base_value_select['basecurency']);
             $currencybtn=array_combine($curbtn, $curbtn);
-
+            } 
+            
+              
             if (is_array($currencybtn) ) {
 
                 foreach ( $currencybtn as $currencyname ) {

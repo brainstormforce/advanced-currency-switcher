@@ -35,7 +35,7 @@ if (! class_exists('CSCurrencyShortcode') ) {
         public function __construct()
         {
 
-            add_shortcode('currency_convert', array($this,'currency_Convertoraddon'));
+            add_shortcode('currency', array($this,'currency_Convertoraddon'));
         }
 
         /**

@@ -27,30 +27,18 @@
 
 <h3> <?php _e('Getting Started', 'cs_currencyswitch'); ?> </h3>
 
-<p> <?php _e(
-                'Allow user to select a type of action to be performed for currency switcher,',
-                'cs_currencyswitch'
-            ); 
-    ?>  
-</p>
+<p> <?php _e('Allow user to select a type of action to be performed for currency switcher,', 'cs_currencyswitch'); ?>  </p>
 
 <ul class="cs-mylist">
 
     <li class="cs-mylist"> <?php _e('Manual Currency Value', 'cs_currencyswitch'); ?> </li>
 
-    <p> <?php _e(
-                    'This helps the user to set base currency and allow to insert 
-                    values manually for other currency if the user does not have an 
-                    API key for currency switchers.', 'cs_currencyswitch'
-                ); 
-        ?> 
+    <p> <?php _e('This helps the user to set base currency and allow to insert values manually for other currency if the user does not have an API key for currency switchers.', 'cs_currencyswitch'); ?> 
     </p>
 
     <li class="cs-mylist"> <?php _e('API Currency Value', 'cs_currencyswitch'); ?></li>
 
-    <p> <?php _e(
-                    'This helps user to set base currency and allow to input API key so that currency value can be updated automatically.', 'cs_currencyswitch'); 
-        ?> 
+    <p> <?php _e('This helps user to set base currency and allow to input API key so that currency value can be updated automatically.', 'cs_currencyswitch'); ?> 
     </p>
 
     <p> <?php _e('To generate APP Id', 'cs_currencyswitch'); ?> 
@@ -68,14 +56,14 @@
 
     <li class="cs-mylist"> <?php _e('Shot-code for Currency switcher', 'cs_currencyswitch'); ?> </li>
 
-    <pre><code>[currency_convert value=" "]</code></pre>
+    <pre><code>[currency value=' ']</code></pre>
 
-    <p><?php _e('This shortcode help to insert the shortcode in the price info box in Eementor, Beaver Builder and other page builder.', 'cs_currencyswitch'); ?> <br><?php _e('By passing the value of currency in', 'cs_currencyswitch'); ?><b> value="" </b> 
+    <p><?php _e('This shortcode help to insert the shortcode in the price info box in Eementor, Beaver Builder and other page builder.', 'cs_currencyswitch'); ?> <br><?php _e('By passing the value of currency in', 'cs_currencyswitch'); ?><b> Example: value='22' </b> 
     </p>
 
     <li class="cs-mylist"><?php _e('Shot-code for Currency switcher Button', 'cs_currencyswitch'); ?>  </li>
-
-    <pre><code>[currency_switcher_button]</code></pre>
+ 
+    <pre><code>[currency-switch]</code></pre>
 
     <p> <?php _e('This shortcode allows user to embed the currency switcher button on the web page of the website. It support Elementor, Beaver Builder and other page builder', 'cs_currencyswitch'); ?>
     </p>

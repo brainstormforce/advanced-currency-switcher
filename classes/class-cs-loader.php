@@ -23,6 +23,7 @@
  */   
 class CS_Loader
 {
+
   
     /**
      * Constructor
@@ -35,6 +36,7 @@ class CS_Loader
         $this->cswp_load_manual_data();
         $this->cswp_load_currency_button_data();
         $this->cswp_load_apirate_values_data();
+
 
         self::includes();
         add_action('wp_enqueue_scripts', array( $this, 'cswp_load_Scripts' ), 100);
@@ -59,7 +61,12 @@ class CS_Loader
     public static function cswp_load_currency_button_data() {
 
         $cswp_currency_button_type=get_option('cswp_currency_button_type');
+        if(!empty($cswp_currency_button_type)){
         return $cswp_currency_button_type;
+        } else{
+           $cswp_currency_button_type = array(); 
+            return $cswp_currency_button_type;
+        }
     }
     public static function cswp_load_apirate_values_data() {
 
@@ -72,6 +79,8 @@ class CS_Loader
      * @since  1.0.0
      * @return void
      */
+
+
     public function define_Constant()
     {
 
@@ -105,6 +114,7 @@ class CS_Loader
         $cs_str = curl_exec($cs_api_validate);
         curl_close($cs_api_validate);
         $cs_jsondata = json_decode($cs_str, true);
+        // var_dump($json);
         if(array_key_exists("error",$cs_jsondata))
         {
             $args = array(
@@ -119,7 +129,7 @@ class CS_Loader
 
          $args = array(
             'api_key' => $api_key,
-             'api_key_status' => 'pass',
+            'api_key_status' => 'pass',
         );
         $new_data = wp_parse_args( $args, $data );
         update_option( 'cswp_form_data', $new_data );
@@ -192,7 +202,7 @@ class CS_Loader
              if (isset($_POST['basecurencyapi']) ) {
                 $basecurency = $_POST['basecurencyapi'];
             } else {
-                $basecurency ='USD';
+                $basecurency ='';
             }
         }
 
@@ -274,14 +284,15 @@ class CS_Loader
 
         //Store $update_option array value in database option table
         update_option('cswp_form_data', $savevalues);
-
+         
+         
 
         //values from usermanual currency rate
         if ($_POST['cswp_form_select'] === 'manualrate' ) {
-            $usd_rate=sanitize_text_field($_POST['usd']);
-            $inr_rate=sanitize_text_field($_POST['inr']);
-            $eur_rate=sanitize_text_field($_POST['eur']);
-            $aud_rate=sanitize_text_field($_POST['aud']);
+            $usd_rate=$_POST['usd'];
+            $inr_rate=$_POST['inr'];
+            $eur_rate=$_POST['eur'];
+            $aud_rate=$_POST['aud'];
 
             $cswp_manual_rate = array(
                 'usd_rate'=>$usd_rate,
@@ -295,6 +306,7 @@ class CS_Loader
         } elseif ($_POST['cswp_form_select'] === 'apirate' ) {
 
             $data='';
+            // if ( file_exists( 'https://openexchangerates.org/api/latest.json?app_id='.$api_key.'&base='.$base_currency.'') ) {
 
             $data = file_get_contents('https://openexchangerates.org/api/latest.json?app_id='.$api_key.'&base='.$basecurency.'');
 
@@ -316,6 +328,8 @@ class CS_Loader
                     'aud'=>$aud,
                 );
                 update_option('cswp_apirate_values',$cswp_apirate_values);
+                update_option('cs_display','display');
+                update_option('cs_display1','display');
             }
         }
 
@@ -347,7 +361,7 @@ class CS_Loader
         //Store required data in database 
         if (isset($data) ) {
 
-        $inr=$data->rates->INR;
+            $inr=$data->rates->INR;
         $eur=$data->rates->EUR;
         $usd=$data->rates->USD;
         $aud=$data->rates->AUD;
@@ -359,6 +373,7 @@ class CS_Loader
             'aud'=>$aud,
         );
         update_option('cswp_apirate_values',$cswp_apirate_values);
+
         }
     }
 

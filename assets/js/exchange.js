@@ -1,11 +1,15 @@
 ( function ( $ ) {
 
+    // console.log( csVars.ajax_url );
+    // console.log( csVars.cs_data.api_key );
+
     $( document ).on('click', '.cs-authenticate', function() {
 
         // var api_key = csVars.cs_data.api_key || '';
         var api_key = $('.cs-input-appid').val() || '';
         var btn = $(this);
 
+        btn.addClass('updating-message');
         btn.val('Authenticating..');
 
         $.ajax({
@@ -16,11 +20,12 @@
                 api_key : api_key
             },
             success : function( response ) {
-                // console.log(response.success)
                 if( response.success ) {
                     btn.val('Authenticate Success!');
+                    
+                    
+                    //$('#cs-api-fields').removeClass('cswp-key-fail').addClass('cswp-key-pass');
 
-                     //$('#cs-api-fields').removeClass('cswp-key-fail').addClass('cswp-key-pass');
                 } else {
                     btn.val('Authenticate Failed!');
                     //$('#cs-api-fields').removeClass('cswp-key-pass').addClass('cswp-key-fail');
@@ -41,11 +46,11 @@ function manual_api_form() {
 
             document.getElementById( "cs-api-display" ).style.display = "block";
             document.getElementById( "cs-manual-display" ).style.display = "none";
-
-        } else {
+           } else {
 
             document.getElementById( "cs-manual-display" ).style.display = "block";
             document.getElementById( "cs-api-display" ).style.display = "none";
+          
         }
     }
     
@@ -59,7 +64,6 @@ window.addEventListener( 'load', function() {
 
 //js for hide and display manula and API currency convert value. 
 function showcurency( selectvalue ) {
-
     if ( selectvalue ) {
 
         optionvalue = document.getElementById( "api-currency" ).value;
@@ -70,10 +74,9 @@ function showcurency( selectvalue ) {
             document.getElementById( "cs-api-display" ).style.display = "block";
 
           } else {
-
+console.log('hello3');
             document.getElementById( "cs-manual-display" ).style.display = "block";
             document.getElementById( "cs-api-display" ).style.display = "none";
-            
           }
     }
 }
