@@ -105,7 +105,6 @@ class CS_Loader
         $cs_str = curl_exec($cs_api_validate);
         curl_close($cs_api_validate);
         $cs_jsondata = json_decode($cs_str, true);
-        // var_dump($json);
         if(array_key_exists("error",$cs_jsondata))
         {
             $args = array(
@@ -120,7 +119,7 @@ class CS_Loader
 
          $args = array(
             'api_key' => $api_key,
-            'api_key_status' => 'pass',
+             'api_key_status' => 'pass',
         );
         $new_data = wp_parse_args( $args, $data );
         update_option( 'cswp_form_data', $new_data );
@@ -193,7 +192,7 @@ class CS_Loader
              if (isset($_POST['basecurencyapi']) ) {
                 $basecurency = $_POST['basecurencyapi'];
             } else {
-                $basecurency ='';
+                $basecurency ='USD';
             }
         }
 

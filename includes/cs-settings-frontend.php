@@ -17,7 +17,7 @@ $cswp_get_form_value =  CS_Loader::cswp_load_all_data();
 $cs_basecurency='';
 $cswp_form_select_value = '';
 $cs_api_key = '';
-$api_key_status = 'cswp-key-fail';
+$api_key_status = '';
 $cs_frequency_reload = '';
 $cs_decimalpoint = '';
 
@@ -120,7 +120,6 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
     $apitext_aud = $cswp_apirate_values[ 'aud' ];
 }
 
-
 ?>
  <!-- Html code for frontend -->
 <form method="post" name="cca_settings_form">
@@ -164,13 +163,12 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
             }else { ?>
              <input type="radio"  value="USD" name="basecurency" class="cca_hidden" />
 
-         <?php } ?>
+        <?php } ?>
 
         <span class="currency-switcher-slider round"></span></label></td>
 
-        <td><label for="USD"><?php _e('United States Dollar(USD):', 'cs_currencyswitch'); ?></label></td>
+        <td><label for="USD"><?php _e('United States Dollar(USD)', 'cs_currencyswitch'); ?></label></td>
         <td><label class="currency-switcher-switch">
-        <!-- <input type="checkbox"  name="currency_button[]" value="USD" class="cca_hidden"> -->
          <?php
          $convertbtn = CS_Loader::cswp_load_currency_button_data();
             if (isset($convertbtn) ) {
@@ -181,8 +179,8 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
 
                         if ('USD' === $cs_usd_button ) {
                             echo'<label for="ForCurrencyButton">
-                     <input type="checkbox" checked name="currency_button[]" value="USD">
-                     USD</label><br> ';
+                         <input type="checkbox" checked name="currency_button[]" value="USD">
+                         USD</label><br> ';
                         } else {
                             echo'<label for="ForCurrencyButton">
                      <input type="checkbox"  name="currency_button[]" value="USD">
@@ -224,7 +222,7 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
         
         <span class="currency-switcher-slider round">
         </span></label></td>
-        <td><label for="INR"><?php _e('Indian Rupee(INR):', 'cs_currencyswitch'); ?></label></td>
+        <td><label for="INR"><?php _e('Indian Rupee(INR)', 'cs_currencyswitch'); ?></label></td>
         <td> <label class="currency-switcher-switch">  
         <!-- <input type="checkbox"  name="currency_button[]" value="INR" class="cca_hidden"> -->
          <?php
@@ -284,7 +282,7 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
         <span class="currency-switcher-slider round"></span></label>
 
         </td>
-        <td><label for="EUO"><?php _e('European Union(EUR):', 'cs_currencyswitch'); ?></label></td>
+        <td><label for="EUO"><?php _e('European Union(EUR)', 'cs_currencyswitch'); ?></label></td>
         <td > <label class="currency-switcher-switch">  
         <!-- <input type="checkbox"  name="currency_button[]" value="EURO" class="cca_hidden"> -->
          <?php
@@ -339,12 +337,10 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
 
          <?php } ?>
         <span class="currency-switcher-slider round"></span></label></td>
-        <td><label for="AUD"><?php _e('Australian Dollar(AUD):', 'cs_currencyswitch'); ?></td>
+        <td><label for="AUD"><?php _e('Australian Dollar(AUD)', 'cs_currencyswitch'); ?></td>
         <td > <label class="currency-switcher-switch"> 
-        <!-- <input type="checkbox"  name="currency_button[]" value="AUD" class="cca_hidden"> -->
          <?php
          
-
             if (isset($convertbtn) ) {
 
                 if ($convertbtn ==! '') {
@@ -388,20 +384,23 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
         <th scope="row">
           <label for="ApiKey"> <?php _e('App ID(Api Key):', 'cs_currencyswitch'); ?></label>
         </th>
+        
            <td>
             <input type="text" name="appid" class="cs-input-appid regular-text" value="<?php echo  $cs_api_key;?>">
                 
           </td>
-           <td><input type="button" name="Authenticate" value="Authenticate" class="cs-authenticate bt button button-secondary"></td>
-           <td> <!-- <?php
-                    if(get_option('cswp_form_data') == 'pass') {
-                    echo'pass';
-                    }
+           <td><input type="button" name="Authenticate" value="Authenticate" id="cs-api-fields" class="cs-authenticate bt button button-secondary"></td>
+           
+           <!-- <td>  <?php
+                    // if(get_option('cswp_form_data') == 'pass') {
+                    // echo'pass';
+                    // }
 
-                ?> -->
+                ?> 
                
-           </td>
+           </td> -->
         </tr>
+
     <!-- </table> -->
 
     <!-- <table id="cs-api-fields" class="form-table <?php echo esc_attr( $api_key_status ); ?>"> -->

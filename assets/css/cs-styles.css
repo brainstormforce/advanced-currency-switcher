@@ -18,10 +18,12 @@ display: block;
   margin: 10px 10px 10px 10px;
 }
 
+
 /*.cswp-key-pass {
-    display: block;
+   background-color: green;
 }
 
 .cswp-key-fail {
-    display: none;
+	
+    background-color: red;
 }*/

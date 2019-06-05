@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:     Currency Switcher
+ * Plugin Name:     Advanced Currency Switcher
  * Plugin URI:      https://www.brainstormforce.com/
  * Description:     To convert currency in native currency using Shortcode : [currency_converter].
  * Version:         1.0.0
@@ -30,9 +30,10 @@ require_once 'classes/class-cs-loader.php';
  * @return array         List of modified plugin action links.
  */
 function cswp_plugin_action_links( $links ) {
-    $links = array_merge( array(
-        '<a href="' . esc_url( admin_url( '/options-general.php?page=currency_switch' ) ) . '">' . __( 'Settings', 'Currency Switcher' ) . '</a>'
-    ), $links );
+    $links = array_merge( $links, array(
+	'<a href="' . esc_url( admin_url( '/options-general.php?page=currency_switch' ) ) . '">' . __( 'Settings', 'cs_currencyswitch' ) . '</a>'
+) );
     return $links;
 }
+
 add_action( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'cswp_plugin_action_links' );

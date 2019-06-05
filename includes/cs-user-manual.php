@@ -27,18 +27,30 @@
 
 <h3> <?php _e('Getting Started', 'cs_currencyswitch'); ?> </h3>
 
-<p> <?php _e('Allow user to select a type of action to be performed for currency switcher,', 'cs_currencyswitch'); ?>  </p>
+<p> <?php _e(
+                'Allow user to select a type of action to be performed for currency switcher,',
+                'cs_currencyswitch'
+            ); 
+    ?>  
+</p>
 
 <ul class="cs-mylist">
 
     <li class="cs-mylist"> <?php _e('Manual Currency Value', 'cs_currencyswitch'); ?> </li>
 
-    <p> <?php _e('This helps the user to set base currency and allow to insert values manually for other currency if the user does not have an API key for currency switchers.', 'cs_currencyswitch'); ?> 
+    <p> <?php _e(
+                    'This helps the user to set base currency and allow to insert 
+                    values manually for other currency if the user does not have an 
+                    API key for currency switchers.', 'cs_currencyswitch'
+                ); 
+        ?> 
     </p>
 
     <li class="cs-mylist"> <?php _e('API Currency Value', 'cs_currencyswitch'); ?></li>
 
-    <p> <?php _e('This helps user to set base currency and allow to input API key so that currency value can be updated automatically.', 'cs_currencyswitch'); ?> 
+    <p> <?php _e(
+                    'This helps user to set base currency and allow to input API key so that currency value can be updated automatically.', 'cs_currencyswitch'); 
+        ?> 
     </p>
 
     <p> <?php _e('To generate APP Id', 'cs_currencyswitch'); ?> 
