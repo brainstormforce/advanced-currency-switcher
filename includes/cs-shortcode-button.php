@@ -28,6 +28,27 @@ if (! class_exists('CSCurrencyBtnShortcode') ) {
     class CSCurrencyBtnShortcode
     {
 
+        /**
+         * Instance
+         *
+         * @access private
+         * @since 1.0.2
+         */
+        private static $instance;
+
+        /**
+         * Initiator
+         *
+         * @since 1.0.2
+         * @return object initialized object of class.
+         */
+        public static function get_instance(){
+            if ( ! isset( self::$instance ) ) {
+                self::$instance = new self;
+            }
+            return self::$instance;
+        }
+
          /**
           * Constructor
           */
@@ -47,11 +68,9 @@ if (! class_exists('CSCurrencyBtnShortcode') ) {
 
             ob_start();
 
-            $base_value_select=CS_Loader::cswp_load_all_data( $cswp_get_form_value );
-            //var_dump($base_value_select['basecurency']);
+            $base_value_select=CS_Loader::cswp_load_all_data();
 
-            $currencybtn = CS_Loader::cswp_load_currency_button_data( $cswp_currency_button_type );
-            //var_dump($currencybtn);
+            $currencybtn = CS_Loader::cswp_load_currency_button_data();
             foreach ( $currencybtn as $mybase_value )
             {
                
@@ -66,7 +85,9 @@ if (! class_exists('CSCurrencyBtnShortcode') ) {
             array_push($curbtn,$base_value_select['basecurency']);
             $currencybtn=array_combine($curbtn, $curbtn);
             } 
-            
+            ?> 
+            <div class="cs-currency-buttons">
+            <?php
               
             if (is_array($currencybtn) ) {
 
@@ -78,6 +99,9 @@ if (! class_exists('CSCurrencyBtnShortcode') ) {
                     <?php
                 }
             }
+            ?>
+            </div>
+            <?php
 
             return ob_get_clean();
         }
@@ -103,6 +127,5 @@ if (! class_exists('CSCurrencyBtnShortcode') ) {
 
     }
 
-    $CSCurrencyBtnShortcode = new CSCurrencyBtnShortcode();
+    CSCurrencyBtnShortcode::get_instance();
 }
-

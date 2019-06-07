@@ -99,7 +99,7 @@ class CS_Loader
         $api_key = isset( $_POST['api_key'] ) ? sanitize_key( $_POST['api_key'] ) : '';
 
         if( empty( $api_key ) ) {
-            wp_send_json_error( __('Empty API key!', 'cs') );
+            wp_send_json_error( __("Empty API key!") );
         }
 
         $data = (array) get_option( 'cswp_form_data', array() );
@@ -114,7 +114,6 @@ class CS_Loader
         $cs_str = curl_exec($cs_api_validate);
         curl_close($cs_api_validate);
         $cs_jsondata = json_decode($cs_str, true);
-        // var_dump($json);
         if(array_key_exists("error",$cs_jsondata))
         {
             $args = array(
@@ -126,15 +125,14 @@ class CS_Loader
 
             wp_send_json_error( "Authentication Failed!" );
         }
-
-         $args = array(
+        $args = array(
             'api_key' => $api_key,
             'api_key_status' => 'pass',
         );
         $new_data = wp_parse_args( $args, $data );
         update_option( 'cswp_form_data', $new_data );
 
-        wp_send_json_success( "Authentication pass" );
+        wp_send_json_success( "Authentication Success" );
     }
     /**
      * Function that includes necessary files
@@ -281,12 +279,8 @@ class CS_Loader
 
             $savevalues = array_merge($savevalues, $cswp_currency_button_type);
         }
-
         //Store $update_option array value in database option table
         update_option('cswp_form_data', $savevalues);
-         
-         
-
         //values from usermanual currency rate
         if ($_POST['cswp_form_select'] === 'manualrate' ) {
             $usd_rate=$_POST['usd'];
@@ -306,7 +300,7 @@ class CS_Loader
         } elseif ($_POST['cswp_form_select'] === 'apirate' ) {
 
             $data='';
-            // if ( file_exists( 'https://openexchangerates.org/api/latest.json?app_id='.$api_key.'&base='.$base_currency.'') ) {
+            if ( file_exists( 'https://openexchangerates.org/api/latest.json?app_id='.$api_key) ) {
 
             $data = file_get_contents('https://openexchangerates.org/api/latest.json?app_id='.$api_key.'&base='.$basecurency.'');
 
@@ -331,7 +325,7 @@ class CS_Loader
                 update_option('cs_display','display');
                 update_option('cs_display1','display');
             }
-        }
+        }}
 
     $new_frequency = isset( $_POST['frequency_reload'] ) ? $_POST['frequency_reload'] : '';
     $old_frequency = isset( $cswp_get_form_value['frequency_reload'] ) ? $cswp_get_form_value['frequency_reload'] : '';
@@ -361,7 +355,7 @@ class CS_Loader
         //Store required data in database 
         if (isset($data) ) {
 
-            $inr=$data->rates->INR;
+        $inr=$data->rates->INR;
         $eur=$data->rates->EUR;
         $usd=$data->rates->USD;
         $aud=$data->rates->AUD;
@@ -392,6 +386,7 @@ class CS_Loader
             'cs_data' => get_option( 'cs_data', array() ),
             'ajax_url' => admin_url('admin-ajax.php'),
         );
+
         wp_localize_script( 'newscript', 'csVars', $data );
             
     }
@@ -404,8 +399,8 @@ class CS_Loader
     public function cswp_load_Scripts()
     {   
         wp_enqueue_style('myccastyle', CSWP_PLUGIN_URL.'/assets/css/buttonhide.css');
-        wp_register_script('getrate', CSWP_PLUGIN_URL.'assets/js/cs-script.js');
-        wp_enqueue_script('myccacript', CSWP_PLUGIN_URL.'assets/js/cs-script.js');
+        wp_register_script('getrate', CSWP_PLUGIN_URL.'assets/js/cs-script.js', array('jquery'), '1.0', true);
+        wp_enqueue_script('myccacript', CSWP_PLUGIN_URL.'assets/js/cs-script.js', array('jquery'), '1.0', true);
         wp_enqueue_script('getrate');
         $cswp_get_form_value = get_option('cswp_form_data'); 
         $cswp_manualrate = get_option('cswp_manual_rate');
@@ -435,9 +430,21 @@ class CS_Loader
             }
         }
 
+
+
+
+
+         $cswp_get_form_value =  CS_Loader::cswp_load_all_data();
+        $cs_basecurency='';
+        if ( isset( $cswp_get_form_value[ 'basecurency' ] ) ) {
+            $cs_basecurency = $cswp_get_form_value[ 'basecurency' ];
+        }
+
         $currency_rate = array(
             'actual_currency_rates' => $actual_currency_rates,
             'decimal_point' => isset($cswp_get_form_value['decimalpoint']) ? $cswp_get_form_value['decimalpoint'] : '',
+            'base_currency' => $cs_basecurency,
+            'base_currency_symbol' => CSCurrencyBtnShortcode::get_instance()->get_currency_symbol($cs_basecurency),
         );
         wp_localize_script('getrate', 'csVars', $currency_rate);
     }

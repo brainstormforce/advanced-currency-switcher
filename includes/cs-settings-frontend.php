@@ -37,10 +37,6 @@ if ( isset( $cswp_get_form_value[ 'api_key_status'] ) ) {
     $cs_api_key = $cswp_get_form_value[ 'api_key_status' ];
 }
 
-// if ( isset( $cswp_get_form_value[ 'api_key_status'] ) && 'pass' === $cswp_get_form_value[ 'api_key_status'] ) {
-//     $api_key_status = 'cswp-key-pass';
-// }
-
 if ( isset( $cswp_get_form_value[ 'frequency_reload'] ) ) {
     $cs_frequency_reload = $cswp_get_form_value[ 'frequency_reload' ];
 }

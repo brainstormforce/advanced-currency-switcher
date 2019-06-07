@@ -1,17 +1,12 @@
 ( function ( $ ) {
 
-    // console.log( csVars.ajax_url );
-    // console.log( csVars.cs_data.api_key );
 
     $( document ).on('click', '.cs-authenticate', function() {
 
-        // var api_key = csVars.cs_data.api_key || '';
         var api_key = $('.cs-input-appid').val() || '';
         var btn = $(this);
-
         btn.addClass('updating-message');
         btn.val('Authenticating..');
-
         $.ajax({
             url : csVars.ajax_url,
             type : 'POST',
@@ -21,14 +16,9 @@
             },
             success : function( response ) {
                 if( response.success ) {
-                    btn.val('Authenticate Success!');
-                    
-                    
-                    //$('#cs-api-fields').removeClass('cswp-key-fail').addClass('cswp-key-pass');
-
+                    btn.val(response.data);
                 } else {
-                    btn.val('Authenticate Failed!');
-                    //$('#cs-api-fields').removeClass('cswp-key-pass').addClass('cswp-key-fail');
+                    btn.val(response.data);
                 }
             }
         });

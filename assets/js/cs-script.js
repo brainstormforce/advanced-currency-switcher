@@ -2,12 +2,12 @@
 ( function ( $ ) {
 
     $(document).ready(function(){
-        console.log( csVars.decimalpoint);
+        console.log( csVars );
+        // console.log( csVars.decimalpoint);
         if( $( '.cs-currency-name' ).length ) {
             $( '.cs-currency-name' ).hide();
             $( '.cs-currency-name' ).eq(0).show();
-            $( '.cs-convertor-wrap-symbol' ).html( $( '.cs-currency-name' ).eq(3).attr('data-currency-symbol') );
-
+            $( '.cs-convertor-wrap-symbol' ).html( csVars.base_currency_symbol );
         }
     });
 
@@ -20,8 +20,6 @@
             } else {
                 $( '.cs-currency-name' ).eq( $(this).next().index() ).show();
             }
-
-        
 
             var currency_name = $(this).attr('data-currency-name') || '';
             
@@ -52,7 +50,6 @@
                         myarray.push(mydata);
                         var arrayLength = myarray.length;
                         for ( var i = 0; i < arrayLength; i++ ) {
-                            //console.log(myarray[i]);
                             var converted_value = myarray[i] * rate_inr;
                             converted_value = converted_value.toFixed(decimalpoint).replace(/\.?0+$/, '');
                             var spans = document.querySelectorAll(".cs-convertor-wrap-data");// get all the elements with id=cs-converter-wrap-1

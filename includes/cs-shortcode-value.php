@@ -55,8 +55,8 @@ if (! class_exists('CSCurrencyShortcode') ) {
                 $atts
             );
 
-            $getval = $attributes['value'];
-            $myprice=$attributes['value'];
+            $getval = (float) $attributes['value'];
+            $myprice=(float) $attributes['value'];
             ob_start();
             ?>
 
