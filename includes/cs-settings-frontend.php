@@ -199,7 +199,7 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
         <span class="currency-switcher-slider round"></span></label>
         </td>
         <td>
-        <input type="text" name="usd"  value="<?php  echo $cs_usd_rate; ?>" placeholder="<?php _e('Enter the USD value', 'cs_currencyswitch'); ?>" >
+        <input type="number" name="usd"  value="<?php  echo $cs_usd_rate; ?>" placeholder="<?php _e('Enter the USD value', 'cs_currencyswitch'); ?>" >
       </td>
       </tr>
 
@@ -258,7 +258,7 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
         <span class="currency-switcher-slider round"></span></label>
         </td>
         <td>
-        <input type="text" name="inr" value="<?php echo $cs_inr_rate; ?>" placeholder="<?php _e('Enter the INR value', 'cs_currencyswitch'); ?>">
+        <input type="number" name="inr" value="<?php echo $cs_inr_rate; ?>" placeholder="<?php _e('Enter the INR value', 'cs_currencyswitch'); ?>">
        </td>
       </tr>
       <tr>
@@ -317,7 +317,7 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
         <span class="currency-switcher-slider round"></span></label>
         </td>
         <td>
-        <input type="text" name="eur"  value="<?php echo $cs_eur_rate; ?>" placeholder="<?php _e('Enter the EURO value', 'cs_currencyswitch'); ?>">
+        <input type="number" name="eur"  value="<?php echo $cs_eur_rate; ?>" placeholder="<?php _e('Enter the EURO value', 'cs_currencyswitch'); ?>">
        </td>
       </tr>
       <tr>
@@ -372,7 +372,7 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
         <span class="currency-switcher-slider round"></span></label>
         </td>
         <td>
-        <input type="text" name="aud"  value="<?php echo $cs_aud_rate;?>" placeholder="<?php _e('Enter the AUD value', 'cs_currencyswitch'); ?>">
+        <input type="number" name="aud"  value="<?php echo $cs_aud_rate;?>" placeholder="<?php _e('Enter the AUD value', 'cs_currencyswitch'); ?>">
       </tr>
       <tr></tr>
     </table>
@@ -384,7 +384,7 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
           <label for="ApiKey"> <?php _e('App ID(Api Key)', 'cs_currencyswitch'); ?></label>
         </th>
            <td>
-            <input type="text" name="appid" class="cs-input-appid regular-text" value="<?php echo  $cs_api_key;?>">
+            <input type="text" name="appid" class="cs-input-appid regular-text" value="<?php echo  $cs_api_key; ?>">
                 
           </td>
            <td><input type="button" name="Authenticate" value="Authenticate" class="cs-authenticate bt button button-secondary"></td>
@@ -465,7 +465,7 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
         <span class="currency-switcher-slider round"></span></label>
         </td>
         <td>
-        <input type="text" name="apitext_usd"  value="<?php  echo $apitext_usd; ?>" placeholder="<?php _e('Enter the USD value', 'cs_currencyswitch'); ?>" readonly>
+        <input type="number" name="apitext_usd"  value="<?php  echo $apitext_usd; ?>" placeholder="<?php _e('Enter the USD value', 'cs_currencyswitch'); ?>" readonly>
       </td>
       </tr>
 
@@ -524,7 +524,7 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
         <span class="currency-switcher-slider round"></span></label>
         </td>
         <td>
-        <input type="text" name="apitext_inr" value="<?php echo $apitext_inr; ?>" placeholder="<?php _e('Enter the INR value', 'cs_currencyswitch'); ?>" readonly>
+        <input type="number" name="apitext_inr" value="<?php echo $apitext_inr; ?>" placeholder="<?php _e('Enter the INR value', 'cs_currencyswitch'); ?>" readonly>
        </td>
       </tr>
       <tr>
@@ -584,7 +584,7 @@ if ( isset( $cswp_apirate_values[ 'aud' ] ) ) {
         <span class="currency-switcher-slider round"></span></label>
         </td>
         <td>
-        <input type="text" name="apitext_eur"  value="<?php echo $apitext_eur; ?>" placeholder="<?php _e('Enter the EURO value', 'cs_currencyswitch'); ?>" readonly >
+        <input type="number" name="apitext_eur"  value="<?php echo $apitext_eur; ?>" placeholder="<?php _e('Enter the EURO value', 'cs_currencyswitch'); ?>" readonly >
        </td>
       </tr>
       <tr>

@@ -39,7 +39,7 @@ class CS_Loader
 
 
         self::includes();
-        add_action('wp_enqueue_scripts', array( $this, 'cswp_load_Scripts' ), 100);
+        add_action('wp_enqueue_scripts', array( $this, 'cswp_load_Scripts' ));
         add_action('admin_enqueue_scripts', array( $this, 'load_backend_script' ));
         add_action( 'wp_ajax_ccs_validate', array( $this, 'validate_api_key' ));
         add_action('init',array($this,'cswp_save_form_data') );
@@ -300,10 +300,9 @@ class CS_Loader
         } elseif ($_POST['cswp_form_select'] === 'apirate' ) {
 
             $data='';
-            if ( file_exists( 'https://openexchangerates.org/api/latest.json?app_id='.$api_key) ) {
+           // if ( file_exists( 'https://openexchangerates.org/api/latest.json?app_id='.$api_key) ) {
 
             $data = file_get_contents('https://openexchangerates.org/api/latest.json?app_id='.$api_key.'&base='.$basecurency.'');
-
             //decode jason data.
             $data = json_decode($data);
 
@@ -325,7 +324,7 @@ class CS_Loader
                 update_option('cs_display','display');
                 update_option('cs_display1','display');
             }
-        }}
+        }
 
     $new_frequency = isset( $_POST['frequency_reload'] ) ? $_POST['frequency_reload'] : '';
     $old_frequency = isset( $cswp_get_form_value['frequency_reload'] ) ? $cswp_get_form_value['frequency_reload'] : '';
