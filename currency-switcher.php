@@ -6,7 +6,7 @@
  * Version:         1.0.0
  * Author:          Brainstrom Force
  * Author URI:      https://www.brainstormforce.com/
- * Text Domain:     cs_currencyswitch
+ * Text Domain:     cswp_currencyswitch
  * Domain Path:     /languages
  *
  * Main
@@ -16,7 +16,7 @@
  * @category PHP
  * @package  Currency_Convertor_Addon
  * @author   Display Name <ahemads@bsf.io>
- * @license  https://brainstormforce.com 
+ * @license  https://brainstormforce.com
  * @link     https://brainstormforce.com
  */
 

@@ -11,7 +11,7 @@
  * @link     https://brainstormforce.com
  */
 
-if (!class_exists('CSCurrencyBtnShortcode')) {
+if (!class_exists('CSWP_Currency_Btn_Shortcode')) {
 
 	/**
 	 * Class for definr currency_Switcher_button shortcode.
@@ -23,7 +23,7 @@ if (!class_exists('CSCurrencyBtnShortcode')) {
 	 * @license  https://brainstormforce.com
 	 * @link     https://brainstormforce.com
 	 */
-	class CSCurrencyBtnShortcode {
+	class CSWP_Currency_Btn_Shortcode {
 
 		/**
 		 * Instance
@@ -61,21 +61,21 @@ if (!class_exists('CSCurrencyBtnShortcode')) {
 		 */
 		public function currency_Switcherbutton() {
 
-			$curbtn = "";
+			// $curbtn = '';
 
 			ob_start();
 
 			$base_value_select = CS_Loader::cswp_load_all_data();
 
 			$currencybtn = CS_Loader::cswp_load_currency_button_data();
-			
+
 			foreach ($currencybtn as $mybase_value) {
-      if ($mybase_value === $base_value_select['basecurency']) {
+				if ($mybase_value === $base_value_select['basecurency']) {
 					continue;
 				}
 				$curbtn[] = $mybase_value;
 			}
-      if (is_array($curbtn)) {
+			if (is_array($curbtn)) {
 				array_push($curbtn, $base_value_select['basecurency']);
 				$currencybtn = array_combine($curbtn, $curbtn);
 			}
@@ -121,5 +121,5 @@ if (!class_exists('CSCurrencyBtnShortcode')) {
 
 	}
 
-	CSCurrencyBtnShortcode::get_instance();
+	CSWP_Currency_Btn_Shortcode::get_instance();
 }

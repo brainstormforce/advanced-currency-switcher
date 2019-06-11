@@ -7,12 +7,9 @@
  * @category PHP
  * @package  Currency_Switcher
  * @author   Display Name <ahemads@bsf.io>
- * @license  https://brainstormforce.com 
+ * @license  https://brainstormforce.com
  * @link     https://brainstormforce.com
  */
-
-
-
 if(get_option('cs_display1') == 'display') {
 
     ?>
@@ -22,19 +19,12 @@ if(get_option('cs_display1') == 'display') {
 </div>
 <?php
 }
-if(get_option('cs_display') == 'display') {
-echo'<div class="updated fade ">
-<p><strong>Settings Saved.</strong></p>
-</div>';
-update_option('cs_display','nodisplay');
-
-}
 
 ?>
 
 <div class="pr_main_heading">
 
-    <h1> <?php _e('Currency Switcher', 'cs_currencyswitch'); ?> </h1>
+    <h1> <?php esc_html_e('Currency Switcher', 'cswp_currencyswitch'); ?> </h1>
 
 </div>
 
@@ -53,7 +43,7 @@ if (isset($_GET["tab"]) ) {
         $active_tab = "user-manual";
 
     }
-} 
+}
 
 ?>
 
@@ -68,7 +58,7 @@ if (isset($_GET["tab"]) ) {
     <a href="?page=currency_switch&tab=user-manual" class="nav-tab tb <?php if ($active_tab == 'user-manual' ) {
         echo 'nav-tab-active';
 } ?>">
-        <?php _e('User Manual', 'cs_currencyswitch'); ?> 
+        <?php _e('User Manual', 'cs_currencyswitch'); ?>
     </a>
 
 </h2>
@@ -86,11 +76,10 @@ if (isset($_GET["tab"]) ) {
 
         require_once 'cs-user-manual.php';
 
-    } 
+    }
 
 
 } else {
 
     require_once 'cs-settings-frontend.php';
 }
-

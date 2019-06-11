@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Add submenu of Global settings Page to admin menu.
  *
@@ -7,15 +7,15 @@
  * @category PHP
  * @package  Currency_Switcher
  * @author   Display Name <ahemads@bsf.io>
- * @license  https://brainstormforce.com 
+ * @license  https://brainstormforce.com
  * @link     https://brainstormforce.com
  */
 
 /**
  * Custom modules
  */
-if (! class_exists('CS_Menu_Page') ) {
-    
+if (! class_exists('CSWP_Menu_Page') ) {
+
     /**
      * Class define for Menu.
      *
@@ -23,10 +23,10 @@ if (! class_exists('CS_Menu_Page') ) {
      * @category PHP
      * @package  Currency_Switcher
      * @author   Display Name <ahemads@bsf.io>
-     * @license  https://brainstormforce.com 
+     * @license  https://brainstormforce.com
      * @link     https://brainstormforce.com
      */
-    class CS_Menu_Page
+    class CSWP_Menu_Page
     {
 
         /**
@@ -36,7 +36,7 @@ if (! class_exists('CS_Menu_Page') ) {
         {
 
             add_action('admin_menu', array( $this, 'cs_OptionsPage' ));
-            
+
         }
 
         /**
@@ -66,10 +66,10 @@ if (! class_exists('CS_Menu_Page') ) {
             public function CS_Page_html()
             {
 
-                //require main-frontend tab file 
-                require_once CSWP_PLUGIN_DIR.'/includes/cs-main-frontend.php';   
+                //require main-frontend tab file
+                require_once CSWP_PLUGIN_DIR.'/includes/cs-main-frontend.php';
             }
 
     }
-    $menup = new CS_Menu_Page();
+    $menup = new CSWP_Menu_Page();
 }
