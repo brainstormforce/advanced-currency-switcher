@@ -655,3 +655,4 @@ Enter Your OpenExchangeRate App ID: [ If you dont have then get from <a href="ht
 	  </tr>
 	</table>
 </form>
+<?php

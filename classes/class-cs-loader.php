@@ -191,6 +191,7 @@ class CS_Loader {
 		if ( ! wp_verify_nonce( $_POST['cs-form'], 'cs-form-nonce' ) ) {
 			return;
 		}
+		$cswp_get_form_value=get_option('cswp_form_data');
 
 		if ( $_POST['cswp_form_select'] === 'manualrate' ) {
 			$basecurency = isset( $_POST['basecurency'] ) ? $_POST['basecurency'] : '';
@@ -204,7 +205,7 @@ class CS_Loader {
 
 		$api_key = isset( $_POST['appid'] ) ? sanitize_text_field( $_POST['appid'] ) : '';
 
-		$frequency_reload = isset( $_POST['frequency_reload'] ) ? sanitize_text_field( $_POST['frequency_reload'] ) : '';
+		$frequency_reload = isset( $_POST['frequency_reload'] ) ? ( $_POST['frequency_reload'] ) : '';
 
 		$decimalpoint = isset( $_POST['decimal'] ) ? sanitize_text_field( $_POST['decimal'] ) : '';
 
@@ -317,14 +318,11 @@ class CS_Loader {
 				update_option( 'cswp_apirate_values', $cswp_apirate_values );
 			}
 		}
-
-		$new_frequency = isset( $_POST['frequency_reload'] ) ? $_POST['frequency_reload'] : '';
 		$old_frequency = isset( $cswp_get_form_value['frequency_reload'] ) ? $cswp_get_form_value['frequency_reload'] : '';
-
-		if ( empty( $old_frequency ) && empty( $new_frequency && $frequency_reload == 'manual' ) ) {
+		if ( empty( $old_frequency ) && empty( $frequency_reload)) {
 			  // Schedule an action if it's not already scheduled.
-			 wp_schedule_event( time(), $new_frequency, 'cs_schedule_hook' );
-		} elseif ( ! empty( $new_frequency ) && ( $new_frequency !== $old_frequency ) ) {
+			 wp_schedule_event( time(), $frequency_reload, 'cs_schedule_hook' );
+		} elseif ( ! empty( $frequency_reload ) && ( $frequency_reload !== $old_frequency ) ) {
 			// Get the timestamp for the next event.
 			$timestamp = wp_next_scheduled( 'cs_schedule_hook' );
 			// If this event was created with any special arguments, you need to get those too.
@@ -333,12 +331,12 @@ class CS_Loader {
 			}
 
 			 // Schedule an action if it's not already scheduled.
-			 wp_schedule_event( time(), $new_frequency, 'cs_schedule_hook' );
+			 wp_schedule_event( time(), $frequency_reload, 'cs_schedule_hook' );
 		}
 	}
 
 	public function cs_schedule_event() {
-		$data = @file_get_contents( 'https://openexchangerates.org/api/latest.json?app_id=' . $api_key . '&base=' . $base_currency . '' );
+		$data = file_get_contents( 'https://openexchangerates.org/api/latest.json?app_id=' . $api_key . '&base=' . $base_currency . '' );
 
 		// decode jason data.
 		$data = json_decode( $data );
