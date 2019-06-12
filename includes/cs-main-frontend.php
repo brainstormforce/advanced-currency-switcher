@@ -11,29 +11,26 @@
  * @link     https://brainstormforce.com
  */
 
-
-
-
-	?>
+?>
 
 
 <div class="pr_main_heading">
 
-	<h1> <?php esc_html_e( 'Currency Switcher', 'cs_currencyswitch' ); ?> </h1>
+	<h1> <?php esc_html_e( 'Currency Switcher', 'cswp' ); ?> </h1>
 
 </div>
 
 <?php
 
-// To get the tab value from URL and store in $active_tab variable
+// To get the tab value from URL and store in $active_tab variable.
 $active_tab = 'cs_settings';
 if ( isset( $_GET['tab'] ) ) {
 
-	if ( $_GET['tab'] == 'cs_settings' ) {
+	if ( 'cs_settings' == $_GET['tab'] ) {
 
 		$active_tab = 'cs_settings';
 
-	} elseif ( $_GET['tab'] == 'user-manual' ) {
+	} elseif ( 'user-manual' == $_GET['tab'] ) {
 
 		$active_tab = 'user-manual';
 
@@ -46,36 +43,36 @@ if ( isset( $_GET['tab'] ) ) {
 
 	<a href="?page=currency_switch" class="nav-tab tb
 	<?php
-	if ( $active_tab == 'cs_settings' ) {
+	if ( 'cs_settings' == $active_tab ) {
 		echo 'nav-tab-active';
 	}
 	?>
 	">
-		<?php esc_html_e( 'Global Setting', 'cs_currencyswitch' ); ?>
+		<?php esc_html_e( 'Global Setting', 'cswp' ); ?>
 	</a>
 
 	<a href="?page=currency_switch&tab=user-manual" class="nav-tab tb
 	<?php
-	if ( $active_tab == 'user-manual' ) {
+	if ( 'user-manual' == $active_tab ) {
 		echo 'nav-tab-active';
 	}
 	?>
 	">
-		<?php esc_html_e( 'User Manual', 'cs_currencyswitch' ); ?>
+		<?php esc_html_e( 'User Manual', 'cswp' ); ?>
 	</a>
 
 </h2>
 
 <?php
 
- // here we display the sections and options in the settings page based on the active tab
+ // here we display the sections and options in the settings page based on the active tab.
 if ( isset( $_GET['tab'] ) ) {
 
-	if ( $_GET['tab'] == 'cs_settings' ) {
+	if ( 'cs_settings' == $_GET['tab'] ) {
 
 		require_once 'cs-settings-frontend.php';
 
-	} elseif ( $_GET['tab'] == 'user-manual' ) {
+	} elseif ( 'user-manual' == $_GET['tab'] ) {
 
 		require_once 'cs-user-manual.php';
 

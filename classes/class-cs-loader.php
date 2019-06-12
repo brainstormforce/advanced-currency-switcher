@@ -22,23 +22,19 @@
  * @link     https://brainstormforce.com
  */
 class CS_Loader {
-
-
-
 	/**
 	 * Constructor
 	 */
 	public function __construct() {
 
-
-		$this->define_Constant();
+		$this->define_constant();
 		$this->cswp_load_all_data();
 		$this->cswp_load_manual_data();
 		$this->cswp_load_currency_button_data();
 		$this->cswp_load_apirate_values_data();
 
 		self::includes();
-		add_action( 'wp_enqueue_scripts', array( $this, 'cswp_load_Scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'cswp_load_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_backend_script' ) );
 		add_action( 'wp_ajax_ccs_validate', array( $this, 'cs_validate_api_key' ) );
 		add_action( 'init', array( $this, 'cswp_save_form_data' ) );
@@ -46,18 +42,36 @@ class CS_Loader {
 		add_action( 'cs_schedule_hook', array( $this, 'cs_schedule_event' ) );
 	}
 
+	/**
+	 * Load all form data.
+	 *
+	 * @since  1.0.0
+	 * @return $cswp_get_form_value
+	 */
 	public static function cswp_load_all_data() {
 
 		$cswp_get_form_value = get_option( 'cswp_form_data' );
 		return $cswp_get_form_value;
 	}
 
+	/**
+	 * Load Manual currency rate.
+	 *
+	 * @since  1.0.0
+	 * @return $cswp_manual_rate
+	 */
 	public static function cswp_load_manual_data() {
 
 		$cswp_manual_rate = get_option( 'cswp_manual_rate' );
 		return $cswp_manual_rate;
 	}
 
+	/**
+	 * Load currency button data.
+	 *
+	 * @since  1.0.0
+	 * @return $cswp_currency_button_type
+	 */
 	public static function cswp_load_currency_button_data() {
 
 		$cswp_currency_button_type = get_option( 'cswp_currency_button_type' );
@@ -73,13 +87,16 @@ class CS_Loader {
 		}
 	}
 
+	/**
+	 * Load api values.
+	 *
+	 * @since  1.0.0
+	 * @return $cswp_apirate_values
+	 */
 	public static function cswp_load_apirate_values_data() {
 
-        //echo 'utgahfoglaofghlafglafighafljghfjdhvllllllljag;jv';
 		$cswp_apirate_values = get_option( 'cswp_apirate_values' );
 		return $cswp_apirate_values;
-		// var_dump( $cswp_apirate_values );
-
 	}
 
 	/**
@@ -88,7 +105,7 @@ class CS_Loader {
 	 * @since  1.0.0
 	 * @return void
 	 */
-	public function define_Constant() {
+	public function define_constant() {
 		define( 'CSWP_CURRENCY_SWITCHER_VER', '1.0.0' );
 
 		define( 'CSWP_CURRENCY_SWITCH_FILE', trailingslashit( dirname( dirname( __FILE__ ) ) ) . 'currency-switcher.php' );
@@ -99,46 +116,51 @@ class CS_Loader {
 		// $purchase_url = $this->bsf_get_product_info( $cswp_getcontent, 'basecurency' );
 	}
 
+	/**
+	 * Validate api key
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
 	function cs_validate_api_key() {
 
-        $api_key = isset( $_POST['api_key'] ) ? sanitize_key( $_POST['api_key'] ) : '';
+		$api_key = isset( $_POST['api_key'] ) ? sanitize_key( $_POST['api_key'] ) : '';
 
-        if( empty( $api_key ) ) {
-            wp_send_json_error( __("Empty API key!") );
-        }
+		if ( empty( $api_key ) ) {
+			wp_send_json_error( __( 'Empty API key!' ) );
+		}
 
-        $data = (array) get_option( 'cswp_form_data', array() );
+		$data = (array) get_option( 'cswp_form_data', array() );
 
-        $cswp_url = 'https://openexchangerates.org/api/latest.json?app_id=' . $api_key;
-        $cswp_api_validate = curl_init();
-        curl_setopt($cswp_api_validate, CURLOPT_URL, $cswp_url);
-        curl_setopt($cswp_api_validate, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($cswp_api_validate, CURLOPT_HEADER, false);
+		$cswp_url          = 'https://openexchangerates.org/api/latest.json?app_id=' . $api_key;
+		$cswp_api_validate = curl_init();
+		curl_setopt( $cswp_api_validate, CURLOPT_URL, $cswp_url );
+		curl_setopt( $cswp_api_validate, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $cswp_api_validate, CURLOPT_HEADER, false );
 
-        // execute and return string (this should be an empty string '')
-        $cswp_str = curl_exec($cswp_api_validate);
-        curl_close($cswp_api_validate);
-        $cswp_jsondata = json_decode($cswp_str, true);
-        if(array_key_exists("error",$cswp_jsondata))
-        {
-            $args = array(
-                'api_key' => $api_key,
-                'api_key_status' => 'fail',
-            );
-            $new_data = wp_parse_args( $args, $data );
-            update_option( 'cswp_form_data', $new_data );
+		// execute and return string (this should be an empty string '').
+		$cswp_str = curl_exec( $cswp_api_validate );
+		curl_close( $cswp_api_validate );
+		$cswp_jsondata = json_decode( $cswp_str, true );
+		if ( array_key_exists( 'error', $cswp_jsondata ) ) {
+			$args     = array(
+				'api_key'        => $api_key,
+				'api_key_status' => 'fail',
+			);
+			$new_data = wp_parse_args( $args, $data );
+			update_option( 'cswp_form_data', $new_data );
 
-            wp_send_json_error( "Authentication Failed!" );
-        }
-        $args = array(
-            'api_key' => $api_key,
-            'api_key_status' => 'pass',
-        );
-        $new_data = wp_parse_args( $args, $data );
-        update_option( 'cswp_form_data', $new_data );
+			wp_send_json_error( 'Authentication Failed!' );
+		}
+		$args     = array(
+			'api_key'        => $api_key,
+			'api_key_status' => 'pass',
+		);
+		$new_data = wp_parse_args( $args, $data );
+		update_option( 'cswp_form_data', $new_data );
 
-        wp_send_json_success( "Authentication Success!" );
-    }
+		wp_send_json_success( 'Authentication Success!' );
+	}
 	/**
 	 * Function that includes necessary files
 	 *
@@ -152,7 +174,12 @@ class CS_Loader {
 	}
 
 	/**
-	 * Custom corn schedule for various event exchange request.
+	 * Custom corn schedule for various event exchange request..
+	 *
+	 * @param string $schedules which return schedule time.
+	 *
+	 * @since  1.0.0
+	 * @return $schedules.
 	 */
 	public function my_cron_schedules( $schedules ) {
 		if ( ! isset( $schedules['hourly'] ) ) {
@@ -176,9 +203,15 @@ class CS_Loader {
 		return $schedules;
 	}
 
+	/**
+	 * Function that save all form data
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
 	public function cswp_save_form_data() {
 
-		  $page = isset( $_GET['page'] ) ? $_GET['page'] : null;
+		$page = isset( $_GET['page'] ) ? $_GET['page'] : null;
 
 		if ( 'currency_switch' !== $page ) {
 			return;
@@ -191,12 +224,12 @@ class CS_Loader {
 		if ( ! wp_verify_nonce( $_POST['cs-form'], 'cs-form-nonce' ) ) {
 			return;
 		}
-		$cswp_get_form_value=get_option('cswp_form_data');
+		$cswp_get_form_value = get_option( 'cswp_form_data' );
 
-		if ( $_POST['cswp_form_select'] === 'manualrate' ) {
+		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
 			$basecurency = isset( $_POST['basecurency'] ) ? $_POST['basecurency'] : '';
 
-		} elseif ( $_POST['cswp_form_select'] === 'apirate' ) {
+		} elseif ( 'apirate' === $_POST['cswp_form_select'] ) {
 
 			$basecurency = isset( $_POST['basecurencyapi'] ) ? $_POST['basecurencyapi'] : '';
 		}
@@ -209,14 +242,14 @@ class CS_Loader {
 
 		$decimalpoint = isset( $_POST['decimal'] ) ? sanitize_text_field( $_POST['decimal'] ) : '';
 
-		// Set decimal point by default 2 if its blank
-		if ( $decimalpoint === '' ) {
+		// Set decimal point by default 2 if its blank.
+		if ( '' === $decimalpoint ) {
 			$decimalpoint = '2';
 		}
 
-		// Store checkbox values in arraysanitize_text_field()
-		if ( $_POST['cswp_form_select'] === 'manualrate' ) {
-			// $cswp_currency_button_type = array();
+		// Store checkbox values in arraysanitize_text_field().
+		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
+
 			if ( isset( $_POST['currency_button'] ) ) {
 
 				foreach ( $_POST['currency_button'] as $currencybutton ) {
@@ -230,14 +263,8 @@ class CS_Loader {
 
 				update_option( 'cswp_currency_button_type', $cswp_currency_button_type );
 			}
+		} elseif ( 'apirate' === $_POST['cswp_form_select'] ) {
 
-			// $cswp_currency_button_type = array();
-			// array_push($cswp_currency_button_type,'INR');
-			// $cswp_currency_button_type = array_combine($cswp_currency_button_type, $cswp_currency_button_type);
-
-		} elseif ( $_POST['cswp_form_select'] === 'apirate' ) {
-
-			// $cswp_currency_button_type = array();
 			if ( isset( $_POST['currency_button_api'] ) ) {
 
 				foreach ( $_POST['currency_button_api'] as $currencybutton ) {
@@ -251,13 +278,9 @@ class CS_Loader {
 
 				update_option( 'cswp_currency_button_type', $cswp_currency_button_type );
 			}
-
-			// $cswp_currency_button_type = array();
-			// array_push($cswp_currency_button_type,'INR');
-			// $cswp_currency_button_type = array_combine($cswp_currency_button_type, $cswp_currency_button_type);
 		}
 
-		// Store values in array
+		// Store values in array.
 		$savevalues = array(
 			'basecurency'      => $basecurency,
 			'cswp_form_select' => $form_type,
@@ -266,15 +289,17 @@ class CS_Loader {
 			'decimalpoint'     => $decimalpoint,
 		);
 
-		// Merging both array
+		// Merging both array.
 		if ( isset( $cswp_currency_button_type ) ) {
 
 			$savevalues = array_merge( $savevalues, $cswp_currency_button_type );
 		}
-		// Store $update_option array value in database option table
+
+		// Store $update_option array value in database option table.
 		update_option( 'cswp_form_data', $savevalues );
-		// values from usermanual currency rate
-		if ( $_POST['cswp_form_select'] === 'manualrate' ) {
+
+		// values from usermanual currency rate.
+		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
 
 			$usd_rate = $_POST['usd'];
 			$inr_rate = $_POST['inr'];
@@ -288,10 +313,10 @@ class CS_Loader {
 				'aud_rate' => $aud_rate,
 
 			);
-			update_option('cswp_display','display');
+			update_option( 'cswp_display', 'display' );
 			update_option( 'cswp_manual_rate', $cswp_manual_rate );
 
-		} elseif ( $_POST['cswp_form_select'] === 'apirate' ) {
+		} elseif ( 'apirate' === $_POST['cswp_form_select'] ) {
 
 			$data = '';
 
@@ -300,7 +325,7 @@ class CS_Loader {
 			// decode jason data.
 			$data = json_decode( $data );
 
-			// Store required data in database
+			// Store required data in database.
 			if ( isset( $data ) ) {
 
 				$inr = $data->rates->INR;
@@ -314,15 +339,20 @@ class CS_Loader {
 					'usd' => $usd,
 					'aud' => $aud,
 				);
-				update_option('cswp_display','display');
+				update_option( 'cswp_display', 'display' );
 				update_option( 'cswp_apirate_values', $cswp_apirate_values );
 			}
 		}
+
 		$old_frequency = isset( $cswp_get_form_value['frequency_reload'] ) ? $cswp_get_form_value['frequency_reload'] : '';
-		if ( empty( $old_frequency ) && empty( $frequency_reload)) {
+
+		if ( empty( $old_frequency ) && empty( $frequency_reload ) ) {
+
 			  // Schedule an action if it's not already scheduled.
 			 wp_schedule_event( time(), $frequency_reload, 'cs_schedule_hook' );
+
 		} elseif ( ! empty( $frequency_reload ) && ( $frequency_reload !== $old_frequency ) ) {
+
 			// Get the timestamp for the next event.
 			$timestamp = wp_next_scheduled( 'cs_schedule_hook' );
 			// If this event was created with any special arguments, you need to get those too.
@@ -335,13 +365,19 @@ class CS_Loader {
 		}
 	}
 
+	/**
+	 * Function that schedule events
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
 	public function cs_schedule_event() {
 		$data = file_get_contents( 'https://openexchangerates.org/api/latest.json?app_id=' . $api_key . '&base=' . $base_currency . '' );
 
 		// decode jason data.
 		$data = json_decode( $data );
 
-		// Store required data in database
+		// Store required data in database.
 		if ( isset( $data ) ) {
 
 			$inr = $data->rates->INR;
@@ -368,10 +404,10 @@ class CS_Loader {
 	 */
 	public function load_backend_script() {
 
-        wp_register_script( 'cswp_newscript', CSWP_PLUGIN_URL . 'assets/js/exchange.js', array( 'jquery' ), '1.0', true );
-		 //wp_enqueue_script( 'cswp_newscript', CSWP_PLUGIN_URL . 'assets/js/exchange.js' );
-        wp_enqueue_script( 'cswp_newscript');
-		wp_enqueue_style( 'cswp_myccastyle', CSWP_PLUGIN_URL . '/assets/css/cs-styles.css' );
+		wp_register_script( 'cswp_newscript', CSWP_PLUGIN_URL . 'assets/js/exchange.js', array( 'jquery' ), '1.0', true );
+
+		wp_enqueue_script( 'cswp_newscript' );
+		wp_enqueue_style( 'cswp_myccastyle', CSWP_PLUGIN_URL . '/assets/css/cs-styles.css', '', $ver = false );
 
 		$data = array(
 			'cs_data'  => get_option( 'cs_data', array() ),
@@ -380,20 +416,21 @@ class CS_Loader {
 
 		wp_localize_script( 'cswp_newscript', 'csVars', $data );
 	}
+
 	/**
 	 * Plugin Scripts.
 	 *
 	 * @since  1.0.0
 	 * @return void
 	 */
-	public function cswp_load_Scripts() {
-		//wp_enqueue_style( 'cswp_myccastyle', CSWP_PLUGIN_URL . '/assets/css/buttonhide.css' );
+	public function cswp_load_scripts() {
+
 		wp_register_style( 'cswp_myccastyle', CSWP_PLUGIN_URL . '/assets/css/buttonhide.css', '1.0', true );
+
 		wp_register_script( 'cswp_getrate', CSWP_PLUGIN_URL . 'assets/js/cs-script.js', array( 'jquery' ), '1.0', true );
-		//wp_enqueue_script( 'cswp_myccacript', CSWP_PLUGIN_URL . 'assets/js/cs-script.js', array( 'jquery' ), '1.0', true );
-        wp_register_script( 'cswp_myccacript', CSWP_PLUGIN_URL . 'assets/js/cs-script.js', array( 'jquery' ), '1.0', true );
-          //wp_enqueue_script( 'cswp_myccacript' );
-		  //wp_enqueue_script( 'cswp_getrate' );
+
+		wp_register_script( 'cswp_myccacript', CSWP_PLUGIN_URL . 'assets/js/cs-script.js', array( 'jquery' ), '1.0', true );
+
 		$cswp_get_form_value = self::cswp_load_all_data();
 		$cswp_manualrate     = self::cswp_load_manual_data();
 		$cswp_buttonvalue    = self::cswp_load_currency_button_data();
@@ -403,8 +440,7 @@ class CS_Loader {
 		// perform wp_localize_script() for currency rate and setting page value which use in javascript.
 		if ( isset( $cswp_get_form_value['cswp_form_select'] ) ) {
 
-			if ( $cswp_get_form_value['cswp_form_select'] === 'apirate' ) {
-				// update_option('cswp_apirate_values',$apirate_values);
+			if ( 'apirate' === $cswp_get_form_value['cswp_form_select'] ) {
 
 				$cswp_apirate_values = self::cswp_load_apirate_values_data();
 
@@ -417,7 +453,7 @@ class CS_Loader {
 					);
 
 				}
-			} elseif ( $cswp_get_form_value['cswp_form_select'] === 'manualrate' ) {
+			} elseif ( 'manualrate' === $cswp_get_form_value['cswp_form_select'] ) {
 				$actual_currency_rates = array(
 					'USD' => $cswp_manualrate['usd_rate'],
 					'INR' => $cswp_manualrate['inr_rate'],
@@ -450,8 +486,8 @@ class CS_Loader {
  *
  * @return void
  */
-function initialize_Cs() {
-	$CS_Loader = new CS_Loader();
+function initialize_cswp() {
+	$cswp_loader = new CS_Loader();
 }
 
-add_action( 'plugins_loaded', 'initialize_Cs' );
+add_action( 'plugins_loaded', 'initialize_cswp' );

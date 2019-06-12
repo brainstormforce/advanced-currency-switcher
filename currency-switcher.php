@@ -6,7 +6,7 @@
  * Version:         1.0.0
  * Author:          Brainstrom Force
  * Author URI:      https://www.brainstormforce.com/
- * Text Domain:     cswp_currencyswitch
+ * Text Domain:     cswp
  * Domain Path:     /languages
  *
  * Main
@@ -22,8 +22,8 @@
 
 require_once 'classes/class-cs-loader.php';
 
-/*
- Add a link to the settings page on the plugins.php page.
+/**
+ * Add a link to the settings page on the plugins.php page.
  *
  * @since 1.0.0
  *
@@ -34,7 +34,7 @@ function cswp_plugin_action_links( $links ) {
 	$links = array_merge(
 		$links,
 		array(
-			'<a href="' . esc_url( admin_url( '/options-general.php?page=currency_switch' ) ) . '">' . __( 'Settings', 'cswp_currencyswitch' ) . '</a>',
+			'<a href="' . esc_url( admin_url( '/options-general.php?page=currency_switch' ) ) . '">' . __( 'Settings', 'cswp' ) . '</a>',
 		)
 	);
 	return $links;

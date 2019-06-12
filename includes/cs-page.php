@@ -33,7 +33,7 @@ if ( ! class_exists( 'CS_Menu_Page' ) ) {
 		 * Constructor
 		 */
 		public function __construct() {
-			add_action( 'admin_menu', array( $this, 'cs_OptionsPage' ) );
+			add_action( 'admin_menu', array( $this, 'cswp_options_page' ) );
 
 		}
 
@@ -43,24 +43,26 @@ if ( ! class_exists( 'CS_Menu_Page' ) ) {
 		 * @since  1.0.0
 		 * @return void
 		 */
-		public function cs_OptionsPage() {
+		public function cswp_options_page() {
 			add_submenu_page(
 				'options-general.php',
 				'Currency Switcher',
 				'Currency Switcher',
 				'manage_options',
 				'currency_switch',
-				array( $this, 'CS_Page_html' )
+				array( $this, 'cswp_advance_currency_page' )
 			);
 		}
+
 		/**
 		 * Main Frontpage.
 		 *
 		 * @since  1.0.0
 		 * @return void
 		 */
-		public function CS_Page_html() {
-			// require main-frontend tab file
+		public function cswp_advance_currency_page() {
+
+			// require main-frontend tab file.
 			require_once CSWP_PLUGIN_DIR . '/includes/cs-main-frontend.php';
 		}
 

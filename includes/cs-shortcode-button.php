@@ -11,7 +11,7 @@
  * @link     https://brainstormforce.com
  */
 
-if ( ! class_exists( 'CSWP_currency_Btn_Shortcode' ) ) {
+if ( ! class_exists( 'CSWP_Currency_Btn_Shortcode' ) ) {
 
 	/**
 	 * Class for definr currency_Switcher_button shortcode.
@@ -23,12 +23,13 @@ if ( ! class_exists( 'CSWP_currency_Btn_Shortcode' ) ) {
 	 * @license  https://brainstormforce.com
 	 * @link     https://brainstormforce.com
 	 */
-	class CSWP_currency_Btn_Shortcode {
+	class CSWP_Currency_Btn_Shortcode {
 
 		/**
 		 * Instance
 		 *
 		 * @access private
+		 * @var $instance
 		 * @since 1.0.2
 		 */
 		private static $instance;
@@ -51,8 +52,8 @@ if ( ! class_exists( 'CSWP_currency_Btn_Shortcode' ) ) {
 		 */
 		public function __construct() {
 
-			add_shortcode( 'currency-switch', array( $this, 'currency_Switcherbutton' ) );
-			add_action('wp_head', array( $this, 'currency_js' ));
+			add_shortcode( 'currency-switch', array( $this, 'cswp_advance_currency_button' ) );
+			add_action( 'wp_head', array( $this, 'currency_js' ) );
 
 		}
 
@@ -63,17 +64,17 @@ if ( ! class_exists( 'CSWP_currency_Btn_Shortcode' ) ) {
 		 * @return void
 		 */
 		public function currency_js() {
-			wp_enqueue_style('cswp_myccastyle');
-		 	wp_enqueue_script( 'cswp_myccacript' );
-		 	wp_enqueue_script( 'cswp_getrate' );
+			wp_enqueue_style( 'cswp_myccastyle' );
+			wp_enqueue_script( 'cswp_myccacript' );
+			wp_enqueue_script( 'cswp_getrate' );
 		}
 		/**
 		 * Define Currency_Converter_Addon_button.
 		 *
 		 * @since  1.0.0
-		 * @return void
+		 * @return ob_get_clean().
 		 */
-		public function currency_Switcherbutton() {
+		public function cswp_advance_currency_button() {
 
 			ob_start();
 
@@ -87,7 +88,6 @@ if ( ! class_exists( 'CSWP_currency_Btn_Shortcode' ) ) {
 						continue;
 					}
 					$curbtn[] = $mybase_value;
-					// var_dump($curbtn);
 				}
 				if ( ! empty( $curbtn ) && is_array( $curbtn ) ) {
 					array_push( $curbtn, $base_value_select['basecurency'] );
@@ -105,7 +105,7 @@ if ( ! class_exists( 'CSWP_currency_Btn_Shortcode' ) ) {
 
 					$currency_symbol = $this->get_currency_symbol( $currencyname );
 					?>
-					<input type="button" class="cs-currency-name" id="cstoggleto<?php echo $currencyname; ?>" value="<?php echo 'Change TO ' . $currencyname; ?>" data-currency-name="<?php echo $currencyname; ?>" data-currency-symbol="<?php echo $currency_symbol; ?>" style="display: none;">
+					<input type="button" class="cs-currency-name" id="cstoggleto<?php echo esc_attr( $currencyname ); ?>" value="<?php echo 'Change TO ' . esc_attr( $currencyname ); ?>" data-currency-name="<?php echo esc_attr( $currencyname ); ?>" data-currency-symbol="<?php echo esc_attr( $currency_symbol ); ?>" style="display: none;">
 					<?php
 				}
 			}
@@ -116,6 +116,13 @@ if ( ! class_exists( 'CSWP_currency_Btn_Shortcode' ) ) {
 			return ob_get_clean();
 		}
 
+		/**
+		 * Get_currency_symbol.
+		 *
+		 * @since  1.0.0
+		 * @param string $currency The text to be formatted.
+		 * @return ''.
+		 */
 		function get_currency_symbol( $currency ) {
 			$currenceis = $this->get_currenceis();
 
@@ -126,6 +133,11 @@ if ( ! class_exists( 'CSWP_currency_Btn_Shortcode' ) ) {
 			return '';
 		}
 
+		/**
+		 * Get_currenceis.
+		 *
+		 * @since  1.0.0
+		 */
 		function get_currenceis() {
 			return array(
 				'INR' => '₹',

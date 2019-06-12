@@ -1,6 +1,6 @@
 <?php
 /**
- * Class Short Doc Comment
+ * Class-cs-shortcode-value.php
  *
  * PHP version 7
  *
@@ -33,18 +33,18 @@ if ( ! class_exists( 'CSWP_Currency_Shortcode' ) ) {
 		 * Constructor
 		 */
 		public function __construct() {
-			add_shortcode( 'currency', array( $this, 'currency_Convertoraddon' ) );
+			add_shortcode( 'currency', array( $this, 'cswp_advance_currency_switch' ) );
 		}
 
 		/**
 		 * Define Currency_Switcher.
 		 *
-		 * @param string $atts The text to be formatted
+		 * @param string $atts The text to be formatted.
 		 *
 		 * @since  1.0.0
-		 * @return void
+		 * @return return ob_get_clean().
 		 */
-		public function currency_Convertoraddon( $atts ) {
+		public function cswp_advance_currency_switch( $atts ) {
 			$attributes = shortcode_atts(
 				array(
 					'value' => '',
@@ -60,9 +60,9 @@ if ( ! class_exists( 'CSWP_Currency_Shortcode' ) ) {
 			<!--  Create custom div and span for display price -->
 			<div class="cs-converter-wrap" >
 				<span class="cs-convertor-wrap-symbol"></span>
-				<span id="cs-convertor-wrap" class="cs-convertor-wrap-data" valuemy="<?php echo $myprice; ?>">
+				<span id="cs-convertor-wrap" class="cs-convertor-wrap-data" valuemy="<?php echo esc_attr( $myprice ); ?>">
 					<?php
-					echo $getval;
+					echo esc_attr( $getval );
 					?>
 
 				</span>
@@ -71,5 +71,5 @@ if ( ! class_exists( 'CSWP_Currency_Shortcode' ) ) {
 			return ob_get_clean();
 		}
 	}
-	$CS_Currency_Shortcode = new CSWP_Currency_Shortcode();
+	$cswp_currency_shortcode = new CSWP_Currency_Shortcode();
 }
