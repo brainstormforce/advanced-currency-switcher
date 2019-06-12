@@ -1,3 +1,4 @@
+
 ( function ( $ ) {
 
 
@@ -64,6 +65,7 @@ function showcurency( selectvalue ) {
             document.getElementById( "cs-api-display" ).style.display = "block";
 
           } else {
+console.log('hello3');
             document.getElementById( "cs-manual-display" ).style.display = "block";
             document.getElementById( "cs-api-display" ).style.display = "none";
           }

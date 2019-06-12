@@ -17,16 +17,11 @@ display: block;
   list-style-type: square;
   margin: 10px 10px 10px 10px;
 }
-
-/*.cswp-key-pass {
-    display: block;
+/* .cswp_api_note td{
+	padding: 0px !important;
 }
-
-.cswp-key-fail {
-    display: none;
-}*/
-
-
-
-
-
+.cswp_api_note .cswp_apidescription{
+ margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left:12px;
+} */

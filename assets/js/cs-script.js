@@ -1,4 +1,3 @@
-
 ( function ( $ ) {
 
     $(document).ready(function(){
@@ -22,7 +21,7 @@
             }
 
             var currency_name = $(this).attr('data-currency-name') || '';
-            
+
             if(currency_name ) {
 
                 //console.log( csVars.actual_currency_rates[ currency_name ] );
@@ -32,10 +31,10 @@
                 } else if(currency_name==='USD') {
                     var symb='$';
 
-            
+
                 } else if(currency_name==='AUD') {
                     var symb='A$';
-                
+
                 } else if(currency_name==='EUR') {
                     var symb='€';
                 }
@@ -43,7 +42,7 @@
                 var decimalpoint = csVars.decimal_point;
                 var myarray = [];
                 var rate_inr = csVars.actual_currency_rates[ currency_name ];
-    
+
                 jQuery('.cs-convertor-wrap-data').each(
                     function () {
                         var mydata = ( jQuery(this).attr("valuemy") );
@@ -60,12 +59,11 @@
                             for ( var k = i; k <= i; k++ ) {
                                 symbol[k].textContent = symb; //set the Currency Symbol
                             }
-                        }    
-                    } 
+                        }
+                    }
                 );
 
             }
     }
     );
 } )(jQuery);
-

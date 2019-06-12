@@ -22,7 +22,8 @@
 
 require_once 'classes/class-cs-loader.php';
 
-/* Add a link to the settings page on the plugins.php page.
+/*
+ Add a link to the settings page on the plugins.php page.
  *
  * @since 1.0.0
  *
@@ -30,10 +31,13 @@ require_once 'classes/class-cs-loader.php';
  * @return array         List of modified plugin action links.
  */
 function cswp_plugin_action_links( $links ) {
-    $links = array_merge( $links, array(
-	'<a href="' . esc_url( admin_url( '/options-general.php?page=currency_switch' ) ) . '">' . __( 'Settings', 'cs_currencyswitch' ) . '</a>'
-) );
-    return $links;
+	$links = array_merge(
+		$links,
+		array(
+			'<a href="' . esc_url( admin_url( '/options-general.php?page=currency_switch' ) ) . '">' . __( 'Settings', 'cswp_currencyswitch' ) . '</a>',
+		)
+	);
+	return $links;
 }
 
 add_action( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'cswp_plugin_action_links' );
