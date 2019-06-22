@@ -1,8 +1,18 @@
 <?php
 /**
+ * Main file of plugin
+ *
+ * @category PHP
+ * @package  Currency_Switcher
+ * @author   Display Name <ahemads@bsf.io>
+ * @license  https://brainstormforce.com
+ * @link     https://brainstormforce.com
+ */
+
+/**
  * Plugin Name:     Advanced Currency Switcher
  * Plugin URI:      https://www.brainstormforce.com/
- * Description:     To convert currency in native currency using Shortcode : [currency value=' '], [currency-switch].
+ * Description:     To convert one currency value into other.
  * Version:         1.0.0
  * Author:          Brainstrom Force
  * Author URI:      https://www.brainstormforce.com/
@@ -10,8 +20,6 @@
  * Domain Path:     /languages
  *
  * Main
- *
- * PHP version 7
  *
  * @category PHP
  * @package  Currency_Convertor_Addon
@@ -27,7 +35,7 @@ require_once 'classes/class-cs-loader.php';
  *
  * @since 1.0.0
  *
- * @param  array  $links List of existing plugin action links.
+ * @param  array $links List of existing plugin action links.
  * @return array         List of modified plugin action links.
  */
 function cswp_plugin_action_links( $links ) {

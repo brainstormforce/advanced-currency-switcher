@@ -2,8 +2,6 @@
 /**
  * Add submenu of Global settings Page to admin menu.
  *
- * PHP version 7
- *
  * @category PHP
  * @package  Currency_Switcher
  * @author   Display Name <ahemads@bsf.io>

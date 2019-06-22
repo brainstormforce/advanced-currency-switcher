@@ -2,8 +2,6 @@
 /**
  * User Manual for how to use plugin.
  *
- * PHP version 7
- *
  * @category PHP
  * @package  Currency_Switcher
  * @author   Display Name <ahemads@bsf.io>
@@ -16,15 +14,7 @@
 <body>
 <h2> <?php esc_html_e( 'Description', 'cswp' ); ?> </h2>
 
-<p>
-	<?php
-		esc_html_e(
-			'Currency Switcher plugin is used to convert the currency on a web-page, into respective currency by using short-code on a page.',
-			'cswp'
-		);
-		?>
-
-</p>
+<p> <?php esc_html_e( 'Currency Switcher plugin is used to convert the currency on a web-page, into respective currency by using short-code on a page.', 'cswp' ); ?> </p>
 
 <h3> <?php esc_html_e( 'Getting Started', 'cswp' ); ?> </h3>
 
@@ -58,9 +48,9 @@
 
 	<li class="cs-mylist"> <?php esc_html_e( 'Shot-code for Currency switcher', 'cswp' ); ?> </li>
 
-	<pre><code>[currency value=' ']</code></pre>
+	<pre><code>[currency value=""]</code></pre>
 
-	<p><?php esc_html_e( 'This shortcode help to insert the shortcode in the price info box in Eementor, Beaver Builder and other page builder.', 'cswp' ); ?> <br><?php esc_html_e( 'By passing the value of currency in', 'cswp' ); ?><b> Example: value='22' </b>
+	<p><?php esc_html_e( 'This shortcode help to insert the shortcode in the price info box in Eementor, Beaver Builder and other page builder.', 'cswp' ); ?> <br><?php esc_html_e( 'By passing the value of currency in', 'cswp' ); ?><b> Example: value="22" </b>
 	</p>
 
 	<li class="cs-mylist"><?php esc_html_e( 'Shot-code for Currency switcher Button', 'cswp' ); ?>  </li>

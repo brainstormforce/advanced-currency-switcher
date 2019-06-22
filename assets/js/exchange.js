@@ -63,11 +63,14 @@ function showcurency( selectvalue ) {
 
             document.getElementById( "cs-manual-display" ).style.display = "none";
             document.getElementById( "cs-api-display" ).style.display = "block";
-
+            document.getElementById("cswp-apitext").required = true;
+            //jQuery(".cs-input-appid").attr('required','required');
           } else {
-console.log('hello3');
+
             document.getElementById( "cs-manual-display" ).style.display = "block";
             document.getElementById( "cs-api-display" ).style.display = "none";
+            document.getElementById("cswp-apitext").required = false;
+            //jQuery(".cs-input-appid").removeAttr('required');
           }
     }
 }

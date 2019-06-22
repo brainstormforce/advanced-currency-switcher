@@ -2,8 +2,6 @@
 /**
  * Class-cs-shortcode-value.php
  *
- * PHP version 7
- *
  * @category PHP
  * @package  Currency_Switcher
  * @author   Display Name <ahemads@bsf.io>
@@ -59,7 +57,7 @@ if ( ! class_exists( 'CSWP_Currency_Shortcode' ) ) {
 
 			<!--  Create custom div and span for display price -->
 			<div class="cs-converter-wrap" >
-				<span class="cs-convertor-wrap-symbol"></span>
+				<span class="cs-convertor-wrap-symbol" id="cswp_symbol"></span>
 				<span id="cs-convertor-wrap" class="cs-convertor-wrap-data" valuemy="<?php echo esc_attr( $myprice ); ?>">
 					<?php
 					echo esc_attr( $getval );

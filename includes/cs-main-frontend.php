@@ -2,8 +2,6 @@
 /**
  * Add tabs
  *
- * PHP version 7
- *
  * @category PHP
  * @package  Currency_Switcher
  * @author   Display Name <ahemads@bsf.io>
@@ -26,13 +24,17 @@
 $active_tab = 'cs_settings';
 if ( isset( $_GET['tab'] ) ) {
 
-	if ( 'cs_settings' == $_GET['tab'] ) {
+	if ( 'cs_settings' === $_GET['tab'] ) {
 
 		$active_tab = 'cs_settings';
 
-	} elseif ( 'user-manual' == $_GET['tab'] ) {
+	} elseif ( 'user-manual' === $_GET['tab'] ) {
 
 		$active_tab = 'user-manual';
+
+	} elseif ( 'cswp-styling' === $_GET['tab'] ) {
+
+		$active_tab = 'cswp-styling';
 
 	}
 }
@@ -43,7 +45,7 @@ if ( isset( $_GET['tab'] ) ) {
 
 	<a href="?page=currency_switch" class="nav-tab tb
 	<?php
-	if ( 'cs_settings' == $active_tab ) {
+	if ( 'cs_settings' === $active_tab ) {
 		echo 'nav-tab-active';
 	}
 	?>
@@ -53,12 +55,22 @@ if ( isset( $_GET['tab'] ) ) {
 
 	<a href="?page=currency_switch&tab=user-manual" class="nav-tab tb
 	<?php
-	if ( 'user-manual' == $active_tab ) {
+	if ( 'user-manual' === $active_tab ) {
 		echo 'nav-tab-active';
 	}
 	?>
 	">
 		<?php esc_html_e( 'User Manual', 'cswp' ); ?>
+	</a>
+
+	<a href="?page=currency_switch&tab=cswp-styling" class="nav-tab tb
+	<?php
+	if ( 'cswp-styling' === $active_tab ) {
+		echo 'nav-tab-active';
+	}
+	?>
+	">
+		<?php esc_html_e( 'Style', 'cswp' ); ?>
 	</a>
 
 </h2>
@@ -68,13 +80,17 @@ if ( isset( $_GET['tab'] ) ) {
  // here we display the sections and options in the settings page based on the active tab.
 if ( isset( $_GET['tab'] ) ) {
 
-	if ( 'cs_settings' == $_GET['tab'] ) {
+	if ( 'cs_settings' === $_GET['tab'] ) {
 
 		require_once 'cs-settings-frontend.php';
 
-	} elseif ( 'user-manual' == $_GET['tab'] ) {
+	} elseif ( 'user-manual' === $_GET['tab'] ) {
 
 		require_once 'cs-user-manual.php';
+
+	} elseif ( 'cswp-styling' === $_GET['tab'] ) {
+
+		require_once 'class-cswp-styling.php';
 
 	}
 } else {
