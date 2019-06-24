@@ -3,3 +3,10 @@
     font-size: 30px;
 }
 */
+.cs-convertor-wrap-symbol {
+	display: inline-block;
+}
+
+.cs-convertor-wrap-data {
+	display: inline-block;
+}

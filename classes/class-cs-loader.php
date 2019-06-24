@@ -239,6 +239,9 @@ class CS_Loader {
 		}
 
 		$decimalradio = isset( $_POST['decimal-radio'] ) ? $_POST['decimal-radio'] : '';
+		if ($decimalradio == 0) {
+			$decimalradio = null;
+		}
 
 		$form_type = isset( $_POST['cswp_form_select'] ) ? sanitize_text_field( $_POST['cswp_form_select'] ) : '';
 

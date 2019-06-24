@@ -162,7 +162,7 @@ if ( ! class_exists( 'CSWP_Currency_Btn_Shortcode' ) ) {
 								<?php
 							}
 							?>
-								value="<?php echo esc_attr( $currencyname ); ?>" >
+								value="<?php echo esc_attr( $currencyname ); ?>" > 
 
 								<?php
 								if ( 'USD' === $currencyname ) {
@@ -215,10 +215,10 @@ if ( ! class_exists( 'CSWP_Currency_Btn_Shortcode' ) ) {
 		 */
 		public function get_currenceis() {
 			return array(
-				'INR' => '₹',
-				'USD' => '$',
-				'AUD' => 'A$',
-				'EUR' => '€',
+				'INR' => '&#8377;',
+				'USD' => '&#36;',
+				'AUD' => '&#36;',
+				'EUR' => '&#8364;',
 			);
 		}
 
