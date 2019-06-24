@@ -234,9 +234,8 @@ class CS_Loader {
 			$basecurency = isset( $_POST['basecurencyapi'] ) ? sanitize_text_field( $_POST['basecurencyapi'] ) : '';
 		}
 
-		$decimalradio = isset( $_POST['decimal-radio'] ) ? sanitize_text_field( $_POST['decimal-radio'] ) : '';
-
-		if ( 0 === $decimalradio ) {
+		$decimalradio = isset( $_POST['decimal-radio'] ) ? $_POST['decimal-radio'] : '';
+		if ($decimalradio == 0) {
 			$decimalradio = null;
 		}
 

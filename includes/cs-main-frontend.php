@@ -73,7 +73,6 @@ if ( isset( $_GET['tab'] ) ) {
 	} elseif ( 'user-manual' === $_GET['tab'] ) {
 
 		require_once 'cs-user-manual.php';
-
 	}
 } else {
 

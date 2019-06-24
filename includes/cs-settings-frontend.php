@@ -788,7 +788,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 				<?php
 
 				if ( isset( $cswp_decimalpoint ) ) {
-
+					
 					if ( '' === $cswp_decimalpoint ) {
 						?>
 							<input type="radio"  value="0" name="decimal-radio" class="cca_hidden" checked="checked"/> ($27)
