@@ -24,6 +24,8 @@ $cswp_frequency_reload = isset( $cswp_get_form_value['frequency_reload'] ) ? $cs
 
 $cswp_button_type_value = isset( $cswp_get_form_value['cswp_button_type'] ) ? $cswp_get_form_value['cswp_button_type'] : '';
 
+$cswp_vlaue_style = isset( $cswp_get_form_value['cswp_vlaue_style'] ) ? $cswp_get_form_value['cswp_vlaue_style'] : '';
+
 $cswp_decimalpoint = isset( $cswp_get_form_value['decimalradio'] ) ? $cswp_get_form_value['decimalradio'] : '';
 
 // Store Manual rate values in variable.
@@ -38,13 +40,13 @@ $cswp_eur_rate = isset( $cswp_manualrate['eur_rate'] ) ? $cswp_manualrate['eur_r
 $cswp_aud_rate = isset( $cswp_manualrate['aud_rate'] ) ? $cswp_manualrate['aud_rate'] : '1.45';
 
 
-$cswp_usd_text = isset( $cswp_manualrate['usd-text'] ) ? $cswp_manualrate['usd-text'] : '';
+$cswp_usd_text = isset( $cswp_manualrate['usd-text'] ) ? $cswp_manualrate['usd-text'] : 'Change TO USD';
 
-$cswp_inr_text = isset( $cswp_manualrate['inr-text'] ) ? $cswp_manualrate['inr-text'] : '';
+$cswp_inr_text = isset( $cswp_manualrate['inr-text'] ) ? $cswp_manualrate['inr-text'] : 'Change TO INR';
 
-$cswp_eur_text = isset( $cswp_manualrate['eur-text'] ) ? $cswp_manualrate['eur-text'] : '';
+$cswp_eur_text = isset( $cswp_manualrate['eur-text'] ) ? $cswp_manualrate['eur-text'] : 'Change TO EURO';
 
-$cswp_aud_text = isset( $cswp_manualrate['aud-text'] ) ? $cswp_manualrate['aud-text'] : '';
+$cswp_aud_text = isset( $cswp_manualrate['aud-text'] ) ? $cswp_manualrate['aud-text'] : 'Change TO AUD';
 
 
 // Store Switcher Button value.
@@ -70,13 +72,13 @@ $apitext_eur = isset( $cswp_apirate_values['eur'] ) ? $cswp_apirate_values['eur'
 
 $apitext_aud = isset( $cswp_apirate_values['aud'] ) ? $cswp_apirate_values['aud'] : '';
 
-$cswp_api_usd_text = isset( $cswp_apirate_values['usd-apitext'] ) ? $cswp_apirate_values['usd-apitext'] : '';
+$cswp_api_usd_text = isset( $cswp_apirate_values['usd-apitext'] ) ? $cswp_apirate_values['usd-apitext'] : 'Change TO USD';
 
-$cswp_api_inr_text = isset( $cswp_apirate_values['inr-apitext'] ) ? $cswp_apirate_values['inr-apitext'] : '';
+$cswp_api_inr_text = isset( $cswp_apirate_values['inr-apitext'] ) ? $cswp_apirate_values['inr-apitext'] : 'Change TO INR';
 
-$cswp_api_eur_text = isset( $cswp_apirate_values['eur-apitext'] ) ? $cswp_apirate_values['eur-apitext'] : '';
+$cswp_api_eur_text = isset( $cswp_apirate_values['eur-apitext'] ) ? $cswp_apirate_values['eur-apitext'] : 'Change TO EURO';
 
-$cswp_api_aud_text = isset( $cswp_apirate_values['aud-apitext'] ) ? $cswp_apirate_values['aud-apitext'] : '';
+$cswp_api_aud_text = isset( $cswp_apirate_values['aud-apitext'] ) ? $cswp_apirate_values['aud-apitext'] : 'Change TO AUD';
 
 if ( get_option( 'cswp_display' ) === 'display' ) {
 	echo '<div class="updated notice is-dismissible">
@@ -170,7 +172,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 					}
 				} else {
 					echo '<label for="ForCurrencyButton">
-                 <input type="checkbox"  name="currency_button[]" value="USD">
+                 <input type="checkbox" name="currency_button[]" value="USD">
                  USD &#36;</label><br> ';
 				}
 			}
@@ -239,7 +241,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 						} else {
 
 							echo '<label for="ForCurrencyButton">
-		                 <input type="checkbox"  name="currency_button[]" value="INR">
+		                 <input type="checkbox" name="currency_button[]" value="INR">
 		                 INR &#8377;</label><br> ';
 
 						}
@@ -402,6 +404,9 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<td>
 				<input type="button" name="Authenticate" value="Authenticate" class="cs-authenticate bt button button-secondary">
 			</td>
+				<?php
+					wp_nonce_field( 'cs-form-auth', 'cs-form-auth-nonce' );
+				?>
 			<td>
 			</td>
 		</tr>
@@ -745,13 +750,46 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 
 		<tr>
 			<th scope="row">
+				<label for="valuestyle"><?php esc_html_e( 'Value Style', 'cswp' ); ?></label>
+			</th>
+			<td>
+				<select name="cswp_vlaue_style" >
+					?> 
+					<?php
+
+					if ( 'normal' === $cswp_vlaue_style ) {
+						?>
+						<option value="normal" <?php selected( $cswp_vlaue_style, 'normal' ); ?>>Normal</option>
+						<?php
+					} else {
+						?>
+						<option value="normal">Normal</option>
+						<?php
+					}
+					if ( 'bold' === $cswp_vlaue_style ) {
+						?>
+						<option value="bold" <?php selected( $cswp_vlaue_style, 'bold' ); ?>>Bold</option>
+						<?php
+					} else {
+						?>
+						<option value="bold" >Bold</option>
+						<?php
+					}
+					?>
+				</select>
+			</td>
+		</tr>
+
+		<tr>
+			<th scope="row">
 				<label for="DecimalPlaces"><?php esc_html_e( 'Decimal Places', 'cswp' ); ?></label>
 			</th>
 			<td>
 				<?php
 
 				if ( isset( $cswp_decimalpoint ) ) {
-					if ( '0' === $cswp_decimalpoint ) {
+
+					if ( '' === $cswp_decimalpoint ) {
 						?>
 							<input type="radio"  value="0" name="decimal-radio" class="cca_hidden" checked="checked"/> ($27)
 						<?php

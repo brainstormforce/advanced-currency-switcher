@@ -26,16 +26,12 @@ class CS_Loader {
 	public function __construct() {
 
 		$this->define_constant();
-		$this->cswp_load_all_data();
-		$this->cswp_load_manual_data();
-		$this->cswp_load_currency_button_data();
-		$this->cswp_load_apirate_values_data();
 
 		self::includes();
 		add_action( 'wp_enqueue_scripts', array( $this, 'cswp_load_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_backend_script' ) );
-		add_action( 'wp_ajax_ccs_validate', array( $this, 'cs_validate_api_key' ) );
 		add_action( 'init', array( $this, 'cswp_save_form_data' ) );
+		add_action( 'wp_ajax_ccs_validate', array( $this, 'cs_validate_api_key' ) );
 		add_filter( 'cron_schedules', array( $this, 'my_cron_schedules' ) );
 		add_action( 'cs_schedule_hook', array( $this, 'cs_schedule_event' ) );
 	}
@@ -122,6 +118,7 @@ class CS_Loader {
 	public function cs_validate_api_key() {
 
 		$api_key = isset( $_POST['api_key'] ) ? sanitize_key( $_POST['api_key'] ) : '';
+
 		if ( empty( $api_key ) ) {
 			wp_send_json_error( __( 'Empty API key!' ) );
 		}
@@ -202,17 +199,16 @@ class CS_Loader {
 	 */
 	public function cswp_save_form_data() {
 
+		if ( ! isset( $_POST['cs-form'] ) ) {
+			return;
+		}
+		if ( ! wp_verify_nonce( $_POST['cs-form'], 'cs-form-nonce' ) ) {
+			return;
+		}
 		if ( 'currency_switch' !== ( isset( $_GET['page'] ) ? $_GET['page'] : null ) ) {
 			return;
 		}
 
-		if ( ! isset( $_POST['cs-form'] ) ) {
-			return;
-		}
-
-		if ( ! wp_verify_nonce( $_POST['cs-form'], 'cs-form-nonce' ) ) {
-			return;
-		}
 		$cswp_get_form_value = get_option( 'cswp_form_data' );
 		$api_key             = isset( $_POST['appid'] ) ? sanitize_text_field( $_POST['appid'] ) : '';
 
@@ -225,26 +221,30 @@ class CS_Loader {
 
 		$cswp_submit_check = wp_remote_get( $cswp_submit_check );
 
-		if ( 'Unauthorized' === $cswp_submit_check['response']['message'] && 'manualrate' !== $_POST['cswp_form_select'] ) {
+		if ( 'Unauthorized' === $cswp_submit_check['response']['message'] && 'manualrate' !== $_POST['cswp_form_select'] || 'Forbidden' === $cswp_submit_check['response']['message'] && 'manualrate' !== $_POST['cswp_form_select'] ) {
 			update_option( 'apivalidate', 'no' );
 
 		}
 
 		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
-			$basecurency = isset( $_POST['basecurency'] ) ? $_POST['basecurency'] : '';
+			$basecurency = isset( $_POST['basecurency'] ) ? sanitize_text_field( $_POST['basecurency'] ) : '';
 
 		} elseif ( 'apirate' === $_POST['cswp_form_select'] ) {
 
-			$basecurency = isset( $_POST['basecurencyapi'] ) ? $_POST['basecurencyapi'] : '';
+			$basecurency = isset( $_POST['basecurencyapi'] ) ? sanitize_text_field( $_POST['basecurencyapi'] ) : '';
 		}
 
-		$decimalradio = isset( $_POST['decimal-radio'] ) ? $_POST['decimal-radio'] : '';
+		$decimalradio = isset( $_POST['decimal-radio'] ) ? sanitize_text_field( $_POST['decimal-radio'] ) : '';
+
+		if ( 0 === $decimalradio ) {
+			$decimalradio = null;
+		}
 
 		$form_type = isset( $_POST['cswp_form_select'] ) ? sanitize_text_field( $_POST['cswp_form_select'] ) : '';
 
 		$cswp_button_type = isset( $_POST['cswp_button_type'] ) ? sanitize_text_field( $_POST['cswp_button_type'] ) : '';
-
-		$frequency_reload = isset( $_POST['frequency_reload'] ) ? ( $_POST['frequency_reload'] ) : '';
+		$cswp_vlaue_style = isset( $_POST['cswp_vlaue_style'] ) ? sanitize_text_field( $_POST['cswp_vlaue_style'] ) : '';
+		$frequency_reload = isset( $_POST['frequency_reload'] ) ? sanitize_text_field( $_POST['frequency_reload'] ) : '';
 
 		// Store checkbox values in arraysanitize_text_field().
 		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
@@ -254,6 +254,10 @@ class CS_Loader {
 				foreach ( $_POST['currency_button'] as $currencybutton ) {
 					$cswp_currency_button_type[] = $currencybutton;
 				}
+			}
+
+			if ( null === $cswp_currency_button_type ) {
+					$cswp_currency_button_type = array( 'INR' );
 			}
 
 			if ( isset( $cswp_currency_button_type ) ) {
@@ -271,6 +275,10 @@ class CS_Loader {
 				}
 			}
 
+			if ( null === $cswp_currency_button_type ) {
+					$cswp_currency_button_type = array( 'INR' );
+			}
+
 			if ( isset( $cswp_currency_button_type ) ) {
 
 				$cswp_currency_button_type = array_combine( $cswp_currency_button_type, $cswp_currency_button_type );
@@ -286,6 +294,7 @@ class CS_Loader {
 			'api_key'          => $api_key,
 			'frequency_reload' => $frequency_reload,
 			'cswp_button_type' => $cswp_button_type,
+			'cswp_vlaue_style' => $cswp_vlaue_style,
 			'decimalradio'     => $decimalradio,
 		);
 
@@ -301,15 +310,15 @@ class CS_Loader {
 		// values from usermanual currency rate.
 		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
 
-			$usd_rate = $_POST['usd'];
-			$inr_rate = $_POST['inr'];
-			$eur_rate = $_POST['eur'];
-			$aud_rate = $_POST['aud'];
+			$usd_rate = isset( $_POST['usd'] ) ? sanitize_text_field( $_POST['usd'] ) : '';
+			$inr_rate = isset( $_POST['inr'] ) ? sanitize_text_field( $_POST['inr'] ) : '';
+			$eur_rate = isset( $_POST['eur'] ) ? sanitize_text_field( $_POST['eur'] ) : '';
+			$aud_rate = isset( $_POST['usd'] ) ? sanitize_text_field( $_POST['usd'] ) : '';
 
-			$usd_text = $_POST['usd-text'];
-			$inr_text = $_POST['inr-text'];
-			$eur_text = $_POST['eur-text'];
-			$aud_text = $_POST['aud-text'];
+			$usd_text = isset( $_POST['usd-text'] ) ? sanitize_text_field( $_POST['usd-text'] ) : '';
+			$inr_text = isset( $_POST['inr-text'] ) ? sanitize_text_field( $_POST['inr-text'] ) : '';
+			$eur_text = isset( $_POST['eur-text'] ) ? sanitize_text_field( $_POST['eur-text'] ) : '';
+			$aud_text = isset( $_POST['aud-text'] ) ? sanitize_text_field( $_POST['aud-text'] ) : '';
 
 			$cswp_manual_rate = array(
 
@@ -339,7 +348,7 @@ class CS_Loader {
 			);
 
 			$data = wp_remote_get( $data );
-			
+
 			$data = json_decode( $data['body'] );
 
 			// Store required data in database.
@@ -350,16 +359,16 @@ class CS_Loader {
 				$usd = $data->rates->USD;
 				$aud = $data->rates->AUD;
 
-				$usd_apitext = $_POST['usd-apitext'];
-				$inr_apitext = $_POST['inr-apitext'];
-				$eur_apitext = $_POST['eur-apitext'];
-				$aud_apitext = $_POST['aud-apitext'];
+				$usd_apitext = isset( $_POST['usd-apitext'] ) ? sanitize_text_field( $_POST['usd-apitext'] ) : '';
+				$inr_apitext = isset( $_POST['inr-apitext'] ) ? sanitize_text_field( $_POST['inr-apitext'] ) : '';
+				$eur_apitext = isset( $_POST['eur-apitext'] ) ? sanitize_text_field( $_POST['eur-apitext'] ) : '';
+				$aud_apitext = isset( $_POST['aud-apitext'] ) ? sanitize_text_field( $_POST['aud-apitext'] ) : '';
 
 				$cswp_apirate_values = array(
-					'inr'=> $inr,
-					'eur'=> $eur,
-					'usd'=> $usd,
-					'aud'=> $aud,
+					'inr'         => $inr,
+					'eur'         => $eur,
+					'usd'         => $usd,
+					'aud'         => $aud,
 
 					'usd-apitext' => $usd_apitext,
 					'inr-apitext' => $inr_apitext,
@@ -368,7 +377,7 @@ class CS_Loader {
 
 				);
 
-				if ( 'Unauthorized' === $cswp_submit_check['response']['message'] && 'manualrate' !== $_POST['cswp_form_select'] ) {
+				if ( 'Unauthorized' === $cswp_submit_check['response']['message'] && 'manualrate' !== $_POST['cswp_form_select'] || 'Forbidden' === $cswp_submit_check['response']['message'] && 'manualrate' !== $_POST['cswp_form_select'] ) {
 					update_option( 'cswp_display', 'no' );
 
 				} else {
@@ -379,7 +388,7 @@ class CS_Loader {
 			}
 		}
 
-		$old_frequency = isset( $cswp_get_form_value['frequency_reload'] ) ? $cswp_get_form_value['frequency_reload'] : '';
+		$old_frequency = isset( $cswp_get_form_value['frequency_reload'] ) ? sanitize_text_field( $cswp_get_form_value['frequency_reload'] ) : '';
 
 		if ( empty( $old_frequency ) && empty( $frequency_reload ) ) {
 

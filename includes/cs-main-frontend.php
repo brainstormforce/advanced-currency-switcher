@@ -32,10 +32,6 @@ if ( isset( $_GET['tab'] ) ) {
 
 		$active_tab = 'user-manual';
 
-	} elseif ( 'cswp-styling' === $_GET['tab'] ) {
-
-		$active_tab = 'cswp-styling';
-
 	}
 }
 
@@ -63,21 +59,11 @@ if ( isset( $_GET['tab'] ) ) {
 		<?php esc_html_e( 'User Manual', 'cswp' ); ?>
 	</a>
 
-	<a href="?page=currency_switch&tab=cswp-styling" class="nav-tab tb
-	<?php
-	if ( 'cswp-styling' === $active_tab ) {
-		echo 'nav-tab-active';
-	}
-	?>
-	">
-		<?php esc_html_e( 'Style', 'cswp' ); ?>
-	</a>
-
 </h2>
 
 <?php
 
- // here we display the sections and options in the settings page based on the active tab.
+// here we display the sections and options in the settings page based on the active tab.
 if ( isset( $_GET['tab'] ) ) {
 
 	if ( 'cs_settings' === $_GET['tab'] ) {
@@ -87,10 +73,6 @@ if ( isset( $_GET['tab'] ) ) {
 	} elseif ( 'user-manual' === $_GET['tab'] ) {
 
 		require_once 'cs-user-manual.php';
-
-	} elseif ( 'cswp-styling' === $_GET['tab'] ) {
-
-		require_once 'class-cswp-styling.php';
 
 	}
 } else {

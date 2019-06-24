@@ -32,7 +32,7 @@
 
 
                 } else if(currency_name==='AUD') {
-                    var symb='A$';
+                    var symb='$';
 
                 } else if(currency_name==='EUR') {
                     var symb='€';
@@ -87,7 +87,7 @@
             
           }
           if ('AUD' == $('.cs-currency-name-dropdown').val()) {
-            var symb='A$';
+            var symb='$';
             var rate_inr = csVars.actual_currency_rates.AUD
            
           }
