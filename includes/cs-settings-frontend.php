@@ -471,33 +471,12 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 				<label class="currency-switcher-switch">
 				<?php
 				$convertbtn = CS_Loader::cswp_load_currency_button_data();
-				if ( isset( $convertbtn ) ) {
-
-					if ( '' !== $convertbtn ) {
-
-						if ( isset( $cswp_usd_button ) ) {
-
-							if ( 'USD' === $cswp_usd_button ) {
-								echo '<label for="ForCurrencyButton">
-	                     <input type="checkbox" checked name="currency_button_api[]" value="USD">
-	                     USD &#36;</label><br> ';
-							} else {
-								echo '<label for="ForCurrencyButton">
-	                     <input type="checkbox"  name="currency_button_api[]" value="USD">
-	                     USD &#36;</label><br> ';
-							}
-						} else {
-							echo '<label for="ForCurrencyButton">
-	                 <input type="checkbox"  name="currency_button_api[]" value="USD">
-	                 USD &#36;</label><br> ';
-						}
-					} else {
-						echo '<label for="ForCurrencyButton">
-	                 <input type="checkbox"  name="currency_button_api[]" value="USD">
-	                 USD &#36;</label><br> ';
-					}
-				}
 				?>
+					<label for="ForCurrencyButton">
+	                    <input type="checkbox" name="currency_button_api[]" value="USD" <?php checked( $cswp_usd_button, 'USD' );?>>
+	                     USD &#36;
+	                </label>
+	                <br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -539,34 +518,11 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
-			<?php
-			if ( isset( $convertbtn ) ) {
-
-				if ( '' !== $convertbtn ) {
-
-					if ( isset( $cswp_inr_button ) ) {
-
-						if ( 'INR' === $cswp_inr_button ) {
-							echo '<label for="ForCurrencyButton">
-	                 <input type="checkbox" checked name="currency_button_api[]" value="INR">
-	                 INR &#8377;</label><br> ';
-						} else {
-							echo '<label for="ForCurrencyButton">
-	                 <input type="checkbox"  name="currency_button_api[]" value="INR">
-	                 INR &#8377;</label><br> ';
-						}
-					} else {
-						echo '<label for="ForCurrencyButton">
-	                 <input type="checkbox"  name="currency_button_api[]" value="INR">
-	                 INR &#8377;</label><br> ';
-					}
-				} else {
-					echo '<label for="ForCurrencyButton">
-	                 <input type="checkbox"  name="currency_button_api[]" value="INR">
-	                 INR &#8377;</label><br> ';
-				}
-			}
-			?>
+					<label for="ForCurrencyButton">
+	                <input type="checkbox" name="currency_button_api[]" value="INR" <?php checked( $cswp_inr_button, 'INR' );?>>
+	                	INR &#8377;
+	             	</label>
+	             	<br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -608,34 +564,12 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
-				<?php
-				if ( isset( $convertbtn ) ) {
-
-					if ( '' !== $convertbtn ) {
-
-						if ( isset( $cswp_eur_button ) ) {
-
-							if ( 'EUR' === $cswp_eur_button ) {
-								echo '<label for="ForCurrencyButton">
-	                 <input type="checkbox" checked name="currency_button_api[]" value="EUR">
-	                 EUR &#8364;</label><br> ';
-							} else {
-								echo '<label for="ForCurrencyButton">
-	                 <input type="checkbox"  name="currency_button_api[]" value="EUR">
-	                 EUR &#8364;</label><br> ';
-							}
-						} else {
-							echo '<label for="ForCurrencyButton">
-	                 <input type="checkbox"  name="currency_button_api[]" value="EUR">
-	                 EUR &#8364;</label><br> ';
-						}
-					} else {
-						echo '<label for="ForCurrencyButton">
-	                 <input type="checkbox"  name="currency_button_api[]" value="EUR">
-	                 EUR &#8364;</label><br> ';
-					}
-				}
-				?>
+				
+					<label for="ForCurrencyButton">
+	                	<input type="checkbox" name="currency_button_api[]" value="EUR" <?php checked( $cswp_eur_button, 'EUR' );?>>
+	                	EUR &#8364;
+	                </label>
+	                <br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -676,34 +610,12 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
-				<?php
-				if ( isset( $convertbtn ) ) {
-
-					if ( '' !== $convertbtn ) {
-
-						if ( isset( $cswp_aud_button ) ) {
-
-							if ( 'AUD' === $cswp_aud_button ) {
-								echo '<label for="ForCurrencyButton">
-		                 <input type="checkbox" checked name="currency_button_api[]" value="AUD">
-		                 AUD &#36;</label><br> ';
-							} else {
-								echo '<label for="ForCurrencyButton">
-		                 <input type="checkbox"  name="currency_button_api[]" value="AUD">
-		                 AUD &#36;</label><br> ';
-							}
-						} else {
-							echo '<label for="ForCurrencyButton">
-		                 <input type="checkbox"  name="currency_button_api[]" value="AUD">
-		                 AUD &#36;</label><br> ';
-						}
-					} else {
-						echo '<label for="ForCurrencyButton">
-		                 <input type="checkbox"  name="currency_button_api[]" value="AUD">
-		                 AUD &#36;</label><br> ';
-					}
-				}
-				?>
+				
+					<label for="ForCurrencyButton">
+		            	<input type="checkbox" name="currency_button_api[]" value="AUD" <?php checked( $cswp_aud_button, 'AUD' );?>>
+		                	AUD &#36;
+		            </label>
+		            <br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -722,28 +634,8 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<th>Display Type</th>
 			<td>
 				<select name="cswp_button_type" >
-					?> 
-					<?php
-
-					if ( 'dropdown' === $cswp_button_type_value ) {
-						?>
 						<option value="dropdown" <?php selected( $cswp_button_type_value, 'dropdown' ); ?>>Drop Down</option>
-						<?php
-					} else {
-						?>
-						<option value="dropdown">Drop Down</option>
-						<?php
-					}
-					if ( 'toggle' === $cswp_button_type_value ) {
-						?>
 						<option value="toggle" <?php selected( $cswp_button_type_value, 'toggle' ); ?>>Toggle</option>
-						<?php
-					} else {
-						?>
-						<option value="toggle" >Toggle</option>
-						<?php
-					}
-					?>
 				</select>
 			</td>
 		</tr>
@@ -786,7 +678,6 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</th>
 			<td>
 				<?php
-
 				if ( isset( $cswp_decimalpoint ) ) {
 
 					if ( '' === $cswp_decimalpoint ) {
@@ -818,7 +709,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 					}
 				} else {
 					?>
-						<input type="radio"  value="0" name="decimal-radio" class="cswp_decimal_radio" checked="checked"/> ($27)
+						<input type="radio"  value="0" name="decimal-radio" class="cswp_decimal_radio"/> ($27)
 						<input type="radio"  value="1" name="decimal-radio" class="cswp_decimal_radio"/> ($27.2)
 						<input type="radio"  value="2" name="decimal-radio" class="cswp_decimal_radio"/> ($27.27)
 					<?php

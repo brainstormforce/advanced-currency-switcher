@@ -43,7 +43,6 @@ class CS_Loader {
 	 * @return $cswp_get_form_value
 	 */
 	public static function cswp_load_all_data() {
-
 		$cswp_get_form_value = get_option( 'cswp_form_data' );
 		return $cswp_get_form_value;
 	}
@@ -117,6 +116,7 @@ class CS_Loader {
 	 */
 	public function cs_validate_api_key() {
 
+		
 		$api_key = isset( $_POST['api_key'] ) ? sanitize_key( $_POST['api_key'] ) : '';
 
 		if ( empty( $api_key ) ) {
