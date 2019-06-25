@@ -8,6 +8,10 @@
 	<rule ref="WordPress-Core" />
 	<rule ref="WordPress-Docs" />
 	<rule ref="WordPress-Extra" />
+	<rule ref="WordPress">
+        <!-- Exclude Strict comparisons check until first priority escaping and sanitization are complete -->
+        <exclude name="WordPress.Security.NonceVerification.Recommended" /> 
+	</rule>
 
 	<!-- Check all PHP files in directory tree by default. -->
 	<arg name="extensions" value="php"/>

@@ -12,19 +12,19 @@
 /**
  * Custom modules
  */
-if ( ! class_exists( 'CSWP_Currency_Shortcode' ) ) {
+if ( ! class_exists( 'CS_Currency_Shortcode' ) ) {
 
 	/**
 	 * Class define for currency convert shortcode.
 	 *
-	 * @class    CSWP_Currency_Shortcode
+	 * @class    CS_Currency_Shortcode
 	 * @category PHP
 	 * @package  Currency_Switcher
 	 * @author   Display Name <ahemads@bsf.io>
 	 * @license  https://brainstormforce.com
 	 * @link     https://brainstormforce.com
 	 */
-	class CSWP_Currency_Shortcode {
+	class CS_Currency_Shortcode {
 
 
 		/**
@@ -87,5 +87,5 @@ if ( ! class_exists( 'CSWP_Currency_Shortcode' ) ) {
 			return ob_get_clean();
 		}
 	}
-	$cswp_currency_shortcode = new CSWP_Currency_Shortcode();
+	$cs_currency_shortcode = new CS_Currency_Shortcode();
 }

@@ -81,22 +81,21 @@ $cswp_api_eur_text = isset( $cswp_apirate_values['eur-apitext'] ) ? $cswp_apirat
 $cswp_api_aud_text = isset( $cswp_apirate_values['aud-apitext'] ) ? $cswp_apirate_values['aud-apitext'] : 'Change TO AUD';
 
 if ( get_option( 'cswp_display' ) === 'display' ) {
-?>
-<div class="updated notice is-dismissible">
-<p><strong><?php esc_html_e( 'Settings Saved.', 'cswp' ); ?></strong></p>
-</div>
-<?php
+	?>
+	<div class="updated notice is-dismissible">
+		<p><strong><?php esc_html_e( 'Settings Saved.', 'cswp' ); ?></strong></p>
+	</div>
+	<?php
 	update_option( 'cswp_display', 'nodisplay' );
 }
 if ( get_option( 'apivalidate' ) === 'no' ) {
-?>
-<div class="notice notice-error is-dismissible">
-<p><strong><?php esc_html_e( 'Please enter correct API key.', 'cswp' ); ?></strong></p>
-</div>
-<?php
+	?>
+	<div class="notice notice-error is-dismissible">
+	<p><strong><?php esc_html_e( 'Please enter correct API key.', 'cswp' ); ?></strong></p>
+	</div>
+	<?php
 	update_option( 'apivalidate', 'ok' );
 }
-
 ?>
 <!-- Html code for frontend -->
 <form method="post" name="cca_settings_form">
@@ -128,7 +127,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="USD" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'USD' );?>>
+					<input type="radio"  value="USD" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'USD' ); ?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -143,10 +142,10 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 				$convertbtn = CS_Loader::cswp_load_currency_button_data();
 				?>
 					<label for="usdCurrencyButton">
-                    	<input type="checkbox" id="usdCurrencyButton" name="currency_button[]" value="USD" <?php checked( $cswp_usd_button, 'USD' );?>>
-                    	USD &#36;
-                    </label>
-                    <br>
+						<input type="checkbox" id="usdCurrencyButton" name="currency_button[]" value="USD" <?php checked( $cswp_usd_button, 'USD' ); ?>>
+						USD &#36;
+					</label>
+					<br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -162,7 +161,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="INR" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'INR' );?>>
+					<input type="radio"  value="INR" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'INR' ); ?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -174,10 +173,10 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<td>
 				<label class="currency-switcher-switch">
 					<label for="inrCurrencyButton">
-		                <input type="checkbox" id="inrCurrencyButton" name="currency_button[]" value="INR" <?php checked( $cswp_inr_button, 'INR' );?>>
-		                INR &#8377;
-		            </label>
-		            <br>
+						<input type="checkbox" id="inrCurrencyButton" name="currency_button[]" value="INR" <?php checked( $cswp_inr_button, 'INR' ); ?>>
+						INR &#8377;
+					</label>
+					<br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -192,7 +191,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="EUR" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'EUR' );?>>
+					<input type="radio"  value="EUR" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'EUR' ); ?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -204,10 +203,10 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<td>
 				<label class="currency-switcher-switch">
 					<label for="eurCurrencyButton">
-		                <input type="checkbox" id="eurCurrencyButton" name="currency_button[]" value="EUR" <?php checked( $cswp_eur_button, 'EUR' );?>>
-		                EUR &#8364;
-		            </label>
-		            <br>
+						<input type="checkbox" id="eurCurrencyButton" name="currency_button[]" value="EUR" <?php checked( $cswp_eur_button, 'EUR' ); ?>>
+						EUR &#8364;
+					</label>
+					<br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -221,7 +220,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="AUD" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'AUD' );?>>
+					<input type="radio"  value="AUD" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'AUD' ); ?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -232,10 +231,10 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<td>
 				<label class="currency-switcher-switch">
 					<label for="audCurrencyButton">
-		                <input type="checkbox" id="audCurrencyButton" name="currency_button[]" value="AUD" <?php checked( $cswp_aud_button, 'AUD' );?>>
-		                AUD &#36;
-		            </label>
-		            <br>
+						<input type="checkbox" id="audCurrencyButton" name="currency_button[]" value="AUD" <?php checked( $cswp_aud_button, 'AUD' ); ?>>
+						AUD &#36;
+					</label>
+					<br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -307,7 +306,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'USD' );?>>
+					<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'USD' ); ?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -322,10 +321,10 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 				$convertbtn = CS_Loader::cswp_load_currency_button_data();
 				?>
 					<label for="usdapiButton">
-	                    <input type="checkbox" id="usdapiButton" name="currency_button_api[]" value="USD" <?php checked( $cswp_usd_button, 'USD' );?>>
-	                     USD &#36;
-	                </label>
-	                <br>
+						<input type="checkbox" id="usdapiButton" name="currency_button_api[]" value="USD" <?php checked( $cswp_usd_button, 'USD' ); ?>>
+						USD &#36;
+					</label>
+					<br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -340,7 +339,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="INR" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'INR' );?>>
+					<input type="radio"  value="INR" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'INR' ); ?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -352,10 +351,10 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<td>
 				<label class="currency-switcher-switch">
 					<label for="inrapiButton">
-	                <input type="checkbox" id="inrapiButton" name="currency_button_api[]" value="INR" <?php checked( $cswp_inr_button, 'INR' );?>>
-	                	INR &#8377;
-	             	</label>
-	             	<br>
+					<input type="checkbox" id="inrapiButton" name="currency_button_api[]" value="INR" <?php checked( $cswp_inr_button, 'INR' ); ?>>
+						INR &#8377;
+					</label>
+					<br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -370,7 +369,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="EUR" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'EUR' );?>>
+					<input type="radio"  value="EUR" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'EUR' ); ?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -381,12 +380,11 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
-				
 					<label for="eurapiButton">
-	                	<input type="checkbox" id="eurapiButton" name="currency_button_api[]" value="EUR" <?php checked( $cswp_eur_button, 'EUR' );?>>
-	                	EUR &#8364;
-	                </label>
-	                <br>
+						<input type="checkbox" id="eurapiButton" name="currency_button_api[]" value="EUR" <?php checked( $cswp_eur_button, 'EUR' ); ?>>
+						EUR &#8364;
+					</label>
+					<br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -401,7 +399,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="AUD" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'AUD' );?>>
+					<input type="radio"  value="AUD" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'AUD' ); ?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -411,12 +409,11 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
-				
 					<label for="audapiButton">
-		            	<input type="checkbox" id="audapiButton" name="currency_button_api[]" value="AUD" <?php checked( $cswp_aud_button, 'AUD' );?>>
-		                	AUD &#36;
-		            </label>
-		            <br>
+						<input type="checkbox" id="audapiButton" name="currency_button_api[]" value="AUD" <?php checked( $cswp_aud_button, 'AUD' ); ?>>
+							AUD &#36;
+					</label>
+					<br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>

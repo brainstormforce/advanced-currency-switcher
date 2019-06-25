@@ -9,7 +9,7 @@
  * @link     https://brainstormforce.com
  */
 
-if ( ! class_exists( 'CSWP_Currency_Btn_Shortcode' ) ) {
+if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 
 	/**
 	 * Class for definr currency_Switcher_button shortcode.
@@ -21,7 +21,7 @@ if ( ! class_exists( 'CSWP_Currency_Btn_Shortcode' ) ) {
 	 * @license  https://brainstormforce.com
 	 * @link     https://brainstormforce.com
 	 */
-	class CSWP_Currency_Btn_Shortcode {
+	class CS_Btn_Shortcode {
 
 		/**
 		 * Instance
@@ -224,5 +224,5 @@ if ( ! class_exists( 'CSWP_Currency_Btn_Shortcode' ) ) {
 
 	}
 
-	CSWP_Currency_Btn_Shortcode::get_instance();
+	CS_Btn_Shortcode::get_instance();
 }

@@ -116,7 +116,7 @@ class CS_Loader {
 	 */
 	public function cs_validate_api_key() {
 
-		
+		check_ajax_referer( 'ajax_nonce_val', 'security' );
 		$api_key = isset( $_POST['api_key'] ) ? sanitize_key( $_POST['api_key'] ) : '';
 
 		if ( empty( $api_key ) ) {
@@ -156,9 +156,9 @@ class CS_Loader {
 	 * @return void
 	 */
 	public function includes() {
-		require_once CSWP_PLUGIN_DIR . '/includes/cs-page.php';
-		require_once CSWP_PLUGIN_DIR . '/includes/cs-shortcode-value.php';
-		require_once CSWP_PLUGIN_DIR . '/includes/cs-shortcode-button.php';
+		require_once CSWP_PLUGIN_DIR . '/includes/class-cs-menu-page.php';
+		require_once CSWP_PLUGIN_DIR . '/includes/class-cs-currency-shortcode.php';
+		require_once CSWP_PLUGIN_DIR . '/includes/class-cs-btn-shortcode.php';
 	}
 
 	/**
@@ -205,12 +205,12 @@ class CS_Loader {
 		if ( ! wp_verify_nonce( $_POST['cs-form'], 'cs-form-nonce' ) ) {
 			return;
 		}
-		if ( 'currency_switch' !== ( isset( $_GET['page'] ) ? $_GET['page'] : null ) ) {
+		if ( 'currency_switch' !== ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : null ) ) {
 			return;
 		}
 
 		$cswp_get_form_value = get_option( 'cswp_form_data' );
-		$api_key             = isset( $_POST['appid'] ) ? sanitize_text_field( $_POST['appid'] ) : '';
+		$api_key             = isset( $_POST['appid'] ) ? sanitize_text_field( wp_unslash( $_POST['appid'] ) ) : '';
 
 		$cswp_submit_check = add_query_arg(
 			array(
@@ -227,11 +227,11 @@ class CS_Loader {
 		}
 
 		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
-			$basecurency = isset( $_POST['basecurency'] ) ? sanitize_text_field( $_POST['basecurency'] ) : '';
+			$basecurency = isset( $_POST['basecurency'] ) ? sanitize_text_field( wp_unslash( $_POST['basecurency'] ) ) : '';
 
 		} elseif ( 'apirate' === $_POST['cswp_form_select'] ) {
 
-			$basecurency = isset( $_POST['basecurencyapi'] ) ? sanitize_text_field( $_POST['basecurencyapi'] ) : '';
+			$basecurency = isset( $_POST['basecurencyapi'] ) ? sanitize_text_field( wp_unslash( $_POST['basecurencyapi'] ) ) : '';
 		}
 
 		$decimalradio = isset( $_POST['decimal-radio'] ) ? intval( $_POST['decimal-radio'] ) : '';
@@ -240,11 +240,11 @@ class CS_Loader {
 			$decimalradio = null;
 		}
 
-		$form_type = isset( $_POST['cswp_form_select'] ) ? sanitize_text_field( $_POST['cswp_form_select'] ) : '';
+		$form_type = isset( $_POST['cswp_form_select'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_form_select'] ) ) : '';
 
-		$cswp_button_type = isset( $_POST['cswp_button_type'] ) ? sanitize_text_field( $_POST['cswp_button_type'] ) : '';
-		$cswp_vlaue_style = isset( $_POST['cswp_vlaue_style'] ) ? sanitize_text_field( $_POST['cswp_vlaue_style'] ) : '';
-		$frequency_reload = isset( $_POST['frequency_reload'] ) ? sanitize_text_field( $_POST['frequency_reload'] ) : '';
+		$cswp_button_type = isset( $_POST['cswp_button_type'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_button_type'] ) ) : '';
+		$cswp_vlaue_style = isset( $_POST['cswp_vlaue_style'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_vlaue_style'] ) ) : '';
+		$frequency_reload = isset( $_POST['frequency_reload'] ) ? sanitize_text_field( wp_unslash( $_POST['frequency_reload'] ) ) : '';
 
 		// Store checkbox values in arraysanitize_text_field().
 		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
@@ -315,10 +315,12 @@ class CS_Loader {
 			$eur_rate = isset( $_POST['eur'] ) ? floatval( $_POST['eur'] ) : '';
 			$aud_rate = isset( $_POST['usd'] ) ? floatval( $_POST['usd'] ) : '';
 
-			$usd_text = isset( $_POST['usd-text'] ) ? sanitize_text_field( $_POST['usd-text'] ) : '';
-			$inr_text = isset( $_POST['inr-text'] ) ? sanitize_text_field( $_POST['inr-text'] ) : '';
-			$eur_text = isset( $_POST['eur-text'] ) ? sanitize_text_field( $_POST['eur-text'] ) : '';
-			$aud_text = isset( $_POST['aud-text'] ) ? sanitize_text_field( $_POST['aud-text'] ) : '';
+			$usd_text = isset( $_POST['usd-text'] ) ? sanitize_text_field( wp_unslash( $_POST['usd-text'] ) ) : '';
+			$inr_text = isset( $_POST['inr-text'] ) ? sanitize_text_field( wp_unslash( $_POST['inr-text'] ) ) : '';
+			$eur_text = isset( $_POST['eur-text'] ) ? sanitize_text_field( wp_unslash( $_POST['eur-text'] ) ) : '';
+			$aud_text = isset( $_POST['aud-text'] ) ? sanitize_text_field(
+				wp_unslash( $_POST['aud-text'] )
+			) : '';
 
 			$cswp_manual_rate = array(
 
@@ -359,10 +361,10 @@ class CS_Loader {
 				$usd = $data->rates->USD;
 				$aud = $data->rates->AUD;
 
-				$usd_apitext = isset( $_POST['usd-apitext'] ) ? sanitize_text_field( $_POST['usd-apitext'] ) : '';
-				$inr_apitext = isset( $_POST['inr-apitext'] ) ? sanitize_text_field( $_POST['inr-apitext'] ) : '';
-				$eur_apitext = isset( $_POST['eur-apitext'] ) ? sanitize_text_field( $_POST['eur-apitext'] ) : '';
-				$aud_apitext = isset( $_POST['aud-apitext'] ) ? sanitize_text_field( $_POST['aud-apitext'] ) : '';
+				$usd_apitext = isset( $_POST['usd-apitext'] ) ? sanitize_text_field( wp_unslash( $_POST['usd-apitext'] ) ) : '';
+				$inr_apitext = isset( $_POST['inr-apitext'] ) ? sanitize_text_field( wp_unslash( $_POST['inr-apitext'] ) ) : '';
+				$eur_apitext = isset( $_POST['eur-apitext'] ) ? sanitize_text_field( wp_unslash( $_POST['eur-apitext'] ) ) : '';
+				$aud_apitext = isset( $_POST['aud-apitext'] ) ? sanitize_text_field( wp_unslash( $_POST['aud-apitext'] ) ) : '';
 
 				$cswp_apirate_values = array(
 					'inr'         => $inr,
@@ -459,8 +461,9 @@ class CS_Loader {
 		wp_enqueue_style( 'cswp-style', CSWP_PLUGIN_URL . '/assets/css/cs-styles.css', '', CSWP_CURRENCY_SWITCHER_VER );
 
 		$data = array(
-			'cs_data'  => get_option( 'cs_data', array() ),
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'cs_data'    => get_option( 'cs_data', array() ),
+			'ajax_url'   => admin_url( 'admin-ajax.php' ),
+			'ajax_nonce' => wp_create_nonce( 'ajax_nonce_val' ),
 		);
 
 		wp_localize_script( 'cswp-backend-script', 'csVars', $data );
@@ -521,7 +524,7 @@ class CS_Loader {
 			'actual_currency_rates' => $actual_currency_rates,
 			'decimal_point'         => isset( $cswp_get_form_value['decimalradio'] ) ? $cswp_get_form_value['decimalradio'] : '',
 			'base_currency'         => $cswp_basecurency,
-			'base_currency_symbol'  => CSWP_Currency_Btn_Shortcode::get_instance()->get_currency_symbol( $cswp_basecurency ),
+			'base_currency_symbol'  => CS_Btn_Shortcode::get_instance()->get_currency_symbol( $cswp_basecurency ),
 		);
 		wp_localize_script( 'cswp-getrate', 'csVars', $currency_rate );
 	}
