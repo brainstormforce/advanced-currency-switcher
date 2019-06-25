@@ -148,36 +148,17 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
-			<?php
-			$convertbtn = CS_Loader::cswp_load_currency_button_data();
-			if ( isset( $convertbtn ) ) {
-
-				if ( '' !== $convertbtn ) {
-
-					if ( isset( $cswp_usd_button ) ) {
-
-						if ( 'USD' === $cswp_usd_button ) {
-							echo '<label for="ForCurrencyButton">
-                     <input type="checkbox" checked name="currency_button[]" value="USD">
-                     USD &#36;</label><br> ';
-						} else {
-							echo '<label for="ForCurrencyButton">
-                     <input type="checkbox"  name="currency_button[]" value="USD">
-                     USD &#36;</label><br> ';
-						}
-					} else {
-						echo '<label for="ForCurrencyButton">
-                 <input type="checkbox"  name="currency_button[]" value="USD">
-                 USD &#36;</label><br> ';
-					}
-				} else {
-					echo '<label for="ForCurrencyButton">
-                 <input type="checkbox" name="currency_button[]" value="USD">
-                 USD &#36;</label><br> ';
-				}
-			}
-			?>
-				<span class="currency-switcher-slider round"></span></label>
+				<?php
+				$convertbtn = CS_Loader::cswp_load_currency_button_data();
+				?>
+					<label for="ForCurrencyButton">
+                    	<input type="checkbox" name="currency_button[]" value="USD" <?php checked( $cswp_usd_button, 'USD' );?>>
+                    	USD &#36;
+                    </label>
+                    <br>
+					<span class="currency-switcher-slider round">
+					</span>
+				</label>
 			</td>
 			<td>
 				<input step="any" type="number" name="usd"  value="<?php echo esc_attr( $cswp_usd_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the USD value', 'cswp' ); ?>" >
@@ -217,36 +198,11 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
-					<?php
-					if ( isset( $convertbtn ) ) {
-
-						if ( '' !== $convertbtn ) {
-
-							if ( isset( $cswp_inr_button ) ) {
-
-								if ( 'INR' === $cswp_inr_button ) {
-									echo '<label for="ForCurrencyButton">
-		                 <input type="checkbox" checked name="currency_button[]" value="INR">
-		                 INR &#8377;</label><br> ';
-								} else {
-									echo '<label for="ForCurrencyButton">
-		                 <input type="checkbox"  name="currency_button[]" value="INR">
-		                 INR &#8377;</label><br> ';
-								}
-							} else {
-								echo '<label for="ForCurrencyButton">
-		                 <input type="checkbox"  name="currency_button[]" value="INR">
-		                 INR &#8377;</label><br> ';
-							}
-						} else {
-
-							echo '<label for="ForCurrencyButton">
-		                 <input type="checkbox" name="currency_button[]" value="INR">
-		                 INR &#8377;</label><br> ';
-
-						}
-					}
-					?>
+					<label for="ForCurrencyButton">
+		                <input type="checkbox" name="currency_button[]" value="INR" <?php checked( $cswp_inr_button, 'INR' );?>>
+		                INR &#8377;
+		            </label>
+		            <br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -285,36 +241,14 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
-					<?php
-					if ( isset( $convertbtn ) ) {
-
-						if ( '' !== $convertbtn ) {
-
-							if ( isset( $cswp_eur_button ) ) {
-								if ( 'EUR' === $cswp_eur_button ) {
-									echo '<label for="ForCurrencyButton">
-		                <input type="checkbox" checked name="currency_button[]" value="EUR">
-		                EUR &#8364;</label><br> ';
-								} else {
-									echo '<label for="ForCurrencyButton">
-		                <input type="checkbox"  name="currency_button[]" value="EUR">
-		                EUR &#8364;</label><br> ';
-								}
-							} else {
-								echo '<label for="ForCurrencyButton">
-		                <input type="checkbox"  name="currency_button[]" value="EUR">
-		                EUR &#8364;</label><br> ';
-							}
-						} else {
-							echo '<label for="ForCurrencyButton">
-		                <input type="checkbox"  name="currency_button[]" value="EUR">
-		                EUR &#8364;</label><br> ';
-						}
-					}
-					?>
-					<span class="currency-switcher-slider round"></span>
+					<label for="ForCurrencyButton">
+		                <input type="checkbox" name="currency_button[]" value="EUR" <?php checked( $cswp_eur_button, 'EUR' );?>>
+		                EUR &#8364;
+		            </label>
+		            <br>
+					<span class="currency-switcher-slider round">
+					</span>
 				</label>
-			</td>
 			<td>
 				<input step="any" type="number" name="eur"  value="<?php echo esc_attr( $cswp_eur_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the EURO value', 'cswp' ); ?>">
 			</td>
@@ -349,34 +283,11 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
-				<?php
-				if ( isset( $convertbtn ) ) {
-
-					if ( '' !== $convertbtn ) {
-
-						if ( isset( $cswp_aud_button ) ) {
-
-							if ( 'AUD' === $cswp_aud_button ) {
-								echo '<label for="ForCurrencyButton">
-	                	<input type="checkbox" checked name="currency_button[]" value="AUD">
-	                 	AUD &#36;</label><br> ';
-							} else {
-								echo '<label for="ForCurrencyButton">
-	                 	<input type="checkbox"  name="currency_button[]" value="AUD">
-	                 	AUD &#36;</label><br> ';
-							}
-						} else {
-							echo '<label for="ForCurrencyButton">
-	                 	<input type="checkbox"  name="currency_button[]" value="AUD">
-	                 	AUD &#36;</label><br> ';
-						}
-					} else {
-						echo '<label for="ForCurrencyButton">
-	                <input type="checkbox"  name="currency_button[]" value="AUD">
-	                AUD &#36;</label><br> ';
-					}
-				}
-				?>
+					<label for="ForCurrencyButton">
+		                <input type="checkbox" name="currency_button[]" value="AUD" <?php checked( $cswp_aud_button, 'AUD' );?>>
+		                AUD &#36;
+		            </label>
+		            <br>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
