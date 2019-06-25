@@ -81,15 +81,19 @@ $cswp_api_eur_text = isset( $cswp_apirate_values['eur-apitext'] ) ? $cswp_apirat
 $cswp_api_aud_text = isset( $cswp_apirate_values['aud-apitext'] ) ? $cswp_apirate_values['aud-apitext'] : 'Change TO AUD';
 
 if ( get_option( 'cswp_display' ) === 'display' ) {
-	echo '<div class="updated notice is-dismissible">
-<p><strong>Settings Saved.</strong></p>
-</div>';
+?>
+<div class="updated notice is-dismissible">
+<p><strong><?php esc_html_e( 'Settings Saved.', 'cswp' ); ?></strong></p>
+</div>
+<?php
 	update_option( 'cswp_display', 'nodisplay' );
 }
 if ( get_option( 'apivalidate' ) === 'no' ) {
-	echo '<div class="notice notice-error is-dismissible">
-<p><strong>Please enter correct API key.</strong></p>
-</div>';
+?>
+<div class="notice notice-error is-dismissible">
+<p><strong><?php esc_html_e( 'Please enter correct API key.', 'cswp' ); ?></strong></p>
+</div>
+<?php
 	update_option( 'apivalidate', 'ok' );
 }
 
@@ -104,8 +108,8 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</th>
 			<td>
 				<select name="cswp_form_select" id="cswp_currency_form" onchange="showcurency(this)">
-					<option id="manual-currency" value="manualrate" <?php selected( $cswp_form_select_value, 'manualrate' ); ?>>Manual Currency Rate</option>
-					<option id="api-currency" value="apirate" <?php selected( $cswp_form_select_value, 'apirate' ); ?>>Open Exchange Rate</option>
+					<option id="manual-currency" value="manualrate" <?php selected( $cswp_form_select_value, 'manualrate' ); ?>><?php esc_html_e( 'Manual Currency Rate', 'cswp' ); ?></option>
+					<option id="api-currency" value="apirate" <?php selected( $cswp_form_select_value, 'apirate' ); ?>><?php esc_html_e( 'Open Exchange Rate', 'cswp' ); ?></option>
 				</select>
 			</td>
 		</tr>
@@ -115,33 +119,20 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 	<table class="form-table ccatable" id="cs-manual-display">
 		<tr>
 			<th class="cca-column" >Base Currency</th>
-			<th class="cca-column" style="padding-left: 10px;">Currency</th>
-			<th class="cca-column" style="padding-left: 10px;">Currency Display</th>
-			<th class="cca-column" style="padding-left: 10px;">Rate</th>
-			<th class="cca-column" style="padding-left: 10px;">Button Text to Display</th>
+			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency', 'cswp' ); ?></th>
+			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency Display', 'cswp' ); ?></th>
+			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Rate', 'cswp' ); ?></th>
+			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Button Text to Display', 'cswp' ); ?></th>
 		</tr>
 
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-				<?php
-				if ( isset( $cswp_basecurency ) ) {
-					if ( 'USD' === $cswp_basecurency ) {
-						?>
-						<input type="radio"  value="USD" name="basecurency" class="cca_hidden" checked="checked" />
-						<?php
-					} else {
-						?>
-						<input type="radio"  value="USD" name="basecurency" class="cca_hidden" checked="checked"/>
-						<?php
-					}
-				} else {
-					?>
-				<input type="radio"  value="USD" name="basecurency" class="cca_hidden"  />
-					<?php
-				}
-				?>
-				<span class="currency-switcher-slider round"></span></label></td>
+					<input type="radio"  value="USD" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'USD' );?>>
+					<span class="currency-switcher-slider round">
+					</span>
+				</label>
+			</td>
 			<td>
 				<label for="USD"><?php esc_html_e( 'United States Dollar(USD)', 'cswp' ); ?>
 				</label>
@@ -171,23 +162,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<?php
-					if ( isset( $cswp_basecurency ) ) {
-						if ( 'INR' === $cswp_basecurency ) {
-							?>
-						<input type="radio"  value="INR" name="basecurency" class="cca_hidden" checked="checked"/>
-							<?php
-						} else {
-							?>
-							<input type="radio"  value="INR" name="basecurency" class="cca_hidden" />
-							<?php
-						}
-					} else {
-						?>
-						<input type="radio"  value="INR" name="basecurency" class="cca_hidden" />
-						<?php
-					}
-					?>
+					<input type="radio"  value="INR" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'INR' );?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -217,22 +192,9 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<?php
-					if ( isset( $cswp_basecurency ) ) {
-						if ( 'EUR' === $cswp_basecurency ) {
-							?>
-							<input type="radio"  value="EUR" name="basecurency" class="cca_hidden" checked="checked"/>
-							<?php
-						} else {
-							?>
-						<input type="radio"  value="EUR" name="basecurency" class="cca_hidden"/>
-							<?php
-						}
-					} else {
-						?>
-						<input type="radio"  value="EUR" name="basecurency" class="cca_hidden"/>
-					<?php } ?>
-					<span class="currency-switcher-slider round"></span>
+					<input type="radio"  value="EUR" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'EUR' );?>>
+					<span class="currency-switcher-slider round">
+					</span>
 				</label>
 			</td>
 			<td>
@@ -259,21 +221,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<?php
-					if ( isset( $cswp_basecurency ) ) {
-						if ( 'AUD' === $cswp_basecurency ) {
-							?>
-						<input type="radio"  value="AUD" name="basecurency" class="cca_hidden" checked="checked"/>
-						<?php } else { ?>
-					<input type="radio"  value="AUD" name="basecurency" class="cca_hidden"/>
-							<?php
-						}
-					} else {
-						?>
-					<input type="radio"  value="AUD" name="basecurency" class="cca_hidden"/>
-						<?php
-					}
-					?>
+					<input type="radio"  value="AUD" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'AUD' );?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -315,9 +263,6 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<td>
 				<input type="button" name="Authenticate" value="Authenticate" class="cs-authenticate bt button button-secondary">
 			</td>
-				<?php
-					wp_nonce_field( 'cs-form-auth', 'cs-form-auth-nonce' );
-				?>
 			<td>
 			</td>
 		</tr>
@@ -336,10 +281,18 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</th>
 			<td>
 				<select name="frequency_reload">
-					<option value="hourly" <?php selected( $cswp_frequency_reload, 'hourly' ); ?>>Hourly</option>
-					<option value="daily" <?php selected( $cswp_frequency_reload, 'daily' ); ?>>Daily</option>
-					<option value="weekly" <?php selected( $cswp_frequency_reload, 'weekly' ); ?>>Weekly</option>
-					<option value="manual" <?php selected( $cswp_frequency_reload, 'manual' ); ?>>Manual</option>
+					<option value="hourly" <?php selected( $cswp_frequency_reload, 'hourly' ); ?>>
+						<?php esc_html_e( 'Hourly', 'cswp' ); ?>
+					</option>
+					<option value="daily" <?php selected( $cswp_frequency_reload, 'daily' ); ?>>
+						<?php esc_html_e( 'Daily', 'cswp' ); ?>							
+					</option>
+					<option value="weekly" <?php selected( $cswp_frequency_reload, 'weekly' ); ?>>
+						<?php esc_html_e( 'Weekly', 'cswp' ); ?>							
+					</option>
+					<option value="manual" <?php selected( $cswp_frequency_reload, 'manual' ); ?>>
+						<?php esc_html_e( 'Manual', 'cswp' ); ?>		
+					</option>
 				</select>
 			</td>
 		</tr>
@@ -347,29 +300,13 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<th class="cca-column" >Base Currency</th>
 			<th class="cca-column" style="padding-left: 10px;">Currency</th>
 			<th class="cca-column" style="padding-left: 10px;">Currency Display</th>
-			<th class="cca-column"style="padding-left: 10px;">Rate</th>
+			<th class="cca-column" style="padding-left: 10px;">Rate</th>
 			<th class="cca-column" style="padding-left: 10px;">Button Text to Display</th>
 		</tr>
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-				<?php
-				if ( isset( $cswp_basecurency ) ) {
-					if ( 'USD' === $cswp_basecurency ) {
-						?>
-							<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden" checked="checked"/>
-						<?php
-					} else {
-						?>
-						<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden" checked="checked"/>
-						<?php
-					}
-				} else {
-					?>
-					<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden"/>
-					<?php
-				}
-				?>
+					<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'USD' );?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -402,23 +339,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-				<?php
-				if ( isset( $cswp_basecurency ) ) {
-					if ( 'INR' === $cswp_basecurency ) {
-						?>
-							<input type="radio"  value="INR" name="basecurencyapi" class="cca_hidden" checked="checked"/>
-						<?php
-					} else {
-						?>
-						<input type="radio"  value="INR" name="basecurencyapi" class="cca_hidden"/>
-						<?php
-					}
-				} else {
-					?>
-					<input type="radio"  value="INR" name="basecurencyapi" class="cca_hidden"/>
-					<?php
-				}
-				?>
+					<input type="radio"  value="INR" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'INR' );?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -448,23 +369,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-				<?php
-				if ( isset( $cswp_basecurency ) ) {
-					if ( 'EUR' === $cswp_basecurency ) {
-						?>
-							<input type="radio"  value="EUR" name="basecurencyapi" class="cca_hidden" checked="checked"/>
-						<?php
-					} else {
-						?>
-						<input type="radio"  value="EUR" name="basecurencyapi" class="cca_hidden"/>
-						<?php
-					}
-				} else {
-					?>
-					<input type="radio"  value="EUR" name="basecurencyapi" class="cca_hidden"/>
-					<?php
-				}
-				?>
+					<input type="radio"  value="EUR" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'EUR' );?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -495,23 +400,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-				<?php
-				if ( isset( $cswp_basecurency ) ) {
-					if ( 'AUD' === $cswp_basecurency ) {
-						?>
-							<input type="radio"  value="AUD" name="basecurencyapi" class="cca_hidden" checked="checked"/>
-						<?php
-					} else {
-						?>
-						<input type="radio"  value="AUD" name="basecurencyapi" class="cca_hidden"/>
-						<?php
-					}
-				} else {
-					?>
-					<input type="radio"  value="AUD" name="basecurencyapi" class="cca_hidden"/>
-					<?php
-				}
-				?>
+					<input type="radio"  value="AUD" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'AUD' );?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -557,28 +446,12 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</th>
 			<td>
 				<select name="cswp_vlaue_style" >
-					?> 
-					<?php
-
-					if ( 'normal' === $cswp_vlaue_style ) {
-						?>
-						<option value="normal" <?php selected( $cswp_vlaue_style, 'normal' ); ?>>Normal</option>
-						<?php
-					} else {
-						?>
-						<option value="normal">Normal</option>
-						<?php
-					}
-					if ( 'bold' === $cswp_vlaue_style ) {
-						?>
-						<option value="bold" <?php selected( $cswp_vlaue_style, 'bold' ); ?>>Bold</option>
-						<?php
-					} else {
-						?>
-						<option value="bold" >Bold</option>
-						<?php
-					}
-					?>
+					<option value="normal" <?php selected( $cswp_vlaue_style, 'normal' ); ?>>
+						<?php esc_html_e( 'Normal', 'cswp' ); ?>
+					</option>
+					<option value="bold" <?php selected( $cswp_vlaue_style, 'bold' ); ?>>
+						<?php esc_html_e( 'Bold', 'cswp' ); ?>
+					</option>
 				</select>
 			</td>
 		</tr>
@@ -588,44 +461,20 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 				<label for="DecimalPlaces"><?php esc_html_e( 'Decimal Places', 'cswp' ); ?></label>
 			</th>
 			<td>
-				<?php
-				if ( isset( $cswp_decimalpoint ) ) {
+				<input type="radio" id="intigervalue" value="0" name="decimal-radio" class="cca_hidden" <?php checked( $cswp_decimalpoint, null ); ?> />
+				<label for="intigervalue">
+					($27)
+				</label>
 
-					if ( '' === $cswp_decimalpoint ) {
-						?>
-							<input type="radio"  value="0" name="decimal-radio" class="cca_hidden" checked="checked"/> ($27)
-						<?php
-					} else {
-						?>
-							<input type="radio"  value="0" name="decimal-radio" class="cca_hidden"/> ($27)
-						<?php
-					}
-					if ( '1' === $cswp_decimalpoint ) {
-						?>
-							<input type="radio"  value="1" name="decimal-radio" class="cca_hidden" checked="checked"/> ($27.2)
-						<?php
-					} else {
-						?>
-							<input type="radio"  value="1" name="decimal-radio" class="cca_hidden"/> ($27.2)
-						<?php
-					}
-					if ( '2' === $cswp_decimalpoint ) {
-						?>
-							<input type="radio"  value="2" name="decimal-radio" class="cca_hidden" checked="checked"/> ($27.27)
-						<?php
-					} else {
-						?>
-							<input type="radio"  value="2" name="decimal-radio" class="cca_hidden"/> ($27.27)
-						<?php
-					}
-				} else {
-					?>
-						<input type="radio"  value="0" name="decimal-radio" class="cswp_decimal_radio"/> ($27)
-						<input type="radio"  value="1" name="decimal-radio" class="cswp_decimal_radio"/> ($27.2)
-						<input type="radio"  value="2" name="decimal-radio" class="cswp_decimal_radio"/> ($27.27)
-					<?php
-				}
-				?>
+				<input type="radio" id="floatpointone" value="1" name="decimal-radio" class="cca_hidden" <?php checked( $cswp_decimalpoint, 1 ); ?> />
+				<label for="floatpointone">
+					($27.2)
+				</label>
+
+				<input type="radio" id="floatpointtwo" value="2" name="decimal-radio" class="cca_hidden" <?php checked( $cswp_decimalpoint, 2 ); ?> />
+				<label for="floatpointtwo">
+					($27.27)
+				</label>
 			</td>
 		</tr>
 		<tr>
