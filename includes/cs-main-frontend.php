@@ -11,7 +11,6 @@
 
 ?>
 
-
 <div class="pr_main_heading">
 
 	<h1> <?php esc_html_e( 'Currency Switcher', 'cswp' ); ?> </h1>

@@ -234,8 +234,9 @@ class CS_Loader {
 			$basecurency = isset( $_POST['basecurencyapi'] ) ? sanitize_text_field( $_POST['basecurencyapi'] ) : '';
 		}
 
-		$decimalradio = isset( $_POST['decimal-radio'] ) ? $_POST['decimal-radio'] : '';
-		if ($decimalradio == 0) {
+		$decimalradio = isset( $_POST['decimal-radio'] ) ? intval( $_POST['decimal-radio'] ) : '';
+
+		if ( 0 === $decimalradio ) {
 			$decimalradio = null;
 		}
 
@@ -309,10 +310,10 @@ class CS_Loader {
 		// values from usermanual currency rate.
 		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
 
-			$usd_rate = isset( $_POST['usd'] ) ? sanitize_text_field( $_POST['usd'] ) : '';
-			$inr_rate = isset( $_POST['inr'] ) ? sanitize_text_field( $_POST['inr'] ) : '';
-			$eur_rate = isset( $_POST['eur'] ) ? sanitize_text_field( $_POST['eur'] ) : '';
-			$aud_rate = isset( $_POST['usd'] ) ? sanitize_text_field( $_POST['usd'] ) : '';
+			$usd_rate = isset( $_POST['usd'] ) ? floatval( $_POST['usd'] ) : '';
+			$inr_rate = isset( $_POST['inr'] ) ? floatval( $_POST['inr'] ) : '';
+			$eur_rate = isset( $_POST['eur'] ) ? floatval( $_POST['eur'] ) : '';
+			$aud_rate = isset( $_POST['usd'] ) ? floatval( $_POST['usd'] ) : '';
 
 			$usd_text = isset( $_POST['usd-text'] ) ? sanitize_text_field( $_POST['usd-text'] ) : '';
 			$inr_text = isset( $_POST['inr-text'] ) ? sanitize_text_field( $_POST['inr-text'] ) : '';
