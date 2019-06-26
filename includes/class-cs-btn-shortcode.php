@@ -147,6 +147,8 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 				}
 
 				if ( is_array( $currencydropdown ) ) {
+					$currencyname    = '';
+					$currency_symbol = '';
 					?>
 					<select class="cs-currency-name-dropdown"  value="<?php echo esc_attr( $currencyname ); ?>" data-currency-name="<?php echo esc_attr( $currencyname ); ?>" data-currency-symbol="<?php echo esc_attr( $currency_symbol ); ?>">
 						<?php

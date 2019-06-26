@@ -120,12 +120,29 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency Display', 'cswp' ); ?></th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Rate', 'cswp' ); ?></th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Button Text to Display', 'cswp' ); ?></th>
+			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency Symbol', 'cswp' ); ?></th>
 		</tr>
 
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="USD" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'USD' ); ?>>
+				<?php
+				if ( isset( $cswp_basecurency ) ) {
+					if ( 'USD' === $cswp_basecurency ) {
+						?>
+						<input type="radio"  value="USD" name="basecurency" class="cca_hidden" checked="checked" />
+						<?php
+					} else {
+						?>
+						<input type="radio"  value="USD" name="basecurency" class="cca_hidden" checked="checked"/>
+						<?php
+					}
+				} else {
+					?>
+					<input type="radio"  value="USD" name="basecurency" class="cca_hidden"  />
+					<?php
+				}
+				?>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -153,6 +170,9 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<input type="text" name="usd-text"  value="<?php echo esc_attr( $cswp_usd_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
+			</td>
+			<td>
+				<input type="text" name="usd-symbol"  value="<?php echo esc_attr( $cswp_usd_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 
@@ -185,6 +205,9 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<td>
 				<input type="text" name="inr-text"  value="<?php echo esc_attr( $cswp_inr_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
+			<td>
+				<input type="text" name="inr-symbol"  value="<?php echo esc_attr( $cswp_inr_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+			</td>
 		</tr>
 		<tr>
 			<td>
@@ -214,6 +237,9 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<td>
 				<input type="text" name="eur-text"  value="<?php echo esc_attr( $cswp_eur_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
+			<td>
+				<input type="text" name="eur-symbol"  value="<?php echo esc_attr( $cswp_eur_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+			</td>
 		</tr>
 		<tr>
 			<td>
@@ -242,6 +268,9 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<input type="text" name="aud-text"  value="<?php echo esc_attr( $cswp_aud_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
+			</td>
+			<td>
+				<input type="text" name="aud-symbol"  value="<?php echo esc_attr( $cswp_aud_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -304,7 +333,23 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'USD' ); ?>>
+				<?php
+				if ( isset( $cswp_basecurency ) ) {
+					if ( 'USD' === $cswp_basecurency ) {
+						?>
+							<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden" checked="checked"/>
+						<?php
+					} else {
+						?>
+						<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden" checked="checked"/>
+						<?php
+					}
+				} else {
+					?>
+					<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden"/>
+					<?php
+				}
+				?>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>

@@ -203,7 +203,7 @@ class CS_Loader {
 		if ( ! isset( $_POST['cs-form'] ) ) {
 			return;
 		}
-		if ( ! wp_verify_nonce( $_POST['cs-form'], 'cs-form-nonce' ) ) {
+		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['cs-form'] ) ), 'cs-form-nonce' ) ) {
 			return;
 		}
 		if ( 'currency_switch' !== ( isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : null ) ) {
@@ -214,10 +214,10 @@ class CS_Loader {
 
 		$api_key = isset( $_POST['appid'] ) ? sanitize_text_field( wp_unslash( $_POST['appid'] ) ) : '';
 
-		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
+		if ( isset( $_POST['cswp_form_select'] ) && 'manualrate' === $_POST['cswp_form_select'] ) {
 			$basecurency = isset( $_POST['basecurency'] ) ? sanitize_text_field( wp_unslash( $_POST['basecurency'] ) ) : '';
 
-		} elseif ( 'apirate' === $_POST['cswp_form_select'] ) {
+		} elseif ( isset( $_POST['cswp_form_select'] ) && 'apirate' === $_POST['cswp_form_select'] ) {
 
 			$basecurency = isset( $_POST['basecurencyapi'] ) ? sanitize_text_field( wp_unslash( $_POST['basecurencyapi'] ) ) : '';
 		}
@@ -238,7 +238,7 @@ class CS_Loader {
 
 			if ( isset( $_POST['currency_button'] ) ) {
 
-				foreach ( $_POST['currency_button'] as $currencybutton ) {
+				foreach ( $_POST['currency_button'] as $currencybutton ) {//PHPCS:ignore:WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 					$cswp_currency_button_type[] = $currencybutton;
 				}
 			}
@@ -257,7 +257,7 @@ class CS_Loader {
 
 			if ( isset( $_POST['currency_button_api'] ) ) {
 
-				foreach ( $_POST['currency_button_api'] as $currencybutton ) {
+				foreach ( $_POST['currency_button_api'] as $currencybutton ) {//PHPCS:ignore:WordPress.Security.ValidatedSanitizedInput.MissingUnslash
 					$cswp_currency_button_type[] = $currencybutton;
 				}
 			}
@@ -461,8 +461,8 @@ class CS_Loader {
 		wp_enqueue_style( 'cswp-style', CSWP_PLUGIN_URL . '/assets/css/cs-styles.css', '', CSWP_CURRENCY_SWITCHER_VER );
 
 		$data = array(
-			'cs_data'  => get_option( 'cs_data', array() ),
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'cs_data'    => get_option( 'cs_data', array() ),
+			'ajax_url'   => admin_url( 'admin-ajax.php' ),
 			'ajax_nonce' => wp_create_nonce( 'ajax_nonce_val' ),
 		);
 
