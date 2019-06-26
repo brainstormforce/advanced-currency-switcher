@@ -24,7 +24,7 @@ $cswp_frequency_reload = isset( $cswp_get_form_value['frequency_reload'] ) ? $cs
 
 $cswp_button_type_value = isset( $cswp_get_form_value['cswp_button_type'] ) ? $cswp_get_form_value['cswp_button_type'] : '';
 
-$cswp_decimalpoint = isset( $cswp_get_form_value['decimalradio'] ) ? $cswp_get_form_value['decimalradio'] : '';
+$cswp_decimal_place_value = isset( $cswp_get_form_value['decimalradio'] ) ? $cswp_get_form_value['decimalradio'] : '';
 
 // Store Manual rate values in variable.
 $cswp_manualrate = CS_Loader::cswp_load_manual_data();
@@ -441,20 +441,17 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 				<label for="DecimalPlaces"><?php esc_html_e( 'Decimal Places', 'cswp' ); ?></label>
 			</th>
 			<td>
-				<input type="radio" id="intigervalue" value="0" name="decimal-radio" class="cca_hidden" <?php checked( $cswp_decimalpoint, null ); ?> />
-				<label for="intigervalue">
-					($27)
-				</label>
-
-				<input type="radio" id="floatpointone" value="1" name="decimal-radio" class="cca_hidden" <?php checked( $cswp_decimalpoint, 1 ); ?> />
-				<label for="floatpointone">
-					($27.2)
-				</label>
-
-				<input type="radio" id="floatpointtwo" value="2" name="decimal-radio" class="cca_hidden" <?php checked( $cswp_decimalpoint, 2 ); ?> />
-				<label for="floatpointtwo">
-					($27.27)
-				</label>
+				<select name="cswp_decimal_place_value" >
+					<option value="0" <?php selected( $cswp_decimal_place_value, null ); ?>>
+						<?php esc_html_e( 'Round Number (27)', 'cswp' ); ?>
+					</option>
+					<option value="1" <?php selected( $cswp_decimal_place_value, 1 ); ?>>
+						<?php esc_html_e( '1 Decimal Place (27.2)', 'cswp' ); ?>
+					</option>
+					<option value="2" <?php selected( $cswp_decimal_place_value, 2 ); ?>>
+						<?php esc_html_e( '2 Decimal Places (27.27)', 'cswp' ); ?>
+					</option>
+				</select>
 			</td>
 		</tr>
 		<tr>

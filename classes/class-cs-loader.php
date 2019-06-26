@@ -211,6 +211,7 @@ class CS_Loader {
 		}
 
 		$cswp_get_form_value = get_option( 'cswp_form_data' );
+
 		$api_key             = isset( $_POST['appid'] ) ? sanitize_text_field( wp_unslash( $_POST['appid'] ) ) : '';
 
 		$cswp_submit_check = add_query_arg(
@@ -235,14 +236,13 @@ class CS_Loader {
 			$basecurency = isset( $_POST['basecurencyapi'] ) ? sanitize_text_field( wp_unslash( $_POST['basecurencyapi'] ) ) : '';
 		}
 
-		$decimalradio = isset( $_POST['decimal-radio'] ) ? intval( $_POST['decimal-radio'] ) : '';
+		$decimalradio = isset( $_POST['cswp_decimal_place_value'] ) ? intval( $_POST['cswp_decimal_place_value'] ) : '';
 
 		if ( 0 === $decimalradio ) {
 			$decimalradio = null;
 		}
 
 		$form_type = isset( $_POST['cswp_form_select'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_form_select'] ) ) : '';
-
 		$cswp_button_type = isset( $_POST['cswp_button_type'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_button_type'] ) ) : '';
 		$cswp_vlaue_style = isset( $_POST['cswp_vlaue_style'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_vlaue_style'] ) ) : '';
 		$frequency_reload = isset( $_POST['frequency_reload'] ) ? sanitize_text_field( wp_unslash( $_POST['frequency_reload'] ) ) : '';
