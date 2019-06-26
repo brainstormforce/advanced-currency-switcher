@@ -11,8 +11,8 @@
             type : 'POST',
             data : {
                 action : 'ccs_validate',
-                api_key : api_key
-                //csVars:'ajax_nonce'
+                api_key : api_key,
+                security :csVars.ajax_nonce
             },
             success : function( response ) {
                 if( response.success ) {

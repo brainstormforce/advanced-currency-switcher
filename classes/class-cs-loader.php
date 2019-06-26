@@ -117,7 +117,7 @@ class CS_Loader {
 	 */
 	public function cs_validate_api_key() {
 
-		// check_ajax_referer( 'ajax_nonce_val', 'security' );
+		check_ajax_referer( 'ajax_nonce_val', 'security' );
 		$api_key = isset( $_POST['api_key'] ) ? sanitize_key( $_POST['api_key'] ) : '';
 
 		if ( empty( $api_key ) ) {
@@ -128,7 +128,7 @@ class CS_Loader {
 
 		$cswp_str = add_query_arg( 'app_id', $api_key, 'https://openexchangerates.org/api/latest.json' );
 
-		$cswp_str = wp_remote_get( $cswp_str );
+		$cswp_str = wp_remote_post( $cswp_str );
 
 		if ( 'Unauthorized' === $cswp_str['response']['message'] ) {
 			update_option( '', 'no' );
@@ -213,19 +213,6 @@ class CS_Loader {
 		$cswp_get_form_value = get_option( 'cswp_form_data' );
 
 		$api_key = isset( $_POST['appid'] ) ? sanitize_text_field( wp_unslash( $_POST['appid'] ) ) : '';
-
-		$cswp_submit_check = add_query_arg(
-			array(
-				'app_id' => $api_key,
-			),
-			'https://openexchangerates.org/api/latest.json'
-		);
-
-		$cswp_submit_check = wp_remote_get( $cswp_submit_check );
-
-		if ( 'Unauthorized' === $cswp_submit_check['response']['message'] && 'manualrate' !== $_POST['cswp_form_select'] || 'Forbidden' === $cswp_submit_check['response']['message'] && 'manualrate' !== $_POST['cswp_form_select'] ) {
-			update_option( 'apivalidate', 'no' );
-		}
 
 		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
 			$basecurency = isset( $_POST['basecurency'] ) ? sanitize_text_field( wp_unslash( $_POST['basecurency'] ) ) : '';
@@ -363,10 +350,10 @@ class CS_Loader {
 				'https://openexchangerates.org/api/latest.json'
 			);
 
-			$data = wp_remote_get( $data );
+			$data = wp_remote_post( $data );
 
 			if ( 'Unauthorized' === $data['response']['message'] && 'manualrate' !== $_POST['cswp_form_select'] || 'Forbidden' === $data['response']['message'] && 'manualrate' !== $_POST['cswp_form_select'] ) {
-					update_option( 'cswp_display', 'no' );
+					update_option( 'apivalidate', 'no' );
 
 			} else {
 				$data = json_decode( $data['body'] );
@@ -439,7 +426,7 @@ class CS_Loader {
 			'https://openexchangerates.org/api/latest.json'
 		);
 
-		$data = wp_remote_get( $data );
+		$data = wp_remote_post( $data );
 		$data = json_decode( $data['body'] );
 		// Store required data in database.
 		if ( isset( $data ) ) {
@@ -476,7 +463,7 @@ class CS_Loader {
 		$data = array(
 			'cs_data'  => get_option( 'cs_data', array() ),
 			'ajax_url' => admin_url( 'admin-ajax.php' ),
-			// 'ajax_nonce' => wp_create_nonce( 'ajax_nonce_val' ),
+			'ajax_nonce' => wp_create_nonce( 'ajax_nonce_val' ),
 		);
 
 		wp_localize_script( 'cswp-backend-script', 'csVars', $data );
