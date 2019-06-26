@@ -34,7 +34,7 @@
 	<p> <?php esc_html_e( 'User have to authenticate the API key first to confirm the key is right or not.', 'cswp' ); ?>
 		</p>
 	<p> <?php esc_html_e( 'To generate APP Id', 'cswp' ); ?>
-		<a href="https://openexchangerates.org/" target="_blank">https://openexchangerates.org/</a>&nbsp; <?php esc_html_e( 'copy the ap id and past it in text box.', 'cswp' ); ?>
+		<a href="https://openexchangerates.org/" target="_blank">https://openexchangerates.org/</a>&nbsp; <?php esc_html_e( 'copy the APP Id and paste it in text box.', 'cswp' ); ?>
 	</p>
 
 	<p> <?php esc_html_e( 'Set frequency so that the currency value get updated automatically.', 'cswp' ); ?>
@@ -50,7 +50,7 @@
 
 	<pre><code>[currency value=""]</code></pre>
 
-	<p><?php esc_html_e( 'This shortcode help to insert the shortcode in the price info box in Eementor, Beaver Builder and other page builder.', 'cswp' ); ?> <br><?php esc_html_e( 'By passing the value of currency in', 'cswp' ); ?><b> Example: value="22" </b>
+	<p><?php esc_html_e( 'This shortcode help to insert the shortcode in the price info box in Eementor, Beaver Builder and other page builder.', 'cswp' ); ?> <br><?php esc_html_e( 'By passing the value of currency in', 'cswp' ); ?><b> Example:[currency value="27"] </b>
 	</p>
 
 	<li class="cs-mylist"><?php esc_html_e( 'Shot-code for Currency switcher Button', 'cswp' ); ?>  </li>

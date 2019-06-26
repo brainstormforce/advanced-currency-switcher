@@ -43,6 +43,7 @@ class CS_Loader {
 	 * @return $cswp_get_form_value
 	 */
 	public static function cswp_load_all_data() {
+		
 		$cswp_get_form_value = get_option( 'cswp_form_data' );
 		return $cswp_get_form_value;
 	}
@@ -116,7 +117,7 @@ class CS_Loader {
 	 */
 	public function cs_validate_api_key() {
 
-		check_ajax_referer( 'ajax_nonce_val', 'security' );
+		//check_ajax_referer( 'ajax_nonce_val', 'security' );
 		$api_key = isset( $_POST['api_key'] ) ? sanitize_key( $_POST['api_key'] ) : '';
 
 		if ( empty( $api_key ) ) {
@@ -313,7 +314,7 @@ class CS_Loader {
 			$usd_rate = isset( $_POST['usd'] ) ? floatval( $_POST['usd'] ) : '';
 			$inr_rate = isset( $_POST['inr'] ) ? floatval( $_POST['inr'] ) : '';
 			$eur_rate = isset( $_POST['eur'] ) ? floatval( $_POST['eur'] ) : '';
-			$aud_rate = isset( $_POST['usd'] ) ? floatval( $_POST['usd'] ) : '';
+			$aud_rate = isset( $_POST['aud'] ) ? floatval( $_POST['aud'] ) : '';
 
 			$usd_text = isset( $_POST['usd-text'] ) ? sanitize_text_field( wp_unslash( $_POST['usd-text'] ) ) : '';
 			$inr_text = isset( $_POST['inr-text'] ) ? sanitize_text_field( wp_unslash( $_POST['inr-text'] ) ) : '';
@@ -463,7 +464,7 @@ class CS_Loader {
 		$data = array(
 			'cs_data'    => get_option( 'cs_data', array() ),
 			'ajax_url'   => admin_url( 'admin-ajax.php' ),
-			'ajax_nonce' => wp_create_nonce( 'ajax_nonce_val' ),
+			//'ajax_nonce' => wp_create_nonce( 'ajax_nonce_val' ),
 		);
 
 		wp_localize_script( 'cswp-backend-script', 'csVars', $data );

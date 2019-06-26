@@ -40,13 +40,13 @@ $cswp_eur_rate = isset( $cswp_manualrate['eur_rate'] ) ? $cswp_manualrate['eur_r
 $cswp_aud_rate = isset( $cswp_manualrate['aud_rate'] ) ? $cswp_manualrate['aud_rate'] : '1.45';
 
 
-$cswp_usd_text = isset( $cswp_manualrate['usd-text'] ) ? $cswp_manualrate['usd-text'] : 'Change TO USD';
+$cswp_usd_text = isset( $cswp_manualrate['usd-text'] ) ? $cswp_manualrate['usd-text'] : 'Change to USD';
 
-$cswp_inr_text = isset( $cswp_manualrate['inr-text'] ) ? $cswp_manualrate['inr-text'] : 'Change TO INR';
+$cswp_inr_text = isset( $cswp_manualrate['inr-text'] ) ? $cswp_manualrate['inr-text'] : 'Change to INR';
 
-$cswp_eur_text = isset( $cswp_manualrate['eur-text'] ) ? $cswp_manualrate['eur-text'] : 'Change TO EURO';
+$cswp_eur_text = isset( $cswp_manualrate['eur-text'] ) ? $cswp_manualrate['eur-text'] : 'Change to EURO';
 
-$cswp_aud_text = isset( $cswp_manualrate['aud-text'] ) ? $cswp_manualrate['aud-text'] : 'Change TO AUD';
+$cswp_aud_text = isset( $cswp_manualrate['aud-text'] ) ? $cswp_manualrate['aud-text'] : 'Change to AUD';
 
 
 // Store Switcher Button value.
@@ -72,13 +72,13 @@ $apitext_eur = isset( $cswp_apirate_values['eur'] ) ? $cswp_apirate_values['eur'
 
 $apitext_aud = isset( $cswp_apirate_values['aud'] ) ? $cswp_apirate_values['aud'] : '';
 
-$cswp_api_usd_text = isset( $cswp_apirate_values['usd-apitext'] ) ? $cswp_apirate_values['usd-apitext'] : 'Change TO USD';
+$cswp_api_usd_text = isset( $cswp_apirate_values['usd-apitext'] ) ? $cswp_apirate_values['usd-apitext'] : 'Change to USD';
 
-$cswp_api_inr_text = isset( $cswp_apirate_values['inr-apitext'] ) ? $cswp_apirate_values['inr-apitext'] : 'Change TO INR';
+$cswp_api_inr_text = isset( $cswp_apirate_values['inr-apitext'] ) ? $cswp_apirate_values['inr-apitext'] : 'Change to INR';
 
-$cswp_api_eur_text = isset( $cswp_apirate_values['eur-apitext'] ) ? $cswp_apirate_values['eur-apitext'] : 'Change TO EURO';
+$cswp_api_eur_text = isset( $cswp_apirate_values['eur-apitext'] ) ? $cswp_apirate_values['eur-apitext'] : 'Change to EURO';
 
-$cswp_api_aud_text = isset( $cswp_apirate_values['aud-apitext'] ) ? $cswp_apirate_values['aud-apitext'] : 'Change TO AUD';
+$cswp_api_aud_text = isset( $cswp_apirate_values['aud-apitext'] ) ? $cswp_apirate_values['aud-apitext'] : 'Change to AUD';
 
 if ( get_option( 'cswp_display' ) === 'display' ) {
 	?>
