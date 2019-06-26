@@ -57,31 +57,13 @@ if ( ! class_exists( 'CS_Currency_Shortcode' ) ) {
 
 			<!--  Create custom div and span for display price -->
 			<div class="cs-converter-wrap" >
-				<?php
-				$styling = CS_Loader::cswp_load_all_data();
-				if ( 'bold' === $styling['cswp_vlaue_style'] ) {
-					?>
-					<b><span class="cs-convertor-wrap-symbol" id="cswp_symbol"></span></b>
-					<b><span id="cs-convertor-wrap" class="cs-convertor-wrap-data" valuemy="<?php echo esc_attr( $myprice ); ?>">
-						<?php
-
-						echo esc_attr( $getval );
-						?>
-						</span>
-					</b>
+				<span class="cs-convertor-wrap-symbol" id="cswp_symbol"></span>
+				<span id="cs-convertor-wrap" class="cs-convertor-wrap-data" valuemy="<?php echo esc_attr( $myprice ); ?>">
 					<?php
-				} else {
-					?>
-					<span class="cs-convertor-wrap-symbol" id="cswp_symbol"></span>
-					<span id="cs-convertor-wrap" class="cs-convertor-wrap-data" valuemy="<?php echo esc_attr( $myprice ); ?>">
-						<?php
 
-						echo esc_attr( $getval );
-						?>
-					</span>
-					<?php
-				}
-				?>
+					echo esc_attr( $getval );
+					?>
+				</span>
 			</div>
 			<?php
 			return ob_get_clean();

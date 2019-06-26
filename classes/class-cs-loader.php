@@ -295,7 +295,6 @@ class CS_Loader {
 			'api_key'          => $api_key,
 			'frequency_reload' => $frequency_reload,
 			'cswp_button_type' => $cswp_button_type,
-			'cswp_vlaue_style' => $cswp_vlaue_style,
 			'decimalradio'     => $decimalradio,
 		);
 

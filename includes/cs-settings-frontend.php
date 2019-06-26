@@ -24,8 +24,6 @@ $cswp_frequency_reload = isset( $cswp_get_form_value['frequency_reload'] ) ? $cs
 
 $cswp_button_type_value = isset( $cswp_get_form_value['cswp_button_type'] ) ? $cswp_get_form_value['cswp_button_type'] : '';
 
-$cswp_vlaue_style = isset( $cswp_get_form_value['cswp_vlaue_style'] ) ? $cswp_get_form_value['cswp_vlaue_style'] : '';
-
 $cswp_decimalpoint = isset( $cswp_get_form_value['decimalradio'] ) ? $cswp_get_form_value['decimalradio'] : '';
 
 // Store Manual rate values in variable.
@@ -434,22 +432,6 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 				<select name="cswp_button_type" >
 						<option value="dropdown" <?php selected( $cswp_button_type_value, 'dropdown' ); ?>>Drop Down</option>
 						<option value="toggle" <?php selected( $cswp_button_type_value, 'toggle' ); ?>>Toggle</option>
-				</select>
-			</td>
-		</tr>
-
-		<tr>
-			<th scope="row">
-				<label for="valuestyle"><?php esc_html_e( 'Value Style', 'cswp' ); ?></label>
-			</th>
-			<td>
-				<select name="cswp_vlaue_style" >
-					<option value="normal" <?php selected( $cswp_vlaue_style, 'normal' ); ?>>
-						<?php esc_html_e( 'Normal', 'cswp' ); ?>
-					</option>
-					<option value="bold" <?php selected( $cswp_vlaue_style, 'bold' ); ?>>
-						<?php esc_html_e( 'Bold', 'cswp' ); ?>
-					</option>
 				</select>
 			</td>
 		</tr>
