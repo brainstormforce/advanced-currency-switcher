@@ -109,24 +109,24 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			if ( 'toggle' === $base_value_select['cswp_button_type'] ) {
 				if ( is_array( $currencybtn ) ) {
 
-				foreach ( $currencybtn as $currencyname ) {
+					foreach ( $currencybtn as $currencyname ) {
 
 						$currency_symbol = $this->get_currency_symbol( $currencyname );
 						?>
 						<button class="cs-currency-name" id="cstoggleto<?php echo esc_attr( $currencyname ); ?>"
 						data-currency-name="<?php echo esc_attr( $currencyname ); ?>" data-currency-symbol="<?php echo esc_attr( $currency_symbol ); ?>" style="display: none;">
 
-						<?php
-						if ( 'USD' === $currencyname ) {
-							echo $manual_button_text_value[0];
-						} elseif ( 'INR' === $currencyname ) {
-							echo $manual_button_text_value[1] ;
-						} elseif ( 'EUR' === $currencyname ) {
-							echo $manual_button_text_value[2] ;
-						} elseif ( 'AUD' === $currencyname ) {
-							echo $manual_button_text_value[3]; }
-						?>
-							
+							<?php
+							if ( 'USD' === $currencyname ) {
+								echo $manual_button_text_value[0];
+							} elseif ( 'INR' === $currencyname ) {
+								echo $manual_button_text_value[1];
+							} elseif ( 'EUR' === $currencyname ) {
+								echo $manual_button_text_value[2];
+							} elseif ( 'AUD' === $currencyname ) {
+								echo $manual_button_text_value[3];
+							}
+							?>
 						</button>
 						<?php
 					}
@@ -152,6 +152,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 					?>
 					<select class="cs-currency-name-dropdown"  >
 						<?php
+
 						foreach ( $currencydropdown as $currencyname ) {
 
 							$currency_symbol = $this->get_currency_symbol( $currencyname );
@@ -168,13 +169,13 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 
 								<?php
 								if ( 'USD' === $currencyname ) {
-									echo esc_attr( $manual_button_text_value[0] );
+									echo $manual_button_text_value[0];
 								} elseif ( 'INR' === $currencyname ) {
-									echo esc_attr( $manual_button_text_value[1] );
+									echo $manual_button_text_value[1];
 								} elseif ( 'EUR' === $currencyname ) {
-									echo esc_attr( $manual_button_text_value[2] );
+									echo $manual_button_text_value[2];
 								} elseif ( 'AUD' === $currencyname ) {
-									echo esc_attr( $manual_button_text_value[3] );
+									echo $manual_button_text_value[3];
 								}
 								?>
 

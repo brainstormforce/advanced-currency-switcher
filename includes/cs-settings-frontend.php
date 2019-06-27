@@ -140,6 +140,13 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 	<!--  set the html code for put manual currancy rate -->
 	<table class="form-table ccatable" id="cs-manual-display">
 		<tr>
+			<td colspan="6" class="cswp_note_rate">
+			<p class="description cswp_apidescription">
+				<b><?php esc_html_e( 'Note:', 'cswp' ); ?></b>	<?php esc_html_e( 'Please make sure that you have entered the 1 value for the selected base currency rate. Enter an exchange rate for the different currency options against the chosen base currency.', 'cswp' ); ?>
+				</p>
+			</td>
+		</tr>
+		<tr>
 			<th class="cca-column" >Base Currency</th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency', 'cswp' ); ?></th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency Display', 'cswp' ); ?></th>
@@ -197,7 +204,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				<input type="text" name="usd-text"  value="<?php echo esc_attr( $cswp_usd_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="usd-symbol"  value="<?php echo $cswp_usd_symbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="usd-symbol"  value="<?php echo esc_attr( $cswp_usd_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 
@@ -263,7 +270,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				<input type="text" name="eur-text"  value="<?php echo esc_attr( $cswp_eur_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="eur-symbol"  value="<?php echo $cswp_eur_symbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="eur-symbol"  value="<?php echo esc_attr( $cswp_eur_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -292,19 +299,12 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				<input step="any" type="number" name="aud"  value="<?php echo esc_attr( $cswp_aud_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the AUD value', 'cswp' ); ?>">
 			</td>
 			<td>
-				<input type="text" name="aud-text"  value="<?php echo ( $cswp_aud_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
+				<input type="text" name="aud-text"  value="<?php echo esc_attr( $cswp_aud_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="aud-symbol"  value="<?php echo $cswp_aud_symbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="aud-symbol"  value="<?php echo esc_attr( $cswp_aud_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
-		<!-- <tr>
-			<td colspan="6">
-			<p class="description cswp_apidescription">
-					<b><?php //esc_html_e( 'Please enter selected base currency rate as a 1 ', 'cswp' ); ?></b>
-				</p>
-			</td>
-		</tr> -->
 	</table>
 
 	<!--  set the html code for Apikey value and frequency update time -->
@@ -411,7 +411,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				<input type="text" name="usd-apitext"  value="<?php echo esc_attr( $cswp_api_usd_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="usd-apisymbol"  value="<?php echo $cswp_usd_apisymbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="usd-apisymbol"  value="<?php echo esc_attr( $cswp_usd_apisymbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -444,7 +444,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				<input type="text" name="inr-apitext"  value="<?php echo esc_attr( $cswp_api_inr_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="inr-apisymbol"  value="<?php echo $cswp_inr_apisymbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="inr-apisymbol"  value="<?php echo esc_attr( $cswp_inr_apisymbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -477,7 +477,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				<input type="text" name="eur-apitext"  value="<?php echo esc_attr( $cswp_api_eur_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="eur-apisymbol"  value="<?php echo $cswp_eur_apisymbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="eur-apisymbol"  value="<?php echo esc_attr( $cswp_eur_apisymbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -509,7 +509,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				<input type="text" name="aud-apitext"  value="<?php echo esc_attr( $cswp_api_aud_text ); ?>"placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="aud-apisymbol"  value="<?php echo $cswp_aud_apisymbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="aud-apisymbol"  value="<?php echo esc_attr( $cswp_aud_apisymbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 	</table>

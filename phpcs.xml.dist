@@ -11,6 +11,9 @@
 	<rule ref="WordPress">
         <!-- Exclude Strict comparisons check until first priority escaping and sanitization are complete -->
         <exclude name="WordPress.Security.NonceVerification.Recommended" /> 
+        <exclude name="WordPress.Security.ValidatedSanitizedInput.MissingUnslash" />
+        <exclude name="WordPress.Security.EscapeOutput.OutputNotEscaped" />
+
 	</rule>
 
 	<!-- Check all PHP files in directory tree by default. -->

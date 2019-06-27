@@ -25,3 +25,6 @@ display: block;
     margin-bottom: 0px;
     margin-left:12px;
 } 
+td.cswp_note_rate {
+    padding: 0px 0px;
+}
