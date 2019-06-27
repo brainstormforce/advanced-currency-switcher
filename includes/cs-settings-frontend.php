@@ -98,10 +98,26 @@ if ( get_option( 'cswp_display' ) === 'display' ) {
 if ( get_option( 'apivalidate' ) === 'no' ) {
 	?>
 	<div class="notice notice-error is-dismissible">
-	<p><strong><?php esc_html_e( 'Please enter correct API key.', 'cswp' ); ?></strong></p>
+	<p><strong><?php esc_html_e( 'The API key you entered seems invalid. Please enter the correct API key & try again.', 'cswp' ); ?></strong></p>
 	</div>
 	<?php
 	update_option( 'apivalidate', 'ok' );
+}
+if ( get_option( 'apinotfree' ) === 'notfree' ) {
+	?>
+	<div class="notice notice-error is-dismissible">
+	<p><strong><?php esc_html_e( 'Your API key allows the only USD is a base currency. Please change the base currency to USD & save settings again.', 'cswp' ); ?></strong></p>
+	</div>
+	<?php
+	update_option( 'apinotfree', 'ok' );
+}
+if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
+	?>
+	<div class="notice notice-error is-dismissible">
+	<p><strong><?php esc_html_e( 'Please enter the API key for get currency rate.', 'cswp' ); ?></strong></p>
+	</div>
+	<?php
+	update_option( 'apinotfree', 'ok' );
 }
 ?>
 <!-- Html code for frontend -->
@@ -276,18 +292,24 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 				<input step="any" type="number" name="aud"  value="<?php echo esc_attr( $cswp_aud_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the AUD value', 'cswp' ); ?>">
 			</td>
 			<td>
-				<input type="text" name="aud-text"  value="<?php echo esc_attr( $cswp_aud_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
+				<input type="text" name="aud-text"  value="<?php echo ( $cswp_aud_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
 				<input type="text" name="aud-symbol"  value="<?php echo $cswp_aud_symbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
-		<tr>
-		</tr>
+		<!-- <tr>
+			<td colspan="6">
+			<p class="description cswp_apidescription">
+					<b><?php //esc_html_e( 'Please enter selected base currency rate as a 1 ', 'cswp' ); ?></b>
+				</p>
+			</td>
+		</tr> -->
 	</table>
 
 	<!--  set the html code for Apikey value and frequency update time -->
 	<table class="form-table" id="cs-api-display" >
+
 		<tr>
 			<th scope="row">
 				<label for="ApiKey"> <?php esc_html_e( 'App ID(Api Key)', 'cswp' ); ?></label>
@@ -510,13 +532,13 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<td>
 				<select name="cswp_decimal_place_value" >
 					<option value="0" <?php selected( $cswp_decimal_place_value, null ); ?>>
-						<?php esc_html_e( 'Round Number (27)', 'cswp' ); ?>
+						<?php esc_html_e( 'Round Number (12)', 'cswp' ); ?>
 					</option>
 					<option value="1" <?php selected( $cswp_decimal_place_value, 1 ); ?>>
-						<?php esc_html_e( '1 Decimal Place (27.2)', 'cswp' ); ?>
+						<?php esc_html_e( '1 Decimal Place (12.1)', 'cswp' ); ?>
 					</option>
 					<option value="2" <?php selected( $cswp_decimal_place_value, 2 ); ?>>
-						<?php esc_html_e( '2 Decimal Places (27.27)', 'cswp' ); ?>
+						<?php esc_html_e( '2 Decimal Places (12.34)', 'cswp' ); ?>
 					</option>
 				</select>
 			</td>
