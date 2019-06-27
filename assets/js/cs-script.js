@@ -25,17 +25,17 @@
 
                 //console.log( csVars.actual_currency_rates[ currency_name ] );
                 if(currency_name==='INR') {
-                    var symb='₹';
+                    var symb=csVars.currency_symbol_add['inr-symbol'];
 
                 } else if(currency_name==='USD') {
-                    var symb='$';
+                    var symb=csVars.currency_symbol_add['usd-symbol'];;
 
 
                 } else if(currency_name==='AUD') {
-                    var symb='$';
+                    var symb=csVars.currency_symbol_add['aud-symbol'];;
 
                 } else if(currency_name==='EUR') {
-                    var symb='€';
+                    var symb=csVars.currency_symbol_add['eur-symbol'];;
                 }
                 
                 var decimalpoint = csVars.decimal_point;

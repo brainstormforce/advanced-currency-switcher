@@ -46,6 +46,10 @@ $cswp_eur_text = isset( $cswp_manualrate['eur-text'] ) ? $cswp_manualrate['eur-t
 
 $cswp_aud_text = isset( $cswp_manualrate['aud-text'] ) ? $cswp_manualrate['aud-text'] : 'Change to AUD';
 
+$cswp_inr_symbol = isset( $cswp_manualrate['inr-symbol'] ) ? $cswp_manualrate['inr-symbol'] : '&#8377;';
+$cswp_eur_symbol = isset( $cswp_manualrate['eur-symbol'] ) ? $cswp_manualrate['eur-symbol'] : '&#8364;';
+$cswp_aud_symbol = isset( $cswp_manualrate['aud-symbol'] ) ? $cswp_manualrate['aud-symbol'] : '&#36;';
+$cswp_usd_symbol = isset( $cswp_manualrate['usd-symbol'] ) ? $cswp_manualrate['usd-symbol'] : '&#36;';
 
 // Store Switcher Button value.
 $convertbtn = CS_Loader::cswp_load_currency_button_data();
@@ -77,6 +81,11 @@ $cswp_api_inr_text = isset( $cswp_apirate_values['inr-apitext'] ) ? $cswp_apirat
 $cswp_api_eur_text = isset( $cswp_apirate_values['eur-apitext'] ) ? $cswp_apirate_values['eur-apitext'] : 'Change to EURO';
 
 $cswp_api_aud_text = isset( $cswp_apirate_values['aud-apitext'] ) ? $cswp_apirate_values['aud-apitext'] : 'Change to AUD';
+
+$cswp_inr_apisymbol = isset( $cswp_apirate_values['inr-apisymbol'] ) ? $cswp_apirate_values['inr-apisymbol'] : '&#8377;';
+$cswp_eur_apisymbol = isset( $cswp_apirate_values['eur-apisymbol'] ) ? $cswp_apirate_values['eur-apisymbol'] : '&#8364;';
+$cswp_aud_apisymbol = isset( $cswp_apirate_values['aud-apisymbol'] ) ? $cswp_apirate_values['aud-apisymbol'] : '&#36;';
+$cswp_usd_apisymbol = isset( $cswp_apirate_values['usd-apisymbol'] ) ? $cswp_apirate_values['usd-apisymbol'] : '&#36;';
 
 if ( get_option( 'cswp_display' ) === 'display' ) {
 	?>
@@ -172,7 +181,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 				<input type="text" name="usd-text"  value="<?php echo esc_attr( $cswp_usd_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="usd-symbol"  value="<?php echo esc_attr( $cswp_usd_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="usd-symbol"  value="<?php echo $cswp_usd_symbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 
@@ -238,7 +247,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 				<input type="text" name="eur-text"  value="<?php echo esc_attr( $cswp_eur_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="eur-symbol"  value="<?php echo esc_attr( $cswp_eur_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="eur-symbol"  value="<?php echo $cswp_eur_symbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -270,7 +279,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 				<input type="text" name="aud-text"  value="<?php echo esc_attr( $cswp_aud_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="aud-symbol"  value="<?php echo esc_attr( $cswp_aud_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="aud-symbol"  value="<?php echo $cswp_aud_symbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -329,6 +338,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency Display', 'cswp' ); ?></th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Rate', 'cswp' ); ?></th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Button Text to Display', 'cswp' ); ?></th>
+			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency Symbol', 'cswp' ); ?></th>
 		</tr>
 		<tr>
 			<td>
@@ -378,6 +388,9 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<td>
 				<input type="text" name="usd-apitext"  value="<?php echo esc_attr( $cswp_api_usd_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
+			<td>
+				<input type="text" name="usd-apisymbol"  value="<?php echo $cswp_usd_apisymbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+			</td>
 		</tr>
 		<tr>
 			<td>
@@ -407,6 +420,9 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<input type="text" name="inr-apitext"  value="<?php echo esc_attr( $cswp_api_inr_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
+			</td>
+			<td>
+				<input type="text" name="inr-apisymbol"  value="<?php echo $cswp_inr_apisymbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 		<tr>
@@ -438,6 +454,9 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			<td>
 				<input type="text" name="eur-apitext"  value="<?php echo esc_attr( $cswp_api_eur_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
+			<td>
+				<input type="text" name="eur-apisymbol"  value="<?php echo $cswp_eur_apisymbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+			</td>
 		</tr>
 		<tr>
 			<td>
@@ -466,6 +485,9 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 			</td>
 			<td>
 				<input type="text" name="aud-apitext"  value="<?php echo esc_attr( $cswp_api_aud_text ); ?>"placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
+			</td>
+			<td>
+				<input type="text" name="aud-apisymbol"  value="<?php echo $cswp_aud_apisymbol; ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 	</table>
