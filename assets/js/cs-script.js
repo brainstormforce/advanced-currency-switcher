@@ -4,7 +4,7 @@
         $( '.cs-convertor-wrap-symbol' ).html( csVars.base_currency_symbol );
 
         cs_currency_calculations( csVars.base_currency );
-        
+
         if( $( '.cs-currency-name' ).length ) {
             $( '.cs-currency-name' ).hide();
             $( '.cs-currency-name' ).eq(0).show();
@@ -12,7 +12,8 @@
         }
     });
 
-     function cs_currency_calculations( currency_name ) {
+
+    function cs_currency_calculations( currency_name ) {
 
         if( currency_name ) {
 
@@ -42,6 +43,7 @@
                     var arrayLength = myarray.length;
                     for ( var i = 0; i < arrayLength; i++ ) {
                         var converted_value = myarray[i] * rate_inr;
+
                         if(0 == decimalpoint) {
                             converted_value = converted_value.toFixed(decimalpoint);
                         } else {

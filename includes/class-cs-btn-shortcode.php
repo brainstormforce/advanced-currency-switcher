@@ -156,34 +156,26 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 						foreach ( $currencydropdown as $currencyname ) {
 
 							$currency_symbol = $this->get_currency_symbol( $currencyname );
-							?>
-							<option value="<?php echo esc_attr( $currencyname ); ?>" data-currency-name="<?php echo esc_attr( $currencyname ); ?>" data-currency-symbol="<?php echo esc_attr( $currency_symbol ); ?>"
-							<?php
+							$selected = '';
+							$currency_value = '';
 							if ( $currencyname === $base_value_select['basecurency'] ) {
-								?>
-								selected 
-								<?php
+								$selected = 'selected';
+							}
+							if ( 'USD' === $currencyname ) {
+								$currency_value = $manual_button_text_value[0];
+							} elseif ( 'INR' === $currencyname ) {
+								$currency_value = $manual_button_text_value[1];
+							} elseif ( 'EUR' === $currencyname ) {
+								$currency_value = $manual_button_text_value[2];
+							} elseif ( 'AUD' === $currencyname ) {
+								$currency_value = $manual_button_text_value[3];
 							}
 							?>
-								value="<?php echo esc_attr( $currencyname ); ?>" > 
 
-								<?php
-								if ( 'USD' === $currencyname ) {
-									echo $manual_button_text_value[0];
-								} elseif ( 'INR' === $currencyname ) {
-									echo $manual_button_text_value[1];
-								} elseif ( 'EUR' === $currencyname ) {
-									echo $manual_button_text_value[2];
-								} elseif ( 'AUD' === $currencyname ) {
-									echo $manual_button_text_value[3];
-								}
-								?>
-
-							</option>
-								<?php
-						}
-						?>
-					</select>
+							<option value="<?php echo esc_attr( $currencyname ); ?>" data-currency-name="<?php echo esc_attr( $currencyname ); ?>" data-currency-symbol="<?php echo esc_attr( $currency_symbol ); ?>"
+								value="<?php echo esc_attr( $currencyname ); ?>" <?php echo esc_attr( $selected ); ?>><?php echo $currency_value; ?></option>
+							<?php } ?>
+						</select>
 					<?php
 				}
 			}
