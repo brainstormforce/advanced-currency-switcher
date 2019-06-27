@@ -156,8 +156,8 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 						foreach ( $currencydropdown as $currencyname ) {
 
 							$currency_symbol = $this->get_currency_symbol( $currencyname );
-							$selected = '';
-							$currency_value = '';
+							$selected        = '';
+							$currency_value  = '';
 							if ( $currencyname === $base_value_select['basecurency'] ) {
 								$selected = 'selected';
 							}
