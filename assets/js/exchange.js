@@ -31,15 +31,17 @@ function manual_api_form() {
     if( document.getElementById( "cswp_currency_form" ) !== null ) {
 
         var myselectedvalue = document.getElementById( "cswp_currency_form" ).value;
-
         if ( myselectedvalue==="apirate" ) {
 
             document.getElementById( "cs-api-display" ).style.display = "block";
+            document.getElementById( "cs-api-display2" ).style.display = "block";
             document.getElementById( "cs-manual-display" ).style.display = "none";
+
            } else {
 
             document.getElementById( "cs-manual-display" ).style.display = "block";
             document.getElementById( "cs-api-display" ).style.display = "none";
+            document.getElementById( "cs-api-display2" ).style.display = "none";
 
         }
     }
@@ -62,12 +64,14 @@ function showcurency( selectvalue ) {
 
             document.getElementById( "cs-manual-display" ).style.display = "none";
             document.getElementById( "cs-api-display" ).style.display = "block";
+            document.getElementById( "cs-api-display2" ).style.display = "block";
             document.getElementById("cswp-apitext").required = true;
             //jQuery(".cs-input-appid").attr('required','required');
           } else {
 
             document.getElementById( "cs-manual-display" ).style.display = "block";
             document.getElementById( "cs-api-display" ).style.display = "none";
+             document.getElementById( "cs-api-display2" ).style.display = "none";
             document.getElementById("cswp-apitext").required = false;
             //jQuery(".cs-input-appid").removeAttr('required');
           }

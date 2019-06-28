@@ -316,11 +316,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 			</th>
 			<td>
 				<input type="text" name="appid" class="cs-input-appid regular-text" id="cswp-apitext" value="<?php echo esc_attr( $cswp_api_key ); ?>">
-			</td>
-			<td>
 				<input type="button" name="Authenticate" value="Authenticate" class="cs-authenticate bt button button-secondary">
-			</td>
-			<td>
 			</td>
 		</tr>
 		<tr class="cswp_api_note">
@@ -354,6 +350,8 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				</select>
 			</td>
 		</tr>
+	</table>
+	<table class="form-table" id="cs-api-display2" >
 		<tr>
 			<th class="cca-column" >Base Currency</th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency', 'cswp' ); ?></th>
@@ -535,7 +533,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 						<?php esc_html_e( 'Round Number (12)', 'cswp' ); ?>
 					</option>
 					<option value="1" <?php selected( $cswp_decimal_place_value, 1 ); ?>>
-						<?php esc_html_e( '1 Decimal Place (12.1)', 'cswp' ); ?>
+						<?php esc_html_e( '1 Decimal Place (12.3)', 'cswp' ); ?>
 					</option>
 					<option value="2" <?php selected( $cswp_decimal_place_value, 2 ); ?>>
 						<?php esc_html_e( '2 Decimal Places (12.34)', 'cswp' ); ?>
