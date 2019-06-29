@@ -89,7 +89,7 @@ $cswp_usd_apisymbol = isset( $cswp_apirate_values['usd-apisymbol'] ) ? $cswp_api
 
 if ( get_option( 'cswp_display' ) === 'display' ) {
 	?>
-	<div class="updated notice is-dismissible">
+	<div class="updated notice is-dismissible cswp-notice">
 		<p><strong><?php esc_html_e( 'Settings Saved.', 'cswp' ); ?></strong></p>
 	</div>
 	<?php
@@ -97,7 +97,7 @@ if ( get_option( 'cswp_display' ) === 'display' ) {
 }
 if ( get_option( 'apivalidate' ) === 'no' ) {
 	?>
-	<div class="notice notice-error is-dismissible">
+	<div class="notice notice-error is-dismissible cswp-notice">
 	<p><strong><?php esc_html_e( 'The API key you entered seems invalid. Please enter the correct API key & try again.', 'cswp' ); ?></strong></p>
 	</div>
 	<?php
@@ -105,7 +105,7 @@ if ( get_option( 'apivalidate' ) === 'no' ) {
 }
 if ( get_option( 'apinotfree' ) === 'notfree' ) {
 	?>
-	<div class="notice notice-error is-dismissible">
+	<div class="notice notice-error is-dismissible cswp-notice">
 	<p><strong><?php esc_html_e( 'Your API key allows the only USD is a base currency. Please change the base currency to USD & save settings again.', 'cswp' ); ?></strong></p>
 	</div>
 	<?php
@@ -113,7 +113,7 @@ if ( get_option( 'apinotfree' ) === 'notfree' ) {
 }
 if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 	?>
-	<div class="notice notice-error is-dismissible">
+	<div class="notice notice-error is-dismissible cswp-notice">
 	<p><strong><?php esc_html_e( 'Please enter the API key for get currency rate.', 'cswp' ); ?></strong></p>
 	</div>
 	<?php
@@ -335,6 +335,9 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 			</th>
 			<td>
 				<select name="frequency_reload">
+					<option value="manual" <?php selected( $cswp_frequency_reload, 'manual' ); ?>>
+						<?php esc_html_e( 'Manual', 'cswp' ); ?>		
+					</option>
 					<option value="hourly" <?php selected( $cswp_frequency_reload, 'hourly' ); ?>>
 						<?php esc_html_e( 'Hourly', 'cswp' ); ?>
 					</option>
@@ -343,9 +346,6 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 					</option>
 					<option value="weekly" <?php selected( $cswp_frequency_reload, 'weekly' ); ?>>
 						<?php esc_html_e( 'Weekly', 'cswp' ); ?>							
-					</option>
-					<option value="manual" <?php selected( $cswp_frequency_reload, 'manual' ); ?>>
-						<?php esc_html_e( 'Manual', 'cswp' ); ?>		
 					</option>
 				</select>
 			</td>

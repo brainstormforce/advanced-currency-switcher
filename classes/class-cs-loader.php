@@ -32,7 +32,7 @@ class CS_Loader {
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_backend_script' ) );
 		add_action( 'init', array( $this, 'cswp_save_form_data' ) );
 		add_action( 'wp_ajax_ccs_validate', array( $this, 'cs_validate_api_key' ) );
-		add_filter( 'cron_schedules', array( $this, 'my_cron_schedules' ) );
+		add_filter( 'cron_schedules', array( $this, 'cron_schedules' ) );
 		add_action( 'cs_schedule_hook', array( $this, 'cs_schedule_event' ) );
 	}
 
@@ -170,7 +170,7 @@ class CS_Loader {
 	 * @since  1.0.0
 	 * @return $schedules.
 	 */
-	public function my_cron_schedules( $schedules ) {
+	public function cron_schedules( $schedules ) {
 		if ( ! isset( $schedules['hourly'] ) ) {
 			$schedules['hourly'] = array(
 				'interval' => 60 * 60, // Every Hour.
@@ -343,7 +343,6 @@ class CS_Loader {
 				),
 				'https://openexchangerates.org/api/latest.json'
 			);
-
 			$data = wp_remote_post( $data );
 			$data = json_decode( $data['body'] );
 			if ( ! empty( $data->message ) ) {
@@ -402,11 +401,14 @@ class CS_Loader {
 
 		$old_frequency = isset( $cswp_get_form_value['frequency_reload'] ) ? sanitize_text_field( $cswp_get_form_value['frequency_reload'] ) : '';
 
+		$api_form_selection = isset( $_POST['cswp_form_select'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_form_select'] ) ) : '';
+
 		if ( empty( $old_frequency ) && empty( $frequency_reload ) ) {
 
-			// Schedule an action if it's not already scheduled.
-			wp_schedule_event( time(), $frequency_reload, 'cs_schedule_hook' );
-
+			if ( 'apirate' === $api_form_selection ) {
+				// Schedule an action if it's not already scheduled.
+				wp_schedule_event( time(), $frequency_reload, 'cs_schedule_hook' );
+			}
 		} elseif ( ! empty( $frequency_reload ) && ( $frequency_reload !== $old_frequency ) ) {
 
 			// Get the timestamp for the next event.
@@ -435,7 +437,6 @@ class CS_Loader {
 			),
 			'https://openexchangerates.org/api/latest.json'
 		);
-
 		$data = wp_remote_post( $data );
 		$data = json_decode( $data['body'] );
 		// Store required data in database.
@@ -507,17 +508,29 @@ class CS_Loader {
 				$cswp_apirate_values = self::cswp_load_apirate_values_data();
 
 				if ( ! empty( $cswp_apirate_values ) ) {
+
+					$usdrate = isset( $cswp_apirate_values['usd'] ) ? $cswp_apirate_values['usd'] : '';
+					$inrrate = isset( $cswp_apirate_values['inr'] ) ? $cswp_apirate_values['inr'] : '';
+					$eurrate = isset( $cswp_apirate_values['eur'] ) ? $cswp_apirate_values['eur'] : '';
+					$audrate = isset( $cswp_apirate_values['aud'] ) ? $cswp_apirate_values['aud'] : '';
+
 					$actual_currency_rates = array(
-						'USD' => $cswp_apirate_values['usd'],
-						'INR' => $cswp_apirate_values['inr'],
-						'EUR' => $cswp_apirate_values['eur'],
-						'AUD' => $cswp_apirate_values['aud'],
+						'USD' => $usdrate,
+						'INR' => $inrrate,
+						'EUR' => $eurrate,
+						'AUD' => $audrate,
 					);
-					$currency_symbol_add   = array(
-						'usd-symbol' => $cswp_apirate_values['usd-apisymbol'],
-						'inr-symbol' => $cswp_apirate_values['inr-apisymbol'],
-						'eur-symbol' => $cswp_apirate_values['eur-apisymbol'],
-						'aud-symbol' => $cswp_apirate_values['aud-apisymbol'],
+
+					$usd_api_symbol = isset( $cswp_apirate_values['usd-apisymbol'] ) ? $cswp_apirate_values['usd-apisymbol'] : '';
+					$inr_api_symbol = isset( $cswp_apirate_values['inr-apisymbol'] ) ? $cswp_apirate_values['inr-apisymbol'] : '';
+					$eur_api_symbol = isset( $cswp_apirate_values['eur-apisymbol'] ) ? $cswp_apirate_values['eur-apisymbol'] : '';
+					$aud_api_symbol = isset( $cswp_apirate_values['aud-apisymbol'] ) ? $cswp_apirate_values['aud-apisymbol'] : '';
+
+					$currency_symbol_add = array(
+						'usd-symbol' => $usd_api_symbol,
+						'inr-symbol' => $usd_api_symbol,
+						'eur-symbol' => $usd_api_symbol,
+						'aud-symbol' => $usd_api_symbol,
 					);
 				}
 			} elseif ( 'manualrate' === $cswp_get_form_value['cswp_form_select'] ) {

@@ -20,14 +20,14 @@
 
 <p> <?php esc_html_e( 'Allow user to select a type of action to be performed for currency switcher,', 'cswp' ); ?>  </p>
 
-<ul class="cs-mylist">
+<ul class="cswp-list">
 
-	<li class="cs-mylist"> <?php esc_html_e( 'Manual Currency Value', 'cswp' ); ?> </li>
+	<li class="cswp-list"> <?php esc_html_e( 'Manual Currency Value', 'cswp' ); ?> </li>
 
 	<p> <?php esc_html_e( 'This helps the user to set base currency and allow to insert values manually for other currency if the user does not have an API key for currency switchers.', 'cswp' ); ?>
 	</p>
 
-	<li class="cs-mylist"> <?php esc_html_e( 'API Currency Value', 'cswp' ); ?></li>
+	<li class="cswp-list"> <?php esc_html_e( 'API Currency Value', 'cswp' ); ?></li>
 
 	<p> <?php esc_html_e( 'This helps user to set base currency and allow to input API key so that currency value can be updated automatically.', 'cswp' ); ?>
 	</p>
@@ -44,16 +44,16 @@
 
 <h2> <?php esc_html_e( 'ShortCodes', 'cswp' ); ?> </h2>
 
-<ul class="cs-mylist">
+<ul class="cswp-list">
 
-	<li class="cs-mylist"> <?php esc_html_e( 'Shot-code for Currency switcher', 'cswp' ); ?> </li>
+	<li class="cswp-list"> <?php esc_html_e( 'Shot-code for Currency switcher', 'cswp' ); ?> </li>
 
 	<pre><code>[currency value=""]</code></pre>
 
 	<p><?php esc_html_e( 'This shortcode help to insert the shortcode in the price info box in Eementor, Beaver Builder and other page builder.', 'cswp' ); ?> <br><?php esc_html_e( 'By passing the value of currency in', 'cswp' ); ?><b> Example:[currency value="27"] </b>
 	</p>
 
-	<li class="cs-mylist"><?php esc_html_e( 'Shot-code for Currency switcher Button', 'cswp' ); ?>  </li>
+	<li class="cswp-list"><?php esc_html_e( 'Shot-code for Currency switcher Button', 'cswp' ); ?>  </li>
 
 	<pre><code>[currency-switch]</code></pre>
 

@@ -30,8 +30,8 @@ function manual_api_form() {
 
     if( document.getElementById( "cswp_currency_form" ) !== null ) {
 
-        var myselectedvalue = document.getElementById( "cswp_currency_form" ).value;
-        if ( myselectedvalue==="apirate" ) {
+        var cswp_selectedvalue = document.getElementById( "cswp_currency_form" ).value;
+        if ( cswp_selectedvalue==="apirate" ) {
 
             document.getElementById( "cs-api-display" ).style.display = "block";
             document.getElementById( "cs-api-display2" ).style.display = "block";

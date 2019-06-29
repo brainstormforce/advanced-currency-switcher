@@ -2,6 +2,10 @@
 .cs-convertor-wrap-data-2 {
     display: none;
 }
+/* set margin for notice */
+.cswp-notice{
+	margin-left: 0px !important;
+}
 
 /* css for manual and api key option */
 #cs-api-display2 {
@@ -14,8 +18,7 @@
 display: block;
 }
 
-
-.cs-mylist{
+.cswp-list{
   list-style-type: square;
   margin: 10px 10px 10px 10px;
 }

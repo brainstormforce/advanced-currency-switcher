@@ -33,16 +33,16 @@
             }
             
             var decimalpoint = csVars.decimal_point;
-            var myarray = [];
+            var value_array = [];
             var rate_inr = csVars.actual_currency_rates[ currency_name ];
 
             jQuery('.cs-convertor-wrap-data').each(
                 function () {
-                    var mydata = ( jQuery(this).attr("valuemy") );
-                    myarray.push(mydata);
-                    var arrayLength = myarray.length;
+                    var data_value = ( jQuery(this).attr("value_convert") );
+                    value_array.push(data_value);
+                    var arrayLength = value_array.length;
                     for ( var i = 0; i < arrayLength; i++ ) {
-                        var converted_value = myarray[i] * rate_inr;
+                        var converted_value = value_array[i] * rate_inr;
 
                         if(0 == decimalpoint) {
                             converted_value = converted_value.toFixed(decimalpoint);
