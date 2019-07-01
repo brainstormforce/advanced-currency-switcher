@@ -18,17 +18,18 @@
         if( currency_name ) {
 
             //console.log( csVars.actual_currency_rates[ currency_name ] );
-            if(currency_name==='INR') {
+            if( currency_name ==='INR' ) {
+
                 var symb=csVars.currency_symbol_add['inr-symbol'];
 
-            } else if(currency_name==='USD') {
+            } else if( currency_name === 'USD' ) {
                 var symb=csVars.currency_symbol_add['usd-symbol'];;
 
 
-            } else if(currency_name==='AUD') {
+            } else if( currency_name === 'AUD' ) {
                 var symb=csVars.currency_symbol_add['aud-symbol'];;
 
-            } else if(currency_name==='EUR') {
+            } else if( currency_name === 'EUR' ) {
                 var symb=csVars.currency_symbol_add['eur-symbol'];;
             }
             

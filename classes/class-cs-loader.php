@@ -528,9 +528,9 @@ class CS_Loader {
 
 					$currency_symbol_add = array(
 						'usd-symbol' => $usd_api_symbol,
-						'inr-symbol' => $usd_api_symbol,
-						'eur-symbol' => $usd_api_symbol,
-						'aud-symbol' => $usd_api_symbol,
+						'inr-symbol' => $inr_api_symbol,
+						'eur-symbol' => $eur_api_symbol,
+						'aud-symbol' => $aud_api_symbol,
 					);
 				}
 			} elseif ( 'manualrate' === $cswp_get_form_value['cswp_form_select'] ) {
