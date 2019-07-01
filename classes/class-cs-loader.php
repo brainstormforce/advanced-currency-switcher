@@ -88,9 +88,7 @@ class CS_Loader {
 	 * @return $cswp_apirate_values
 	 */
 	public static function cswp_load_apirate_values_data() {
-
-		$cswp_apirate_values = get_option( 'cswp_apirate_values' );
-		return $cswp_apirate_values;
+		return get_option( 'cswp_apirate_values' );
 	}
 
 	/**
@@ -404,7 +402,6 @@ class CS_Loader {
 		$api_form_selection = isset( $_POST['cswp_form_select'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_form_select'] ) ) : '';
 
 		if ( empty( $old_frequency ) && empty( $frequency_reload ) ) {
-
 			if ( 'apirate' === $api_form_selection ) {
 				// Schedule an action if it's not already scheduled.
 				wp_schedule_event( time(), $frequency_reload, 'cs_schedule_hook' );
@@ -430,32 +427,35 @@ class CS_Loader {
 	 */
 	public function cs_schedule_event() {
 
-		$data = add_query_arg(
-			array(
-				'app_id' => $api_key,
-				'base'   => $base_currency,
-			),
-			'https://openexchangerates.org/api/latest.json'
-		);
-		$data = wp_remote_post( $data );
-		$data = json_decode( $data['body'] );
-		// Store required data in database.
-		if ( isset( $data ) ) {
-
-			$inr = $data->rates->INR;
-			$eur = $data->rates->EUR;
-			$usd = $data->rates->USD;
-			$aud = $data->rates->AUD;
-
-			$cswp_apirate_values = array(
-				'inr' => $inr,
-				'eur' => $eur,
-				'usd' => $usd,
-				'aud' => $aud,
+		$sotred_data = get_option( 'cswp_form_data', array( 'basecurency' => '', 'api_key' => '') );
+		if( ! empty($sotred_data['basecurency'] ) && ! empty($sotred_data['api_key'] ) ) {
+			$data = add_query_arg(
+				array(
+					'app_id' => $sotred_data['api_key'],
+					'base'   => $sotred_data['basecurency'],
+				),
+				'https://openexchangerates.org/api/latest.json'
 			);
-			update_option( 'cswp_apirate_values', $cswp_apirate_values );
-		}
+			$data = wp_remote_post( $data );
+			$data = json_decode( $data['body'] );
+			// Store required data in database.
+			if ( ! empty( $data ) && ! isset( $data['error'] ) ) {
 
+				$inr = $data->rates->INR;
+				$eur = $data->rates->EUR;
+				$usd = $data->rates->USD;
+				$aud = $data->rates->AUD;
+
+				$cswp_apirate_values = array(
+					'inr' => $inr,
+					'eur' => $eur,
+					'usd' => $usd,
+					'aud' => $aud,
+				);
+
+				update_option( 'cswp_apirate_values', $cswp_apirate_values );
+			}
+		}
 	}
 
 	/**
@@ -472,12 +472,11 @@ class CS_Loader {
 		wp_enqueue_style( 'cswp-style', CSWP_PLUGIN_URL . '/assets/css/cs-styles.css', '', CSWP_CURRENCY_SWITCHER_VER );
 
 		$data = array(
-			'cs_data'    => get_option( 'cs_data', array() ),
 			'ajax_url'   => admin_url( 'admin-ajax.php' ),
 			'ajax_nonce' => wp_create_nonce( 'ajax_nonce_val' ),
 		);
 
-		wp_localize_script( 'cswp-backend-script', 'csVars', $data );
+		wp_localize_script( 'cswp-backend-script', 'csExchangeVars', $data );
 	}
 
 	/**
@@ -506,6 +505,7 @@ class CS_Loader {
 			if ( 'apirate' === $cswp_get_form_value['cswp_form_select'] ) {
 
 				$cswp_apirate_values = self::cswp_load_apirate_values_data();
+
 
 				if ( ! empty( $cswp_apirate_values ) ) {
 
@@ -576,3 +576,5 @@ function initialize_cswp() {
 }
 
 add_action( 'plugins_loaded', 'initialize_cswp' );
+
+

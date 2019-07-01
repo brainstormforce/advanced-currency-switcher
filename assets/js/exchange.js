@@ -7,12 +7,12 @@
         btn.addClass('updating-message');
         btn.val('Authenticating..');
         $.ajax({
-            url : csVars.ajax_url,
+            url : csExchangeVars.ajax_url,
             type : 'POST',
             data : {
                 action : 'ccs_validate',
                 api_key : api_key,
-                security :csVars.ajax_nonce
+                security :csExchangeVars.ajax_nonce
             },
             success : function( response ) {
                 if( response.success ) {

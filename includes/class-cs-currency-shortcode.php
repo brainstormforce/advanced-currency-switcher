@@ -54,13 +54,11 @@ if ( ! class_exists( 'CS_Currency_Shortcode' ) ) {
 			$price_convert = (float) $attributes['value'];
 			ob_start();
 			?>
-
 			<!--  Create custom div and span for display price -->
 			<div class="cs-converter-wrap" >
 				<span class="cs-convertor-wrap-symbol" id="cswp_symbol"></span>
 				<span id="cs-convertor-wrap" class="cs-convertor-wrap-data" value_convert="<?php echo esc_attr( $price_convert ); ?>">
 					<?php
-
 					echo esc_attr( $getval );
 					?>
 				</span>
