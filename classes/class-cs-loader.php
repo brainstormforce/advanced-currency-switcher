@@ -27,8 +27,8 @@ class CS_Loader {
 
 		$this->define_constant();
 
-		self::includes();
 		add_action( 'wp_enqueue_scripts', array( $this, 'cswp_load_scripts' ) );
+		self::includes();
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_backend_script' ) );
 		add_action( 'init', array( $this, 'cswp_save_form_data' ) );
 		add_action( 'wp_ajax_ccs_validate', array( $this, 'cs_validate_api_key' ) );
