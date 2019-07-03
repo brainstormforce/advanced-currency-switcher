@@ -401,7 +401,7 @@ class CS_Loader {
 
 		$api_form_selection = isset( $_POST['cswp_form_select'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_form_select'] ) ) : '';
 
-		if ( empty( $old_frequency ) && empty( $frequency_reload ) ) {
+		if ( empty( $old_frequency ) && !empty( $frequency_reload ) ) {
 			if ( 'apirate' === $api_form_selection ) {
 				// Schedule an action if it's not already scheduled.
 				wp_schedule_event( time(), $frequency_reload, 'cs_schedule_hook' );
