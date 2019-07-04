@@ -8,7 +8,7 @@
 }
 
 /* css for manual and api key option */
-/*#cs-api-display2 {
+#cs-api-display2 {
     display: none;
 }
 #cs-api-display{
@@ -16,7 +16,7 @@
 }
 #cs-manual-display{
 display: block;
-}*/
+}
 
 /* Manual page css */
 .cswp-list{
