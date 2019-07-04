@@ -69,12 +69,12 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 
 			$base_value_select = CS_Loader::cswp_load_all_data();
 
-			if ( 'manualrate' === $base_value_select['cswp_form_select'] ) {
-				$manual_button_text              = CS_Loader::cswp_load_manual_data();
-							$manual_usd_btn_text = isset( $manual_button_text['usd-text'] ) ? $manual_button_text['usd-text'] : '';
-							$manual_inr_btn_text = isset( $manual_button_text['inr-text'] ) ? $manual_button_text['inr-text'] : '';
-							$manual_eur_btn_text = isset( $manual_button_text['eur-text'] ) ? $manual_button_text['eur-text'] : '';
-							$manual_aud_btn_text = isset( $manual_button_text['aud-text'] ) ? $manual_button_text['aud-text'] : '';
+			//if ( 'manualrate' === $base_value_select['cswp_form_select'] ) {
+				//$manual_button_text              = CS_Loader::cswp_load_manual_data();
+							$manual_usd_btn_text = isset( $base_value_select['usd-text'] ) ? $base_value_select['usd-text'] : '';
+							$manual_inr_btn_text = isset( $base_value_select['inr-text'] ) ? $base_value_select['inr-text'] : '';
+							$manual_eur_btn_text = isset( $base_value_select['eur-text'] ) ? $base_value_select['eur-text'] : '';
+							$manual_aud_btn_text = isset( $base_value_select['aud-text'] ) ? $base_value_select['aud-text'] : '';
 
 							$manual_button_text_value = array(
 								$manual_usd_btn_text,
@@ -82,20 +82,6 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 								$manual_eur_btn_text,
 								$manual_aud_btn_text,
 							);
-			} elseif ( 'apirate' === $base_value_select['cswp_form_select'] ) {
-				$manual_button_text                 = CS_Loader::cswp_load_apirate_values_data();
-							$manual_usd_btn_apitext = isset( $manual_button_text['usd-apitext'] ) ? $manual_button_text['usd-apitext'] : '';
-							$manual_inr_btn_apitext = isset( $manual_button_text['inr-apitext'] ) ? $manual_button_text['inr-apitext'] : '';
-							$manual_eur_btn_apitext = isset( $manual_button_text['eur-apitext'] ) ? $manual_button_text['eur-apitext'] : '';
-							$manual_aud_btn_apitext = isset( $manual_button_text['aud-apitext'] ) ? $manual_button_text['aud-apitext'] : '';
-
-							$manual_button_text_value = array(
-								$manual_usd_btn_apitext,
-								$manual_inr_btn_apitext,
-								$manual_eur_btn_apitext,
-								$manual_aud_btn_apitext,
-							);
-			}
 
 						$currencybtn      = CS_Loader::cswp_load_currency_button_data();
 						$currencydropdown = CS_Loader::cswp_load_currency_button_data();

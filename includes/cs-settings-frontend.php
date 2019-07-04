@@ -26,6 +26,21 @@ $cswp_button_type_value = isset( $cswp_get_form_value['cswp_button_type'] ) ? $c
 
 $cswp_decimal_place_value = isset( $cswp_get_form_value['decimalradio'] ) ? $cswp_get_form_value['decimalradio'] : '';
 
+
+$cswp_usd_text = isset( $cswp_get_form_value['usd-text'] ) ? $cswp_get_form_value['usd-text'] : 'Change to USD';
+
+$cswp_inr_text = isset( $cswp_get_form_value['inr-text'] ) ? $cswp_get_form_value['inr-text'] : 'Change to INR';
+
+$cswp_eur_text = isset( $cswp_get_form_value['eur-text'] ) ? $cswp_get_form_value['eur-text'] : 'Change to EURO';
+
+$cswp_aud_text = isset( $cswp_get_form_value['aud-text'] ) ? $cswp_get_form_value['aud-text'] : 'Change to AUD';
+
+$cswp_inr_symbol = isset( $cswp_get_form_value['inr-symbol'] ) ? $cswp_get_form_value['inr-symbol'] : '&#8377;';
+$cswp_eur_symbol = isset( $cswp_get_form_value['eur-symbol'] ) ? $cswp_get_form_value['eur-symbol'] : '&#8364;';
+$cswp_aud_symbol = isset( $cswp_get_form_value['aud-symbol'] ) ? $cswp_get_form_value['aud-symbol'] : '&#36;';
+$cswp_usd_symbol = isset( $cswp_get_form_value['usd-symbol'] ) ? $cswp_get_form_value['usd-symbol'] : '&#36;';
+
+
 // Store Manual rate values in variable.
 $cswp_manualrate = CS_Loader::cswp_load_manual_data();
 
@@ -37,30 +52,6 @@ $cswp_eur_rate = isset( $cswp_manualrate['eur_rate'] ) ? $cswp_manualrate['eur_r
 
 $cswp_aud_rate = isset( $cswp_manualrate['aud_rate'] ) ? $cswp_manualrate['aud_rate'] : '1.45';
 
-
-$cswp_usd_text = isset( $cswp_manualrate['usd-text'] ) ? $cswp_manualrate['usd-text'] : 'Change to USD';
-
-$cswp_inr_text = isset( $cswp_manualrate['inr-text'] ) ? $cswp_manualrate['inr-text'] : 'Change to INR';
-
-$cswp_eur_text = isset( $cswp_manualrate['eur-text'] ) ? $cswp_manualrate['eur-text'] : 'Change to EURO';
-
-$cswp_aud_text = isset( $cswp_manualrate['aud-text'] ) ? $cswp_manualrate['aud-text'] : 'Change to AUD';
-
-$cswp_inr_symbol = isset( $cswp_manualrate['inr-symbol'] ) ? $cswp_manualrate['inr-symbol'] : '&#8377;';
-$cswp_eur_symbol = isset( $cswp_manualrate['eur-symbol'] ) ? $cswp_manualrate['eur-symbol'] : '&#8364;';
-$cswp_aud_symbol = isset( $cswp_manualrate['aud-symbol'] ) ? $cswp_manualrate['aud-symbol'] : '&#36;';
-$cswp_usd_symbol = isset( $cswp_manualrate['usd-symbol'] ) ? $cswp_manualrate['usd-symbol'] : '&#36;';
-
-// Store Switcher Button value.
-$convertbtn = CS_Loader::cswp_load_currency_button_data();
-
-$cswp_usd_button = isset( $convertbtn['USD'] ) ? $convertbtn['USD'] : '';
-
-$cswp_inr_button = isset( $convertbtn['INR'] ) ? $convertbtn['INR'] : '';
-
-$cswp_eur_button = isset( $convertbtn['EUR'] ) ? $convertbtn['EUR'] : '';
-
-$cswp_aud_button = isset( $convertbtn['AUD'] ) ? $convertbtn['AUD'] : '';
 
 
 // Store OpenExchangeRate value in a variable.
@@ -74,22 +65,17 @@ $apitext_eur = isset( $cswp_apirate_values['eur'] ) ? $cswp_apirate_values['eur'
 
 $apitext_aud = isset( $cswp_apirate_values['aud'] ) ? $cswp_apirate_values['aud'] : '';
 
-$cswp_api_usd_text = isset( $cswp_apirate_values['usd-apitext'] ) ? $cswp_apirate_values['usd-apitext'] : 'Change to USD';
 
-$cswp_api_inr_text = isset( $cswp_apirate_values['inr-apitext'] ) ? $cswp_apirate_values['inr-apitext'] : 'Change to INR';
+// Store Switcher Button value.
+$convertbtn = CS_Loader::cswp_load_currency_button_data();
 
-$cswp_api_eur_text = isset( $cswp_apirate_values['eur-apitext'] ) ? $cswp_apirate_values['eur-apitext'] : 'Change to EURO';
+$cswp_usd_button = isset( $convertbtn['USD'] ) ? $convertbtn['USD'] : '';
 
-$cswp_api_aud_text = isset( $cswp_apirate_values['aud-apitext'] ) ? $cswp_apirate_values['aud-apitext'] : 'Change to AUD';
+$cswp_inr_button = isset( $convertbtn['INR'] ) ? $convertbtn['INR'] : '';
 
-$cswp_inr_apisymbol = isset( $cswp_apirate_values['inr-apisymbol'] ) ? $cswp_apirate_values['inr-apisymbol'] : '&#8377;';
-$cswp_eur_apisymbol = isset( $cswp_apirate_values['eur-apisymbol'] ) ? $cswp_apirate_values['eur-apisymbol'] : '&#8364;';
-$cswp_aud_apisymbol = isset( $cswp_apirate_values['aud-apisymbol'] ) ? $cswp_apirate_values['aud-apisymbol'] : '&#36;';
-$cswp_usd_apisymbol = isset( $cswp_apirate_values['usd-apisymbol'] ) ? $cswp_apirate_values['usd-apisymbol'] : '&#36;';
+$cswp_eur_button = isset( $convertbtn['EUR'] ) ? $convertbtn['EUR'] : '';
 
-$api_table_display = ( ( 'apirate' === $cswp_form_select_value ) ? 'style="display:none"' : '' );
-$manual_table_display = ( ( 'manualrate' === $cswp_form_select_value ) ? 'style="display:none"' : '' );
-
+$cswp_aud_button = isset( $convertbtn['AUD'] ) ? $convertbtn['AUD'] : '';
 
 
 if ( get_option( 'cswp_display' ) === 'display' ) {
@@ -142,179 +128,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 		</tr>
 	</table>
 
-	<!--  set the html code for put manual currancy rate -->
-	<table class="form-table ccatable" id="cs-manual-display" <?php echo $api_table_display; ?>>
-		<tr>
-			<th class="cca-column" >Base Currency</th>
-			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency', 'cswp' ); ?></th>
-			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Conversion Rate', 'cswp' ); ?></th>
-			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Display at Frontend?', 'cswp' ); ?></th>
-			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Button / Dropdown Label', 'cswp' ); ?></th>
-			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency Symbol', 'cswp' ); ?></th>
-		</tr>
-
-		<tr>
-			<td>
-				<label class="currency-switcher-switch">
-				<?php
-				if ( isset( $cswp_basecurency ) ) {
-					if ( 'USD' === $cswp_basecurency ) {
-						?>
-						<input type="radio"  value="USD" name="basecurency" class="cca_hidden" checked="checked" />
-						<?php
-					} else {
-						?>
-						<input type="radio"  value="USD" name="basecurency" class="cca_hidden" checked="checked"/>
-						<?php
-					}
-				} else {
-					?>
-					<input type="radio"  value="USD" name="basecurency" class="cca_hidden"  />
-					<?php
-				}
-				?>
-					<span class="currency-switcher-slider round">
-					</span>
-				</label>
-			</td>
-			<td>
-				<label for="USD"><?php esc_html_e( 'United States Dollar (USD)', 'cswp' ); ?>
-				</label>
-			</td>
-			
-			<td>
-				<input step="any" type="number" name="usd"  value="<?php echo esc_attr( $cswp_usd_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the USD value', 'cswp' ); ?>" >
-			</td>
-			<td>
-				<label class="currency-switcher-switch">
-				<?php
-				$convertbtn = CS_Loader::cswp_load_currency_button_data();
-				?>
-					<label for="usdCurrencyButton">
-						<input type="checkbox" id="usdCurrencyButton" name="currency_button[]" value="USD" <?php checked( $cswp_usd_button, 'USD' ); ?>>
-					</label>
-					<br>
-					<span class="currency-switcher-slider round">
-					</span>
-				</label>
-			</td>
-			<td>
-				<input type="text" name="usd-text"  value="<?php echo esc_attr( $cswp_usd_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
-			</td>
-			<td>
-				<input type="text" name="usd-symbol"  value="<?php echo esc_attr( $cswp_usd_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label class="currency-switcher-switch">
-					<input type="radio"  value="EUR" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'EUR' ); ?>>
-					<span class="currency-switcher-slider round">
-					</span>
-				</label>
-			</td>
-			<td>
-				<label for="EUR"><?php esc_html_e( 'European Union (EUR)', 'cswp' ); ?>
-				</label>
-			</td>
-
-			<td>
-				<input step="any" type="number" name="eur"  value="<?php echo esc_attr( $cswp_eur_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the EURO value', 'cswp' ); ?>">
-			</td>
-			<td>
-				<label class="currency-switcher-switch">
-					<label for="eurCurrencyButton">
-						<input type="checkbox" id="eurCurrencyButton" name="currency_button[]" value="EUR" <?php checked( $cswp_eur_button, 'EUR' ); ?>>
-					</label>
-					<br>
-					<span class="currency-switcher-slider round">
-					</span>
-				</label>
-			</td>
-			<td>
-				<input type="text" name="eur-text"  value="<?php echo esc_attr( $cswp_eur_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
-			</td>
-			<td>
-				<input type="text" name="eur-symbol"  value="<?php echo esc_attr( $cswp_eur_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label class="currency-switcher-switch">
-					<input type="radio"  value="AUD" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'AUD' ); ?>>
-					<span class="currency-switcher-slider round">
-					</span>
-				</label>
-			</td>
-			<td>
-				<label for="AUD"><?php esc_html_e( 'Australian Dollar (AUD)', 'cswp' ); ?>
-			</td>
-			
-			<td>
-				<input step="any" type="number" name="aud"  value="<?php echo esc_attr( $cswp_aud_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the AUD value', 'cswp' ); ?>">
-			</td>
-			<td>
-				<label class="currency-switcher-switch">
-					<label for="audCurrencyButton">
-						<input type="checkbox" id="audCurrencyButton" name="currency_button[]" value="AUD" <?php checked( $cswp_aud_button, 'AUD' ); ?>>
-					</label>
-					<br>
-					<span class="currency-switcher-slider round">
-					</span>
-				</label>
-			</td>
-			<td>
-				<input type="text" name="aud-text"  value="<?php echo esc_attr( $cswp_aud_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
-			</td>
-			<td>
-				<input type="text" name="aud-symbol"  value="<?php echo esc_attr( $cswp_aud_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<label class="currency-switcher-switch">
-					<input type="radio"  value="INR" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'INR' ); ?>>
-					<span class="currency-switcher-slider round">
-					</span>
-				</label>
-			</td>
-			<td>
-				<label for="INR"><?php esc_html_e( 'Indian Rupee (INR)', 'cswp' ); ?>
-				</label>
-			</td>
-			
-			<td>
-				<input step="any" type="number" name="inr" value="<?php echo esc_attr( $cswp_inr_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the INR value', 'cswp' ); ?>">
-			</td>
-			<td>
-				<label class="currency-switcher-switch">
-					<label for="inrCurrencyButton">
-						<input type="checkbox" id="inrCurrencyButton" name="currency_button[]" value="INR" <?php checked( $cswp_inr_button, 'INR' ); ?>>
-					</label>
-					<br>
-					<span class="currency-switcher-slider round">
-					</span>
-				</label>
-			</td>
-			<td>
-				<input type="text" name="inr-text"  value="<?php echo esc_attr( $cswp_inr_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
-			</td>
-			<td>
-				<input type="text" name="inr-symbol"  value="<?php echo esc_attr( $cswp_inr_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
-			</td>
-		</tr>
-		<tr>
-			<td colspan="6" class="cswp_note_rate">
-			<p class="description cswp_apidescription">
-				<b><?php esc_html_e( 'Note:', 'cswp' ); ?></b>	<?php esc_html_e( 'Please make sure that you have entered the 1 value for the selected base currency rate. Enter an exchange rate for the different currency options against the chosen base currency.', 'cswp' ); ?>
-				</p>
-			</td>
-		</tr>
-	</table>
-
-	<!--  set the html code for Apikey value and frequency update time -->
-	<table class="form-table" id="cs-api-display" <?php echo $manual_table_display; ?>>
-
+	<table class="form-table" id="cs-api-display">
 		<tr>
 			<th scope="row">
 				<label for="ApiKey"> <?php esc_html_e( 'App ID', 'cswp' ); ?></label>
@@ -365,15 +179,18 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 			</td>
 		</tr>
 	</table>
-	<table class="form-table" id="cs-api-display2" <?php echo $manual_table_display; ?>>
+
+	<!--  set the html code for put manual currancy rate -->
+	<table class="form-table ccatable" id="cs-manual-display" >
 		<tr>
 			<th class="cca-column" >Base Currency</th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency', 'cswp' ); ?></th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Conversion Rate', 'cswp' ); ?></th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Display at Frontend?', 'cswp' ); ?></th>
-			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Button/Dropdown Label', 'cswp' ); ?></th>
+			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Button / Dropdown Label', 'cswp' ); ?></th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency Symbol', 'cswp' ); ?></th>
 		</tr>
+
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
@@ -381,16 +198,16 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				if ( isset( $cswp_basecurency ) ) {
 					if ( 'USD' === $cswp_basecurency ) {
 						?>
-							<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden" checked="checked"/>
+						<input type="radio"  value="USD" name="basecurency" class="cca_hidden" checked="checked" />
 						<?php
 					} else {
 						?>
-						<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden" checked="checked"/>
+						<input type="radio"  value="USD" name="basecurency" class="cca_hidden" checked="checked"/>
 						<?php
 					}
 				} else {
 					?>
-					<input type="radio"  value="USD" name="basecurencyapi" class="cca_hidden"/>
+					<input type="radio"  value="USD" name="basecurency" class="cca_hidden"  />
 					<?php
 				}
 				?>
@@ -402,16 +219,18 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				<label for="USD"><?php esc_html_e( 'United States Dollar (USD)', 'cswp' ); ?>
 				</label>
 			</td>
+			
 			<td>
-				<input type="text" name="apitext_usd"  value="<?php echo esc_attr( $apitext_usd ); ?>" placeholder="<?php esc_html_e( 'Enter the USD value', 'cswp' ); ?>" readonly>
+				<input step="any" class="cswp_manual_field" type="number" name="usd"  value="<?php echo esc_attr( $cswp_usd_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the USD value', 'cswp' ); ?>" >
+				<input step="any" class="cswp_api_field" type="number" name="usdd"  value="<?php echo esc_attr( $apitext_usd ); ?>" placeholder="<?php esc_html_e( 'Enter the USD value', 'cswp' ); ?>" readonly>
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
 				<?php
 				$convertbtn = CS_Loader::cswp_load_currency_button_data();
 				?>
-					<label for="usdapiButton">
-						<input type="checkbox" id="usdapiButton" name="currency_button_api[]" value="USD" <?php checked( $cswp_usd_button, 'USD' ); ?>>
+					<label for="usdCurrencyButton">
+						<input type="checkbox" id="usdCurrencyButton" name="currency_button[]" value="USD" <?php checked( $cswp_usd_button, 'USD' ); ?>>
 					</label>
 					<br>
 					<span class="currency-switcher-slider round">
@@ -419,31 +238,33 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				</label>
 			</td>
 			<td>
-				<input type="text" name="usd-apitext"  value="<?php echo esc_attr( $cswp_api_usd_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
+				<input type="text" name="usd-text"  value="<?php echo esc_attr( $cswp_usd_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="usd-apisymbol"  value="<?php echo esc_attr( $cswp_usd_apisymbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="usd-symbol"  value="<?php echo esc_attr( $cswp_usd_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="EUR" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'EUR' ); ?>>
+					<input type="radio"  value="EUR" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'EUR' ); ?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
 			</td>
 			<td>
-				<label for="EUO"><?php esc_html_e( 'European Union (EUR)', 'cswp' ); ?>
+				<label for="EUR"><?php esc_html_e( 'European Union (EUR)', 'cswp' ); ?>
 				</label>
 			</td>
+
 			<td>
-				<input type="text" name="apitext_eur"  value="<?php echo esc_attr( $apitext_eur ); ?>" placeholder="<?php esc_html_e( 'Enter the EURO value', 'cswp' ); ?>" readonly >
+				<input step="any" class="cswp_manual_field" type="number" name="eur"  value="<?php echo esc_attr( $cswp_eur_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the EURO value', 'cswp' ); ?>">
+				<input step="any" class="cswp_api_field" type="number" name="eurr"  value="<?php echo esc_attr( $apitext_eur ); ?>" placeholder="<?php esc_html_e( 'Enter the EURO value', 'cswp' ); ?>" readonly>
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
-					<label for="eurapiButton">
-						<input type="checkbox" id="eurapiButton" name="currency_button_api[]" value="EUR" <?php checked( $cswp_eur_button, 'EUR' ); ?>>
+					<label for="eurCurrencyButton">
+						<input type="checkbox" id="eurCurrencyButton" name="currency_button[]" value="EUR" <?php checked( $cswp_eur_button, 'EUR' ); ?>>
 					</label>
 					<br>
 					<span class="currency-switcher-slider round">
@@ -451,16 +272,16 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				</label>
 			</td>
 			<td>
-				<input type="text" name="eur-apitext"  value="<?php echo esc_attr( $cswp_api_eur_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
+				<input type="text" name="eur-text"  value="<?php echo esc_attr( $cswp_eur_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="eur-apisymbol"  value="<?php echo esc_attr( $cswp_eur_apisymbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="eur-symbol"  value="<?php echo esc_attr( $cswp_eur_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="AUD" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'AUD' ); ?>>
+					<input type="radio"  value="AUD" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'AUD' ); ?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -468,13 +289,15 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 			<td>
 				<label for="AUD"><?php esc_html_e( 'Australian Dollar (AUD)', 'cswp' ); ?>
 			</td>
+			
 			<td>
-				<input type="text" name="apitext_aud"  value="<?php echo esc_attr( $apitext_aud ); ?>" placeholder="<?php esc_html_e( 'Enter the AUD value', 'cswp' ); ?>" readonly>
+				<input step="any" class="cswp_manual_field" type="number" name="aud"  value="<?php echo esc_attr( $cswp_aud_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the AUD value', 'cswp' ); ?>">
+				<input step="any" class="cswp_api_field" type="number" name="audd"  value="<?php echo esc_attr( $apitext_aud ); ?>" placeholder="<?php esc_html_e( 'Enter the AUD value', 'cswp' ); ?>" readonly>
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
-					<label for="audapiButton">
-						<input type="checkbox" id="audapiButton" name="currency_button_api[]" value="AUD" <?php checked( $cswp_aud_button, 'AUD' ); ?>>
+					<label for="audCurrencyButton">
+						<input type="checkbox" id="audCurrencyButton" name="currency_button[]" value="AUD" <?php checked( $cswp_aud_button, 'AUD' ); ?>>
 					</label>
 					<br>
 					<span class="currency-switcher-slider round">
@@ -482,16 +305,16 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				</label>
 			</td>
 			<td>
-				<input type="text" name="aud-apitext"  value="<?php echo esc_attr( $cswp_api_aud_text ); ?>"placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
+				<input type="text" name="aud-text"  value="<?php echo esc_attr( $cswp_aud_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="aud-apisymbol"  value="<?php echo esc_attr( $cswp_aud_apisymbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="aud-symbol"  value="<?php echo esc_attr( $cswp_aud_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<label class="currency-switcher-switch">
-					<input type="radio"  value="INR" name="basecurencyapi" class="cca_hidden" <?php checked( $cswp_basecurency, 'INR' ); ?>>
+					<input type="radio"  value="INR" name="basecurency" class="cca_hidden" <?php checked( $cswp_basecurency, 'INR' ); ?>>
 					<span class="currency-switcher-slider round">
 					</span>
 				</label>
@@ -499,14 +322,15 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 			<td>
 				<label for="INR"><?php esc_html_e( 'Indian Rupee (INR)', 'cswp' ); ?>
 				</label>
-			</td>
+			</td>			
 			<td>
-				<input type="text" name="apitext_inr" value="<?php echo esc_attr( $apitext_inr ); ?>" placeholder="<?php esc_html_e( 'Enter the INR value', 'cswp' ); ?>" readonly>
+				<input step="any" class="cswp_manual_field" type="number" name="inr" value="<?php echo esc_attr( $cswp_inr_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the INR value', 'cswp' ); ?>">			
+				<input step="any" class="cswp_api_field" type="number" name="inrr"  value="<?php echo esc_attr( $apitext_inr ); ?>" placeholder="<?php esc_html_e( 'Enter the INR value', 'cswp' ); ?>" readonly>
 			</td>
 			<td>
 				<label class="currency-switcher-switch">
-					<label for="inrapiButton">
-					<input type="checkbox" id="inrapiButton" name="currency_button_api[]" value="INR" <?php checked( $cswp_inr_button, 'INR' ); ?>>
+					<label for="inrCurrencyButton">
+						<input type="checkbox" id="inrCurrencyButton" name="currency_button[]" value="INR" <?php checked( $cswp_inr_button, 'INR' ); ?>>
 					</label>
 					<br>
 					<span class="currency-switcher-slider round">
@@ -514,14 +338,22 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				</label>
 			</td>
 			<td>
-				<input type="text" name="inr-apitext"  value="<?php echo esc_attr( $cswp_api_inr_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
+				<input type="text" name="inr-text"  value="<?php echo esc_attr( $cswp_inr_text ); ?>" placeholder="<?php esc_html_e( 'Enter Button Text', 'cswp' ); ?>" >
 			</td>
 			<td>
-				<input type="text" name="inr-apisymbol"  value="<?php echo esc_attr( $cswp_inr_apisymbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+				<input type="text" name="inr-symbol"  value="<?php echo esc_attr( $cswp_inr_symbol ); ?>" placeholder="<?php esc_html_e( 'Provide Symbol ', 'cswp' ); ?>" >
+			</td>
+		</tr>
+		<tr>
+			<td colspan="6" class="cswp_note_rate">
+			<p class="description cswp_apidescription">
+				<b><?php esc_html_e( 'Note:', 'cswp' ); ?></b>	<?php esc_html_e( 'Please make sure that you have entered the 1 value for the selected base currency rate. Enter an exchange rate for the different currency options against the chosen base currency.', 'cswp' ); ?>
+				</p>
 			</td>
 		</tr>
 	</table>
 
+	<!--  set the html code for Apikey value and frequency update time -->
 	<table class="form-table">
 		<tr>
 			<th>Display Type</th>
