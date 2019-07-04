@@ -87,8 +87,8 @@ $cswp_eur_apisymbol = isset( $cswp_apirate_values['eur-apisymbol'] ) ? $cswp_api
 $cswp_aud_apisymbol = isset( $cswp_apirate_values['aud-apisymbol'] ) ? $cswp_apirate_values['aud-apisymbol'] : '&#36;';
 $cswp_usd_apisymbol = isset( $cswp_apirate_values['usd-apisymbol'] ) ? $cswp_apirate_values['usd-apisymbol'] : '&#36;';
 
-$api_table_display = ( ( 'apirate' === $cswp_form_select_value ) ? 'style="display:none"' : '' );
-$manual_table_display = ( ( 'manualrate' === $cswp_form_select_value ) ? 'style="display:none"' : '' );
+// $api_table_display = ( ( 'apirate' === $cswp_form_select_value ) ? 'style="display:none"' : '' );
+// $manual_table_display = ( ( 'manualrate' === $cswp_form_select_value ) ? 'style="display:none"' : '' );
 
 
 
@@ -143,7 +143,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 	</table>
 
 	<!--  set the html code for put manual currancy rate -->
-	<table class="form-table ccatable" id="cs-manual-display" <?php echo $api_table_display; ?>>
+	<table class="form-table ccatable" id="cs-manual-display" <?php //echo $api_table_display; ?>>
 		<tr>
 			<th class="cca-column" >Base Currency</th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency', 'cswp' ); ?></th>
@@ -313,7 +313,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 	</table>
 
 	<!--  set the html code for Apikey value and frequency update time -->
-	<table class="form-table" id="cs-api-display" <?php echo $manual_table_display; ?>>
+	<table class="form-table" id="cs-api-display" <?php //echo $manual_table_display; ?>>
 
 		<tr>
 			<th scope="row">
@@ -365,7 +365,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 			</td>
 		</tr>
 	</table>
-	<table class="form-table" id="cs-api-display2" <?php echo $manual_table_display; ?>>
+	<table class="form-table" id="cs-api-display2" <?php //echo $manual_table_display; ?>>
 		<tr>
 			<th class="cca-column" >Base Currency</th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency', 'cswp' ); ?></th>
