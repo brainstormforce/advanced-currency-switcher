@@ -313,7 +313,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 	</table>
 
 	<!--  set the html code for Apikey value and frequency update time -->
-	<table class="form-table" id="cs-api-display" <?php echo $api_table_display; ?>>
+	<table class="form-table" id="cs-api-display" <?php echo $manual_table_display; ?>>
 
 		<tr>
 			<th scope="row">
@@ -365,7 +365,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 			</td>
 		</tr>
 	</table>
-	<table class="form-table" id="cs-api-display2" <?php echo $api_table_display; ?>>
+	<table class="form-table" id="cs-api-display2" <?php echo $manual_table_display; ?>>
 		<tr>
 			<th class="cca-column" >Base Currency</th>
 			<th class="cca-column" style="padding-left: 10px;"><?php esc_html_e( 'Currency', 'cswp' ); ?></th>
