@@ -67,10 +67,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			wp_enqueue_script( 'cswp-script' );
 			wp_enqueue_script( 'cswp-getrate' );
 
-			$base_value_select = CS_Loader::cswp_load_all_data();
-
-			//if ( 'manualrate' === $base_value_select['cswp_form_select'] ) {
-				//$manual_button_text              = CS_Loader::cswp_load_manual_data();
+			$base_value_select                   = CS_Loader::cswp_load_all_data();
 							$manual_usd_btn_text = isset( $base_value_select['usd-text'] ) ? $base_value_select['usd-text'] : '';
 							$manual_inr_btn_text = isset( $base_value_select['inr-text'] ) ? $base_value_select['inr-text'] : '';
 							$manual_eur_btn_text = isset( $base_value_select['eur-text'] ) ? $base_value_select['eur-text'] : '';
@@ -83,23 +80,23 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 								$manual_aud_btn_text,
 							);
 
-						$currencybtn      = CS_Loader::cswp_load_currency_button_data();
-						$currencydropdown = CS_Loader::cswp_load_currency_button_data();
+							$currencybtn      = CS_Loader::cswp_load_currency_button_data();
+							$currencydropdown = CS_Loader::cswp_load_currency_button_data();
 
-			if ( ! empty( $currencybtn ) ) {
-				foreach ( $currencybtn as $cswp_base_value ) {
-					if ( $cswp_base_value === $base_value_select['basecurency'] ) {
-						continue;
-					}
-					$curbtn[] = $cswp_base_value;
-				}
-				if ( ! empty( $curbtn ) && is_array( $curbtn ) ) {
-					array_push( $curbtn, $base_value_select['basecurency'] );
-					$currencybtn = array_combine( $curbtn, $curbtn );
-				}
-			}
+							if ( ! empty( $currencybtn ) ) {
+								foreach ( $currencybtn as $cswp_base_value ) {
+									if ( $cswp_base_value === $base_value_select['basecurency'] ) {
+										continue;
+									}
+									$curbtn[] = $cswp_base_value;
+								}
+								if ( ! empty( $curbtn ) && is_array( $curbtn ) ) {
+									array_push( $curbtn, $base_value_select['basecurency'] );
+									$currencybtn = array_combine( $curbtn, $curbtn );
+								}
+							}
 
-			?>
+							?>
 			<div class="cs-currency-buttons">
 			<?php
 			if ( 'toggle' === $base_value_select['cswp_button_type'] ) {

@@ -219,7 +219,6 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				<label for="USD"><?php esc_html_e( 'United States Dollar (USD)', 'cswp' ); ?>
 				</label>
 			</td>
-			
 			<td>
 				<input step="any" class="cswp_manual_field" type="number" name="usd"  value="<?php echo esc_attr( $cswp_usd_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the USD value', 'cswp' ); ?>" >
 				<input step="any" class="cswp_api_field" type="number" name="usdd"  value="<?php echo esc_attr( $apitext_usd ); ?>" placeholder="<?php esc_html_e( 'Enter the USD value', 'cswp' ); ?>" readonly>
@@ -289,7 +288,6 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 			<td>
 				<label for="AUD"><?php esc_html_e( 'Australian Dollar (AUD)', 'cswp' ); ?>
 			</td>
-			
 			<td>
 				<input step="any" class="cswp_manual_field" type="number" name="aud"  value="<?php echo esc_attr( $cswp_aud_rate ); ?>" placeholder="<?php esc_html_e( 'Enter the AUD value', 'cswp' ); ?>">
 				<input step="any" class="cswp_api_field" type="number" name="audd"  value="<?php echo esc_attr( $apitext_aud ); ?>" placeholder="<?php esc_html_e( 'Enter the AUD value', 'cswp' ); ?>" readonly>
