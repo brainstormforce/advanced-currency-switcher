@@ -26,33 +26,33 @@
 
 } )(jQuery);
 
-function manual_api_form() {
+// function manual_api_form() {
 
-    if( document.getElementById( "cswp_currency_form" ) !== null ) {
+//     if( document.getElementById( "cswp_currency_form" ) !== null ) {
 
-        var cswp_selectedvalue = document.getElementById( "cswp_currency_form" ).value;
-        if ( cswp_selectedvalue==="apirate" ) {
+//         var cswp_selectedvalue = document.getElementById( "cswp_currency_form" ).value;
+//         if ( cswp_selectedvalue==="apirate" ) {
 
-            document.getElementById( "cs-api-display" ).style.display = "block";
-           document.getElementById( "cs-api-display2" ).style.display = "block";
-           document.getElementById( "cs-manual-display" ).style.display = "none";
+//             document.getElementById( "cs-api-display" ).style.display = "block";
+//            document.getElementById( "cs-api-display2" ).style.display = "block";
+//            document.getElementById( "cs-manual-display" ).style.display = "none";
 
-           } else {
+//            } else {
 
-           document.getElementById( "cs-manual-display" ).style.display = "block";
-           document.getElementById( "cs-api-display" ).style.display = "none";
-           document.getElementById( "cs-api-display2" ).style.display = "none";
+//            document.getElementById( "cs-manual-display" ).style.display = "block";
+//            document.getElementById( "cs-api-display" ).style.display = "none";
+//            document.getElementById( "cs-api-display2" ).style.display = "none";
 
-        }
-    }
+//         }
+//     }
 
-}
+// }
 
-window.addEventListener( 'load', function() {
+// window.addEventListener( 'load', function() {
 
-    manual_api_form();
+//     manual_api_form();
 
-} );
+// } );
 
 //js for hide and display manula and API currency convert value.
 function showcurency( selectvalue ) {
