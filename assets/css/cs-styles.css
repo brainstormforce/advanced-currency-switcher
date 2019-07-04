@@ -18,17 +18,20 @@
 display: block;
 }
 
+/* Manual page css */
 .cswp-list{
   list-style-type: square;
   margin: 10px 10px 10px 10px;
 }
+
+/* Table CSS */
  .cswp_api_note td{
 	padding: 0px !important;
 }
 .cswp_api_note .cswp_apidescription{
  margin-top: 0px;
-    margin-bottom: 0px;
-    margin-left:12px;
+ margin-bottom: 0px;
+ margin-left:12px;
 } 
 td.cswp_note_rate {
     padding: 0px 0px;
