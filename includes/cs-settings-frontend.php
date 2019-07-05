@@ -117,7 +117,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 	<table class="form-table" >
 		<tr>
 			<th scope="row">
-				<label><?php esc_html_e( 'Currency Conversion By', 'cswp' ); ?></label>
+				<label><?php esc_html_e( 'Select Conversion Method', 'cswp' ); ?></label>
 			</th>
 			<td>
 				<select name="cswp_form_select" id="cswp_currency_form" onchange="showcurency(this)">
@@ -137,8 +137,9 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				<input type="text" name="appid" class="cs-input-appid regular-text" id="cswp-apitext" value="<?php echo esc_attr( $cswp_api_key ); ?>">
 				<input type="button" name="Authenticate" value="Authenticate" class="cs-authenticate bt button button-secondary">
 				<p class="description cswp_apidescription">
-					<?php esc_html_e( 'Enter Your Open Exchange Rate App ID. If you dont have then get from ', 'cswp' ); ?>
-					<a href="https://openexchangerates.org/" target="_blank">https://openexchangerates.org/</a>
+					<?php esc_html_e( 'Enter your Open Exchange Rate App ID. If you don’t have an App ID, you can refer to the ', 'cswp' ); ?>
+						<a href="https://docs.openexchangerates.org/docs/authentication#register-for-an-app-id" target="_blank">article here</a>
+					<?php esc_html_e( 'and get one.', 'cswp' ); ?>
 				</p>
 			</td>
 		</tr>
@@ -333,7 +334,8 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 		<tr>
 			<td colspan="6" class="cswp_note_rate">
 			<p class="description cswp_manual_field">
-				<b><?php esc_html_e( 'Note:', 'cswp' ); ?></b>	<?php esc_html_e( 'Please make sure that you have entered the 1 value for the selected base currency rate. Enter an exchange rate for the different currency options against the chosen base currency.', 'cswp' ); ?>
+				<b><?php esc_html_e( 'Note:', 'cswp' ); ?></b>	<?php esc_html_e( ' Please make sure you enter 1 as the Conversion rate for the selected base currency and enter an exchange rate for the other currencies in the list.', 'cswp' ); ?><br>
+				<?php esc_html_e( 'Please select at least one checkbox except the base currency in the', 'cswp' ); ?><b><?php esc_html_e( ' Display on the Frontend column.', 'cswp' ); ?></b>
 				</p>
 			</td>
 		</tr>

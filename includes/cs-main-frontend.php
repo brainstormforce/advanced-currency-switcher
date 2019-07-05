@@ -45,7 +45,7 @@ if ( isset( $_GET['tab'] ) ) {
 	}
 	?>
 	">
-		<?php esc_html_e( 'Global Setting', 'cswp' ); ?>
+		<?php esc_html_e( 'Global Settings', 'cswp' ); ?>
 	</a>
 
 	<a href="?page=currency_switch&tab=user-manual" class="nav-tab tb

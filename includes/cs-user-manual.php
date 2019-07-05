@@ -12,59 +12,61 @@
 ?>
 <html>
 <body>
-<h2> <?php esc_html_e( 'Description', 'cswp' ); ?> </h2>
+<h2> <?php esc_html_e( 'Welcome to Currency Switcher!', 'cswp' ); ?> </h2>
 
-<p> <?php esc_html_e( 'Currency Switcher plugin is used to convert the currency on a web-page, into respective currency by using short-code on a page.', 'cswp' ); ?> </p>
+<p> <?php esc_html_e( 'The Currency Switcher plugin is built to help you add a currency switcher anywhere on your website. Quickly manage settings and paste the shortcode in the desired position!', 'cswp' ); ?> </p>
 
 <h3> <?php esc_html_e( 'Getting Started', 'cswp' ); ?> </h3>
 
-<p> <?php esc_html_e( 'Allow user to select a type of action to be performed for currency switcher :-', 'cswp' ); ?>  </p>
+<p><h4> <?php esc_html_e( 'You can set this up in 4 easy steps!', 'cswp' ); ?> </h4> </p>
 
-<ul class="cswp-list">
+<ul>
 
-	<li class="cswp-list"> <?php esc_html_e( 'Manual Currency Value', 'cswp' ); ?> </li>
+	<li> <?php esc_html_e( '1. Select the conversion method - Manual or Open Exchange Rate API', 'cswp' ); ?> </li>
 
-	<p> <?php esc_html_e( 'This helps the user to set base currency and allow to insert values manually for other currency if the user does not have an API key for currency switchers.', 'cswp' ); ?>
+
+	<p> <?php esc_html_e( 'Manual Conversion Rate - You will have to enter a base conversion rate and other currency values manually.', 'cswp' ); ?>
+	</p>
+		<p> 
+		<?php
+		esc_html_e(
+			'Open Exchange Rate API - You can authenticate your Open Exchange Rate API and fetch real-time Exchange Rates from it.
+',
+			'cswp'
+		);
+		?>
 	</p>
 
-	<li class="cswp-list"> <?php esc_html_e( 'API Currency Value', 'cswp' ); ?></li>
-
-	<p> <?php esc_html_e( 'This helps user to set base currency and allow to input API key so that currency value can be updated automatically.', 'cswp' ); ?>
-	</p>
-	<p> <?php esc_html_e( 'User have to authenticate the API key first to confirm the key is right or not.', 'cswp' ); ?>
-		</p>
-	<p> <?php esc_html_e( 'Visit here to generate the App ID ', 'cswp' ); ?>
-		<a href="https://openexchangerates.org/" target="_blank">https://openexchangerates.org/</a>&nbsp; <?php esc_html_e( 'copy the APP Id and paste it in text box.', 'cswp' ); ?>
-	</p>
-
-	<p> <?php esc_html_e( 'Set frequency so that the currency value get updated automatically.', 'cswp' ); ?>
-	</p>
-
+	<li> <?php esc_html_e( '2. Enter the required fields depending on the method you pick.', 'cswp' ); ?></li>
+	<li> <?php esc_html_e( '3. Select the Switcher Style and Number Format.', 'cswp' ); ?></li>
+	<li> <?php esc_html_e( '4. Copy the shortcodes from below and paste it on the page.', 'cswp' ); ?></li>
 </ul>
-
+<hr style="border-bottom: dotted 1px #000" />
 <h2> <?php esc_html_e( 'Shortcodes', 'cswp' ); ?> </h2>
 
-<ul class="cswp-list">
+<ul>
 
-	<li class="cswp-list"> <?php esc_html_e( 'Shotcode for Currency switcher', 'cswp' ); ?> </li>
+	<li> <h4><?php esc_html_e( 'Shortcode for Currency switcher', 'cswp' ); ?></h4> </li>
 
 	<pre><code>[currency value=""]</code></pre>
 
-	<p><?php esc_html_e( 'This shortcode helps to convert the values. You can insert this shortcode inside the Price box of Ultimate Addon for Eementor, Ultimate Addon for Beaver Builder, any other page builder and also you can use where you want to display currency values.', 'cswp' ); ?> <br><?php esc_html_e( 'By passing the value in currency shortcode for example:', 'cswp' ); ?><b> [currency value="27"] </b>
+	<p><?php esc_html_e( 'This shortcode lets you display field within which the original and the converted price will be seen.', 'cswp' ); ?> <br><?php esc_html_e( 'Enter the cost (numerical value) of the product within the inverted commas (“”). For example, if the cost of a product is $100, the shortcode will be', 'cswp' ); ?><b> [currency value=”100”]. </b>
 	</p>
 
-	<li class="cswp-list"><?php esc_html_e( 'Shotcode for Currency switcher Button', 'cswp' ); ?>  </li>
+	<li><h4><?php esc_html_e( 'Shortcode for Currency switcher type', 'cswp' ); ?> </h4> </li>
 
 	<pre><code>[currency-switch]</code></pre>
 
-	<p> <?php esc_html_e( 'This shortcode allows user to embed the currency switcher button on the web page of the website. It supports Elementor, Beaver Builder and other page builder', 'cswp' ); ?>
+	<p> <?php esc_html_e( 'Copy and paste this shortcode in the place you wish to add the switcher on the page.', 'cswp' ); ?>
+	</p>
+	<p> <?php esc_html_e( 'The Global Settings allow you to select the switcher type you wish to use. This can either be a drop down menu or a button.', 'cswp' ); ?>
 	</p>
 
 </ul>
-
+<hr style="border-bottom: dotted 1px #000" />
 <h2> <?php esc_html_e( 'Disclaimer', 'cswp' ); ?> </h2>
 
-<p> <?php esc_html_e( "The accuracy of the currency may vary from time to time. Which depends on the API you are using for the plugin. We can't guarantee the value provided by the API is accurate.", 'cswp' ); ?>
+<p> <?php esc_html_e( 'The accuracy of the currency may vary from time to time. This depends on the API you are using for the plugin. Since these values come from the exchange rate detectors, we are not responsible for the values by them.', 'cswp' ); ?>
 </p>
 
 </body>
