@@ -5,7 +5,7 @@ Tags: Currency switcher, Currency converter, Multi-currency, Currency plugin, Mu
 Requires at least: 4.2
 Requires PHP: 5.2
 Tested up to: 5.2
-Stable tag: 1.0.2
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -83,4 +83,5 @@ The Currency Switcher plugin is just an addon to help users get an idea of how m
 
 == Changelog ==
 
-== Upgrade Notice ==
+= 1.0.0 =
+- Initial Release.

@@ -13,7 +13,7 @@
  * Plugin Name:     Advanced Currency Switcher
  * Plugin URI:      https://www.brainstormforce.com/
  * Description:     To convert one currency value into other.
- * Version:         0.0.1
+ * Version:         1.0.0
  * Author:          Brainstrom Force
  * Author URI:      https://www.brainstormforce.com/
  * Text Domain:     cswp
