@@ -3,7 +3,7 @@ Contributors: brainstormforce
 Donate link: https://www.paypal.me/BrainstormForce
 Tags: Currency switcher, Currency converter, Multi-currency, Currency plugin, Multi currency plugin
 Requires at least: 4.2
-Requires PHP: 5.2
+Requires PHP: 5.3
 Tested up to: 5.2
 Stable tag: 1.0.0
 License: GPLv2 or later
@@ -76,6 +76,7 @@ You need not do this manually! The Currency Switcher plugin gives you an option 
 The Currency Switcher plugin is just an addon to help users get an idea of how much they’ll be spending in their currency. This has nothing to do with the transaction.
 
 == Screenshots ==
+
 1. Global Settings Page -
  + Open Exchange Rate API.
  + Manual Conversion Rate.
