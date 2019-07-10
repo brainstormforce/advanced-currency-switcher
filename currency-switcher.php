@@ -42,7 +42,7 @@ function cswp_plugin_action_links( $links ) {
 	$links = array_merge(
 		$links,
 		array(
-			'<a href="' . esc_url( admin_url( '/options-general.php?page=currency_switch' ) ) . '">' . __( 'Settings', 'cswp' ) . '</a>',
+			'<a href="' . esc_url( admin_url( '/options-general.php?page=currency_switch' ) ) . '">' . __( 'Settings', 'advanced-currency-switcher' ) . '</a>',
 		)
 	);
 	return $links;

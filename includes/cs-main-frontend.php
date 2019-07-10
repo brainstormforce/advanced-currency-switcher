@@ -13,7 +13,7 @@
 
 <div class="pr_main_heading">
 
-	<h1> <?php esc_html_e( 'Currency Switcher', 'cswp' ); ?> </h1>
+	<h1> <?php esc_html_e( 'Currency Switcher', 'advanced-currency-switcher' ); ?> </h1>
 
 </div>
 
@@ -45,7 +45,7 @@ if ( isset( $_GET['tab'] ) ) {
 	}
 	?>
 	">
-		<?php esc_html_e( 'Global Settings', 'cswp' ); ?>
+		<?php esc_html_e( 'Global Settings', 'advanced-currency-switcher' ); ?>
 	</a>
 
 	<a href="?page=currency_switch&tab=user-manual" class="nav-tab tb
@@ -55,7 +55,7 @@ if ( isset( $_GET['tab'] ) ) {
 	}
 	?>
 	">
-		<?php esc_html_e( 'User Manual', 'cswp' ); ?>
+		<?php esc_html_e( 'User Manual', 'advanced-currency-switcher' ); ?>
 	</a>
 
 </h2>
