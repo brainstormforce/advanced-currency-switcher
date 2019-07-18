@@ -98,7 +98,7 @@ class CS_Loader {
 	 * @return void
 	 */
 	public function define_constant() {
-		define( 'CSWP_CURRENCY_SWITCHER_VER', '1.0.0' );
+		define( 'CSWP_CURRENCY_SWITCHER_VER', '1.0.1' );
 
 		define( 'CSWP_CURRENCY_SWITCH_FILE', trailingslashit( dirname( dirname( __FILE__ ) ) ) . 'currency-switcher.php' );
 
@@ -119,7 +119,7 @@ class CS_Loader {
 		$api_key = isset( $_POST['api_key'] ) ? sanitize_key( $_POST['api_key'] ) : '';
 
 		if ( empty( $api_key ) ) {
-			wp_send_json_error( __( 'Empty API key!' ) );
+			wp_send_json_error( __( 'Empty API key!', 'advanced-currency-switcher' ) );
 		}
 
 		$data = (array) get_option( 'cswp_form_data', array() );
@@ -172,19 +172,19 @@ class CS_Loader {
 		if ( ! isset( $schedules['hourly'] ) ) {
 			$schedules['hourly'] = array(
 				'interval' => 60 * 60, // Every Hour.
-				'display'  => __( 'Once hourly' ),
+				'display'  => __( 'Once hourly', 'advanced-currency-switcher' ),
 			);
 		}
 		if ( ! isset( $schedules['daily '] ) ) {
 			$schedules['daily'] = array(
 				'interval' => 24 * 3600, // Every Day.
-				'display'  => __( 'Once daily' ),
+				'display'  => __( 'Once daily', 'advanced-currency-switcher' ),
 			);
 		}
 		if ( ! isset( $schedules['weekly'] ) ) {
 			$schedules['weekly'] = array(
 				'interval' => 7 * 86400, // Every Week.
-				'display'  => __( 'Once every week' ),
+				'display'  => __( 'Once every week', 'advanced-currency-switcher' ),
 			);
 		}
 		return $schedules;
@@ -447,9 +447,7 @@ class CS_Loader {
 	public function cswp_load_scripts() {
 
 		wp_register_style( 'cswp-style', CSWP_PLUGIN_URL . '/assets/css/buttonhide.css', CSWP_CURRENCY_SWITCHER_VER, true );
-
-		wp_register_script( 'cswp-getrate', CSWP_PLUGIN_URL . 'assets/js/cs-script.js', array( 'jquery' ), CSWP_CURRENCY_SWITCHER_VER, true );
-
+		
 		wp_register_script( 'cswp-script', CSWP_PLUGIN_URL . 'assets/js/cs-script.js', array( 'jquery' ), CSWP_CURRENCY_SWITCHER_VER, true );
 
 		$cswp_get_form_value = self::cswp_load_all_data();
@@ -508,7 +506,7 @@ class CS_Loader {
 			'base_currency_symbol'  => CS_Btn_Shortcode::get_instance()->get_currency_symbol( $cswp_basecurency ),
 			'currency_symbol_add'   => $currency_symbol_add,
 		);
-		wp_localize_script( 'cswp-getrate', 'csVars', $currency_rate );
+		wp_localize_script( 'cswp-script', 'csVars', $currency_rate );
 	}
 }
 
