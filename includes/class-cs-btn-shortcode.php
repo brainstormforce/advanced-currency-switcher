@@ -65,7 +65,6 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			ob_start();
 			wp_enqueue_style( 'cswp-style' );
 			wp_enqueue_script( 'cswp-script' );
-			wp_enqueue_script( 'cswp-getrate' );
 
 			$base_value_select                   = CS_Loader::cswp_load_all_data();
 							$manual_usd_btn_text = isset( $base_value_select['usd-text'] ) ? $base_value_select['usd-text'] : '';
