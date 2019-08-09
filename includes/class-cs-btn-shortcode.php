@@ -51,6 +51,200 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 		public function __construct() {
 
 			add_shortcode( 'currency-switch', array( $this, 'cswp_advance_currency_button' ) );
+			add_action( 'wp_head', array( $this, 'cswp_styling_data' ) );
+
+		}
+
+		/**
+		 * Get style data.
+		 *
+		 * @since  1.0.0
+		 * @return array of $cswp_font_size_disp.
+		 */
+		public function cswp_styling_data() {
+
+			$cswp_get_form_value = get_option( 'cswp_style_form_data' );
+			// var_dump($cswp_get_form_value);
+			?>
+			<style type="text/css">
+			.cs-currency-buttons .cs-currency-name-dropdown {
+				font-size: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 10 ); ?>px;
+
+				font-weight: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_weight'] ) ? $cswp_get_form_value['cswp_font_weight'] : 100 ); ?>;
+
+				background: <?php echo ( ! empty( $cswp_get_form_value['cswp_background_color'] ) ? $cswp_get_form_value['cswp_background_color'] : '#eeeeee' ); ?>;
+
+				color: <?php echo ( ! empty( $cswp_get_form_value['cswp_text_color'] ) ? $cswp_get_form_value['cswp_text_color'] : '#000' ); ?>;
+
+				padding-top: 
+				<?php
+				echo ( ! empty( $cswp_get_form_value['cswp_padding_top'] ) ? $cswp_get_form_value['cswp_padding_top'] : 0 );
+				echo ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'px' );
+				?>
+				;
+
+				padding-right: 
+						<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_right'] ) ? $cswp_get_form_value['cswp_padding_right'] : 0 );
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'px' );
+						?>
+				;
+
+				padding-bottom: 
+						<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_bottom'] ) ? $cswp_get_form_value['cswp_padding_bottom'] : 0 );
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'px' );
+						?>
+				;
+
+				padding-left: 
+						<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_left'] ) ? $cswp_get_form_value['cswp_padding_left'] : 0 );
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'px' );
+						?>
+				;
+
+				border-radius:
+					<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_border_radius'] ) ? $cswp_get_form_value['cswp_border_radius'] : 0 );
+					?>px;
+					?>
+				;
+
+				border:
+					<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_border_width'] ) ? $cswp_get_form_value['cswp_border_width'] : 0 );
+						echo ( ! empty( $cswp_get_form_value['cswp_border_unit'] ) ? $cswp_get_form_value['cswp_border_unit'] : 'px' );
+
+						echo ' ';
+						echo ( ! empty( $cswp_get_form_value['cswp_border_style'] ) ? $cswp_get_form_value['cswp_border_style'] : 'none' );
+						echo ' ';
+						echo ( ! empty( $cswp_get_form_value['cswp_border_color'] ) ? $cswp_get_form_value['cswp_border_color'] : '#000' );
+
+					?>
+				;
+			}
+
+		
+			.cs-currency-buttons .cs-currency-name {
+
+				font-size: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 10 ); ?>px;
+
+				font-weight: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_weight'] ) ? $cswp_get_form_value['cswp_font_weight'] : 100 ); ?>;
+
+				background: <?php echo ( ! empty( $cswp_get_form_value['cswp_background_color'] ) ? $cswp_get_form_value['cswp_background_color'] : '#eeeeee' ); ?>;
+
+				color: <?php echo ( ! empty( $cswp_get_form_value['cswp_text_color'] ) ? $cswp_get_form_value['cswp_text_color'] : '#000' ); ?>;
+
+				padding-top: 
+				<?php
+				echo ( ! empty( $cswp_get_form_value['cswp_padding_top'] ) ? $cswp_get_form_value['cswp_padding_top'] : 0 );
+				echo ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'px' );
+				?>
+				;
+
+				padding-right: 
+						<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_right'] ) ? $cswp_get_form_value['cswp_padding_right'] : 0 );
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'px' );
+						?>
+				;
+
+				padding-bottom: 
+						<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_bottom'] ) ? $cswp_get_form_value['cswp_padding_bottom'] : 0 );
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'px' );
+						?>
+				;
+
+				padding-left: 
+						<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_left'] ) ? $cswp_get_form_value['cswp_padding_left'] : 0 );
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'px' );
+						?>
+				;
+
+				border-radius:
+					<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_border_radius'] ) ? $cswp_get_form_value['cswp_border_radius'] : 0 );
+					?>px;
+					?>
+				;
+
+				border:
+					<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_border_width'] ) ? $cswp_get_form_value['cswp_border_width'] : 0 );
+						echo ( ! empty( $cswp_get_form_value['cswp_border_unit'] ) ? $cswp_get_form_value['cswp_border_unit'] : 'px' );
+
+						echo ' ';
+						echo ( ! empty( $cswp_get_form_value['cswp_border_style'] ) ? $cswp_get_form_value['cswp_border_style'] : 'none' );
+						echo ' ';
+						echo ( ! empty( $cswp_get_form_value['cswp_border_color'] ) ? $cswp_get_form_value['cswp_border_color'] : '#000' );
+
+					?>
+				;
+			}
+
+			.cswp_button_change .cs-currency-name-btn {
+				font-size: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 10 ); ?>px;
+
+				font-weight: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_weight'] ) ? $cswp_get_form_value['cswp_font_weight'] : 100 ); ?>;
+
+				background: <?php echo ( ! empty( $cswp_get_form_value['cswp_background_color'] ) ? $cswp_get_form_value['cswp_background_color'] : '#eeeeee' ); ?>;
+
+				color: <?php echo ( ! empty( $cswp_get_form_value['cswp_text_color'] ) ? $cswp_get_form_value['cswp_text_color'] : '#000' ); ?>;
+
+				padding-top: 
+				<?php
+				echo ( ! empty( $cswp_get_form_value['cswp_padding_top'] ) ? $cswp_get_form_value['cswp_padding_top'] : 0 );
+				echo ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'px' );
+				?>
+				;
+
+				padding-right: 
+						<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_right'] ) ? $cswp_get_form_value['cswp_padding_right'] : 0 );
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'px' );
+						?>
+				;
+
+				padding-bottom: 
+						<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_bottom'] ) ? $cswp_get_form_value['cswp_padding_bottom'] : 0 );
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'px' );
+						?>
+				;
+
+				padding-left: 
+						<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_left'] ) ? $cswp_get_form_value['cswp_padding_left'] : 0 );
+						echo ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'px' );
+						?>
+				;
+
+				border-radius:
+					<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_border_radius'] ) ? $cswp_get_form_value['cswp_border_radius'] : 0 );
+					?>px;
+					?>
+				;
+
+				border:
+					<?php
+						echo ( ! empty( $cswp_get_form_value['cswp_border_width'] ) ? $cswp_get_form_value['cswp_border_width'] : 0 );
+						echo ( ! empty( $cswp_get_form_value['cswp_border_unit'] ) ? $cswp_get_form_value['cswp_border_unit'] : 'px' );
+
+						echo ' ';
+						echo ( ! empty( $cswp_get_form_value['cswp_border_style'] ) ? $cswp_get_form_value['cswp_border_style'] : 'none' );
+						echo ' ';
+						echo ( ! empty( $cswp_get_form_value['cswp_border_color'] ) ? $cswp_get_form_value['cswp_border_color'] : '#000' );
+
+					?>
+				;
+		}											
+
+
+			<?php
 
 		}
 
@@ -65,7 +259,6 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			ob_start();
 			wp_enqueue_style( 'cswp-style' );
 			wp_enqueue_script( 'cswp-script' );
-			wp_enqueue_script( 'cswp-getrate' );
 
 			$base_value_select                   = CS_Loader::cswp_load_all_data();
 							$manual_usd_btn_text = isset( $base_value_select['usd-text'] ) ? $base_value_select['usd-text'] : '';
@@ -82,7 +275,6 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 
 							$currencybtn      = CS_Loader::cswp_load_currency_button_data();
 							$currencydropdown = CS_Loader::cswp_load_currency_button_data();
-
 							if ( ! empty( $currencybtn ) ) {
 								foreach ( $currencybtn as $cswp_base_value ) {
 									if ( $cswp_base_value === $base_value_select['basecurency'] ) {
@@ -142,7 +334,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 					$currencyname    = '';
 					$currency_symbol = '';
 					?>
-					<select class="cs-currency-name-dropdown"  >
+					<select class="cs-currency-name-dropdown">
 						<?php
 
 						foreach ( $currencydropdown as $currencyname ) {
@@ -168,6 +360,37 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 							<?php } ?>
 						</select>
 					<?php
+				}
+			} elseif ( 'button' === $base_value_select['cswp_button_type'] ) {
+
+				if ( is_array( $currencybtn ) ) {
+					echo '<div class="cswp_button_change">';
+					foreach ( $currencybtn as $currencyname ) {
+
+						$currency_symbol = $this->get_currency_symbol( $currencyname );
+						?>
+						<button class="cs-currency-name-btn 
+						<?php
+						if ( $base_value_select['basecurency'] === $currencyname ) {
+							echo 'cswpactive'; }
+						?>
+						" id="cstoggleto<?php echo esc_attr( $currencyname ); ?>"
+						data-currency-name="<?php echo esc_attr( $currencyname ); ?>" data-currency-symbol="<?php echo esc_attr( $currency_symbol ); ?>"> 
+														<?php
+														if ( 'USD' === $currencyname ) {
+															echo trim( $manual_button_text_value[0] );
+														} elseif ( 'INR' === $currencyname ) {
+															echo trim( $manual_button_text_value[1] );
+														} elseif ( 'EUR' === $currencyname ) {
+															echo trim( $manual_button_text_value[2] );
+														} elseif ( 'AUD' === $currencyname ) {
+															echo trim( $manual_button_text_value[3] );
+														}
+														?>
+						</button>
+						<?php
+					}
+					echo '</div>';
 				}
 			}
 			?>

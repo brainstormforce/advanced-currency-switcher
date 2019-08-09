@@ -31,6 +31,8 @@ if ( isset( $_GET['tab'] ) ) {
 
 		$active_tab = 'user-manual';
 
+	} elseif ( 'style' === $_GET['tab'] ) {
+		$active_tab = 'style';
 	}
 }
 
@@ -58,6 +60,16 @@ if ( isset( $_GET['tab'] ) ) {
 		<?php esc_html_e( 'User Manual', 'advanced-currency-switcher' ); ?>
 	</a>
 
+	<a href="?page=currency_switch&tab=style" class="nav-tab tb
+	<?php
+	if ( 'style' === $active_tab ) {
+		echo 'nav-tab-active';
+	}
+	?>
+	">
+		<?php esc_html_e( 'Style', 'advanced-currency-switcher' ); ?>
+	</a>
+
 </h2>
 
 <?php
@@ -72,6 +84,9 @@ if ( isset( $_GET['tab'] ) ) {
 	} elseif ( 'user-manual' === $_GET['tab'] ) {
 
 		require_once 'cs-user-manual.php';
+	} elseif ( 'style' === $_GET['tab'] ) {
+
+		require_once 'cs-style-option.php';
 	}
 } else {
 
