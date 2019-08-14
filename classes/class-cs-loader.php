@@ -26,7 +26,6 @@ class CS_Loader {
 	public function __construct() {
 
 		$this->define_constant();
-
 		add_action( 'wp_enqueue_scripts', array( $this, 'cswp_load_scripts' ) );
 		self::includes();
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_backend_script' ) );
@@ -206,11 +205,19 @@ class CS_Loader {
 
 			$cswp_font_size = ! empty( $_POST['cswp_font_size'] ) ? sanitize_text_field( $_POST['cswp_font_size'] ) : '';
 
+			$cswp_button_width = ! empty( $_POST['cswp_button_width'] ) ? sanitize_text_field( $_POST['cswp_button_width'] ) : '';
+
 			$cswp_font_weight = ! empty( $_POST['cswp_font_weight'] ) ? sanitize_text_field( $_POST['cswp_font_weight'] ) : '';
 
 			$cswp_text_color = sanitize_hex_color( $_POST['cswp_text_color'] );
 
+			$cswp_hover_color = sanitize_hex_color( $_POST['cswp_hover_color'] );
+
+			$cswp_text_hover_color = sanitize_hex_color( $_POST['cswp_text_hover_color'] );
+
 			$cswp_background_color = sanitize_hex_color( $_POST['cswp_background_color'] );
+
+			$cswp_active_button_background_color = sanitize_hex_color( $_POST['cswp_active_button_background_color'] );
 
 			$cswp_padding_top = ( ! empty( $_POST['cswp_padding_top'] ) ? floatval( $_POST['cswp_padding_top'] ) : 0 );
 
@@ -224,15 +231,50 @@ class CS_Loader {
 
 			$cswp_border_style = ( ! empty( $_POST['cswp_border_style'] ) ? sanitize_text_field( $_POST['cswp_border_style'] ) : 'none' );
 
-			$cswp_border_color = ( ! empty( $_POST['cswp_border_color'] ) ? sanitize_hex_color( $_POST['cswp_border_color'] ) : '#000' );
+			$cswp_border_color = ( ! empty( $_POST['cswp_border_color'] ) ? sanitize_hex_color( $_POST['cswp_border_color'] ) : '' );
+
+			$cswp_icon_width = ( ! empty( $_POST['cswp_icon_width'] ) ? $_POST['cswp_icon_width'] : 10 );
+
+			$cswp_icon_height = ( ! empty( $_POST['cswp_icon_height'] ) ? $_POST['cswp_icon_height'] : 10 );
 
 			$cswp_padding_unit = sanitize_text_field( $_POST['cswp_padding_unit'] );
 
 			$cswp_border_unit = sanitize_text_field( $_POST['cswp_border_unit'] );
 
+			$cswp_border_style = sanitize_text_field( $_POST['cswp_border_style'] );
+
 			$cswp_border_radius = ! empty( $_POST['cswp_border_radius'] ) ? sanitize_text_field( $_POST['cswp_border_radius'] ) : '';
 
+			$cswp_icon_align = ! empty( $_POST['cswp_icon_align'] ) ? sanitize_text_field( $_POST['cswp_icon_align'] ) : '';
+
+			$cswp_button = get_option( 'cswp_currency_button_type' );
+
+			// $cswp_iconUSD = ! empty( $_POST['cswp_iconUSD'] ) ? sanitize_url( $_POST['cswp_iconUSD'] ) : '';
+
+			// $cswp_iconAUD = ! empty( $_POST['cswp_iconAUD'] ) ? sanitize_url( $_POST['cswp_iconAUD'] ) : '';
+
+			// $cswp_iconEUR = ! empty( $_POST['cswp_iconEUR'] ) ? sanitize_url( $_POST['cswp_iconEUR'] ) : '';
+
+			// $cswp_iconINR = ! empty( $_POST['cswp_iconINR'] ) ? sanitize_url( $_POST['cswp_iconINR'] ) : '';
+
+			// $cswp_array_option = array();
+
+			// array_push($cswp_array_option,$cswp_button);
+			$cswp_icon = array();
+
+			foreach ($cswp_button as $cswp_button_value ) {
+				// var_dump($_POST['cswp_icon'.$cswp_button_value]);
+				$cswp_icon_list = ! empty( $_POST['cswp_icon'.$cswp_button_value] ) ? sanitize_url( $_POST['cswp_icon'.$cswp_button_value] ) : '';
+				array_push($cswp_icon, $cswp_icon_list);
+			}
+			
+			
+			// $cswp_icon3 = sanitize_file_name( $_POST['cswp_icon3'] );
+
+			// $cswp_icon4 = sanitize_file_name( $_POST['cswp_icon4'] );
+
 			$save = array(
+				'cswp_button_width'     => $cswp_button_width,
 				'cswp_font_size'        => $cswp_font_size,
 				'cswp_font_weight'      => $cswp_font_weight,
 				'cswp_text_color'       => $cswp_text_color,
@@ -249,8 +291,26 @@ class CS_Loader {
 				'cswp_border_style'     => $cswp_border_style,
 				'cswp_border_color'     => $cswp_border_color,
 				'cswp_border_unit'      => $cswp_border_unit,
+				'cswp_border_style'     => $cswp_border_style,
+
+				'cswp_hover_color'      => $cswp_hover_color,
+				'cswp_text_hover_color' => $cswp_text_hover_color,
+
+				'cswp_active_button_background_color' => $cswp_active_button_background_color,
+				'cswp_icon_align'       => $cswp_icon_align,
+				'cswp_icon_width'     => $cswp_icon_width,
+				'cswp_icon_height'    => $cswp_icon_height,
+
+				'cswp_icon'          => $cswp_icon,
+				// 'cswp'               => $cswp_button,
+
+				// 'cswp_iconUSD'          => $cswp_iconUSD,
+				// 'cswp_iconEUR'          => $cswp_iconEUR,
+				// 'cswp_iconAUD'          => $cswp_iconAUD,
+				// 'cswp_iconINR'          => $cswp_iconINR,
 			);
 			update_option( 'cswp_style_form_data', $save );
+			
 		}
 	}
 	/**
@@ -487,9 +547,17 @@ class CS_Loader {
 	 * @return void
 	 */
 	public function load_backend_script() {
-
+		$cswp_get_button_value = $this->cswp_load_currency_button_data();
+		// var_dump($cswp_get_button_value);
+		// wp_die();
 		wp_register_script( 'cswp-backend-script', CSWP_PLUGIN_URL . 'assets/js/exchange.js', array( 'jquery' ), CSWP_CURRENCY_SWITCHER_VER, true );
-
+		wp_enqueue_media();
+        wp_register_script('cswp-image-upload', CSWP_PLUGIN_URL .'assets/js/cs_image_upload.js', array('jquery'));
+        wp_enqueue_script('cswp-image-upload');
+        wp_localize_script('cswp-image-upload', 'cswp_image_upload_vars', array(
+			'cswp_get_button_value' => $cswp_get_button_value
+		)
+	);
 		wp_enqueue_script( 'cswp-backend-script' );
 		wp_enqueue_style( 'cswp-style', CSWP_PLUGIN_URL . '/assets/css/cs-styles.css', '', CSWP_CURRENCY_SWITCHER_VER );
 
@@ -511,6 +579,7 @@ class CS_Loader {
 
 		wp_register_style( 'cswp-style', CSWP_PLUGIN_URL . '/assets/css/buttonhide.css', CSWP_CURRENCY_SWITCHER_VER, true );
 		wp_register_script( 'cswp-script', CSWP_PLUGIN_URL . 'assets/js/cs-script.js', array( 'jquery' ), CSWP_CURRENCY_SWITCHER_VER, true );
+		wp_register_script( 'colorpickerscript', CSWP_PLUGIN_URL . 'assets/js/color-picker.js', array( 'jquery', 'wp-color-picker' ), CSWP_CURRENCY_SWITCHER_VER, true );
 
 		$cswp_get_form_value = self::cswp_load_all_data();
 		$cswp_manualrate     = self::cswp_load_manual_data();
@@ -571,7 +640,6 @@ class CS_Loader {
 		wp_localize_script( 'cswp-script', 'csVars', $currency_rate );
 	}
 }
-
 /**
  * Initialize the class only after all the plugins are loaded.
  *

@@ -62,9 +62,44 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 		 * @return array of $cswp_font_size_disp.
 		 */
 		public function cswp_styling_data() {
+			// global $wpdb;
+			// var_dump($wpdb->queries);
+			// wp_die();
+			// var_dump($cswp_button_type);
+			//  if ( 'dropdown' === $cswp_button_type ){
+			//  	.my-color-field {
+					    // pointer-events: none;
 
-			$cswp_get_form_value = get_option( 'cswp_style_form_data' );
-			// var_dump($cswp_get_form_value);
+// 			$cswp_get_display_type = get_option( 'cswp_form_data' );
+			
+// $cswp_button_type = (! empty( $cswp_get_display_type['cswp_button_type'] ) ? $cswp_get_display_type['cswp_button_type'] : '' );
+//   if ( 'dropdown' === $cswp_button_type ){
+//   
+//   	<style type="text/css">
+// 			 	.my-color-field {
+// 					    /*pointer-events: none;*/
+// 					}
+// 					    
+// 	}
+
+
+
+
+
+ 			$cswp_get_form_value = get_option( 'cswp_style_form_data' );
+ 			$cswp_icon = $cswp_get_form_value['cswp_icon'];
+ 		    $count = get_option('count'); 
+ 			// echo $count;
+ 			// wp_die();
+
+ 		// 	echo "<pre>";
+			// print_r($cswp_icon[0]);
+			// wp_die();
+
+			// foreach ($cswp_icon as $value) {
+			// 	$cswp_icon[$count];
+			// 	$count++;
+			// }
 			?>
 			<style type="text/css">
 			.cs-currency-buttons .cs-currency-name-dropdown {
@@ -72,9 +107,9 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 
 				font-weight: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_weight'] ) ? $cswp_get_form_value['cswp_font_weight'] : 100 ); ?>;
 
-				background: <?php echo ( ! empty( $cswp_get_form_value['cswp_background_color'] ) ? $cswp_get_form_value['cswp_background_color'] : '#eeeeee' ); ?>;
+				background: <?php echo ( ! empty( $cswp_get_form_value['cswp_background_color'] ) ? $cswp_get_form_value['cswp_background_color'] : 'unset' ); ?>;
 
-				color: <?php echo ( ! empty( $cswp_get_form_value['cswp_text_color'] ) ? $cswp_get_form_value['cswp_text_color'] : '#000' ); ?>;
+				color: <?php echo ( ! empty( $cswp_get_form_value['cswp_text_color'] ) ? $cswp_get_form_value['cswp_text_color'] : 'unset' ); ?>;
 
 				padding-top: 
 				<?php
@@ -107,8 +142,8 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 				border-radius:
 					<?php
 						echo ( ! empty( $cswp_get_form_value['cswp_border_radius'] ) ? $cswp_get_form_value['cswp_border_radius'] : 0 );
+					
 					?>px;
-					?>
 				;
 
 				border:
@@ -119,12 +154,21 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 						echo ' ';
 						echo ( ! empty( $cswp_get_form_value['cswp_border_style'] ) ? $cswp_get_form_value['cswp_border_style'] : 'none' );
 						echo ' ';
-						echo ( ! empty( $cswp_get_form_value['cswp_border_color'] ) ? $cswp_get_form_value['cswp_border_color'] : '#000' );
+						echo ( ! empty( $cswp_get_form_value['cswp_border_color'] ) ? $cswp_get_form_value['cswp_border_color'] : 'unset' );
 
 					?>
 				;
+
 			}
 
+			.cs-currency-buttons .cs-currency-name:hover{
+				    color:<?php echo ( ! empty( $cswp_get_form_value['cswp_text_hover_color'] ) ? $cswp_get_form_value['cswp_text_hover_color'] : 'unset');?>;
+				    background-color:<?php echo ( ! empty( $cswp_get_form_value['cswp_hover_color'] ) ? $cswp_get_form_value['cswp_hover_color'] : 'unset');?>;
+				}
+
+			.cs-currency-name-btn.cswpactive{
+				    background:<?php echo ( ! empty( $cswp_get_form_value['cswp_active_button_background_color'] ) ? $cswp_get_form_value['cswp_active_button_background_color'] : 'unset') ;?> !important;
+				}
 		
 			.cs-currency-buttons .cs-currency-name {
 
@@ -132,9 +176,9 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 
 				font-weight: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_weight'] ) ? $cswp_get_form_value['cswp_font_weight'] : 100 ); ?>;
 
-				background: <?php echo ( ! empty( $cswp_get_form_value['cswp_background_color'] ) ? $cswp_get_form_value['cswp_background_color'] : '#eeeeee' ); ?>;
+				background: <?php echo ( ! empty( $cswp_get_form_value['cswp_background_color'] ) ? $cswp_get_form_value['cswp_background_color'] : 'unset' ); ?>;
 
-				color: <?php echo ( ! empty( $cswp_get_form_value['cswp_text_color'] ) ? $cswp_get_form_value['cswp_text_color'] : '#000' ); ?>;
+				color: <?php echo ( ! empty( $cswp_get_form_value['cswp_text_color'] ) ? $cswp_get_form_value['cswp_text_color'] : 'unset' ); ?>;
 
 				padding-top: 
 				<?php
@@ -167,8 +211,8 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 				border-radius:
 					<?php
 						echo ( ! empty( $cswp_get_form_value['cswp_border_radius'] ) ? $cswp_get_form_value['cswp_border_radius'] : 0 );
+					
 					?>px;
-					?>
 				;
 
 				border:
@@ -179,20 +223,60 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 						echo ' ';
 						echo ( ! empty( $cswp_get_form_value['cswp_border_style'] ) ? $cswp_get_form_value['cswp_border_style'] : 'none' );
 						echo ' ';
-						echo ( ! empty( $cswp_get_form_value['cswp_border_color'] ) ? $cswp_get_form_value['cswp_border_color'] : '#000' );
+						echo ( ! empty( $cswp_get_form_value['cswp_border_color'] ) ? $cswp_get_form_value['cswp_border_color'] : 'unset' );
 
 					?>
 				;
 			}
 
+			.cswp_button_change .cs-currency-name-btn:hover{
+
+			background-color:<?php echo ( ! empty( $cswp_get_form_value['cswp_hover_color'] ) ? $cswp_get_form_value['cswp_hover_color'] : 'unset');?>;
+		}
+	
+			span.cs-currency-icon{
+			float:<?php echo ( ! empty( $cswp_get_form_value['cswp_icon_align'] ) ? $cswp_get_form_value['cswp_icon_align'] : 'left' ); ?>;
+
+		    width:<?php echo ( ! empty( $cswp_get_form_value['cswp_icon_width'] ) ? $cswp_get_form_value['cswp_icon_width'] : 10 ); ?>px;
+
+
+		    height:<?php echo ( ! empty( $cswp_get_form_value['cswp_icon_height'] ) ? $cswp_get_form_value['cswp_icon_height'] : 10 ); ?>px;
+
+		    content:"";
+
+		    background-repeat:no-repeat;
+			}
+
+			#cstoggletoEUR span.cs-currency-icon{
+			background-image: url(<?php echo ( ! empty( $cswp_icon[$count] ) ? $cswp_icon[$count] : '' ); ?>);
+			 $count++; 
+			}
+
+			#cstoggletoAUD span.cs-currency-icon{
+			background-image: url(<?php echo ( ! empty( $cswp_icon[$count] ) ? $cswp_icon[$count] : '' ); ?>);
+			$count++;
+			}
+
+			#cstoggletoINR span.cs-currency-icon{
+			background-image: url(<?php echo ( ! empty( $cswp_icon[$count] ) ? $cswp_icon[$count] : '' ); ?>);
+			$count++;
+			}
+
+			#cstoggletoUSD span.cs-currency-icon{
+			background-image: url(<?php echo ( ! empty( $cswp_icon[$count] ) ? $cswp_icon[$count] : '' ); ?>);
+			}
+
 			.cswp_button_change .cs-currency-name-btn {
+
+			    width:<?php echo ( ! empty( $cswp_get_form_value['cswp_button_width'] ) ? $cswp_get_form_value['cswp_button_width'] : 10 ); ?>px;
+
 				font-size: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 10 ); ?>px;
 
 				font-weight: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_weight'] ) ? $cswp_get_form_value['cswp_font_weight'] : 100 ); ?>;
 
-				background: <?php echo ( ! empty( $cswp_get_form_value['cswp_background_color'] ) ? $cswp_get_form_value['cswp_background_color'] : '#eeeeee' ); ?>;
+				background: <?php echo ( ! empty( $cswp_get_form_value['cswp_background_color'] ) ? $cswp_get_form_value['cswp_background_color'] : 'unset' ); ?>;
 
-				color: <?php echo ( ! empty( $cswp_get_form_value['cswp_text_color'] ) ? $cswp_get_form_value['cswp_text_color'] : '#000' ); ?>;
+				color: <?php echo ( ! empty( $cswp_get_form_value['cswp_text_color'] ) ? $cswp_get_form_value['cswp_text_color'] : 'unset' ); ?>;
 
 				padding-top: 
 				<?php
@@ -225,8 +309,8 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 				border-radius:
 					<?php
 						echo ( ! empty( $cswp_get_form_value['cswp_border_radius'] ) ? $cswp_get_form_value['cswp_border_radius'] : 0 );
+					
 					?>px;
-					?>
 				;
 
 				border:
@@ -237,10 +321,11 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 						echo ' ';
 						echo ( ! empty( $cswp_get_form_value['cswp_border_style'] ) ? $cswp_get_form_value['cswp_border_style'] : 'none' );
 						echo ' ';
-						echo ( ! empty( $cswp_get_form_value['cswp_border_color'] ) ? $cswp_get_form_value['cswp_border_color'] : '#000' );
+						echo ( ! empty( $cswp_get_form_value['cswp_border_color'] ) ? $cswp_get_form_value['cswp_border_color'] : 'unset' );
 
 					?>
 				;
+		}
 		}											
 
 
@@ -387,6 +472,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 															echo trim( $manual_button_text_value[3] );
 														}
 														?>
+														<span class="cs-currency-icon"></span>
 						</button>
 						<?php
 					}
