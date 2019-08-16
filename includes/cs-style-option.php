@@ -36,7 +36,6 @@ $cswp_text_color = ( ! empty( $cswp_value['cswp_text_color'] ) ? $cswp_value['cs
 $cswp_background_color = ( ! empty( $cswp_value['cswp_background_color'] ) ? $cswp_value['cswp_background_color'] : '' );
 
 $cswp_active_button_background_color = ( ! empty( $cswp_value['cswp_active_button_background_color'] ) ? $cswp_value['cswp_active_button_background_color'] : '');
-// var_dump($cswp_active_button_background_color);
 
 $cswp_padding_top = ( ! empty( $cswp_value['cswp_padding_top'] ) ? $cswp_value['cswp_padding_top'] : 0 );
 
@@ -62,44 +61,7 @@ $cswp_border_style = ( ! empty( $cswp_value['cswp_border_style'] ) ? $cswp_value
 
 $cswp_icon_align = ( ! empty( $cswp_value['cswp_icon_align'] ) ? $cswp_value['cswp_icon_align'] : 'left' );
 
-
-
-// $cswp_iconUSD = ( ! empty( $cswp_value['cswp_iconUSD'] ) ? $cswp_value['cswp_iconUSD'] : '' );
-// $cswp_iconAUD = ( ! empty( $cswp_value['cswp_iconAUD'] ) ? $cswp_value['cswp_iconAUD'] : '' );
-// $cswp_iconEUR = ( ! empty( $cswp_value['cswp_iconEUR'] ) ? $cswp_value['cswp_iconEUR'] : '' );
-// $cswp_iconINR = ( ! empty( $cswp_value['cswp_iconINR'] ) ? $cswp_value['cswp_iconINR'] : '' );
-// foreach ($cswp_button as $cswp_button_value ) {
-
-//$cswp_icon = ( ! empty( $cswp_value['cswp_icon'] ) ? $cswp_value['cswp_icon'] : '' );
-	//var_dump( $cswp_value );
-
-			// }
-	//$cswp_icon = ( ! empty( $cswp_value['cswp_icon'] ) ? $cswp_value['cswp_icon'] : '' );
-		// foreach ($cswp_button as $cswp_button_value ) {
-
-		// 		$cswp_icon = ! empty( $_POST['cswp_icon'.$cswp_button_value] ) ? sanitize_url( $_POST['cswp_icon'.$cswp_button_value] ) : '';
-				$cswp_icon = $cswp_value['cswp_icon'];
-				// foreach ( $cswp_icon as $value ){
-				// 
-				// 	<img src="<?php echo $cswp_icon[$value] " style="height:30px;width:30px;">
-				// 	
-				// }
-
-				// var_dump($cswp_icon);
-				
-		// // 		
-				//var_dump( $cswp_icon);
-
-			// }
-// $cswp_array_option = array();
-
-// array_push($cswp_array_option,$cswp_button);
-// var_dump($cswp_array_option);
-// // var_dump( $cswp_iconEUR );
-// var_dump( $cswp_iconAUR );
-// var_dump( $cswp_iconINR );
-
-
+$cswp_icon = $cswp_value['cswp_icon'];
 ?>
 <!-- Html code for frontend -->
 <form method="post" name="cca_settings_form">
@@ -413,47 +375,19 @@ $cswp_icon_align = ( ! empty( $cswp_value['cswp_icon_align'] ) ? $cswp_value['cs
 				<label for="CSWPUploadIcon"> <?php esc_attr_e( 'Upload Icon', 'advanced-currency-switcher' ); ?> :</label>
 			</th>
 			<td>
-			<!-- <ul>
-				<input id="upload_imageUSD" type="text" size="36" name="cswp_iconUSD" value="$cswp_iconUSD" />
-			    <input id="upload_image_buttonUSD" class="buttonUSD" type="button" value="Upload Image" />
-			    <br/>Enter a URL or upload an image
-				</label>
-			</ul>
-			<ul>
-				<input id="upload_imageAUD" type="text" size="36" name="cswp_iconAUD" value="$cswp_iconAUD" />
-			    <input id="upload_image_buttonAUD" class="buttonAUD" type="button" value="Upload Image" />
-			    <br/>Enter a URL or upload an image
-				</label>
-			</ul>
-			<ul>
-				<input id="upload_imageEUR" type="text" size="36" name="cswp_iconEUR" value="$cswp_iconEUR" />
-			    <input id="upload_image_buttonEUR" class="buttonEUR" type="button" value="Upload Image" />
-			    <br/>Enter a URL or upload an image
-				</label>
-			</ul>
-			<ul>
-				
-
-
-
-				<input id="upload_imageINR" type="text" size="36" name="cswp_iconINR" value="$cswp_iconINR" />
-			    <input id="upload_image_buttonINR" class="buttonINR" type="button" value="Upload Image" />
-			    <br/>Enter a URL or upload an image
-				</label>
-			</ul> -->
 			<?php $count = 0; foreach ( $cswp_button as $cswp_button_value ){ esc_attr_e( $cswp_button_value );  ?>	
+			<?php $cswp_icon[] += is_numeric($cswp_icon[$count]);?>
 			<ul>
 				<img src="<?php echo $cswp_icon[$count] ?>" style="height:30px;width:30px;">
-				<input id="upload_image<?php echo $cswp_button_value ?>" type="text" size="0" name="cswp_icon<?php echo $cswp_button_value ?>" value="<?php //echo $cswp_icon[$count]; ?>" />
+				<input id="upload_image<?php echo $cswp_button_value ?>" type="text" size="0" name="cswp_icon<?php echo $cswp_button_value ?>" value="<?php echo $cswp_icon[$count]; ?>" />
 			    <input id="upload_image_button<?php echo $cswp_button_value ?>" class="button" type="button" value="Upload Image" />
 			    <br/>Enter a URL or upload an image
 				</label>
 			</ul>
 				<?php update_option('count',$count);$count++;} ?>
+				<?php update_option('cswp_iconx',$cswp_icon); ?>
 		</td>
-		</tr>
-		<!-- <?php $g //= get_option('count'); 
-		//echo $g; ?> -->
+		</tr>	
 		<tr>
 			<th>
 				<?php

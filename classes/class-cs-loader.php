@@ -249,29 +249,12 @@ class CS_Loader {
 
 			$cswp_button = get_option( 'cswp_currency_button_type' );
 
-			// $cswp_iconUSD = ! empty( $_POST['cswp_iconUSD'] ) ? sanitize_url( $_POST['cswp_iconUSD'] ) : '';
-
-			// $cswp_iconAUD = ! empty( $_POST['cswp_iconAUD'] ) ? sanitize_url( $_POST['cswp_iconAUD'] ) : '';
-
-			// $cswp_iconEUR = ! empty( $_POST['cswp_iconEUR'] ) ? sanitize_url( $_POST['cswp_iconEUR'] ) : '';
-
-			// $cswp_iconINR = ! empty( $_POST['cswp_iconINR'] ) ? sanitize_url( $_POST['cswp_iconINR'] ) : '';
-
-			// $cswp_array_option = array();
-
-			// array_push($cswp_array_option,$cswp_button);
 			$cswp_icon = array();
 
 			foreach ($cswp_button as $cswp_button_value ) {
-				// var_dump($_POST['cswp_icon'.$cswp_button_value]);
 				$cswp_icon_list = ! empty( $_POST['cswp_icon'.$cswp_button_value] ) ? sanitize_url( $_POST['cswp_icon'.$cswp_button_value] ) : '';
 				array_push($cswp_icon, $cswp_icon_list);
 			}
-			
-			
-			// $cswp_icon3 = sanitize_file_name( $_POST['cswp_icon3'] );
-
-			// $cswp_icon4 = sanitize_file_name( $_POST['cswp_icon4'] );
 
 			$save = array(
 				'cswp_button_width'     => $cswp_button_width,
@@ -302,12 +285,6 @@ class CS_Loader {
 				'cswp_icon_height'    => $cswp_icon_height,
 
 				'cswp_icon'          => $cswp_icon,
-				// 'cswp'               => $cswp_button,
-
-				// 'cswp_iconUSD'          => $cswp_iconUSD,
-				// 'cswp_iconEUR'          => $cswp_iconEUR,
-				// 'cswp_iconAUD'          => $cswp_iconAUD,
-				// 'cswp_iconINR'          => $cswp_iconINR,
 			);
 			update_option( 'cswp_style_form_data', $save );
 			

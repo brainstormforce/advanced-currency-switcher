@@ -62,44 +62,10 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 		 * @return array of $cswp_font_size_disp.
 		 */
 		public function cswp_styling_data() {
-			// global $wpdb;
-			// var_dump($wpdb->queries);
-			// wp_die();
-			// var_dump($cswp_button_type);
-			//  if ( 'dropdown' === $cswp_button_type ){
-			//  	.my-color-field {
-					    // pointer-events: none;
-
-// 			$cswp_get_display_type = get_option( 'cswp_form_data' );
-			
-// $cswp_button_type = (! empty( $cswp_get_display_type['cswp_button_type'] ) ? $cswp_get_display_type['cswp_button_type'] : '' );
-//   if ( 'dropdown' === $cswp_button_type ){
-//   
-//   	<style type="text/css">
-// 			 	.my-color-field {
-// 					    /*pointer-events: none;*/
-// 					}
-// 					    
-// 	}
-
-
-
-
-
  			$cswp_get_form_value = get_option( 'cswp_style_form_data' );
  			$cswp_icon = $cswp_get_form_value['cswp_icon'];
  		    $count = get_option('count'); 
- 			// echo $count;
- 			// wp_die();
-
- 		// 	echo "<pre>";
-			// print_r($cswp_icon[0]);
-			// wp_die();
-
-			// foreach ($cswp_icon as $value) {
-			// 	$cswp_icon[$count];
-			// 	$count++;
-			// }
+ 		    $cswp_iconx = get_option('cswp_iconx');
 			?>
 			<style type="text/css">
 			.cs-currency-buttons .cs-currency-name-dropdown {
@@ -248,22 +214,22 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			}
 
 			#cstoggletoEUR span.cs-currency-icon{
-			background-image: url(<?php echo ( ! empty( $cswp_icon[$count] ) ? $cswp_icon[$count] : '' ); ?>);
+			background-image: url(<?php echo ( ! empty( $cswp_iconx[1] ) ? $cswp_iconx[1] : '' ); ?>);
 			 $count++; 
 			}
 
 			#cstoggletoAUD span.cs-currency-icon{
-			background-image: url(<?php echo ( ! empty( $cswp_icon[$count] ) ? $cswp_icon[$count] : '' ); ?>);
+			background-image: url(<?php echo ( ! empty( $cswp_iconx[2] ) ? $cswp_iconx[2] : '' ); ?>);
 			$count++;
 			}
 
 			#cstoggletoINR span.cs-currency-icon{
-			background-image: url(<?php echo ( ! empty( $cswp_icon[$count] ) ? $cswp_icon[$count] : '' ); ?>);
+			background-image: url(<?php echo ( ! empty( $cswp_iconx[3] ) ? $cswp_iconx[3] : '' ); ?>);
 			$count++;
 			}
 
 			#cstoggletoUSD span.cs-currency-icon{
-			background-image: url(<?php echo ( ! empty( $cswp_icon[$count] ) ? $cswp_icon[$count] : '' ); ?>);
+			background-image: url(<?php echo ( ! empty( $cswp_iconx[0] ) ? $cswp_iconx[0] : '' ); ?>);
 			}
 
 			.cswp_button_change .cs-currency-name-btn {
