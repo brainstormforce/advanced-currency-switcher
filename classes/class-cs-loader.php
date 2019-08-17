@@ -190,12 +190,12 @@ class CS_Loader {
 		return $schedules;
 	}
 
-	 /**
-	  * Function that save style form data
-	  *
-	  * @since  1.0.0
-	  * @return void
-	  */
+	/**
+	 * Function that save style form data
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
 	public function cswp_style_form_data() {
 
 		if ( ! isset( $_POST['cs-style-form'] ) ) {
@@ -209,15 +209,15 @@ class CS_Loader {
 
 			$cswp_font_weight = ! empty( $_POST['cswp_font_weight'] ) ? sanitize_text_field( $_POST['cswp_font_weight'] ) : '';
 
-			$cswp_text_color = sanitize_hex_color( $_POST['cswp_text_color'] );
+			$cswp_text_color = ! empty( $_POST['cswp_text_color'] ) ? sanitize_hex_color( $_POST['cswp_text_color'] ) : '';
 
-			$cswp_hover_color = sanitize_hex_color( $_POST['cswp_hover_color'] );
+			$cswp_hover_color = ! empty( $_POST['cswp_hover_color'] ) ? sanitize_hex_color( $_POST['cswp_hover_color'] ) : '';
 
-			$cswp_text_hover_color = sanitize_hex_color( $_POST['cswp_text_hover_color'] );
+			$cswp_text_hover_color = ! empty( $_POST['cswp_text_hover_color'] ) ? sanitize_hex_color( $_POST['cswp_text_hover_color'] ) : '';
 
-			$cswp_background_color = sanitize_hex_color( $_POST['cswp_background_color'] );
+			$cswp_background_color = ! empty( $_POST['cswp_background_color'] ) ? sanitize_hex_color( $_POST['cswp_background_color'] ) : '';
 
-			$cswp_active_button_background_color = sanitize_hex_color( $_POST['cswp_active_button_background_color'] );
+			$cswp_active_button_background_color = ! empty( $_POST['cswp_active_button_background_color'] ) ? sanitize_hex_color( $_POST['cswp_active_button_background_color'] ) : '';
 
 			$cswp_padding_top = ( ! empty( $_POST['cswp_padding_top'] ) ? floatval( $_POST['cswp_padding_top'] ) : 0 );
 
@@ -233,15 +233,15 @@ class CS_Loader {
 
 			$cswp_border_color = ( ! empty( $_POST['cswp_border_color'] ) ? sanitize_hex_color( $_POST['cswp_border_color'] ) : '' );
 
-			$cswp_icon_width = ( ! empty( $_POST['cswp_icon_width'] ) ? $_POST['cswp_icon_width'] : 10 );
+			$cswp_icon_width = ( ! empty( $_POST['cswp_icon_width'] ) ? sanitize_text_field( $_POST['cswp_icon_width'] ) : 10 );
 
-			$cswp_icon_height = ( ! empty( $_POST['cswp_icon_height'] ) ? $_POST['cswp_icon_height'] : 10 );
+			$cswp_icon_height = ( ! empty( $_POST['cswp_icon_height'] ) ? sanitize_text_field( $_POST['cswp_icon_height'] ) : 10 );
 
-			$cswp_padding_unit = sanitize_text_field( $_POST['cswp_padding_unit'] );
+			$cswp_padding_unit = ( ! empty( $_POST['cswp_padding_unit'] ) ? sanitize_text_field( $_POST['cswp_padding_unit'] ) : '' );
 
-			$cswp_border_unit = sanitize_text_field( $_POST['cswp_border_unit'] );
+			$cswp_border_unit = ( ! empty( $_POST['cswp_border_unit'] ) ? sanitize_text_field( $_POST['cswp_border_unit'] ) : '' );
 
-			$cswp_border_style = sanitize_text_field( $_POST['cswp_border_style'] );
+			$cswp_border_style = ( ! empty( $_POST['cswp_border_style'] ) ? sanitize_text_field( $_POST['cswp_border_style'] ) : '' );
 
 			$cswp_border_radius = ! empty( $_POST['cswp_border_radius'] ) ? sanitize_text_field( $_POST['cswp_border_radius'] ) : '';
 
@@ -249,45 +249,51 @@ class CS_Loader {
 
 			$cswp_button = get_option( 'cswp_currency_button_type' );
 
-			$cswp_icon = array();
-
-			foreach ($cswp_button as $cswp_button_value ) {
-				$cswp_icon_list = ! empty( $_POST['cswp_icon'.$cswp_button_value] ) ? sanitize_url( $_POST['cswp_icon'.$cswp_button_value] ) : '';
-				array_push($cswp_icon, $cswp_icon_list);
+			$cswp_icon_array = array(
+				'USD' => '',
+				'AUD' => '',
+				'EUR' => '',
+				'INR' => '',
+			);
+			$cswp_icon       = array();
+			foreach ( $cswp_button as $cswp_button_value ) {
+				$cswp_icon_list                        = ! empty( $_POST[ 'cswp_icon' . $cswp_button_value ] ) ? esc_url_raw( $_POST[ 'cswp_icon' . $cswp_button_value ] ) : '';
+				$cswp_icon_array[ $cswp_button_value ] = $cswp_icon_list;
+				array_push( $cswp_icon, $cswp_icon_list );
 			}
-
 			$save = array(
-				'cswp_button_width'     => $cswp_button_width,
-				'cswp_font_size'        => $cswp_font_size,
-				'cswp_font_weight'      => $cswp_font_weight,
-				'cswp_text_color'       => $cswp_text_color,
-				'cswp_background_color' => $cswp_background_color,
+				'cswp_button_width'                   => $cswp_button_width,
+				'cswp_font_size'                      => $cswp_font_size,
+				'cswp_font_weight'                    => $cswp_font_weight,
+				'cswp_text_color'                     => $cswp_text_color,
+				'cswp_background_color'               => $cswp_background_color,
 
-				'cswp_padding_top'      => $cswp_padding_top,
-				'cswp_padding_right'    => $cswp_padding_right,
-				'cswp_padding_bottom'   => $cswp_padding_bottom,
-				'cswp_padding_left'     => $cswp_padding_left,
-				'cswp_padding_unit'     => $cswp_padding_unit,
+				'cswp_padding_top'                    => $cswp_padding_top,
+				'cswp_padding_right'                  => $cswp_padding_right,
+				'cswp_padding_bottom'                 => $cswp_padding_bottom,
+				'cswp_padding_left'                   => $cswp_padding_left,
+				'cswp_padding_unit'                   => $cswp_padding_unit,
 
-				'cswp_border_radius'    => $cswp_border_radius,
-				'cswp_border_width'     => $cswp_border_width,
-				'cswp_border_style'     => $cswp_border_style,
-				'cswp_border_color'     => $cswp_border_color,
-				'cswp_border_unit'      => $cswp_border_unit,
-				'cswp_border_style'     => $cswp_border_style,
+				'cswp_border_radius'                  => $cswp_border_radius,
+				'cswp_border_width'                   => $cswp_border_width,
+				'cswp_border_style'                   => $cswp_border_style,
+				'cswp_border_color'                   => $cswp_border_color,
+				'cswp_border_unit'                    => $cswp_border_unit,
+				'cswp_border_style'                   => $cswp_border_style,
 
-				'cswp_hover_color'      => $cswp_hover_color,
-				'cswp_text_hover_color' => $cswp_text_hover_color,
+				'cswp_hover_color'                    => $cswp_hover_color,
+				'cswp_text_hover_color'               => $cswp_text_hover_color,
 
 				'cswp_active_button_background_color' => $cswp_active_button_background_color,
-				'cswp_icon_align'       => $cswp_icon_align,
-				'cswp_icon_width'     => $cswp_icon_width,
-				'cswp_icon_height'    => $cswp_icon_height,
+				'cswp_icon_align'                     => $cswp_icon_align,
+				'cswp_icon_width'                     => $cswp_icon_width,
+				'cswp_icon_height'                    => $cswp_icon_height,
 
-				'cswp_icon'          => $cswp_icon,
+				'cswp_icon'                           => $cswp_icon,
+				'cswp_icon_array'                     => $cswp_icon_array,
 			);
 			update_option( 'cswp_style_form_data', $save );
-			
+
 		}
 	}
 	/**
@@ -525,16 +531,19 @@ class CS_Loader {
 	 */
 	public function load_backend_script() {
 		$cswp_get_button_value = $this->cswp_load_currency_button_data();
-		// var_dump($cswp_get_button_value);
-		// wp_die();
 		wp_register_script( 'cswp-backend-script', CSWP_PLUGIN_URL . 'assets/js/exchange.js', array( 'jquery' ), CSWP_CURRENCY_SWITCHER_VER, true );
 		wp_enqueue_media();
-        wp_register_script('cswp-image-upload', CSWP_PLUGIN_URL .'assets/js/cs_image_upload.js', array('jquery'));
-        wp_enqueue_script('cswp-image-upload');
-        wp_localize_script('cswp-image-upload', 'cswp_image_upload_vars', array(
-			'cswp_get_button_value' => $cswp_get_button_value
-		)
-	);
+		wp_register_script( 'cswp-image-upload', CSWP_PLUGIN_URL . 'assets/js/cs_image_upload.js', array( 'jquery' ), CSWP_CURRENCY_SWITCHER_VER, true );
+		wp_enqueue_script( 'cswp-image-upload' );
+		wp_localize_script(
+			'cswp-image-upload',
+			'cswp_image_upload_vars',
+			array(
+				'cswp_get_button_value' => $cswp_get_button_value,
+			),
+			true
+		);
+		wp_register_script( 'colorpickerscript', CSWP_PLUGIN_URL . 'assets/js/color-picker.js', array( 'jquery', 'wp-color-picker' ), CSWP_CURRENCY_SWITCHER_VER, true );
 		wp_enqueue_script( 'cswp-backend-script' );
 		wp_enqueue_style( 'cswp-style', CSWP_PLUGIN_URL . '/assets/css/cs-styles.css', '', CSWP_CURRENCY_SWITCHER_VER );
 
@@ -556,7 +565,6 @@ class CS_Loader {
 
 		wp_register_style( 'cswp-style', CSWP_PLUGIN_URL . '/assets/css/buttonhide.css', CSWP_CURRENCY_SWITCHER_VER, true );
 		wp_register_script( 'cswp-script', CSWP_PLUGIN_URL . 'assets/js/cs-script.js', array( 'jquery' ), CSWP_CURRENCY_SWITCHER_VER, true );
-		wp_register_script( 'colorpickerscript', CSWP_PLUGIN_URL . 'assets/js/color-picker.js', array( 'jquery', 'wp-color-picker' ), CSWP_CURRENCY_SWITCHER_VER, true );
 
 		$cswp_get_form_value = self::cswp_load_all_data();
 		$cswp_manualrate     = self::cswp_load_manual_data();

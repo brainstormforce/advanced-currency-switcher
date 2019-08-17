@@ -1,6 +1,6 @@
 <?php
 /**
- * Setting Front End Doc comment
+ * Setting Style Option.
  *
  * @category PHP
  * @package  Currency_Switcher
@@ -12,7 +12,7 @@
 // Store form inputs values in variable.
 wp_enqueue_script( 'colorpickerscript' );
 
-$cswp_value  = get_option( 'cswp_style_form_data' );
+$cswp_value = get_option( 'cswp_style_form_data' );
 
 $cswp_button = get_option( 'cswp_currency_button_type' );
 
@@ -35,7 +35,7 @@ $cswp_text_color = ( ! empty( $cswp_value['cswp_text_color'] ) ? $cswp_value['cs
 
 $cswp_background_color = ( ! empty( $cswp_value['cswp_background_color'] ) ? $cswp_value['cswp_background_color'] : '' );
 
-$cswp_active_button_background_color = ( ! empty( $cswp_value['cswp_active_button_background_color'] ) ? $cswp_value['cswp_active_button_background_color'] : '');
+$cswp_active_button_background_color = ( ! empty( $cswp_value['cswp_active_button_background_color'] ) ? $cswp_value['cswp_active_button_background_color'] : '' );
 
 $cswp_padding_top = ( ! empty( $cswp_value['cswp_padding_top'] ) ? $cswp_value['cswp_padding_top'] : 0 );
 
@@ -375,17 +375,23 @@ $cswp_icon = $cswp_value['cswp_icon'];
 				<label for="CSWPUploadIcon"> <?php esc_attr_e( 'Upload Icon', 'advanced-currency-switcher' ); ?> :</label>
 			</th>
 			<td>
-			<?php $count = 0; foreach ( $cswp_button as $cswp_button_value ){ esc_attr_e( $cswp_button_value );  ?>	
-			<?php $cswp_icon[] += is_numeric($cswp_icon[$count]);?>
+			<?php
+				$count = 0;
+			foreach ( $cswp_button as $cswp_button_value ) {
+				?>
+				<?php $cswp_icon[] += is_numeric( $cswp_icon[ $count ] ); ?>
 			<ul>
-				<img src="<?php echo $cswp_icon[$count] ?>" style="height:30px;width:30px;">
-				<input id="upload_image<?php echo $cswp_button_value ?>" type="text" size="0" name="cswp_icon<?php echo $cswp_button_value ?>" value="<?php echo $cswp_icon[$count]; ?>" />
-			    <input id="upload_image_button<?php echo $cswp_button_value ?>" class="button" type="button" value="Upload Image" />
-			    <br/>Enter a URL or upload an image
+				<img src="<?php echo $cswp_icon[ $count ]; ?>" style="height:30px;width:30px;">
+				<input id="upload_image<?php echo $cswp_button_value; ?>" type="text" size="0" name="cswp_icon<?php echo $cswp_button_value; ?>" value="<?php echo $cswp_icon[ $count ]; ?>" />
+				<input id="upload_image_button<?php echo $cswp_button_value; ?>" class="button" type="button" value="Upload Image" />
+				<br/>Enter a URL or upload an image
 				</label>
 			</ul>
-				<?php update_option('count',$count);$count++;} ?>
-				<?php update_option('cswp_iconx',$cswp_icon); ?>
+						<?php
+						update_option( 'count', $count );
+						$count++;}
+			?>
+				<?php update_option( 'cswp_iconx', $cswp_icon ); ?>
 		</td>
 		</tr>	
 		<tr>
