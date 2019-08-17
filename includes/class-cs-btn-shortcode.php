@@ -272,9 +272,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 				border-radius:
 					<?php
 						echo ( ! empty( $cswp_get_form_value['cswp_border_radius'] ) ? $cswp_get_form_value['cswp_border_radius'] : 0 );
-
-					?>
-					px;
+					?>px;
 				;
 
 				border:

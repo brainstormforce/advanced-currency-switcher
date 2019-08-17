@@ -66,7 +66,245 @@ $cswp_icon = $cswp_value['cswp_icon'];
 <!-- Html code for frontend -->
 <form method="post" name="cca_settings_form">
 	<!--  set the html code for select base currency and select currency type -->
+	<div id="cswp_style_container" class="cswp_style_container">
 	<table class="form-table" >
+		<tr >
+			<th scope="row">
+				<label for="CSWPFontSize"><?php esc_attr_e( 'Font Size', 'advanced-currency-switcher' ); ?>  :</label>
+			</th>
+			<td>
+			<?php
+			echo '<input type="number" name="cswp_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_font_size ) . '"  >&nbsp px';
+			?>
+			<p class="description">
+			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
+			</p>  
+			</td>
+		</tr>
+		<tr >
+			<th scope="row">
+				<label for="CSWPFontWeight"><?php esc_attr_e( 'Font Weight', 'advanced-currency-switcher' ); ?>  :</label>
+			</th>
+			<td>
+			<?php
+			echo '<input type="number" name="cswp_font_weight" max="900" min="100" class="small-text" value="' . esc_attr( $cswp_font_weight ) . '"  >&nbsp px';
+			?>
+			<p class="description">
+			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
+			</p>  
+			</td>
+		</tr>
+		<tr>
+		<th scope="row">
+		<label for="CSWPpadding"><?php esc_attr_e( 'Padding', 'advanced-currency-switcher' ); ?> :</label>
+		</th>
+			<td>
+				<?php
+				echo '<input step="any" id="cswp_padding" type="number" name="cswp_padding_top" class="small-text" value="' . esc_attr( $cswp_padding_top ) . '" >';
+				echo '<input step="any" id="cswp_padding" type="number" name="cswp_padding_right" class="small-text" value="' . esc_attr( $cswp_padding_right ) . '" >';
+				echo '<input step="any" id="cswp_padding" type="number" name="cswp_padding_bottom" class="small-text" value="' . esc_attr( $cswp_padding_bottom ) . '" >';
+				echo '<input step="any" id="cswp_padding" type="number" name="cswp_padding_left" class="small-text" value="' . esc_attr( $cswp_padding_left ) . '" >';
+				?>
+			<select name="cswp_padding_unit">
+				<?php
+				if ( 'px' === $cswp_padding_unit ) {
+
+					echo '<option selected value="px">px</option>';
+				} else {
+
+					echo '<option  value="px">px</option>';
+				}
+				if ( 'em' === $cswp_padding_unit ) {
+
+					echo '<option selected value="em">em</option>';
+				} else {
+
+					echo '<option  value="em">em</option>';
+				}
+				?>
+			</select>
+			<p class="description cswp-label-style">
+				<label class="cswp-top">TOP</label>
+				<label class="cswp-right">RIGHT</label>
+				<label class="cswp-bottom">BOTTOM</label>
+				<label class="cswp-left">LEFT</label>                  
+			</p> 
+			</td> 
+		</tr>
+		<tr>
+		<th scope="row">
+		<label for="CSWPBorder"><?php esc_attr_e( 'Border Style', 'advanced-currency-switcher' ); ?> :</label>
+		</th>
+		<td>
+				<select name="cswp_border_style">
+				<?php
+				if ( 'none' === $cswp_border_style ) {
+
+					echo '<option selected value="none">none</option>';
+				} else {
+
+					echo '<option  value="none">none</option>';
+				}
+				if ( 'solid' === $cswp_border_style ) {
+
+					echo '<option selected value="solid">solid</option>';
+				} else {
+
+					echo '<option  value="solid">solid</option>';
+				}
+				if ( 'double' === $cswp_border_style ) {
+
+					echo '<option selected value="double">double</option>';
+				} else {
+
+					echo '<option  value="double">double</option>';
+				}
+				?>
+				</select>
+			</td> 
+		</tr>
+		<tr>
+		<th scope="row">
+		<label for="CSWPBorder"><?php esc_attr_e( 'Border Width', 'advanced-currency-switcher' ); ?> :</label>
+		</th>
+			<td>
+				<?php
+				echo '<input step="any" id="cswp_border" type="number" name="cswp_border_width" class="small-text" value="' . esc_attr( $cswp_border_width ) . '" >';
+				?>
+				<select name="cswp_border_unit">
+				<?php
+				if ( 'px' === $cswp_border_unit ) {
+
+					echo '<option selected value="px">px</option>';
+				} else {
+
+					echo '<option  value="px">px</option>';
+				}
+				if ( 'em' === $cswp_border_unit ) {
+
+					echo '<option selected value="em">em</option>';
+				} else {
+
+					echo '<option  value="em">em</option>';
+				}
+				?>
+				</select>
+		</td>
+		</tr>
+		<tr >
+			<th scope="row">
+				<label for="CSWPFontSize"><?php esc_attr_e( 'Border Radius', 'advanced-currency-switcher' ); ?>  :</label>
+			</th>
+			<td>
+			<?php
+			echo '<input type="number" name="cswp_border_radius" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_border_radius ) . '"  >&nbsp px';
+			?>
+			<p class="description">
+			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
+			</p>  
+			</td>
+		</tr>
+		<tr>
+		<th scope="row">
+		<label for="CSWPBorder"><?php esc_attr_e( 'Border Color', 'advanced-currency-switcher' ); ?> :</label>
+		</th>
+			<td>
+				<?php
+				echo '<input  name="cswp_border_color" class="my-color-field" value="' . esc_attr( $cswp_border_color ) . '" >';
+				?>
+		</td>
+		</tr>
+		<tr >
+			<th scope="row">
+				<label for="CSWPTextColor"> <?php esc_attr_e( 'Text Color', 'advanced-currency-switcher' ); ?> :</label>
+			</th>  
+			<td>
+			<?php
+			if ( isset( $cswp_text_color ) ) {
+
+				echo '<input name="cswp_text_color" class="my-color-field" value="' . esc_attr( $cswp_text_color ) . '">';
+			} else {
+				?>
+			<input name="cswp_text_color" class="my-color-field" value="#333333">
+				<?php
+			}
+			?>
+
+			</td>
+		</tr>
+		<tr>
+			<th scope="row"> 
+				<label for="CSWPBackgroundColor"> <?php esc_attr_e( 'Background Color', 'advanced-currency-switcher' ); ?> :</label>
+			</th>
+			<td>
+			<?php
+			echo '<div id="cswp_rt_bg">';
+			if ( isset( $cswp_background_color ) ) {
+
+				echo '<input  name="cswp_background_color" class="my-color-field" value="' . esc_attr( $cswp_background_color ) . '">';
+			} else {
+				?>
+			<input  name="cswp_background_color" class="my-color-field" value="#eeeeee">
+				<?php
+			}
+			echo '</div>';
+			?>
+			</td>
+		</tr>
+		<tr >
+			<th scope="row">
+				<label for="CSWPColor"> <?php esc_attr_e( 'Toggle/Button Background Hover Color', 'advanced-currency-switcher' ); ?> :</label>
+			</th>  
+			<td>
+			<?php
+			if ( isset( $cswp_hover_color ) ) {
+
+				echo '<input name="cswp_hover_color" class="my-color-field" value="' . esc_attr( $cswp_hover_color ) . '">';
+			} else {
+				?>
+			<input name="cswp_hover_color" class="my-color-field" value="#333333">
+				<?php
+			}
+			?>
+			</td>
+		</tr>
+		<tr >
+			<th scope="row">
+				<label for="CSWPColor"> <?php esc_attr_e( 'Toggle/Button Text Hover Color', 'advanced-currency-switcher' ); ?> :</label>
+			</th>  
+			<td>
+			<?php
+			if ( isset( $cswp_text_hover_color ) ) {
+
+				echo '<input name="cswp_text_hover_color" class="my-color-field" value="' . esc_attr( $cswp_text_hover_color ) . '">';
+			} else {
+				?>
+			<input name="cswp_text_hover_color" class="my-color-field" value="#333333">
+				<?php
+			}
+			?>
+			</td>
+		</tr>
+		
+		<tr>
+			<th scope="row"> 
+				<label for="CSWPActiveButtonBackgroundColor"> <?php esc_attr_e( 'Active Button Background Color', 'advanced-currency-switcher' ); ?> :</label>
+			</th>
+			<td>
+			<?php
+			echo '<div id="cswp_rt_bg">';
+			if ( isset( $cswp_active_button_background_color ) ) {
+
+				echo '<input  name="cswp_active_button_background_color" class="my-color-field" value="' . esc_attr( $cswp_active_button_background_color ) . '">';
+			} else {
+				?>
+			<input  name="cswp_active_button_background_color" class="my-color-field" value="#eeeeee">
+				<?php
+			}
+			echo '</div>';
+			?>
+			</td>
+		</tr>
 		<tr >
 			<th scope="row">
 				<label for="CSWPIconAlignment"><?php esc_attr_e( 'Icon Alignment', 'advanced-currency-switcher' ); ?>  :</label>
@@ -134,242 +372,6 @@ $cswp_icon = $cswp_value['cswp_icon'];
 			</p>  
 			</td>
 		</tr>
-		<tr >
-			<th scope="row">
-				<label for="CSWPFontSize"><?php esc_attr_e( 'Font Size', 'advanced-currency-switcher' ); ?>  :</label>
-			</th>
-			<td>
-			<?php
-			echo '<input type="number" name="cswp_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_font_size ) . '"  >&nbsp px';
-			?>
-			<p class="description">
-			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
-			</p>  
-			</td>
-		</tr>
-		<tr >
-			<th scope="row">
-				<label for="CSWPFontWeight"><?php esc_attr_e( 'Font Weight', 'advanced-currency-switcher' ); ?>  :</label>
-			</th>
-			<td>
-			<?php
-			echo '<input type="number" name="cswp_font_weight" max="900" min="100" class="small-text" value="' . esc_attr( $cswp_font_weight ) . '"  >&nbsp px';
-			?>
-			<p class="description">
-			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
-			</p>  
-			</td>
-		</tr>
-		<tr >
-			<th scope="row">
-				<label for="CSWPTextColor"> <?php esc_attr_e( 'Text Color', 'advanced-currency-switcher' ); ?> :</label>
-			</th>  
-			<td>
-			<?php
-			if ( isset( $cswp_text_color ) ) {
-
-				echo '<input name="cswp_text_color" class="my-color-field" value="' . esc_attr( $cswp_text_color ) . '">';
-			} else {
-				?>
-			<input name="cswp_text_color" class="my-color-field" value="#333333">
-				<?php
-			}
-			?>
-
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"> 
-				<label for="CSWPBackgroundColor"> <?php esc_attr_e( 'Background Color', 'advanced-currency-switcher' ); ?> :</label>
-			</th>
-			<td>
-			<?php
-			echo '<div id="cswp_rt_bg">';
-			if ( isset( $cswp_background_color ) ) {
-
-				echo '<input  name="cswp_background_color" class="my-color-field" value="' . esc_attr( $cswp_background_color ) . '">';
-			} else {
-				?>
-			<input  name="cswp_background_color" class="my-color-field" value="#eeeeee">
-				<?php
-			}
-			echo '</div>';
-			?>
-			</td>
-		</tr>
-		<tr>
-		<th scope="row">
-		<label for="CSWPpadding"><?php esc_attr_e( 'Padding', 'advanced-currency-switcher' ); ?> :</label>
-		</th>
-			<td>
-				<?php
-				echo '<input step="any" id="cswp_padding" type="number" name="cswp_padding_top" class="small-text" value="' . esc_attr( $cswp_padding_top ) . '" >';
-				echo '<input step="any" id="cswp_padding" type="number" name="cswp_padding_right" class="small-text" value="' . esc_attr( $cswp_padding_right ) . '" >';
-				echo '<input step="any" id="cswp_padding" type="number" name="cswp_padding_bottom" class="small-text" value="' . esc_attr( $cswp_padding_bottom ) . '" >';
-				echo '<input step="any" id="cswp_padding" type="number" name="cswp_padding_left" class="small-text" value="' . esc_attr( $cswp_padding_left ) . '" >';
-				?>
-			<select name="cswp_padding_unit">
-				<?php
-				if ( 'px' === $cswp_padding_unit ) {
-
-					echo '<option selected value="px">px</option>';
-				} else {
-
-					echo '<option  value="px">px</option>';
-				}
-				if ( 'em' === $cswp_padding_unit ) {
-
-					echo '<option selected value="em">em</option>';
-				} else {
-
-					echo '<option  value="em">em</option>';
-				}
-				?>
-			</select>
-			<p class="description cswp-label-style">
-				<label class="cswp-top">TOP</label>
-				<label class="cswp-right">RIGHT</label>
-				<label class="cswp-bottom">BOTTOM</label>
-				<label class="cswp-left">LEFT</label>                  
-			</p> 
-			</td> 
-		</tr>
-		<tr >
-			<th scope="row">
-				<label for="CSWPFontSize"><?php esc_attr_e( 'Border Radius', 'advanced-currency-switcher' ); ?>  :</label>
-			</th>
-			<td>
-			<?php
-			echo '<input type="number" name="cswp_border_radius" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_border_radius ) . '"  >&nbsp px';
-			?>
-			<p class="description">
-			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
-			</p>  
-			</td>
-		</tr>
-		<tr>
-		<th scope="row">
-		<label for="CSWPBorder"><?php esc_attr_e( 'Border Width', 'advanced-currency-switcher' ); ?> :</label>
-		</th>
-			<td>
-				<?php
-				echo '<input step="any" id="cswp_border" type="number" name="cswp_border_width" class="small-text" value="' . esc_attr( $cswp_border_width ) . '" >';
-				?>
-				<select name="cswp_border_unit">
-				<?php
-				if ( 'px' === $cswp_border_unit ) {
-
-					echo '<option selected value="px">px</option>';
-				} else {
-
-					echo '<option  value="px">px</option>';
-				}
-				if ( 'em' === $cswp_border_unit ) {
-
-					echo '<option selected value="em">em</option>';
-				} else {
-
-					echo '<option  value="em">em</option>';
-				}
-				?>
-				</select>
-		</td>
-		</tr>
-	<tr>
-		<th scope="row">
-		<label for="CSWPBorder"><?php esc_attr_e( 'Border Style', 'advanced-currency-switcher' ); ?> :</label>
-		</th>
-		<td>
-				<select name="cswp_border_style">
-				<?php
-				if ( 'none' === $cswp_border_style ) {
-
-					echo '<option selected value="none">none</option>';
-				} else {
-
-					echo '<option  value="none">none</option>';
-				}
-				if ( 'solid' === $cswp_border_style ) {
-
-					echo '<option selected value="solid">solid</option>';
-				} else {
-
-					echo '<option  value="solid">solid</option>';
-				}
-				if ( 'double' === $cswp_border_style ) {
-
-					echo '<option selected value="double">double</option>';
-				} else {
-
-					echo '<option  value="double">double</option>';
-				}
-				?>
-				</select>
-			</td> 
-		</tr>
-		<tr>
-		<th scope="row">
-		<label for="CSWPBorder"><?php esc_attr_e( 'Border Color', 'advanced-currency-switcher' ); ?> :</label>
-		</th>
-			<td>
-				<?php
-				echo '<input  name="cswp_border_color" class="my-color-field" value="' . esc_attr( $cswp_border_color ) . '" >';
-				?>
-		</td>
-		</tr>
-		<tr >
-			<th scope="row">
-				<label for="CSWPColor"> <?php esc_attr_e( 'Toggle/Button Background Hover Color', 'advanced-currency-switcher' ); ?> :</label>
-			</th>  
-			<td>
-			<?php
-			if ( isset( $cswp_hover_color ) ) {
-
-				echo '<input name="cswp_hover_color" class="my-color-field" value="' . esc_attr( $cswp_hover_color ) . '">';
-			} else {
-				?>
-			<input name="cswp_hover_color" class="my-color-field" value="#333333">
-				<?php
-			}
-			?>
-			</td>
-		</tr>
-		<tr >
-			<th scope="row">
-				<label for="CSWPColor"> <?php esc_attr_e( 'Toggle/Button Text Hover Color', 'advanced-currency-switcher' ); ?> :</label>
-			</th>  
-			<td>
-			<?php
-			if ( isset( $cswp_text_hover_color ) ) {
-
-				echo '<input name="cswp_text_hover_color" class="my-color-field" value="' . esc_attr( $cswp_text_hover_color ) . '">';
-			} else {
-				?>
-			<input name="cswp_text_hover_color" class="my-color-field" value="#333333">
-				<?php
-			}
-			?>
-			</td>
-		</tr>
-		<tr>
-			<th scope="row"> 
-				<label for="CSWPActiveButtonBackgroundColor"> <?php esc_attr_e( 'Active Button Background Color', 'advanced-currency-switcher' ); ?> :</label>
-			</th>
-			<td>
-			<?php
-			echo '<div id="cswp_rt_bg">';
-			if ( isset( $cswp_active_button_background_color ) ) {
-
-				echo '<input  name="cswp_active_button_background_color" class="my-color-field" value="' . esc_attr( $cswp_active_button_background_color ) . '">';
-			} else {
-				?>
-			<input  name="cswp_active_button_background_color" class="my-color-field" value="#eeeeee">
-				<?php
-			}
-			echo '</div>';
-			?>
-			</td>
-		</tr>
 		<tr>
 			<th scope="row">
 				<label for="CSWPUploadIcon"> <?php esc_attr_e( 'Upload Icon', 'advanced-currency-switcher' ); ?> :</label>
@@ -379,7 +381,7 @@ $cswp_icon = $cswp_value['cswp_icon'];
 				$count = 0;
 			foreach ( $cswp_button as $cswp_button_value ) {
 				?>
-				<?php $cswp_icon[] += is_numeric( $cswp_icon[ $count ] ); ?>
+				<?php $cswp_icon[] += is_numeric( ! empty( $cswp_icon[ $count ] ) ? $cswp_icon[ $count ] : 'dollar.png' ); ?>
 			<ul>
 				<img src="<?php echo $cswp_icon[ $count ]; ?>" style="height:30px;width:30px;">
 				<input id="upload_image<?php echo $cswp_button_value; ?>" type="text" size="0" name="cswp_icon<?php echo $cswp_button_value; ?>" value="<?php echo $cswp_icon[ $count ]; ?>" />
@@ -393,7 +395,8 @@ $cswp_icon = $cswp_value['cswp_icon'];
 			?>
 				<?php update_option( 'cswp_iconx', $cswp_icon ); ?>
 		</td>
-		</tr>	
+		</tr>
+	</div>	
 		<tr>
 			<th>
 				<?php
