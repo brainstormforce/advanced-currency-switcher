@@ -69,6 +69,8 @@ $apitext_aud = isset( $cswp_apirate_values['aud'] ) ? $cswp_apirate_values['aud'
 // Store Switcher Button value.
 $convertbtn = CS_Loader::cswp_load_currency_button_data();
 
+update_option( 'currencybtn', $convertbtn );
+
 $cswp_usd_button = isset( $convertbtn['USD'] ) ? $convertbtn['USD'] : '';
 
 $cswp_inr_button = isset( $convertbtn['INR'] ) ? $convertbtn['INR'] : '';
@@ -346,7 +348,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 		<tr>
 			<th>Display Type</th>
 			<td>
-				<select name="cswp_button_type" >
+				<select name="cswp_button_type" id="cswp_button_type">
 						<option value="dropdown" <?php selected( $cswp_button_type_value, 'dropdown' ); ?>>Drop Down</option>
 						<option value="toggle" <?php selected( $cswp_button_type_value, 'toggle' ); ?>>Toggle</option>
 						<option value="button" <?php selected( $cswp_button_type_value, 'button' ); ?>>Button</option>

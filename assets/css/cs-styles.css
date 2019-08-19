@@ -23,3 +23,15 @@ td.cswp_note_rate {
 #cs-manual-display{
 display: block;
 }
+label.cswp-top {
+    padding: 12px;
+}
+label.cswp-right {
+    padding: 12px;
+}
+label.cswp-bottom {
+    padding: 12px;
+}
+label.cswp-left {
+    padding: 12px;
+}

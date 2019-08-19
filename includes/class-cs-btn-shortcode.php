@@ -69,7 +69,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			?>
 			<style type="text/css">
 			.cs-currency-buttons .cs-currency-name-dropdown {
-				font-size: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 10 ); ?>px;
+				font-size: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 30 ); ?>px;
 
 				font-weight: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_weight'] ) ? $cswp_get_form_value['cswp_font_weight'] : 100 ); ?>;
 
@@ -109,8 +109,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 					<?php
 						echo ( ! empty( $cswp_get_form_value['cswp_border_radius'] ) ? $cswp_get_form_value['cswp_border_radius'] : 0 );
 
-					?>
-					px;
+					?>px;
 				;
 
 				border:
@@ -134,11 +133,11 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 				}
 
 			.cs-currency-name-btn.cswpactive{
-					background:<?php echo ( ! empty( $cswp_get_form_value['cswp_active_button_background_color'] ) ? $cswp_get_form_value['cswp_active_button_background_color'] : 'unset' ); ?> !important;
+					background:<?php echo ( ! empty( $cswp_get_form_value['cswp_active_button_background_color'] ) ? $cswp_get_form_value['cswp_active_button_background_color'] : 'unset' ); ?>!important;
 				}
 			.cs-currency-buttons .cs-currency-name{
 
-				font-size: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 10 ); ?>px;
+				font-size: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 30 ); ?>px;
 
 				font-weight: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_weight'] ) ? $cswp_get_form_value['cswp_font_weight'] : 100 ); ?>;
 
@@ -178,8 +177,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 					<?php
 						echo ( ! empty( $cswp_get_form_value['cswp_border_radius'] ) ? $cswp_get_form_value['cswp_border_radius'] : 0 );
 
-					?>
-					px;
+					?>px;
 				;
 
 				border:
@@ -197,18 +195,21 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			}
 
 			.cswp_button_change .cs-currency-name-btn:hover{
+			color:<?php echo ( ! empty( $cswp_get_form_value['cswp_text_hover_color'] ) ? $cswp_get_form_value['cswp_text_hover_color'] : 'unset' ); ?>;
 
 			background-color:<?php echo ( ! empty( $cswp_get_form_value['cswp_hover_color'] ) ? $cswp_get_form_value['cswp_hover_color'] : 'unset' ); ?>;
 			}
 			span.cs-currency-icon{
 			float:<?php echo ( ! empty( $cswp_get_form_value['cswp_icon_align'] ) ? $cswp_get_form_value['cswp_icon_align'] : 'left' ); ?>;
 
-			width:<?php echo ( ! empty( $cswp_get_form_value['cswp_icon_width'] ) ? $cswp_get_form_value['cswp_icon_width'] : 10 ); ?>px;
+			width:<?php echo ( ! empty( $cswp_get_form_value['cswp_icon_width'] ) ? $cswp_get_form_value['cswp_icon_width'] : 40 ); ?>px;
 
 
-			height:<?php echo ( ! empty( $cswp_get_form_value['cswp_icon_height'] ) ? $cswp_get_form_value['cswp_icon_height'] : 10 ); ?>px;
+			height:<?php echo ( ! empty( $cswp_get_form_value['cswp_icon_height'] ) ? $cswp_get_form_value['cswp_icon_height'] : 40 ); ?>px;
 
 			content:"";
+
+			background-size:cover;
 
 			background-repeat:no-repeat;
 			}
@@ -231,9 +232,9 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 
 			.cswp_button_change .cs-currency-name-btn {
 
-				width:<?php echo ( ! empty( $cswp_get_form_value['cswp_button_width'] ) ? $cswp_get_form_value['cswp_button_width'] : 10 ); ?>px;
+				width:<?php echo ( ! empty( $cswp_get_form_value['cswp_button_width'] ) ? $cswp_get_form_value['cswp_button_width'] : 284 ); ?>px;
 
-				font-size: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 10 ); ?>px;
+				font-size: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 30 ); ?>px;
 
 				font-weight: <?php echo ( ! empty( $cswp_get_form_value['cswp_font_weight'] ) ? $cswp_get_form_value['cswp_font_weight'] : 100 ); ?>;
 
@@ -332,7 +333,6 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 									$currencybtn = array_combine( $curbtn, $curbtn );
 								}
 							}
-
 							?>
 			<div class="cs-currency-buttons">
 			<?php

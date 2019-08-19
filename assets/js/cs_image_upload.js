@@ -120,6 +120,4 @@
         custom_uploaderINR.open();
 
     });
-
-
 });

@@ -24,7 +24,6 @@ class CS_Loader {
 	 * Constructor
 	 */
 	public function __construct() {
-
 		$this->define_constant();
 		add_action( 'wp_enqueue_scripts', array( $this, 'cswp_load_scripts' ) );
 		self::includes();
@@ -233,9 +232,9 @@ class CS_Loader {
 
 			$cswp_border_color = ( ! empty( $_POST['cswp_border_color'] ) ? sanitize_hex_color( $_POST['cswp_border_color'] ) : '' );
 
-			$cswp_icon_width = ( ! empty( $_POST['cswp_icon_width'] ) ? sanitize_text_field( $_POST['cswp_icon_width'] ) : 10 );
+			$cswp_icon_width = ( ! empty( $_POST['cswp_icon_width'] ) ? sanitize_text_field( $_POST['cswp_icon_width'] ) : 40 );
 
-			$cswp_icon_height = ( ! empty( $_POST['cswp_icon_height'] ) ? sanitize_text_field( $_POST['cswp_icon_height'] ) : 10 );
+			$cswp_icon_height = ( ! empty( $_POST['cswp_icon_height'] ) ? sanitize_text_field( $_POST['cswp_icon_height'] ) : 40 );
 
 			$cswp_padding_unit = ( ! empty( $_POST['cswp_padding_unit'] ) ? sanitize_text_field( $_POST['cswp_padding_unit'] ) : '' );
 

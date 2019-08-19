@@ -11,19 +11,20 @@
 
 // Store form inputs values in variable.
 wp_enqueue_script( 'colorpickerscript' );
+wp_enqueue_script( 'cswp-hide-image-upload' );
 
 $cswp_value = get_option( 'cswp_style_form_data' );
 
 $cswp_button = get_option( 'cswp_currency_button_type' );
 
 
-$cswp_font_size = ( ! empty( $cswp_value['cswp_font_size'] ) ? $cswp_value['cswp_font_size'] : 10 );
+$cswp_font_size = ( ! empty( $cswp_value['cswp_font_size'] ) ? $cswp_value['cswp_font_size'] : 30 );
 
-$cswp_button_width = ( ! empty( $cswp_value['cswp_button_width'] ) ? $cswp_value['cswp_button_width'] : 10 );
+$cswp_button_width = ( ! empty( $cswp_value['cswp_button_width'] ) ? $cswp_value['cswp_button_width'] : 284 );
 
-$cswp_icon_width = ( ! empty( $cswp_value['cswp_icon_width'] ) ? $cswp_value['cswp_icon_width'] : 10 );
+$cswp_icon_width = ( ! empty( $cswp_value['cswp_icon_width'] ) ? $cswp_value['cswp_icon_width'] : 40 );
 
-$cswp_icon_height = ( ! empty( $cswp_value['cswp_icon_height'] ) ? $cswp_value['cswp_icon_height'] : 10 );
+$cswp_icon_height = ( ! empty( $cswp_value['cswp_icon_height'] ) ? $cswp_value['cswp_icon_height'] : 40 );
 
 $cswp_hover_color = ( ! empty( $cswp_value['cswp_hover_color'] ) ? $cswp_value['cswp_hover_color'] : '' );
 
@@ -47,7 +48,7 @@ $cswp_padding_left = ( ! empty( $cswp_value['cswp_padding_left'] ) ? $cswp_value
 
 $cswp_padding_unit = ( ! empty( $cswp_value['cswp_padding_unit'] ) ? $cswp_value['cswp_padding_unit'] : 'px' );
 
-$cswp_border_radius = ( ! empty( $cswp_value['cswp_border_radius'] ) ? $cswp_value['cswp_border_radius'] : 10 );
+$cswp_border_radius = ( ! empty( $cswp_value['cswp_border_radius'] ) ? $cswp_value['cswp_border_radius'] : 0 );
 
 $cswp_border_width = ( ! empty( $cswp_value['cswp_border_width'] ) ? $cswp_value['cswp_border_width'] : 0 );
 
@@ -61,7 +62,15 @@ $cswp_border_style = ( ! empty( $cswp_value['cswp_border_style'] ) ? $cswp_value
 
 $cswp_icon_align = ( ! empty( $cswp_value['cswp_icon_align'] ) ? $cswp_value['cswp_icon_align'] : 'left' );
 
-$cswp_icon = $cswp_value['cswp_icon'];
+$cswp_icon = ( ! empty( $cswp_value['cswp_icon'] ) ? $cswp_value['cswp_icon'] : 'emptyimg.jpg' );
+
+$cswp_button_hide = get_option( 'cswp_form_data' );
+if ( 'button' === $cswp_button_hide['cswp_button_type'] ) {
+	$cswp_button_css = 'style="display:block"';
+} else {
+	$cswp_button_css = 'style="display:none"';
+}
+$cswp_base_currency = get_option( 'currencybtn' );
 ?>
 <!-- Html code for frontend -->
 <form method="post" name="cca_settings_form">
@@ -197,7 +206,7 @@ $cswp_icon = $cswp_value['cswp_icon'];
 			</th>
 			<td>
 			<?php
-			echo '<input type="number" name="cswp_border_radius" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_border_radius ) . '"  >&nbsp px';
+			echo '<input type="number" name="cswp_border_radius" max="50" min="0" class="small-text" value="' . esc_attr( $cswp_border_radius ) . '"  >&nbsp px';
 			?>
 			<p class="description">
 			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
@@ -285,7 +294,6 @@ $cswp_icon = $cswp_value['cswp_icon'];
 			?>
 			</td>
 		</tr>
-		
 		<tr>
 			<th scope="row"> 
 				<label for="CSWPActiveButtonBackgroundColor"> <?php esc_attr_e( 'Active Button Background Color', 'advanced-currency-switcher' ); ?> :</label>
@@ -374,26 +382,35 @@ $cswp_icon = $cswp_value['cswp_icon'];
 		</tr>
 		<tr>
 			<th scope="row">
-				<label for="CSWPUploadIcon"> <?php esc_attr_e( 'Upload Icon', 'advanced-currency-switcher' ); ?> :</label>
+			<label for="CSWPUploadIcon"><?php esc_attr_e( 'Upload Image', 'advanced-currency-switcher' ); ?>
+			</label>
 			</th>
 			<td>
+				<div class="cswp_hide_upload" <?php echo wp_kses_post( $cswp_button_css ); ?> >
 			<?php
-				$count = 0;
-			foreach ( $cswp_button as $cswp_button_value ) {
+				$cswp_count = 0;	
+			$cswp_icon = array();			
+				foreach ( $cswp_base_currency as $cswp_button_value ) {
+				$cswp_icon_list                        = ! empty( $_POST[ 'cswp_icon' . $cswp_button_value ] ) ? esc_url_raw( $_POST[ 'cswp_icon' . $cswp_button_value ] ) : '';
+				$cswp_icon_array[ $cswp_button_value ] = $cswp_icon_list;
+				array_push( $cswp_icon, $cswp_icon_list );
 				?>
-				<?php $cswp_icon[] += is_numeric( ! empty( $cswp_icon[ $count ] ) ? $cswp_icon[ $count ] : 'dollar.png' ); ?>
 			<ul>
-				<img src="<?php echo $cswp_icon[ $count ]; ?>" style="height:30px;width:30px;">
-				<input id="upload_image<?php echo $cswp_button_value; ?>" type="text" size="0" name="cswp_icon<?php echo $cswp_button_value; ?>" value="<?php echo $cswp_icon[ $count ]; ?>" />
+				<img src="<?php echo $cswp_icon[$cswp_count]; ?>" style="height:25px;width:25px;">
+				<input id="upload_image<?php echo $cswp_button_value; ?>" name="cswp_icon<?php echo $cswp_button_value; ?>" value="<?php echo $cswp_icon[$cswp_count]; ?>" />
 				<input id="upload_image_button<?php echo $cswp_button_value; ?>" class="button" type="button" value="Upload Image" />
-				<br/>Enter a URL or upload an image
+				<br/>Enter a URL or upload an image for <b><?php echo $cswp_button_value; ?></b>
 				</label>
 			</ul>
 						<?php
-						update_option( 'count', $count );
-						$count++;}
+						$cswp_count++;
+						}
 			?>
 				<?php update_option( 'cswp_iconx', $cswp_icon ); ?>
+				</div>
+				<p class="description cswp-description">
+					<?php esc_html_e( 'This Option work for only Display Type "Button".', 'advanced-stats' ); ?>
+				</p>
 		</td>
 		</tr>
 	</div>	
