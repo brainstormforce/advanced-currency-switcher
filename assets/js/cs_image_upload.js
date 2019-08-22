@@ -1,7 +1,40 @@
 
     jQuery(document).ready(function($){
+
+
+// $(document).ready(function(){
+//     $('#cswp_hide_upload').on('change', function() {
+//       if ( this.value == '1')
+//       {
+//         $("#business").show();
+//       }
+//       else
+//       {
+//         $("#business").hide();
+//       }
+//     });
+// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     $('#upload_image_buttonUSD').click(function(e) {
        console.log($('#upload_image_buttonUSD').attr('id'));
+       // console.log($('#cswp_hide_upload').attr('id'));
         e.preventDefault();
         var custom_uploaderUSD;
         //If the uploader object has already been created, reopen the dialog

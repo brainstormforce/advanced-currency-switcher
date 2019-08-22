@@ -218,13 +218,13 @@ class CS_Loader {
 
 			$cswp_active_button_background_color = ! empty( $_POST['cswp_active_button_background_color'] ) ? sanitize_hex_color( $_POST['cswp_active_button_background_color'] ) : '';
 
-			$cswp_padding_top = ( ! empty( $_POST['cswp_padding_top'] ) ? floatval( $_POST['cswp_padding_top'] ) : 0 );
+			$cswp_padding_top = ( ! empty( $_POST['cswp_padding_top'] ) ? floatval( $_POST['cswp_padding_top'] ) : 0.76 );
 
-			$cswp_padding_right = ( ! empty( $_POST['cswp_padding_right'] ) ? floatval( $_POST['cswp_padding_right'] ) : 0 );
+			$cswp_padding_right = ( ! empty( $_POST['cswp_padding_right'] ) ? floatval( $_POST['cswp_padding_right'] ) : 0.76 );
 
-			$cswp_padding_bottom = ( ! empty( $_POST['cswp_padding_bottom'] ) ? floatval( $_POST['cswp_padding_bottom'] ) : 0 );
+			$cswp_padding_bottom = ( ! empty( $_POST['cswp_padding_bottom'] ) ? floatval( $_POST['cswp_padding_bottom'] ) : 0.76 );
 
-			$cswp_padding_left = ( ! empty( $_POST['cswp_padding_left'] ) ? floatval( $_POST['cswp_padding_left'] ) : 0 );
+			$cswp_padding_left = ( ! empty( $_POST['cswp_padding_left'] ) ? floatval( $_POST['cswp_padding_left'] ) : 0.76 );
 
 			$cswp_border_width = ( ! empty( $_POST['cswp_border_width'] ) ? floatval( $_POST['cswp_border_width'] ) : 0 );
 
