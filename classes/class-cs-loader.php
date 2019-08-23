@@ -202,6 +202,35 @@ class CS_Loader {
 		}
 		if ( ! empty( $_POST['cs-style-form'] ) && wp_verify_nonce( sanitize_text_field( $_POST['cs-style-form'] ), 'cs-style-form-nonce' ) ) {
 
+			//For Dropdown
+			$cswp_dd_font_size = ! empty( $_POST['cswp_dd_font_size'] ) ? sanitize_text_field( $_POST['cswp_dd_font_size'] ) : '';
+			$cswp_dd_background_color = ! empty( $_POST['cswp_dd_background_color'] ) ? sanitize_hex_color( $_POST['cswp_dd_background_color'] ) : '';
+			$cswp_dd_text_color = ! empty( $_POST['cswp_dd_text_color'] ) ? sanitize_hex_color( $_POST['cswp_dd_text_color'] ) : '';
+			$cswp_dd_padding_top = ( ! empty( $_POST['cswp_dd_padding_top'] ) ? floatval( $_POST['cswp_dd_padding_top'] ) : 0.76 );
+			$cswp_dd_padding_right = ( ! empty( $_POST['cswp_dd_padding_right'] ) ? floatval( $_POST['cswp_dd_padding_right'] ) : 0.76 );
+			$cswp_dd_padding_bottom = ( ! empty( $_POST['cswp_dd_padding_bottom'] ) ? floatval( $_POST['cswp_dd_padding_bottom'] ) : 0.76 );
+			$cswp_dd_padding_left = ( ! empty( $_POST['cswp_dd_padding_left'] ) ? floatval( $_POST['cswp_dd_padding_left'] ) : 0.76 );
+			$cswp_dd_padding_unit = ( ! empty( $_POST['cswp_dd_padding_unit'] ) ? sanitize_text_field( $_POST['cswp_dd_padding_unit'] ) : '' );
+
+			//For Toggle
+			$cswp_tgl_font_size = ( ! empty( $_POST['cswp_tgl_font_size'] ) ? sanitize_text_field($_POST['cswp_tgl_font_size'] ) : '' );
+			$cswp_tgl_background_color = ( ! empty( $_POST['cswp_tgl_background_color'] ) ? sanitize_hex_color( $_POST['cswp_background_color'] ) : '' );
+			$cswp_tgl_text_color = ( ! empty( $_POST['cswp_tgl_text_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_text_color'] ) : '' );
+			$cswp_tgl_padding_top = ( ! empty( $_POST['cswp_tgl_padding_top'] ) ? floatval( $_POST['cswp_tgl_padding_top'] ) : 0.76 );
+			$cswp_tgl_padding_right = ( ! empty( $_POST['cswp_tgl_padding_right'] ) ? floatval( $_POST['cswp_tgl_padding_right'] ) : 0.76 );
+			$cswp_tgl_padding_left = ( ! empty( $_POST['cswp_tgl_padding_left'] ) ? floatval( $_POST['cswp_tgl_padding_left'] ) : 0.76);
+			$cswp_tgl_padding_bottom = ( ! empty( $_POST['cswp_tgl_padding_bottom'] ) ? floatval( $_POST['cswp_tgl_padding_bottom'] ) : 0.76 );
+			$cswp_tgl_padding_unit = ( ! empty( $_POST['cswp_tgl_padding_unit'] ) ? sanitize_text_field( $_POST['cswp_tgl_padding_unit'] ) : '' );
+			$cswp_tgl_font_weight = ( ! empty( $_POST['cswp_tgl_font_weight'] ) ? sanitize_text_field( $_POST['cswp_tgl_font_weight'] ) : '' );
+			$cswp_tgl_border_radius = ( ! empty( $_POST['cswp_tgl_border_radius'] ) ? sanitize_text_field( $_POST['cswp_tgl_border_radius'] ) : 5 );
+			$cswp_tgl_border_width = ( ! empty( $_POST['cswp_tgl_border_width'] ) ? sanitize_text_field( $_POST['cswp_tgl_border_width'] ) : 2 );
+			$cswp_tgl_border_style = ( ! empty( $_POST['cswp_tgl_border_style'] ) ? sanitize_text_field( $_POST['cswp_tgl_border_style'] ) : '' );
+			$cswp_tgl_border_unit = ( ! empty( $_POST['cswp_tgl_border_unit'] ) ? sanitize_text_field( $_POST['cswp_tgl_border_unit'] ) : 'px' );
+			$cswp_tgl_border_color = ( ! empty( $_POST['cswp_tgl_border_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_border_color'] ) : 'buttonface' );
+			$cswp_tgl_text_hover_color = ( ! empty( $_POST['cswp_tgl_text_hover_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_text_hover_color'] ) : '' );
+			$cswp_tgl_background_hover_color = ( ! empty( $_POST['cswp_tgl_hover_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_hover_color'] ) : '' );
+
+
 			$cswp_font_size = ! empty( $_POST['cswp_font_size'] ) ? sanitize_text_field( $_POST['cswp_font_size'] ) : '';
 
 			$cswp_button_width = ! empty( $_POST['cswp_button_width'] ) ? sanitize_text_field( $_POST['cswp_button_width'] ) : '';
@@ -232,15 +261,17 @@ class CS_Loader {
 
 			$cswp_border_color = ( ! empty( $_POST['cswp_border_color'] ) ? sanitize_hex_color( $_POST['cswp_border_color'] ) : '' );
 
-			$cswp_icon_width = ( ! empty( $_POST['cswp_icon_width'] ) ? sanitize_text_field( $_POST['cswp_icon_width'] ) : 40 );
+			$cswp_icon_width = ( ! empty( $_POST['cswp_icon_width'] ) ? sanitize_text_field( $_POST['cswp_icon_width'] ) : 30 );
 
-			$cswp_icon_height = ( ! empty( $_POST['cswp_icon_height'] ) ? sanitize_text_field( $_POST['cswp_icon_height'] ) : 40 );
+			$cswp_icon_height = ( ! empty( $_POST['cswp_icon_height'] ) ? sanitize_text_field( $_POST['cswp_icon_height'] ) : 30 );
 
 			$cswp_padding_unit = ( ! empty( $_POST['cswp_padding_unit'] ) ? sanitize_text_field( $_POST['cswp_padding_unit'] ) : '' );
 
 			$cswp_border_unit = ( ! empty( $_POST['cswp_border_unit'] ) ? sanitize_text_field( $_POST['cswp_border_unit'] ) : '' );
 
 			$cswp_border_style = ( ! empty( $_POST['cswp_border_style'] ) ? sanitize_text_field( $_POST['cswp_border_style'] ) : '' );
+
+			$cswp_vertical_align = ( ! empty( $_POST['cswp_vertical_align'] ) ? sanitize_text_field( $_POST['cswp_vertical_align'] ) : '' );
 
 			$cswp_border_radius = ! empty( $_POST['cswp_border_radius'] ) ? sanitize_text_field( $_POST['cswp_border_radius'] ) : '';
 
@@ -261,6 +292,34 @@ class CS_Loader {
 				array_push( $cswp_icon, $cswp_icon_list );
 			}
 			$save = array(
+				//For Dropdown
+				'cswp_dd_font_size'                      => $cswp_dd_font_size,
+				'cswp_dd_text_color'                     => $cswp_dd_text_color,
+				'cswp_dd_background_color'               => $cswp_dd_background_color,
+				'cswp_dd_padding_top'                    => $cswp_dd_padding_top,
+				'cswp_dd_padding_right'                  => $cswp_dd_padding_right,
+				'cswp_dd_padding_bottom'                 => $cswp_dd_padding_bottom,
+				'cswp_dd_padding_left'                   => $cswp_dd_padding_left,
+				'cswp_dd_padding_unit'                   => $cswp_dd_padding_unit,
+
+				//For Toggle
+				'cswp_tgl_font_size'                      => $cswp_tgl_font_size,
+				'cswp_tgl_font_weight'                    => $cswp_tgl_font_weight,
+				'cswp_tgl_text_color'                     => $cswp_tgl_text_color,
+				'cswp_tgl_text_hover_color'               => $cswp_tgl_text_hover_color,
+				'cswp_tgl_background_color'               => $cswp_tgl_background_color,
+				'cswp_tgl_background_hover_color'         => $cswp_tgl_background_hover_color,
+				'cswp_tgl_padding_top'                    => $cswp_tgl_padding_top,
+				'cswp_tgl_padding_right'                  => $cswp_tgl_padding_right,
+				'cswp_tgl_padding_bottom'                 => $cswp_tgl_padding_bottom,
+				'cswp_tgl_padding_left'                   => $cswp_tgl_padding_left,
+				'cswp_tgl_padding_unit'                   => $cswp_tgl_padding_unit,
+				'cswp_tgl_border_radius'                  => $cswp_tgl_border_radius,
+				'cswp_tgl_border_width'                   => $cswp_tgl_border_width,
+				'cswp_tgl_border_style'                   => $cswp_tgl_border_style,
+				'cswp_tgl_border_color'                   => $cswp_tgl_border_color,
+				'cswp_tgl_border_unit'                    => $cswp_tgl_border_unit,
+
 				'cswp_button_width'                   => $cswp_button_width,
 				'cswp_font_size'                      => $cswp_font_size,
 				'cswp_font_weight'                    => $cswp_font_weight,
@@ -278,7 +337,7 @@ class CS_Loader {
 				'cswp_border_style'                   => $cswp_border_style,
 				'cswp_border_color'                   => $cswp_border_color,
 				'cswp_border_unit'                    => $cswp_border_unit,
-				'cswp_border_style'                   => $cswp_border_style,
+				'cswp_vertical_align'                   => $cswp_vertical_align,
 
 				'cswp_hover_color'                    => $cswp_hover_color,
 				'cswp_text_hover_color'               => $cswp_text_hover_color,
