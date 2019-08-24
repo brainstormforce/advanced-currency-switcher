@@ -214,7 +214,7 @@ class CS_Loader {
 
 			//For Toggle
 			$cswp_tgl_font_size = ( ! empty( $_POST['cswp_tgl_font_size'] ) ? sanitize_text_field($_POST['cswp_tgl_font_size'] ) : '' );
-			$cswp_tgl_background_color = ( ! empty( $_POST['cswp_tgl_background_color'] ) ? sanitize_hex_color( $_POST['cswp_background_color'] ) : '' );
+			$cswp_tgl_background_color = ( ! empty( $_POST['cswp_tgl_background_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_background_color'] ) : '' );
 			$cswp_tgl_text_color = ( ! empty( $_POST['cswp_tgl_text_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_text_color'] ) : '' );
 			$cswp_tgl_padding_top = ( ! empty( $_POST['cswp_tgl_padding_top'] ) ? floatval( $_POST['cswp_tgl_padding_top'] ) : 0.76 );
 			$cswp_tgl_padding_right = ( ! empty( $_POST['cswp_tgl_padding_right'] ) ? floatval( $_POST['cswp_tgl_padding_right'] ) : 0.76 );
@@ -228,7 +228,7 @@ class CS_Loader {
 			$cswp_tgl_border_unit = ( ! empty( $_POST['cswp_tgl_border_unit'] ) ? sanitize_text_field( $_POST['cswp_tgl_border_unit'] ) : 'px' );
 			$cswp_tgl_border_color = ( ! empty( $_POST['cswp_tgl_border_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_border_color'] ) : 'buttonface' );
 			$cswp_tgl_text_hover_color = ( ! empty( $_POST['cswp_tgl_text_hover_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_text_hover_color'] ) : '' );
-			$cswp_tgl_background_hover_color = ( ! empty( $_POST['cswp_tgl_hover_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_hover_color'] ) : '' );
+			$cswp_tgl_hover_color = ( ! empty( $_POST['cswp_tgl_hover_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_hover_color'] ) : '' );
 
 
 			$cswp_font_size = ! empty( $_POST['cswp_font_size'] ) ? sanitize_text_field( $_POST['cswp_font_size'] ) : '';
@@ -308,7 +308,7 @@ class CS_Loader {
 				'cswp_tgl_text_color'                     => $cswp_tgl_text_color,
 				'cswp_tgl_text_hover_color'               => $cswp_tgl_text_hover_color,
 				'cswp_tgl_background_color'               => $cswp_tgl_background_color,
-				'cswp_tgl_background_hover_color'         => $cswp_tgl_background_hover_color,
+				'cswp_tgl_hover_color'                    => $cswp_tgl_hover_color,
 				'cswp_tgl_padding_top'                    => $cswp_tgl_padding_top,
 				'cswp_tgl_padding_right'                  => $cswp_tgl_padding_right,
 				'cswp_tgl_padding_bottom'                 => $cswp_tgl_padding_bottom,

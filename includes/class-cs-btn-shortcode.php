@@ -95,6 +95,8 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			$cswp_tgl_borderc = ( ! empty( $cswp_get_form_value['cswp_tgl_border_color'] ) ? $cswp_get_form_value['cswp_tgl_border_color'] : 'buttonface' );
 			$cswp_tgl_text_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_text_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_text_hover_color'] : 'unset' );
 			$cswp_tgl_background_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_hover_color'] : 'inherit' );
+			// var_dump($cswp_get_form_value['cswp_tgl_text_hover_color']);
+			// wp_die();
 
 			//For Button
 			$cswp_btn_fs = ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 16 );
@@ -170,11 +172,11 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 
 			}
 
-			<!-- .cs-currency-buttons .cs-currency-name:hover{
-					color:<?php //echo $cswp_tgl_text_hover_color; ?>!important;
-					background-color:<?php //echo $cswp_tgl_background_hover_color; ?>!important;
-				}
-			 Style For Toggle .cs-currency-name-->
+			 .cs-currency-buttons .cs-currency-name:hover{
+					color:<?php echo $cswp_tgl_text_hover_color; ?>!important;
+					background-color:<?php echo $cswp_tgl_background_hover_color; ?>!important;
+				} 			 <!-- Style For Toggle .cs-currency-name--> -->
+			
 			.cs-currency-buttons .cs-currency-name{
 			  <!-- <?php  //echo $cswp_tgl_bc; ?>  -->
 
@@ -235,15 +237,16 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 				;
 			} 
 			<!-- Style For Button -->
-			<!-- .cswp_button_change .cs-currency-name-btn:hover{
-			 color:<?php //echo $cswp_tgl_text_hover_color; ?>; -->
+			 <!-- .cswp_button_change .cs-currency-name-btn:hover{
+			 color:<?php //echo $cswp_tgl_text_hover_color; ?>; 
 
-			<!-- background-color:<?php //echo $cswp_btn_background_hover_color; ?>;
-			}  -->
-			.cswp_button_change .cs-currency-name-btn:hover{
-			background-color:<?php echo $cswp_btn_background_hover_color; ?>;
-		}
+			 background-color:<?php //echo $cswp_btn_background_hover_color; ?>;
+			}  --> 
+			<!-- .cswp_button_change .cs-currency-name-btn:hover{
+			
+		} -->
 		.cs-currency-name-btn.cswpactive:hover{
+		background-color:<?php echo $cswp_btn_background_hover_color; ?>;
 		background-color:<?php echo $cswp_btn_background_hover_color; ?>!important;
 		}
 

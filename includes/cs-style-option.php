@@ -40,8 +40,9 @@ $cswp_tgl_bw = ( ! empty( $cswp_get_form_value['cswp_tgl_border_width'] ) ? $csw
 $cswp_tgl_bs = ( ! empty( $cswp_get_form_value['cswp_tgl_border_style'] ) ? $cswp_get_form_value['cswp_tgl_border_style'] : 'inherit' );
 $cswp_tgl_bu = ( ! empty( $cswp_get_form_value['cswp_tgl_border_unit'] ) ? $cswp_get_form_value['cswp_tgl_border_unit'] : 'px' );
 $cswp_tgl_borderc = ( ! empty( $cswp_get_form_value['cswp_tgl_border_color'] ) ? $cswp_get_form_value['cswp_tgl_border_color'] : 'buttonface' );
-$cswp_tgl_text_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_text_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_text_hover_color'] : 'unset' );
-$cswp_tgl_background_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_hover_color'] : 'unset' );
+$cswp_tgl_text_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_text_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_text_hover_color'] : 'inherit' );
+$cswp_tgl_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_hover_color'] : 'unset' );
+//var_dump($cswp_get_form_value);
 
 $cswp_value = get_option( 'cswp_style_form_data' );
 
@@ -397,13 +398,13 @@ $cswp_base_currency = get_option( 'currencybtn' );
 		</tr>
 		<tr >
 			<th class="cswp_table_row" scope="row">
-				<label for="CSWPColor"> <?php esc_attr_e( 'Toggle/Button Background Hover Color', 'advanced-currency-switcher' ); ?> :</label>
+				<label for="CSWPColor"> <?php esc_attr_e( 'Toggle Background Hover Color', 'advanced-currency-switcher' ); ?> :</label>
 			</th>  
 			<td>
 			<?php
-			if ( isset( $cswp_tgl_background_hover_color ) ) {
+			if ( isset( $cswp_tgl_hover_color ) ) {
 
-				echo '<input name="cswp_tgl_hover_color" class="my-color-field" value="' . esc_attr( $cswp_tgl_background_hover_color ) . '">';
+				echo '<input name="cswp_tgl_hover_color" class="my-color-field" value="' . esc_attr( $cswp_tgl_hover_color ) . '">';
 			} else {
 				?>
 			<input name="cswp_tgl_hover_color" class="my-color-field" value="#333333">
@@ -414,13 +415,13 @@ $cswp_base_currency = get_option( 'currencybtn' );
 		</tr>
 		<tr >
 			<th class="cswp_table_row" scope="row">
-				<label for="CSWPColor"> <?php esc_attr_e( 'Toggle/Button Text Hover Color', 'advanced-currency-switcher' ); ?> :</label>
+				<label for="CSWPColor"> <?php esc_attr_e( 'Toggle Text Hover Color', 'advanced-currency-switcher' ); ?> :</label>
 			</th>  
 			<td>
 			<?php
 			if ( isset( $cswp_tgl_text_hover_color) ) {
 
-				echo '<input name="cswp_tgl_text_hover_color" class="my-color-field" value="' . esc_attr( $cswp_text_hover_color ) . '">';
+				echo '<input name="cswp_tgl_text_hover_color" class="my-color-field" value="' . esc_attr( $cswp_tgl_text_hover_color ) . '">';
 			} else {
 				?>
 			<input name="cswp_tgl_text_hover_color" class="my-color-field" value="#333333">
@@ -457,7 +458,7 @@ $cswp_base_currency = get_option( 'currencybtn' );
 			</th>
 			<td>
 			<?php
-			echo '<input type="number" name="cswp_font_weight" max="900" min="100" class="small-text" value="' . esc_attr( $cswp_font_weight ) . '"  >&nbsp px';
+			echo '<input type="number" name="cswp_font_weight" max="900" min="100" class="small-text" value="' . esc_attr( $cswp_font_weight ) . '"  >&nbsp';
 			?>
 			<p class="description">
 			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
@@ -533,9 +534,9 @@ $cswp_base_currency = get_option( 'currencybtn' );
 			<td>
 			<?php
 			echo '<div id="cswp_rt_bg">';
-			if ( isset( $cswp_background_color ) ) {
+			if ( isset( $cswp_tgl_bc ) ) {
 
-				echo '<input  name="cswp_background_color" class="my-color-field" value="' . esc_attr( $cswp_background_color ) . '">';
+				echo '<input  name="cswp_background_color" class="my-color-field" value="' . esc_attr( $cswp_tgl_bc ) . '">';
 			} else {
 				?>
 			<input  name="cswp_background_color" class="my-color-field" value="#eeeeee">
@@ -806,10 +807,10 @@ $cswp_base_currency = get_option( 'currencybtn' );
 				array_push( $cswp_icon, $cswp_icon_list );
 				?>
 			<ul>
-				<img src="<?php echo $cswp_icon[$cswp_count]; ?>" style="height:25px;width:25px;">
-				<input id="upload_image<?php echo $cswp_button_value; ?>" name="cswp_icon<?php echo $cswp_button_value; ?>" value="<?php echo $cswp_icon[$cswp_count]; ?>" readonly/>
+				<img src="<?php echo $cswp_icon[$cswp_count]; ?>" style="height:20px;width:20px;">
+				<input id="upload_image<?php echo $cswp_button_value; ?>" name="cswp_icon<?php echo $cswp_button_value; ?>" value="<?php echo $cswp_icon[$cswp_count]; ?>" style="padding: 5px 0px 1px 5px;" readonly/>
 				<input id="upload_image_button<?php echo $cswp_button_value; ?>" class="button" type="button" value="Upload Image" />
-				<br/>Enter a URL or upload an image for <b><?php echo $cswp_button_value; ?></b>
+				<br/>Upload an image for <b><?php echo $cswp_button_value; ?></b>
 				</label>
 			</ul>
 						<?php
