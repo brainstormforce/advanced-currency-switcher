@@ -67,7 +67,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			$cswp_iconx          = get_option( 'cswp_iconx' );
 			$cswp_currency_array = $cswp_get_form_value['cswp_icon_array'];
 			// echo '<pre>';var_dump($cswp_currency_array);wp_die();
-
+				// var_dump($cswp_get_form_value); wp_die();
 			//For Dropdown
 			$cswp_dd_fs = ( ! empty( $cswp_get_form_value['cswp_dd_font_size'] ) ? $cswp_get_form_value['cswp_dd_font_size'] : 16 );
 			$cswp_dd_bc = ( ! empty( $cswp_get_form_value['cswp_dd_background_color'] ) ? $cswp_get_form_value['cswp_dd_background_color'] : 'inherit' );
@@ -80,21 +80,21 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 
 			//For Toggle
 			$cswp_tgl_fs = ( ! empty( $cswp_get_form_value['cswp_tgl_font_size'] ) ? $cswp_get_form_value['cswp_tgl_font_size'] : 'inherit' );
-			$cswp_tgl_bc = ( ! empty( $cswp_get_form_value['cswp_tgl_background_color'] ) ? $cswp_get_form_value['cswp_tgl_background_color'] : 'inherit' );
-			$cswp_tgl_tc = ( ! empty( $cswp_get_form_value['cswp_tgl_text_color'] ) ? $cswp_get_form_value['cswp_tgl_text_color'] : 'inherit' );
+			$cswp_tgl_bc = ( ! empty( $cswp_get_form_value['cswp_tgl_background_color'] ) ? $cswp_get_form_value['cswp_tgl_background_color'] : '' );
+			$cswp_tgl_tc = ( ! empty( $cswp_get_form_value['cswp_tgl_text_color'] ) ? $cswp_get_form_value['cswp_tgl_text_color'] : '' );
 			$cswp_tgl_pt = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_top'] ) ? $cswp_get_form_value['cswp_tgl_padding_top'] : 0.76 );
 			$cswp_tgl_pr = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_right'] ) ? $cswp_get_form_value['cswp_tgl_padding_right'] : 0.76 );
 			$cswp_tgl_pl = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_left'] ) ? $cswp_get_form_value['cswp_tgl_padding_left'] : 0.76);
 			$cswp_tgl_pb = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_bottom'] ) ? $cswp_get_form_value['cswp_tgl_padding_bottom'] : 0.76 );
-			$cswp_tgl_pu = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_unit'] ) ? $cswp_get_form_value['cswp_tgl_padding_unit'] : 'inherit' );
-			$cswp_tgl_fw = ( ! empty( $cswp_get_form_value['cswp_tgl_font_weight'] ) ? $cswp_get_form_value['cswp_tgl_font_weight'] : 'inherit' );
+			$cswp_tgl_pu = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_unit'] ) ? $cswp_get_form_value['cswp_tgl_padding_unit'] : 'rem' );
+			$cswp_tgl_fw = ( ! empty( $cswp_get_form_value['cswp_tgl_font_weight'] ) ? $cswp_get_form_value['cswp_tgl_font_weight'] : '700' );
 			$cswp_tgl_br = ( ! empty( $cswp_get_form_value['cswp_tgl_border_radius'] ) ? $cswp_get_form_value['cswp_tgl_border_radius'] : 5 );
 			$cswp_tgl_bw = ( ! empty( $cswp_get_form_value['cswp_tgl_border_width'] ) ? $cswp_get_form_value['cswp_tgl_border_width'] : 2 );
 			$cswp_tgl_bs = ( ! empty( $cswp_get_form_value['cswp_tgl_border_style'] ) ? $cswp_get_form_value['cswp_tgl_border_style'] : 'inherit' );
 			$cswp_tgl_bu = ( ! empty( $cswp_get_form_value['cswp_tgl_border_unit'] ) ? $cswp_get_form_value['cswp_tgl_border_unit'] : 'px' );
 			$cswp_tgl_borderc = ( ! empty( $cswp_get_form_value['cswp_tgl_border_color'] ) ? $cswp_get_form_value['cswp_tgl_border_color'] : 'buttonface' );
-			$cswp_tgl_text_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_text_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_text_hover_color'] : 'unset' );
-			$cswp_tgl_background_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_hover_color'] : 'inherit' );
+			$cswp_tgl_text_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_text_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_text_hover_color'] : '' );
+			$cswp_tgl_background_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_hover_color'] : '' );
 			// var_dump($cswp_get_form_value['cswp_tgl_text_hover_color']);
 			// wp_die();
 
@@ -113,7 +113,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			$cswp_btn_bs = ( ! empty( $cswp_get_form_value['cswp_border_style'] ) ? $cswp_get_form_value['cswp_border_style'] : 'none' );
 			$cswp_btn_bu = ( ! empty( $cswp_get_form_value['cswp_border_unit'] ) ? $cswp_get_form_value['cswp_border_unit'] : 'px' );
 			$cswp_btn_borderc = ( ! empty( $cswp_get_form_value['cswp_border_color'] ) ? $cswp_get_form_value['cswp_border_color'] : 'buttonface' );
-			$cswp_btn_text_hover_color = ( ! empty( $cswp_get_form_value['cswp_text_hover_color'] ) ? $cswp_get_form_value['cswp_text_hover_color'] : 'inherit' );
+			$cswp_btn_text_hover_color = ( ! empty( $cswp_get_form_value['cswp_text_hover_color'] ) ? $cswp_get_form_value['cswp_text_hover_color'] : '' );
 			$cswp_btn_background_hover_color = ( ! empty( $cswp_get_form_value['cswp_hover_color'] ) ? $cswp_get_form_value['cswp_hover_color'] : '' );
 			$cswp_btn_active_background_color = ( ! empty( $cswp_get_form_value['cswp_active_button_background_color'] ) ? $cswp_get_form_value['cswp_active_button_background_color'] : '' );
 			if ( 'inherit' !== $cswp_btn_text_hover_color && 'inherit' !== $cswp_btn_active_background_color ){
@@ -175,14 +175,13 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			 .cs-currency-buttons .cs-currency-name:hover{
 					color:<?php echo $cswp_tgl_text_hover_color; ?>!important;
 					background-color:<?php echo $cswp_tgl_background_hover_color; ?>!important;
-				} 			 <!-- Style For Toggle .cs-currency-name--> -->
-			
-			.cs-currency-buttons .cs-currency-name{
-			  <!-- <?php  //echo $cswp_tgl_bc; ?>  -->
-
-				<!-- font-size: <?php //echo $cswp_tgl_fs; ?>px; -->
-
-				font-weight: <?php echo $cswp_tgl_fw; ?>;
+				}
+				<!-- Style For Toggle .cs-currency-name--> 
+				<!-- .cs-currency-buttons .cs-currency-name {
+				    color:red !important;
+				} -->
+				button.cs-currency-name {
+   					font-weight: <?php echo $cswp_tgl_fw; ?>;
 
 				background: <?php echo $cswp_tgl_bc; ?>;
 
@@ -235,7 +234,9 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 
 					?>
 				;
-			} 
+				}
+			
+			
 			<!-- Style For Button -->
 			 <!-- .cswp_button_change .cs-currency-name-btn:hover{
 			 color:<?php //echo $cswp_tgl_text_hover_color; ?>; 
@@ -247,13 +248,13 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 		} -->
 		.cs-currency-name-btn.cswpactive:hover{
 		background-color:<?php echo $cswp_btn_background_hover_color; ?>;
-		background-color:<?php echo $cswp_btn_background_hover_color; ?>!important;
-		}
+		color:<?php echo $cswp_btn_text_hover_color; ?>;
+		} 
 
 			.cs-currency-name-btn.cswpactive{
 
-					background:<?php echo $cswp_btn_active_background_color; echo $important; ?>;
-					color:<?php echo $cswp_btn_text_hover_color; echo $important; ?>;
+					background:<?php echo $cswp_btn_active_background_color; ?>;
+					color:<?php echo $cswp_btn_text_hover_color; ?>;
 				}
 
 			span.cs-currency-icon{

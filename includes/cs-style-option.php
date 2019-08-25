@@ -15,7 +15,7 @@ wp_enqueue_script( 'cswp-hide-image-upload' );
 
 //Dropdown Button
 $cswp_get_form_value = get_option( 'cswp_style_form_data' );
-//var_dump($cswp_get_form_value);
+// var_dump($cswp_get_form_value);
 $cswp_dd_fs = ( ! empty( $cswp_get_form_value['cswp_dd_font_size'] ) ? $cswp_get_form_value['cswp_dd_font_size'] : 'inherit' );
 $cswp_dd_bc = ( ! empty( $cswp_get_form_value['cswp_dd_background_color'] ) ? $cswp_get_form_value['cswp_dd_background_color'] : 'inherit' );
 $cswp_dd_tc = ( ! empty( $cswp_get_form_value['cswp_dd_text_color'] ) ? $cswp_get_form_value['cswp_dd_text_color'] : 'inherit' );
@@ -33,7 +33,7 @@ $cswp_tgl_pt = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_top'] ) ? $cswp
 $cswp_tgl_pr = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_right'] ) ? $cswp_get_form_value['cswp_tgl_padding_right'] : 0.76 );
 $cswp_tgl_pl = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_left'] ) ? $cswp_get_form_value['cswp_tgl_padding_left'] : 0.76);
 $cswp_tgl_pb = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_bottom'] ) ? $cswp_get_form_value['cswp_tgl_padding_bottom'] : 0.76 );
-$cswp_tgl_pu = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_unit'] ) ? $cswp_get_form_value['cswp_tgl_padding_unit'] : 'inherit' );
+$cswp_tgl_pu = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_unit'] ) ? $cswp_get_form_value['cswp_tgl_padding_unit'] : 'rem' );
 $cswp_tgl_fw = ( ! empty( $cswp_get_form_value['cswp_tgl_font_weight'] ) ? $cswp_get_form_value['cswp_tgl_font_weight'] : 'inherit' );
 $cswp_tgl_br = ( ! empty( $cswp_get_form_value['cswp_tgl_border_radius'] ) ? $cswp_get_form_value['cswp_tgl_border_radius'] : 5 );
 $cswp_tgl_bw = ( ! empty( $cswp_get_form_value['cswp_tgl_border_width'] ) ? $cswp_get_form_value['cswp_tgl_border_width'] : 2 );
@@ -64,7 +64,7 @@ $cswp_font_weight = ( ! empty( $cswp_value['cswp_font_weight'] ) ? $cswp_value['
 
 $cswp_text_color = ( ! empty( $cswp_value['cswp_text_color'] ) ? $cswp_value['cswp_text_color'] : '' );
 
-$cswp_background_color = ( ! empty( $cswp_value['cswp_background_color'] ) ? $cswp_value['cswp_background_color'] : 'inherit' );
+$cswp_background_color = ( ! empty( $cswp_value['cswp_background_color'] ) ? $cswp_value['cswp_background_color'] : '' );
 
 $cswp_active_button_background_color = ( ! empty( $cswp_value['cswp_active_button_background_color'] ) ? $cswp_value['cswp_active_button_background_color'] : 'inherit' );
 
@@ -111,8 +111,12 @@ if ( 'button' === $cswp_button_hide['cswp_button_type'] ) {
 	$cswp_button_css = 'style="display:none"';
 }
 $cswp_base_currency = get_option( 'currencybtn' );
+// $y = get_option('cswp_form_data');
+// var_dump($y);
+// var_dump($cswp_button);
 // var_dump($cswp_button_hide["cswp_button_type"]);
-// var_dump($cswp_button_css);
+// var_dump($cswp_value['cswp_icon_array']);
+// var_dump($cswp_value['cswp_icon']);
 ?>
 <!-- Html code for frontend -->
 <form method="post" name="cca_settings_form">
@@ -247,14 +251,14 @@ $cswp_base_currency = get_option( 'currencybtn' );
 				<?php
 				if ( 'px' === $cswp_tgl_pu ) {
 
-					echo '<option  value="px">px</option>';
+					echo '<option  selected value="px">px</option>';
 				} else {
 
 					echo '<option  value="px">px</option>';
 				}
 				if ( 'em' === $cswp_tgl_pu ) {
 
-					echo '<option  value="em">em</option>';
+					echo '<option  selected value="em">em</option>';
 				} else {
 
 					echo '<option  value="em">em</option>';
@@ -534,9 +538,9 @@ $cswp_base_currency = get_option( 'currencybtn' );
 			<td>
 			<?php
 			echo '<div id="cswp_rt_bg">';
-			if ( isset( $cswp_tgl_bc ) ) {
+			if ( isset( $cswp_background_color ) ) {
 
-				echo '<input  name="cswp_background_color" class="my-color-field" value="' . esc_attr( $cswp_tgl_bc ) . '">';
+				echo '<input  name="cswp_background_color" class="my-color-field" value="' . esc_attr( $cswp_background_color ) . '">';
 			} else {
 				?>
 			<input  name="cswp_background_color" class="my-color-field" value="#eeeeee">
@@ -800,24 +804,28 @@ $cswp_base_currency = get_option( 'currencybtn' );
 			<td>
 			<?php
 				$cswp_count = 0;	
-			$cswp_icon = array();			
+			$cswp_icon = array();
+			// var_dump($cswp_base_currency);
 				foreach ( $cswp_base_currency as $cswp_button_value ) {
 				$cswp_icon_list                        = ! empty( $_POST[ 'cswp_icon' . $cswp_button_value ] ) ? esc_url_raw( $_POST[ 'cswp_icon' . $cswp_button_value ] ) : '';
 				$cswp_icon_array[ $cswp_button_value ] = $cswp_icon_list;
+				$x = ! empty( $cswp_value['cswp_icon']{$cswp_count} ) ? $cswp_value['cswp_icon']{$cswp_count} : '';	
 				array_push( $cswp_icon, $cswp_icon_list );
 				?>
 			<ul>
-				<img src="<?php echo $cswp_icon[$cswp_count]; ?>" style="height:20px;width:20px;">
-				<input id="upload_image<?php echo $cswp_button_value; ?>" name="cswp_icon<?php echo $cswp_button_value; ?>" value="<?php echo $cswp_icon[$cswp_count]; ?>" style="padding: 5px 0px 1px 5px;" readonly/>
+				<img src="<?php echo $x ?>" style="height:20px;width:20px;">
+				<input id="upload_image<?php echo $cswp_button_value; ?>" name="cswp_icon<?php echo $cswp_button_value; ?>" value="<?php echo $x; ?>" style="padding: 5px 0px 1px 5px;" readonly/>
 				<input id="upload_image_button<?php echo $cswp_button_value; ?>" class="button" type="button" value="Upload Image" />
 				<br/>Upload an image for <b><?php echo $cswp_button_value; ?></b>
 				</label>
 			</ul>
 						<?php
+						// var_dump($cswp_value['cswp_icon']{$cswp_count});$cswp_icon[$cswp_count];
+						//var_dump($cswp_icon[$cswp_count]{$cswp_count});
 						$cswp_count++;
 						}
 			?>
-				<?php update_option( 'cswp_iconx', $cswp_icon ); ?>
+				<?php update_option( 'cswp_iconx', $cswp_icon );?>
 				</div>
 				<p class="description cswp-description">
 					<?php esc_html_e( 'This Option work for only Display Type "Button".', 'advanced-stats' ); ?>
