@@ -1,37 +1,9 @@
 
     jQuery(document).ready(function($){
 
-
-// $(document).ready(function(){
-//     $('#cswp_hide_upload').on('change', function() {
-//       if ( this.value == '1')
-//       {
-//         $("#business").show();
-//       }
-//       else
-//       {
-//         $("#business").hide();
-//       }
-//     });
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    $('#clear_image_buttonUSD').click(function(e) {
+        $('#upload_imageUSD').val("");
+    });
     $('#upload_image_buttonUSD').click(function(e) {
        console.log($('#upload_image_buttonUSD').attr('id'));
        // console.log($('#cswp_hide_upload').attr('id'));
@@ -63,6 +35,9 @@
         custom_uploaderUSD.open();
 
     });
+    $('#clear_image_buttonEUR').click(function(e) {
+        $('#upload_imageEUR').val("");
+    });
     $('#upload_image_buttonEUR').click(function(e) {
         console.log($('#upload_image_buttonEUR').attr('id'));
         e.preventDefault();
@@ -93,6 +68,9 @@
         custom_uploaderEUR.open();
 
     });
+     $('#clear_image_buttonAUD').click(function(e) {
+        $('#upload_imageAUD').val("");
+    });
     $('#upload_image_buttonAUD').click(function(e) {
         console.log($('#upload_image_buttonAUD').attr('id'));
         e.preventDefault();
@@ -122,6 +100,9 @@
         //Open the uploader dialog
         custom_uploaderAUR.open();
 
+    });
+     $('#clear_image_buttonINR').click(function(e) {
+        $('#upload_imageINR').val("");
     });
        $('#upload_image_buttonINR').click(function(e) {
         console.log($('#upload_image_buttonINR').attr('id'));
