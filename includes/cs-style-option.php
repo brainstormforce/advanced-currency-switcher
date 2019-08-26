@@ -10,7 +10,7 @@
  */
 
 // Store form inputs values in variable.
-wp_enqueue_script( 'colorpickerscript' );
+wp_enqueue_script( 'cswp-color-picker' );
 wp_enqueue_script( 'cswp-hide-image-upload' );
 
 //Dropdown Button
@@ -18,10 +18,10 @@ $cswp_get_form_value = get_option( 'cswp_style_form_data' );
 $cswp_dd_fs = ( ! empty( $cswp_get_form_value['cswp_dd_font_size'] ) ? $cswp_get_form_value['cswp_dd_font_size'] : 'inherit' );
 $cswp_dd_bc = ( ! empty( $cswp_get_form_value['cswp_dd_background_color'] ) ? $cswp_get_form_value['cswp_dd_background_color'] : 'inherit' );
 $cswp_dd_tc = ( ! empty( $cswp_get_form_value['cswp_dd_text_color'] ) ? $cswp_get_form_value['cswp_dd_text_color'] : 'inherit' );
-$cswp_dd_pt = ( ! empty( $cswp_get_form_value['cswp_dd_padding_top'] ) ? $cswp_get_form_value['cswp_dd_padding_top'] : 'inherit' );
-$cswp_dd_pr = ( ! empty( $cswp_get_form_value['cswp_dd_padding_right'] ) ? $cswp_get_form_value['cswp_dd_padding_right'] : 'inherit' );
-$cswp_dd_pl = ( ! empty( $cswp_get_form_value['cswp_dd_padding_left'] ) ? $cswp_get_form_value['cswp_dd_padding_left'] : 'inherit' );
-$cswp_dd_pb = ( ! empty( $cswp_get_form_value['cswp_dd_padding_bottom'] ) ? $cswp_get_form_value['cswp_dd_padding_bottom'] : 'inherit' );
+$cswp_dd_pt = ( ! empty( $cswp_get_form_value['cswp_dd_padding_top'] ) ? $cswp_get_form_value['cswp_dd_padding_top'] : 0.76 );
+$cswp_dd_pr = ( ! empty( $cswp_get_form_value['cswp_dd_padding_right'] ) ? $cswp_get_form_value['cswp_dd_padding_right'] : 0.76 );
+$cswp_dd_pl = ( ! empty( $cswp_get_form_value['cswp_dd_padding_left'] ) ? $cswp_get_form_value['cswp_dd_padding_left'] : 0.76 );
+$cswp_dd_pb = ( ! empty( $cswp_get_form_value['cswp_dd_padding_bottom'] ) ? $cswp_get_form_value['cswp_dd_padding_bottom'] : 0.76 );
 $cswp_dd_pu = ( ! empty( $cswp_get_form_value['cswp_dd_padding_unit'] ) ? $cswp_get_form_value['cswp_dd_padding_unit'] : 'rem' );
 
 //For Toggle
@@ -161,7 +161,6 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 				<?php
 			}
 			?>
-
 			</td>
 		</tr>
 		<tr>

@@ -623,7 +623,7 @@ class CS_Loader {
 			),
 			true
 		);
-		wp_register_script( 'colorpickerscript', CSWP_PLUGIN_URL . 'assets/js/color-picker.js', array( 'jquery', 'wp-color-picker' ), CSWP_CURRENCY_SWITCHER_VER, true );
+		wp_register_script( 'cswp-color-picker', CSWP_PLUGIN_URL . 'assets/js/cswp-color-picker.js', array( 'jquery', 'wp-color-picker' ), CSWP_CURRENCY_SWITCHER_VER, true );
 		wp_enqueue_script( 'cswp-backend-script' );
 		wp_enqueue_style( 'cswp-style', CSWP_PLUGIN_URL . '/assets/css/cs-styles.css', '', CSWP_CURRENCY_SWITCHER_VER );
 
