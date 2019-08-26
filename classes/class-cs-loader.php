@@ -278,7 +278,23 @@ class CS_Loader {
 			$cswp_icon_align = ! empty( $_POST['cswp_icon_align'] ) ? sanitize_text_field( $_POST['cswp_icon_align'] ) : '';
 
 			$cswp_button = get_option( 'cswp_currency_button_type' );
+		
+			$currencybtn      = CS_Loader::cswp_load_currency_button_data();
+            $base_value_select = CS_Loader::cswp_load_all_data();
 
+							if ( ! empty( $currencybtn ) ) {
+								foreach ( $currencybtn as $cswp_base_value ) {
+									if ( $cswp_base_value === $base_value_select['basecurency'] ) {
+										continue;
+									}
+									$curbtn[] = $cswp_base_value;
+								}
+								if ( ! empty( $curbtn ) && is_array( $curbtn ) ) {
+									array_push( $curbtn, $base_value_select['basecurency'] );
+									$currencybtn = array_combine( $curbtn, $curbtn );
+								}
+							}
+			
 			$cswp_icon_array = array(
 				'USD' => '',
 				'AUD' => '',
@@ -286,11 +302,12 @@ class CS_Loader {
 				'INR' => '',
 			);
 			$cswp_icon       = array();
-			foreach ( $cswp_button as $cswp_button_value ) {
+			foreach ( $currencybtn as $cswp_button_value ) {
 				$cswp_icon_list                        = ! empty( $_POST[ 'cswp_icon' . $cswp_button_value ] ) ? esc_url_raw( $_POST[ 'cswp_icon' . $cswp_button_value ] ) : '';
 				$cswp_icon_array[ $cswp_button_value ] = $cswp_icon_list;
 				array_push( $cswp_icon, $cswp_icon_list );
 			}
+
 			$save = array(
 				//For Dropdown
 				'cswp_dd_font_size'                      => $cswp_dd_font_size,
@@ -361,6 +378,7 @@ class CS_Loader {
 	 * @return void
 	 */
 	public function cswp_save_form_data() {
+		
 
 		$cswp_currency_button_type = null;
 		if ( ! isset( $_POST['cs-form'] ) ) {
@@ -407,6 +425,7 @@ class CS_Loader {
 
 			update_option( 'cswp_currency_button_type', $cswp_currency_button_type );
 		}
+		
 
 		// Store values in array.
 			$usd_text = isset( $_POST['usd-text'] ) ? wp_kses_post( wp_unslash( $_POST['usd-text'] ) ) : '';
@@ -445,6 +464,8 @@ class CS_Loader {
 
 		// Store $update_option array value in database option table.
 		update_option( 'cswp_form_data', $savevalues );
+		
+
 		// values from usermanual currency rate.
 		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
 
@@ -463,6 +484,7 @@ class CS_Loader {
 			);
 			update_option( 'cswp_display', 'display' );
 			update_option( 'cswp_manual_rate', $cswp_manual_rate );
+
 
 		} elseif ( 'apirate' === $_POST['cswp_form_select'] ) {
 
@@ -631,6 +653,7 @@ class CS_Loader {
 		$currency_symbol_add   = array();
 
 		// perform wp_localize_script() for currency rate and setting page value which use in javascript.
+
 		if ( isset( $cswp_get_form_value['cswp_form_select'] ) ) {
 
 			if ( 'apirate' === $cswp_get_form_value['cswp_form_select'] ) {
@@ -672,6 +695,7 @@ class CS_Loader {
 		if ( isset( $cswp_get_form_value['basecurency'] ) ) {
 			$cswp_basecurency = $cswp_get_form_value['basecurency'];
 		}
+
 
 		$currency_rate = array(
 			'actual_currency_rates' => $actual_currency_rates,

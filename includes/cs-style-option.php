@@ -15,7 +15,6 @@ wp_enqueue_script( 'cswp-hide-image-upload' );
 
 //Dropdown Button
 $cswp_get_form_value = get_option( 'cswp_style_form_data' );
-// var_dump($cswp_get_form_value);
 $cswp_dd_fs = ( ! empty( $cswp_get_form_value['cswp_dd_font_size'] ) ? $cswp_get_form_value['cswp_dd_font_size'] : 'inherit' );
 $cswp_dd_bc = ( ! empty( $cswp_get_form_value['cswp_dd_background_color'] ) ? $cswp_get_form_value['cswp_dd_background_color'] : 'inherit' );
 $cswp_dd_tc = ( ! empty( $cswp_get_form_value['cswp_dd_text_color'] ) ? $cswp_get_form_value['cswp_dd_text_color'] : 'inherit' );
@@ -42,15 +41,12 @@ $cswp_tgl_bu = ( ! empty( $cswp_get_form_value['cswp_tgl_border_unit'] ) ? $cswp
 $cswp_tgl_borderc = ( ! empty( $cswp_get_form_value['cswp_tgl_border_color'] ) ? $cswp_get_form_value['cswp_tgl_border_color'] : 'buttonface' );
 $cswp_tgl_text_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_text_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_text_hover_color'] : 'inherit' );
 $cswp_tgl_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_hover_color'] : 'unset' );
-//var_dump($cswp_get_form_value);
 
 $cswp_value = get_option( 'cswp_style_form_data' );
 
 $cswp_button = get_option( 'cswp_currency_button_type' );
 
 $cswp_font_size = ( ! empty( $cswp_value['cswp_font_size'] ) ? $cswp_value['cswp_font_size'] : 16 );
-
-// $cswp_button_width = ( ! empty( $cswp_value['cswp_button_width'] ) ? $cswp_value['cswp_button_width'] : 284 );
 
 $cswp_icon_width = ( ! empty( $cswp_value['cswp_icon_width'] ) ? $cswp_value['cswp_icon_width'] : 30 );
 
@@ -96,8 +92,6 @@ $cswp_icon = ( ! empty( $cswp_value['cswp_icon'] ) ? $cswp_value['cswp_icon'] : 
 
 $cswp_button_hide = get_option( 'cswp_form_data' );
 if ( 'button' === $cswp_button_hide['cswp_button_type'] ) {
-	// var_dump($cswp_button_hide);
-	// wp_die();
 	$cswp_button_css = 'style="display:block"';
 	$cswp_toggle_css = 'style="display:none"';
 	$cswp_dropdown_css = 'style="display:none"';
@@ -110,19 +104,33 @@ if ( 'button' === $cswp_button_hide['cswp_button_type'] ) {
 	$cswp_toggle_css = 'style="display:none"';
 	$cswp_button_css = 'style="display:none"';
 }
-$cswp_base_currency = get_option( 'currencybtn' );
-// $y = get_option('cswp_form_data');
-// var_dump($y);
-// var_dump($cswp_button);
-// var_dump($cswp_button_hide["cswp_button_type"]);
-// var_dump($cswp_value['cswp_icon_array']);
-// var_dump($cswp_value['cswp_icon']);
+else {
+	$cswp_dropdown_css = 'style="display:block"';
+	$cswp_toggle_css = 'style="display:none"';
+	$cswp_button_css = 'style="display:none"';
+}
+
+$currencybtn      = CS_Loader::cswp_load_currency_button_data();
+$base_value_select                   = CS_Loader::cswp_load_all_data();
+
+							if ( ! empty( $currencybtn ) ) {
+								foreach ( $currencybtn as $cswp_base_value ) {
+									if ( $cswp_base_value === $base_value_select['basecurency'] ) {
+										continue;
+									}
+									$curbtn[] = $cswp_base_value;
+								}
+								if ( ! empty( $curbtn ) && is_array( $curbtn ) ) {
+									array_push( $curbtn, $base_value_select['basecurency'] );
+									$currencybtn = array_combine( $curbtn, $curbtn );
+								}
+							}
 ?>
 <!-- Html code for frontend -->
 <form method="post" name="cca_settings_form">
 	<!--  set the html code for select base currency and select currency type -->
-	<div id="cswp_style_container" class="cswp_style_container" style="
-    padding: 16px 16px 16px 10px;">
+	<!-- <div id="cswp_style_container" class="cswp_style_container" style="
+    padding: 16px 16px 16px 10px;"> -->
 <div class="cswp_hide_upload" id="cswp_hide_upload" <?php echo wp_kses_post( $cswp_dropdown_css );?> >
 	<table class="form-table" >
 		<tr >
@@ -281,8 +289,13 @@ $cswp_base_currency = get_option( 'currencybtn' );
 			</td> 
 		</tr>
 		<tr>
+			<td class="cswp_table_row" scope="row">
+				<code><label for="CSWPToggle"> <?php esc_attr_e( 'Border', 'advanced-currency-switcher' ); ?></label></code>
+			</td>
+		</tr>
+		<tr>
 		<th class="cswp_table_row" scope="row">
-		<label for="CSWPBorder"><?php esc_attr_e( 'Border Style', 'advanced-currency-switcher' ); ?> :</label>
+		<label for="CSWPBorder"><?php esc_attr_e( 'Style', 'advanced-currency-switcher' ); ?> :</label>
 		</th>
 		<td>
 				<select name="cswp_tgl_border_style">
@@ -314,7 +327,7 @@ $cswp_base_currency = get_option( 'currencybtn' );
 		</tr>
 		<tr>
 		<th class="cswp_table_row" scope="row">
-		<label for="CSWPBorder"><?php esc_attr_e( 'Border Width', 'advanced-currency-switcher' ); ?> :</label>
+		<label for="CSWPBorder"><?php esc_attr_e( 'Width', 'advanced-currency-switcher' ); ?> :</label>
 		</th>
 			<td>
 				<?php
@@ -342,7 +355,7 @@ $cswp_base_currency = get_option( 'currencybtn' );
 		</tr>
 		<tr >
 			<th class="cswp_table_row" scope="row">
-				<label for="CSWPFontSize"><?php esc_attr_e( 'Border Radius', 'advanced-currency-switcher' ); ?>  :</label>
+				<label for="CSWPFontSize"><?php esc_attr_e( 'Radius', 'advanced-currency-switcher' ); ?>  :</label>
 			</th>
 			<td>
 			<?php
@@ -355,13 +368,18 @@ $cswp_base_currency = get_option( 'currencybtn' );
 		</tr>
 		<tr>
 		<th class="cswp_table_row" scope="row">
-		<label for="CSWPBorder"><?php esc_attr_e( 'Border Color', 'advanced-currency-switcher' ); ?> :</label>
+		<label for="CSWPBorder"><?php esc_attr_e( 'Color', 'advanced-currency-switcher' ); ?> :</label>
 		</th>
 			<td>
 				<?php
 				echo '<input  name="cswp_tgl_border_color" class="my-color-field" value="' . esc_attr( $cswp_tgl_borderc ) . '" >';
 				?>
 		</td>
+		</tr>
+		<tr>
+			<td class="cswp_table_row" scope="row">
+				<code><label for="CSWPToggle"> <?php esc_attr_e( 'Colors', 'advanced-currency-switcher' ); ?></label></code>
+			</td>
 		</tr>
 		<tr >
 			<th class="cswp_table_row" scope="row">
@@ -379,6 +397,23 @@ $cswp_base_currency = get_option( 'currencybtn' );
 			}
 			?>
 
+			</td>
+		</tr>
+		<tr >
+			<th class="cswp_table_row" scope="row">
+				<label for="CSWPColor"> <?php esc_attr_e( 'Text Hover Color', 'advanced-currency-switcher' ); ?> :</label>
+			</th>  
+			<td>
+			<?php
+			if ( isset( $cswp_tgl_text_hover_color) ) {
+
+				echo '<input name="cswp_tgl_text_hover_color" class="my-color-field" value="' . esc_attr( $cswp_tgl_text_hover_color ) . '">';
+			} else {
+				?>
+			<input name="cswp_tgl_text_hover_color" class="my-color-field" value="#333333">
+				<?php
+			}
+			?>
 			</td>
 		</tr>
 		<tr>
@@ -402,7 +437,7 @@ $cswp_base_currency = get_option( 'currencybtn' );
 		</tr>
 		<tr >
 			<th class="cswp_table_row" scope="row">
-				<label for="CSWPColor"> <?php esc_attr_e( 'Toggle Background Hover Color', 'advanced-currency-switcher' ); ?> :</label>
+				<label for="CSWPColor"> <?php esc_attr_e( 'Background Hover Color', 'advanced-currency-switcher' ); ?> :</label>
 			</th>  
 			<td>
 			<?php
@@ -412,23 +447,6 @@ $cswp_base_currency = get_option( 'currencybtn' );
 			} else {
 				?>
 			<input name="cswp_tgl_hover_color" class="my-color-field" value="#333333">
-				<?php
-			}
-			?>
-			</td>
-		</tr>
-		<tr >
-			<th class="cswp_table_row" scope="row">
-				<label for="CSWPColor"> <?php esc_attr_e( 'Toggle Text Hover Color', 'advanced-currency-switcher' ); ?> :</label>
-			</th>  
-			<td>
-			<?php
-			if ( isset( $cswp_tgl_text_hover_color) ) {
-
-				echo '<input name="cswp_tgl_text_hover_color" class="my-color-field" value="' . esc_attr( $cswp_tgl_text_hover_color ) . '">';
-			} else {
-				?>
-			<input name="cswp_tgl_text_hover_color" class="my-color-field" value="#333333">
 				<?php
 			}
 			?>
@@ -783,19 +801,6 @@ $cswp_base_currency = get_option( 'currencybtn' );
 			</p>  
 			</td>
 		</tr>
-		<!-- <tr >
-			<th class="cswp_table_row" scope="row">
-				<label for="CSWPButtonWidth"><?php //esc_attr_e( 'Button Width', 'advanced-currency-switcher' ); ?>  :</label>
-			</th>
-			<td>
-			<?php
-			//echo '<input type="number" name="cswp_button_width" class="small-text" value="' . esc_attr( $cswp_button_width ) . '"  >&nbsp px';
-			?>
-			<p class="description">
-			<?php //esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
-			</p>  
-			</td>
-		</tr> -->
 		<tr>
 			<th class="cswp_table_row" scope="row">
 			<label for="CSWPUploadIcon"><?php esc_attr_e( 'Upload Image', 'advanced-currency-switcher' ); ?>
@@ -805,11 +810,10 @@ $cswp_base_currency = get_option( 'currencybtn' );
 			<?php
 				$cswp_count = 0;	
 			$cswp_icon = array();
-			// var_dump($cswp_base_currency);
-				foreach ( $cswp_base_currency as $cswp_button_value ) {
+				foreach ( $currencybtn as $cswp_button_value ) {
 				$cswp_icon_list                        = ! empty( $_POST[ 'cswp_icon' . $cswp_button_value ] ) ? esc_url_raw( $_POST[ 'cswp_icon' . $cswp_button_value ] ) : '';
 				$cswp_icon_array[ $cswp_button_value ] = $cswp_icon_list;
-				$x = ! empty( $cswp_value['cswp_icon']{$cswp_count} ) ? $cswp_value['cswp_icon']{$cswp_count} : '';	
+				$x = ! empty( $cswp_value['cswp_icon']{$cswp_count} ) ? $cswp_value['cswp_icon']{$cswp_count} : '';
 				array_push( $cswp_icon, $cswp_icon_list );
 				?>
 			<ul>
@@ -820,16 +824,11 @@ $cswp_base_currency = get_option( 'currencybtn' );
 				</label>
 			</ul>
 						<?php
-						// var_dump($cswp_value['cswp_icon']{$cswp_count});$cswp_icon[$cswp_count];
-						//var_dump($cswp_icon[$cswp_count]{$cswp_count});
 						$cswp_count++;
 						}
 			?>
 				<?php update_option( 'cswp_iconx', $cswp_icon );?>
 				</div>
-				<p class="description cswp-description">
-					<?php esc_html_e( 'This Option work for only Display Type "Button".', 'advanced-stats' ); ?>
-				</p>
 		</td>
 		</tr>
 		</table>
@@ -843,6 +842,6 @@ $cswp_base_currency = get_option( 'currencybtn' );
 			</th>
 		</tr>
 	</table>
-	</div>
+	<!-- </div> -->
 </form>
 

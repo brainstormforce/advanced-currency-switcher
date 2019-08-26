@@ -66,8 +66,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			$cswp_icon           = $cswp_get_form_value['cswp_icon'];
 			$cswp_iconx          = get_option( 'cswp_iconx' );
 			$cswp_currency_array = $cswp_get_form_value['cswp_icon_array'];
-			// echo '<pre>';var_dump($cswp_currency_array);wp_die();
-				// var_dump($cswp_get_form_value); wp_die();
+			
 			//For Dropdown
 			$cswp_dd_fs = ( ! empty( $cswp_get_form_value['cswp_dd_font_size'] ) ? $cswp_get_form_value['cswp_dd_font_size'] : 16 );
 			$cswp_dd_bc = ( ! empty( $cswp_get_form_value['cswp_dd_background_color'] ) ? $cswp_get_form_value['cswp_dd_background_color'] : 'inherit' );
@@ -95,8 +94,6 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			$cswp_tgl_borderc = ( ! empty( $cswp_get_form_value['cswp_tgl_border_color'] ) ? $cswp_get_form_value['cswp_tgl_border_color'] : 'buttonface' );
 			$cswp_tgl_text_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_text_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_text_hover_color'] : '' );
 			$cswp_tgl_background_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_hover_color'] : '' );
-			// var_dump($cswp_get_form_value['cswp_tgl_text_hover_color']);
-			// wp_die();
 
 			//For Button
 			$cswp_btn_fs = ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 16 );
@@ -176,10 +173,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 					color:<?php echo $cswp_tgl_text_hover_color; ?>!important;
 					background-color:<?php echo $cswp_tgl_background_hover_color; ?>!important;
 				}
-				<!-- Style For Toggle .cs-currency-name--> 
-				<!-- .cs-currency-buttons .cs-currency-name {
-				    color:red !important;
-				} -->
+
 				button.cs-currency-name {
    					font-weight: <?php echo $cswp_tgl_fw; ?>;
 
@@ -235,25 +229,15 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 					?>
 				;
 				}
-			
-			
-			<!-- Style For Button -->
-			 <!-- .cswp_button_change .cs-currency-name-btn:hover{
-			 color:<?php //echo $cswp_tgl_text_hover_color; ?>; 
 
-			 background-color:<?php //echo $cswp_btn_background_hover_color; ?>;
-			}  --> 
-			<!-- .cswp_button_change .cs-currency-name-btn:hover{
-			
-		} -->
 		.cs-currency-name-btn.cswpactive:hover{
-		background-color:<?php echo $cswp_btn_background_hover_color; ?>;
+		background-color:<?php echo $cswp_btn_background_hover_color; ?>!important;
 		color:<?php echo $cswp_btn_text_hover_color; ?>;
 		} 
 
 			.cs-currency-name-btn.cswpactive{
 
-					background:<?php echo $cswp_btn_active_background_color; ?>;
+					background:<?php echo $cswp_btn_active_background_color; ?>!important;
 					color:<?php echo $cswp_btn_text_hover_color; ?>;
 				}
 
