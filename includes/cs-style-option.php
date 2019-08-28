@@ -15,13 +15,14 @@ wp_enqueue_script( 'cswp-hide-image-upload' );
 
 //Dropdown Button
 $cswp_get_form_value = get_option( 'cswp_style_form_data' );
+// $cswp_dd_alignment = ( ! empty( $cswp_get_form_value['cswp_dd_alignment'] ) ? $cswp_get_form_value['cswp_dd_alignment'] : 'left' );
 $cswp_dd_fs = ( ! empty( $cswp_get_form_value['cswp_dd_font_size'] ) ? $cswp_get_form_value['cswp_dd_font_size'] : 'inherit' );
-$cswp_dd_bc = ( ! empty( $cswp_get_form_value['cswp_dd_background_color'] ) ? $cswp_get_form_value['cswp_dd_background_color'] : 'inherit' );
-$cswp_dd_tc = ( ! empty( $cswp_get_form_value['cswp_dd_text_color'] ) ? $cswp_get_form_value['cswp_dd_text_color'] : 'inherit' );
-$cswp_dd_pt = ( ! empty( $cswp_get_form_value['cswp_dd_padding_top'] ) ? $cswp_get_form_value['cswp_dd_padding_top'] : 0.76 );
-$cswp_dd_pr = ( ! empty( $cswp_get_form_value['cswp_dd_padding_right'] ) ? $cswp_get_form_value['cswp_dd_padding_right'] : 0.76 );
-$cswp_dd_pl = ( ! empty( $cswp_get_form_value['cswp_dd_padding_left'] ) ? $cswp_get_form_value['cswp_dd_padding_left'] : 0.76 );
-$cswp_dd_pb = ( ! empty( $cswp_get_form_value['cswp_dd_padding_bottom'] ) ? $cswp_get_form_value['cswp_dd_padding_bottom'] : 0.76 );
+$cswp_dd_bc = ( ! empty( $cswp_get_form_value['cswp_dd_background_color'] ) ? $cswp_get_form_value['cswp_dd_background_color'] : '' );
+$cswp_dd_tc = ( ! empty( $cswp_get_form_value['cswp_dd_text_color'] ) ? $cswp_get_form_value['cswp_dd_text_color'] : '' );
+$cswp_dd_pt = ( ! empty( $cswp_get_form_value['cswp_dd_padding_top'] ) ? $cswp_get_form_value['cswp_dd_padding_top'] : '' );
+$cswp_dd_pr = ( ! empty( $cswp_get_form_value['cswp_dd_padding_right'] ) ? $cswp_get_form_value['cswp_dd_padding_right'] : '' );
+$cswp_dd_pl = ( ! empty( $cswp_get_form_value['cswp_dd_padding_left'] ) ? $cswp_get_form_value['cswp_dd_padding_left'] : '' );
+$cswp_dd_pb = ( ! empty( $cswp_get_form_value['cswp_dd_padding_bottom'] ) ? $cswp_get_form_value['cswp_dd_padding_bottom'] : '' );
 $cswp_dd_pu = ( ! empty( $cswp_get_form_value['cswp_dd_padding_unit'] ) ? $cswp_get_form_value['cswp_dd_padding_unit'] : 'rem' );
 
 //For Toggle
@@ -147,11 +148,51 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 	<!--  set the html code for select base currency and select currency type -->
 	<!-- <div id="cswp_style_container" class="cswp_style_container" style="
     padding: 16px 16px 16px 10px;"> -->
+    <table class="form-table" >
+    <tr>
+			<td class="cswp_table_row" scope="row">
+				<code class="cswp_code"><label for="CSWP"> <?php esc_attr_e( 'Overall Alignment', 'advanced-currency-switcher' ); ?></label></code>
+			</td>
+	</tr>
+    <tr >
+			<th class="cswp_table_row" scope="row">
+				<label for="CSWPOverAlign"><?php esc_attr_e( 'Alignment', 'advanced-currency-switcher' ); ?></label>
+			</th>
+			<td>
+			<select name="cswp_alignment">
+				<?php
+				if ( 'left' === $cswp_alignment ) {
+
+					echo '<option selected value="left">Left</option>';
+				} else {
+
+					echo '<option  value="left">Left</option>';
+				}
+				if ( 'center' === $cswp_alignment ) {
+
+					echo '<option selected value="center">Center</option>';
+				} else {
+
+					echo '<option  value="center">Center</option>';
+				}
+				if ( 'right' === $cswp_alignment ) {
+
+					echo '<option selected value="right">Right</option>';
+				} else {
+
+					echo '<option  value="right">Right</option>';
+				}
+				?>
+			</select> 
+			</td>
+	</tr>
+	</table>
+
 <div class="cswp_hide_upload" id="cswp_hide_upload" <?php echo wp_kses_post( $cswp_dropdown_css );?> >
 	<table class="form-table" >
 		<tr>
 			<td class="cswp_table_row" scope="row">
-				<code><label for="CSWPDropdown"> <?php esc_attr_e( 'Dropdown', 'advanced-currency-switcher' ); ?></label></code>
+				<code class="cswp_code"><label for="CSWPDropdown"> <?php esc_attr_e( 'Dropdown', 'advanced-currency-switcher' ); ?></label></code>
 			</td>
 		</tr>
 		<tr >
@@ -253,7 +294,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 <table class="form-table" >
 		<tr>
 			<td class="cswp_table_row" scope="row">
-				<code><label for="CSWPToggle"> <?php esc_attr_e( 'Toggle', 'advanced-currency-switcher' ); ?></label></code>
+				<code class="cswp_code"><label for="CSWPToggle"> <?php esc_attr_e( 'Toggle', 'advanced-currency-switcher' ); ?></label></code>
 			</td>
 		</tr>
 		<tr >
@@ -296,7 +337,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr >
 			<th class="cswp_table_row" scope="row">
-				<label for="CSWPFontWeight"><?php esc_attr_e( 'Font Weight', 'advanced-currency-switcher' ); ?>  :</label>
+				<label for="CSWPFontWeight"><?php esc_attr_e( 'Font Weight', 'advanced-currency-switcher' ); ?></label>
 			</th>
 			<td>
 			<?php
@@ -309,7 +350,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr>
 		<th class="cswp_table_row" scope="row">
-		<label for="CSWPpadding"><?php esc_attr_e( 'Padding', 'advanced-currency-switcher' ); ?> :</label>
+		<label for="CSWPpadding"><?php esc_attr_e( 'Padding', 'advanced-currency-switcher' ); ?></label>
 		</th>
 			<td>
 				<?php
@@ -353,12 +394,12 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr>
 			<td class="cswp_table_row" scope="row">
-				<code><label for="CSWPToggle"> <?php esc_attr_e( 'Border', 'advanced-currency-switcher' ); ?></label></code>
+				<code class="cswp_code"><label for="CSWPToggle"> <?php esc_attr_e( 'Border', 'advanced-currency-switcher' ); ?></label></code>
 			</td>
 		</tr>
 		<tr>
 		<th class="cswp_table_row" scope="row">
-		<label for="CSWPBorder"><?php esc_attr_e( 'Style', 'advanced-currency-switcher' ); ?> :</label>
+		<label for="CSWPBorder"><?php esc_attr_e( 'Style', 'advanced-currency-switcher' ); ?></label>
 		</th>
 		<td>
 				<select name="cswp_tgl_border_style">
@@ -390,7 +431,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr>
 		<th class="cswp_table_row" scope="row">
-		<label for="CSWPBorder"><?php esc_attr_e( 'Width', 'advanced-currency-switcher' ); ?> :</label>
+		<label for="CSWPBorder"><?php esc_attr_e( 'Width', 'advanced-currency-switcher' ); ?></label>
 		</th>
 			<td>
 				<?php
@@ -418,7 +459,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr >
 			<th class="cswp_table_row" scope="row">
-				<label for="CSWPFontSize"><?php esc_attr_e( 'Radius', 'advanced-currency-switcher' ); ?>  :</label>
+				<label for="CSWPFontSize"><?php esc_attr_e( 'Radius', 'advanced-currency-switcher' ); ?></label>
 			</th>
 			<td>
 			<?php
@@ -431,7 +472,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr>
 		<th class="cswp_table_row" scope="row">
-		<label for="CSWPBorder"><?php esc_attr_e( 'Color', 'advanced-currency-switcher' ); ?> :</label>
+		<label for="CSWPBorder"><?php esc_attr_e( 'Color', 'advanced-currency-switcher' ); ?></label>
 		</th>
 			<td>
 				<?php
@@ -441,12 +482,12 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr>
 			<td class="cswp_table_row" scope="row">
-				<code><label for="CSWPToggle"> <?php esc_attr_e( 'Colors', 'advanced-currency-switcher' ); ?></label></code>
+				<code class="cswp_code"><label for="CSWPToggle"> <?php esc_attr_e( 'Colors', 'advanced-currency-switcher' ); ?></label></code>
 			</td>
 		</tr>
 		<tr >
 			<th class="cswp_table_row" scope="row">
-				<label for="CSWPTextColor"> <?php esc_attr_e( 'Text Color', 'advanced-currency-switcher' ); ?> :</label>
+				<label for="CSWPTextColor"> <?php esc_attr_e( 'Text Color', 'advanced-currency-switcher' ); ?></label>
 			</th>  
 			<td>
 			<?php
@@ -464,7 +505,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr >
 			<th class="cswp_table_row" scope="row">
-				<label for="CSWPColor"> <?php esc_attr_e( 'Text Hover Color', 'advanced-currency-switcher' ); ?> :</label>
+				<label for="CSWPColor"> <?php esc_attr_e( 'Text Hover Color', 'advanced-currency-switcher' ); ?></label>
 			</th>  
 			<td>
 			<?php
@@ -481,7 +522,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr>
 			<th class="cswp_table_row" scope="row"> 
-				<label for="CSWPBackgroundColor"> <?php esc_attr_e( 'Background Color', 'advanced-currency-switcher' ); ?> :</label>
+				<label for="CSWPBackgroundColor"> <?php esc_attr_e( 'Background Color', 'advanced-currency-switcher' ); ?></label>
 			</th>
 			<td>
 			<?php
@@ -500,7 +541,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr >
 			<th class="cswp_table_row" scope="row">
-				<label for="CSWPColor"> <?php esc_attr_e( 'Background Hover Color', 'advanced-currency-switcher' ); ?> :</label>
+				<label for="CSWPColor"> <?php esc_attr_e( 'Background Hover Color', 'advanced-currency-switcher' ); ?></label>
 			</th>  
 			<td>
 			<?php
@@ -516,49 +557,13 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			</td>
 		</tr>
 	</table>
+	<br><br>
 </div>
 	<div class="cswp_hide_upload" id="cswp_hide_upload" <?php echo wp_kses_post( $cswp_button_css );?> >
 	<table class="form-table">
 		<tr>
 			<td class="cswp_table_row" scope="row">
-				<code><label for="CSWP"> <?php esc_attr_e( 'Overall Alignment', 'advanced-currency-switcher' ); ?></label></code>
-			</td>
-		</tr>
-		<tr >
-			<th class="cswp_table_row" scope="row">
-				<label for="CSWPOverAlign"><?php esc_attr_e( 'Alignment', 'advanced-currency-switcher' ); ?></label>
-			</th>
-			<td>
-			<select name="cswp_alignment">
-				<?php
-				if ( 'left' === $cswp_alignment ) {
-
-					echo '<option selected value="left">Left</option>';
-				} else {
-
-					echo '<option  value="left">Left</option>';
-				}
-				if ( 'center' === $cswp_alignment ) {
-
-					echo '<option selected value="center">Center</option>';
-				} else {
-
-					echo '<option  value="center">Center</option>';
-				}
-				if ( 'right' === $cswp_alignment ) {
-
-					echo '<option selected value="right">Right</option>';
-				} else {
-
-					echo '<option  value="right">Right</option>';
-				}
-				?>
-			</select> 
-			</td>
-		</tr>
-		<tr>
-			<td class="cswp_table_row" scope="row">
-				<code><label for="CSWP"> <?php esc_attr_e( 'Button', 'advanced-currency-switcher' ); ?></label></code>
+				<code class="cswp_code"><label for="CSWP"> <?php esc_attr_e( 'Button', 'advanced-currency-switcher' ); ?></label></code>
 			</td>
 		</tr>
 		<tr >
@@ -614,7 +619,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr>
 		<th class="cswp_table_row" scope="row">
-		<label for="CSWPpadding"><?php esc_attr_e( 'Padding', 'advanced-currency-switcher' ); ?> :</label>
+		<label for="CSWPpadding"><?php esc_attr_e( 'Padding', 'advanced-currency-switcher' ); ?></label>
 		</th>
 			<td>
 				<?php
@@ -712,7 +717,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr>
 			<td class="cswp_table_row" scope="row">
-				<code><label for="CSWPActiveButtonBackgroundColor"> <?php esc_attr_e( 'Active Button', 'advanced-currency-switcher' ); ?></label></code>
+				<code class="cswp_code"><label for="CSWPActiveButtonBackgroundColor"> <?php esc_attr_e( 'Active Button', 'advanced-currency-switcher' ); ?></label></code>
 			</td>
 		</tr>
 		<tr>
@@ -752,7 +757,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr>
 			<td class="cswp_table_row" scope="row">
-				<code><label for="CSWPBorder"> <?php esc_attr_e( 'Border', 'advanced-currency-switcher' ); ?>:</label></code>
+				<code class="cswp_code"><label for="CSWPBorder"> <?php esc_attr_e( 'Border', 'advanced-currency-switcher' ); ?></label></code>
 			</td>
 		</tr>
 		<tr>
@@ -830,7 +835,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr>
 			<td class="cswp_table_row" scope="row">
-				<code><label for="CSWPIconAlignment"> <?php esc_attr_e( 'Icon', 'advanced-currency-switcher' ); ?> :</label></code>
+				<code class="cswp_code"><label for="CSWPIconAlignment"> <?php esc_attr_e( 'Icon', 'advanced-currency-switcher' ); ?></label></code>
 			</td>
 		</tr>
 		<tr >
@@ -861,45 +866,6 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			</p>  
 			</td>
 		</tr>
-		<!--<tr>
-		 <th class="cswp_table_row" scope="row">
-		<label for="CSWPVerticalAlignment"><?php //esc_attr_e( 'Vertical Alignment', 'advanced-currency-switcher' ); ?></label>
-		</th>
-		<td>
-				<select name="cswp_vertical_align">
-				<?php
-				// if ( 'baseline' === $cswp_vertical_align ) {
-
-				// 	echo '<option selected value="baseline">Baseline</option>';
-				// } else {
-
-				// 	echo '<option  value="baseline">Baseline</option>';
-				// }
-				// if ( 'top' === $cswp_vertical_align ) {
-
-				// 	echo '<option selected value="top">Top</option>';
-				// } else {
-
-				// 	echo '<option  value="top">Top</option>';
-				// }
-				// if ( 'bottom' === $cswp_vertical_align ) {
-
-				// 	echo '<option selected value="bottom">Bottom</option>';
-				// } else {
-
-				// 	echo '<option  value="bottom">Bottom</option>';
-				// }
-				// if ( 'middle' === $cswp_vertical_align ) {
-
-				// 	echo '<option selected value="middle">Middle</option>';
-				// } else {
-
-				// 	echo '<option  value="middle">Middle</option>';
-				//}
-				?>
-				</select>
-			</td> 
-		</tr> -->
 		<tr >
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPIconWidth"><?php esc_attr_e( 'Width', 'advanced-currency-switcher' ); ?></label>
@@ -928,7 +894,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</tr>
 		<tr>
 		<th class="cswp_table_row" scope="row">
-		<label for="CSWPspacing"><?php esc_attr_e( 'Spacing', 'advanced-currency-switcher' ); ?> :</label>
+		<label for="CSWPspacing"><?php esc_attr_e( 'Spacing', 'advanced-currency-switcher' ); ?></label>
 		</th>
 			<td>
 				<?php

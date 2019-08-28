@@ -203,13 +203,14 @@ class CS_Loader {
 		if ( ! empty( $_POST['cs-style-form'] ) && wp_verify_nonce( sanitize_text_field( $_POST['cs-style-form'] ), 'cs-style-form-nonce' ) ) {
 
 			//For Dropdown
+			// $cswp_dd_alignment = ! empty( $_POST['cswp_dd_alignment'] ) ? sanitize_text_field( $_POST['cswp_dd_alignment'] ) : '';
 			$cswp_dd_font_size = ! empty( $_POST['cswp_dd_font_size'] ) ? sanitize_text_field( $_POST['cswp_dd_font_size'] ) : '';
 			$cswp_dd_background_color = ! empty( $_POST['cswp_dd_background_color'] ) ? sanitize_hex_color( $_POST['cswp_dd_background_color'] ) : '';
 			$cswp_dd_text_color = ! empty( $_POST['cswp_dd_text_color'] ) ? sanitize_hex_color( $_POST['cswp_dd_text_color'] ) : '';
-			$cswp_dd_padding_top = ( ! empty( $_POST['cswp_dd_padding_top'] ) ? floatval( $_POST['cswp_dd_padding_top'] ) : 0.76 );
-			$cswp_dd_padding_right = ( ! empty( $_POST['cswp_dd_padding_right'] ) ? floatval( $_POST['cswp_dd_padding_right'] ) : 0.76 );
-			$cswp_dd_padding_bottom = ( ! empty( $_POST['cswp_dd_padding_bottom'] ) ? floatval( $_POST['cswp_dd_padding_bottom'] ) : 0.76 );
-			$cswp_dd_padding_left = ( ! empty( $_POST['cswp_dd_padding_left'] ) ? floatval( $_POST['cswp_dd_padding_left'] ) : 0.76 );
+			$cswp_dd_padding_top = ( ! empty( $_POST['cswp_dd_padding_top'] ) ? floatval( $_POST['cswp_dd_padding_top'] ) : '' );
+			$cswp_dd_padding_right = ( ! empty( $_POST['cswp_dd_padding_right'] ) ? floatval( $_POST['cswp_dd_padding_right'] ) : '' );
+			$cswp_dd_padding_bottom = ( ! empty( $_POST['cswp_dd_padding_bottom'] ) ? floatval( $_POST['cswp_dd_padding_bottom'] ) : '' );
+			$cswp_dd_padding_left = ( ! empty( $_POST['cswp_dd_padding_left'] ) ? floatval( $_POST['cswp_dd_padding_left'] ) : '' );
 			$cswp_dd_padding_unit = ( ! empty( $_POST['cswp_dd_padding_unit'] ) ? sanitize_text_field( $_POST['cswp_dd_padding_unit'] ) : '' );
 
 			//For Toggle
@@ -324,6 +325,7 @@ class CS_Loader {
 
 			$save = array(
 				//For Dropdown
+				// 'cswp_dd_alignment'                      => $cswp_dd_alignment,
 				'cswp_dd_font_size'                      => $cswp_dd_font_size,
 				'cswp_dd_text_color'                     => $cswp_dd_text_color,
 				'cswp_dd_background_color'               => $cswp_dd_background_color,

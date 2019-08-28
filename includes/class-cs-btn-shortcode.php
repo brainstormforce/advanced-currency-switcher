@@ -68,6 +68,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			$cswp_currency_array = $cswp_get_form_value['cswp_icon_array'];
 			
 			//For Dropdown
+			// $cswp_dd_alignment = ( ! empty( $cswp_get_form_value['cswp_dd_alignment'] ) ? $cswp_get_form_value['cswp_dd_alignment'] : 'left' );
 			$cswp_dd_fs = ( ! empty( $cswp_get_form_value['cswp_dd_font_size'] ) ? $cswp_get_form_value['cswp_dd_font_size'] : 16 );
 			$cswp_dd_bc = ( ! empty( $cswp_get_form_value['cswp_dd_background_color'] ) ? $cswp_get_form_value['cswp_dd_background_color'] : 'inherit' );
 			$cswp_dd_tc = ( ! empty( $cswp_get_form_value['cswp_dd_text_color'] ) ? $cswp_get_form_value['cswp_dd_text_color'] : 'inherit' );
@@ -107,10 +108,6 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			$cswp_btn_pl = ( ! empty( $cswp_get_form_value['cswp_padding_left'] ) ? $cswp_get_form_value['cswp_padding_left'] : 0.76);
 			$cswp_btn_pb = ( ! empty( $cswp_get_form_value['cswp_padding_bottom'] ) ? $cswp_get_form_value['cswp_padding_bottom'] : 0.76 );
 			$cswp_btn_pu = ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'inherit' );
-
-
-
-
 			$cswp_icon_st = ( ! empty( $cswp_get_form_value['cswp_spacing_top'] ) ? $cswp_get_form_value['cswp_spacing_top'] : 5 );
 			$cswp_icon_sr = ( ! empty( $cswp_get_form_value['cswp_spacing_right'] ) ? $cswp_get_form_value['cswp_spacing_right'] : 5 );
 			$cswp_icon_sl = ( ! empty( $cswp_get_form_value['cswp_spacing_left'] ) ? $cswp_get_form_value['cswp_spacing_left'] : 5);
@@ -144,7 +141,10 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			<!-- Style For Dropdown -->
 			<style type="text/css">
 
+    
+
 			.cs-currency-buttons .cs-currency-name-dropdown {
+
 				font-size: <?php echo $cswp_dd_fs; ?>px;
 
 				background: <?php echo $cswp_dd_bc; ?>;
@@ -248,6 +248,9 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 		background-color:<?php echo $cswp_btn_background_hover_color; ?>!important;
 		color:<?php echo $cswp_btn_text_hover_color; ?>;
 		} 
+		.cswp_button_change .cs-currency-name-btn:hover{
+			background-color:<?php echo $cswp_btn_background_hover_color; ?>;
+	}
 
 			.cs-currency-name-btn.cswpactive{
 
@@ -318,6 +321,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			}
 
 			.cs-currency-buttons{
+
 			text-align : <?php echo $cswp_button_align; ?>;
 
 			}
