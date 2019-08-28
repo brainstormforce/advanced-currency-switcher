@@ -158,7 +158,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPOverAlign"><?php esc_attr_e( 'Alignment', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<select name="cswp_alignment">
 				<?php
 				if ( 'left' === $cswp_alignment ) {
@@ -199,7 +199,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPFontSize"><?php esc_attr_e( 'Font Size', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<input type="number" name="cswp_dd_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_dd_fs ) . '"  >&nbsp px';
 			?>
@@ -212,7 +212,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPTextColor"> <?php esc_attr_e( 'Text Color', 'advanced-currency-switcher' ); ?></label>
 			</th>  
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			if ( isset( $cswp_dd_tc ) ) {
 
@@ -229,7 +229,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row"> 
 				<label for="CSWPBackgroundColor"> <?php esc_attr_e( 'Background Color', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<div id="cswp_rt_bg">';
 			if ( isset( $cswp_dd_bc ) ) {
@@ -248,7 +248,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		<th class="cswp_table_row" scope="row">
 		<label for="CSWPpadding"><?php esc_attr_e( 'Padding', 'advanced-currency-switcher' ); ?></label>
 		</th>
-			<td>
+			<td class="cswp_table_td">
 				<?php
 				echo '<input step="any" id="cswp_padding" type="number" name="cswp_dd_padding_top" class="small-text" value="' . esc_attr( $cswp_dd_pt ) . '" >';
 				echo '<input step="any" id="cswp_padding" type="number" name="cswp_dd_padding_right" class="small-text" value="' . esc_attr( $cswp_dd_pr ) . '" >';
@@ -301,7 +301,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPFontSize"><?php esc_attr_e( 'Font Size', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<input type="number" name="cswp_tgl_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_tgl_fs ) . '"  >&nbsp';
 			?>
@@ -339,7 +339,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPFontWeight"><?php esc_attr_e( 'Font Weight', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<input type="number" name="cswp_tgl_font_weight" max="900" min="100" class="small-text" value="' . esc_attr( $cswp_tgl_fw ) . '"  >&nbsp';
 			?>
@@ -352,7 +352,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		<th class="cswp_table_row" scope="row">
 		<label for="CSWPpadding"><?php esc_attr_e( 'Padding', 'advanced-currency-switcher' ); ?></label>
 		</th>
-			<td>
+			<td class="cswp_table_td">
 				<?php
 				echo '<input step="any" id="cswp_padding" type="number" name="cswp_tgl_padding_top" class="small-text" value="' . esc_attr( $cswp_tgl_pt ) . '" >';
 				echo '<input step="any" id="cswp_padding" type="number" name="cswp_tgl_padding_right" class="small-text" value="' . esc_attr( $cswp_tgl_pr ) . '" >';
@@ -401,7 +401,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		<th class="cswp_table_row" scope="row">
 		<label for="CSWPBorder"><?php esc_attr_e( 'Style', 'advanced-currency-switcher' ); ?></label>
 		</th>
-		<td>
+		<td class="cswp_table_td">
 				<select name="cswp_tgl_border_style">
 				<?php
 				if ( 'none' === $cswp_tgl_bs ) {
@@ -433,7 +433,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		<th class="cswp_table_row" scope="row">
 		<label for="CSWPBorder"><?php esc_attr_e( 'Width', 'advanced-currency-switcher' ); ?></label>
 		</th>
-			<td>
+			<td class="cswp_table_td">
 				<?php
 				echo '<input step="any" id="cswp_border" type="number" name="cswp_tgl_border_width" class="small-text" value="' . esc_attr( $cswp_tgl_bw ) . '" >';
 				?>
@@ -461,7 +461,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPFontSize"><?php esc_attr_e( 'Radius', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<input type="number" name="cswp_tgl_border_radius" max="50" min="0" class="small-text" value="' . esc_attr( $cswp_tgl_br ) . '"  >&nbsp px';
 			?>
@@ -474,7 +474,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		<th class="cswp_table_row" scope="row">
 		<label for="CSWPBorder"><?php esc_attr_e( 'Color', 'advanced-currency-switcher' ); ?></label>
 		</th>
-			<td>
+			<td class="cswp_table_td">
 				<?php
 				echo '<input  name="cswp_tgl_border_color" class="my-color-field" value="' . esc_attr( $cswp_tgl_borderc ) . '" >';
 				?>
@@ -489,7 +489,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPTextColor"> <?php esc_attr_e( 'Text Color', 'advanced-currency-switcher' ); ?></label>
 			</th>  
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			if ( isset( $cswp_tgl_tc ) ) {
 
@@ -507,7 +507,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPColor"> <?php esc_attr_e( 'Text Hover Color', 'advanced-currency-switcher' ); ?></label>
 			</th>  
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			if ( isset( $cswp_tgl_text_hover_color) ) {
 
@@ -524,7 +524,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row"> 
 				<label for="CSWPBackgroundColor"> <?php esc_attr_e( 'Background Color', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<div id="cswp_rt_bg">';
 			if ( isset( $cswp_tgl_bc ) ) {
@@ -543,7 +543,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPColor"> <?php esc_attr_e( 'Background Hover Color', 'advanced-currency-switcher' ); ?></label>
 			</th>  
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			if ( isset( $cswp_tgl_hover_color ) ) {
 
@@ -570,7 +570,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPFontSize"><?php esc_attr_e( 'Font Size', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<input type="number" name="cswp_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_font_size ) . '"  >';
 			?>
@@ -608,7 +608,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPFontWeight"><?php esc_attr_e( 'Font Weight', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<input type="number" name="cswp_font_weight" max="900" min="100" class="small-text" value="' . esc_attr( $cswp_font_weight ) . '"  >&nbsp';
 			?>
@@ -621,7 +621,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		<th class="cswp_table_row" scope="row">
 		<label for="CSWPpadding"><?php esc_attr_e( 'Padding', 'advanced-currency-switcher' ); ?></label>
 		</th>
-			<td>
+			<td class="cswp_table_td">
 				<?php
 				echo '<input step="any" id="cswp_padding" type="number" name="cswp_padding_top" class="small-text" value="' . esc_attr( $cswp_padding_top ) . '" >';
 				echo '<input step="any" id="cswp_padding" type="number" name="cswp_padding_right" class="small-text" value="' . esc_attr( $cswp_padding_right ) . '" >';
@@ -665,7 +665,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPTextColor"> <?php esc_attr_e( 'Text Color', 'advanced-currency-switcher' ); ?></label>
 			</th>  
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			if ( isset( $cswp_text_color ) ) {
 
@@ -683,7 +683,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row"> 
 				<label for="CSWPBackgroundColor"> <?php esc_attr_e( 'Background Color', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<div id="cswp_rt_bg">';
 			if ( isset( $cswp_background_color ) ) {
@@ -702,7 +702,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPColor"> <?php esc_attr_e( 'Background Hover Color', 'advanced-currency-switcher' ); ?></label>
 			</th>  
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			if ( isset( $cswp_hover_color ) ) {
 
@@ -724,7 +724,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPActiveButtonBackgroundColor"> <?php esc_attr_e( 'Background Color', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<div id="cswp_rt_bg">';
 			if ( isset( $cswp_active_button_background_color ) ) {
@@ -742,7 +742,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPColor"> <?php esc_attr_e( 'Text Hover Color', 'advanced-currency-switcher' ); ?></label>
 			</th>  
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			if ( isset( $cswp_text_hover_color ) ) {
 
@@ -764,7 +764,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		<th class="cswp_table_row" scope="row">
 		<label for="CSWPBorder"><?php esc_attr_e( 'Style', 'advanced-currency-switcher' ); ?></label>
 		</th>
-		<td>
+		<td class="cswp_table_td">
 				<select name="cswp_border_style">
 				<?php
 				if ( 'none' === $cswp_border_style ) {
@@ -796,7 +796,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		<th class="cswp_table_row" scope="row">
 		<label for="CSWPBorder"><?php esc_attr_e( 'Width', 'advanced-currency-switcher' ); ?></label>
 		</th>
-			<td>
+			<td class="cswp_table_td">
 				<?php
 				echo '<input step="any" id="cswp_border" type="number" name="cswp_border_width" class="small-text" value="' . esc_attr( $cswp_border_width ) . '" >';
 				?>
@@ -824,7 +824,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPFontSize"><?php esc_attr_e( 'Radius', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<input type="number" name="cswp_border_radius" max="50" min="0" class="small-text" value="' . esc_attr( $cswp_border_radius ) . '"  >&nbsp px';
 			?>
@@ -842,7 +842,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPIconAlignment"><?php esc_attr_e( 'Alignment', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<select name="cswp_icon_align">
 				<?php
 				if ( 'right' === $cswp_icon_align ) {
@@ -870,7 +870,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPIconWidth"><?php esc_attr_e( 'Width', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<input type="number" name="cswp_icon_width" class="small-text" value="' . esc_attr( $cswp_icon_width ) . '"  >&nbsp px';
 			?>
@@ -883,7 +883,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<th class="cswp_table_row" scope="row">
 				<label for="CSWPIconHeight"><?php esc_attr_e( 'Height', 'advanced-currency-switcher' ); ?></label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 			echo '<input type="number" name="cswp_icon_height" class="small-text" value="' . esc_attr( $cswp_icon_height ) . '"  >&nbsp px';
 			?>
@@ -896,7 +896,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		<th class="cswp_table_row" scope="row">
 		<label for="CSWPspacing"><?php esc_attr_e( 'Spacing', 'advanced-currency-switcher' ); ?></label>
 		</th>
-			<td>
+			<td class="cswp_table_td">
 				<?php
 				echo '<input step="any" id="cswp_spacing" type="number" name="cswp_spacing_top" class="small-text" value="' . esc_attr( $cswp_spacing_top ) . '" >';
 				echo '<input step="any" id="cswp_spacing" type="number" name="cswp_spacing_right" class="small-text" value="' . esc_attr( $cswp_spacing_right ) . '" >';
@@ -941,7 +941,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			<label for="CSWPUploadIcon"><?php esc_attr_e( 'Upload Image', 'advanced-currency-switcher' ); ?>
 			</label>
 			</th>
-			<td>
+			<td class="cswp_table_td">
 			<?php
 				$cswp_count = 0;	
 			$cswp_icon = array();
@@ -976,7 +976,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</table>
 </div>
 		<tr>
-			<th>
+			<th class="cswp_table_row">
 				<?php
 					wp_nonce_field( 'cs-style-form-nonce', 'cs-style-form' );
 				?>
