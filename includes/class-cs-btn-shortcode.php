@@ -79,6 +79,17 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			$cswp_dd_pb = ( ! empty( $cswp_get_form_value['cswp_dd_padding_bottom'] ) ? $cswp_get_form_value['cswp_dd_padding_bottom'] : 0.76 );
 			$cswp_dd_pu = ( ! empty( $cswp_get_form_value['cswp_dd_padding_unit'] ) ? $cswp_get_form_value['cswp_dd_padding_unit'] : 'rem' );
 
+			//For Symbol
+			$cswp_symbol_fs = ( ! empty( $cswp_get_form_value['cswp_symbol_font_size'] ) ? $cswp_get_form_value['cswp_symbol_font_size'] : 16 );
+			$cswp_symbol_fontsize_unit = ( ! empty( $cswp_get_form_value['cswp_symbol_fontsize_unit'] ) ? $cswp_get_form_value['cswp_symbol_fontsize_unit'] : 'px' );
+			$cswp_symbol_bc = ( ! empty( $cswp_get_form_value['cswp_symbol_background_color'] ) ? $cswp_get_form_value['cswp_symbol_background_color'] : 'inherit' );
+			$cswp_symbol_tc = ( ! empty( $cswp_get_form_value['cswp_symbol_text_color'] ) ? $cswp_get_form_value['cswp_symbol_text_color'] : 'inherit' );
+			$cswp_symbol_pt = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_top'] ) ? $cswp_get_form_value['cswp_symbol_padding_top'] : 0.76);
+			$cswp_symbol_pr = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_right'] ) ? $cswp_get_form_value['cswp_symbol_padding_right'] : 0.76 );
+			$cswp_symbol_pl = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_left'] ) ? $cswp_get_form_value['cswp_symbol_padding_left'] : 0.76 );
+			$cswp_symbol_pb = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_bottom'] ) ? $cswp_get_form_value['cswp_symbol_padding_bottom'] : 0.76 );
+			$cswp_symbol_pu = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_unit'] ) ? $cswp_get_form_value['cswp_symbol_padding_unit'] : 'rem' );
+
 			//For Toggle
 			$cswp_tgl_fs = ( ! empty( $cswp_get_form_value['cswp_tgl_font_size'] ) ? $cswp_get_form_value['cswp_tgl_font_size'] : 'inherit' );
 			$cswp_tgl_fontsize_unit = ( ! empty( $cswp_get_form_value['cswp_tgl_fontsize_unit'] ) ? $cswp_get_form_value['cswp_tgl_fontsize_unit'] : 'px' );
@@ -181,6 +192,42 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 				;
 
 			}
+
+			.cs-currency-buttons .cswp_symbol_change .cs-currency-name-btn {
+				font-size: <?php echo $cswp_symbol_fs; echo $cswp_symbol_fontsize_unit; ?>;
+
+				background: <?php echo $cswp_symbol_bc; ?>;
+
+				color: <?php echo $cswp_symbol_tc; ?>;
+
+				padding-top: 
+				<?php
+				echo $cswp_symbol_pt;
+				echo $cswp_symbol_pu;
+				?>
+				;
+
+				padding-right: 
+						<?php
+						echo $cswp_symbol_pr;
+						echo $cswp_symbol_pu;
+						?>
+				;
+
+				padding-bottom: 
+						<?php
+						echo $cswp_symbol_pb;
+						echo $cswp_symbol_pu;
+						?>
+				;
+
+				padding-left: 
+						<?php
+						echo $cswp_symbol_pl;
+						echo $cswp_symbol_pu;
+						?>
+				;
+		}
 
 			 .cs-currency-buttons .cs-currency-name:hover{
 					color:<?php echo $cswp_tgl_text_hover_color; ?>!important;
@@ -535,6 +582,46 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 														<span class="cs-currency-icon"></span>
 													<?php } ?>
 						</button>
+						<?php
+					}
+					echo '</div>';
+				}
+			} elseif ( 'symbol' === $base_value_select['cswp_button_type'] ) {
+				$cswp_form_data = get_option( 'cswp_form_data' );
+				$cswp_symbol_array = array(
+				'USD' => $cswp_form_data['usd-symbol'],
+				'AUD' => $cswp_form_data['aud-symbol'],
+				'EUR' => $cswp_form_data['eur-symbol'],
+				'INR' => $cswp_form_data['inr-symbol'],
+			);
+				if ( is_array( $currencybtn ) ) {
+
+
+					echo '<div class="cswp_symbol_change">';
+					foreach ( $currencybtn as $currencyname ) {
+
+						$currency_symbol = $this->get_currency_symbol( $currencyname );
+						?>
+						<a class="cs-currency-name-btn  
+						<?php
+						if ( $base_value_select['basecurency'] === $currencyname ) {
+							echo 'cswpactive'; }
+						?>
+						" id="cstoggleto<?php echo esc_attr( $currencyname ); ?>"
+						data-currency-name="<?php echo esc_attr( $currencyname ); ?>" data-currency-symbol="<?php echo esc_attr( $currency_symbol ); ?>"> 
+														<?php
+														if ( 'USD' === $currencyname ) {
+															echo  $cswp_symbol_array['USD'];
+														} elseif ( 'INR' === $currencyname ) {
+															echo  $cswp_symbol_array['INR'];
+														} elseif ( 'EUR' === $currencyname ) {
+															echo  $cswp_symbol_array['EUR'];
+														} elseif ( 'AUD' === $currencyname ) {
+															echo  $cswp_symbol_array['AUD'];
+														}
+														?>
+														
+						</a>
 						<?php
 					}
 					echo '</div>';

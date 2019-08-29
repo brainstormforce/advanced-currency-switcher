@@ -26,6 +26,18 @@ $cswp_dd_pl = ( ! empty( $cswp_get_form_value['cswp_dd_padding_left'] ) ? $cswp_
 $cswp_dd_pb = ( ! empty( $cswp_get_form_value['cswp_dd_padding_bottom'] ) ? $cswp_get_form_value['cswp_dd_padding_bottom'] : '' );
 $cswp_dd_pu = ( ! empty( $cswp_get_form_value['cswp_dd_padding_unit'] ) ? $cswp_get_form_value['cswp_dd_padding_unit'] : 'rem' );
 
+//Symbol
+$cswp_symbol_fontsize_unit = ( ! empty( $cswp_get_form_value['cswp_symbol_fontsize_unit'] ) ? $cswp_get_form_value['cswp_symbol_fontsize_unit'] : 'px' );
+$cswp_symbol_fs = ( ! empty( $cswp_get_form_value['cswp_symbol_font_size'] ) ? $cswp_get_form_value['cswp_symbol_font_size'] : 'inherit' );
+$cswp_symbol_bc = ( ! empty( $cswp_get_form_value['cswp_symbol_background_color'] ) ? $cswp_get_form_value['cswp_symbol_background_color'] : '' );
+$cswp_symbol_tc = ( ! empty( $cswp_get_form_value['cswp_symbol_text_color'] ) ? $cswp_get_form_value['cswp_symbol_text_color'] : '' );
+$cswp_symbol_pt = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_top'] ) ? $cswp_get_form_value['cswp_symbol_padding_top'] : '' );
+$cswp_symbol_pr = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_right'] ) ? $cswp_get_form_value['cswp_symbol_padding_right'] : '' );
+$cswp_symbol_pl = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_left'] ) ? $cswp_get_form_value['cswp_symbol_padding_left'] : '' );
+$cswp_symbol_pb = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_bottom'] ) ? $cswp_get_form_value['cswp_symbol_padding_bottom'] : '' );
+$cswp_symbol_pu = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_unit'] ) ? $cswp_get_form_value['cswp_symbol_padding_unit'] : 'rem' );
+
+
 //For Toggle
 $cswp_tgl_fs = ( ! empty( $cswp_get_form_value['cswp_tgl_font_size'] ) ? $cswp_get_form_value['cswp_tgl_font_size'] : 'inherit' );
 $cswp_tgl_fontsize_unit = ( ! empty( $cswp_get_form_value['cswp_tgl_fontsize_unit'] ) ? $cswp_get_form_value['cswp_tgl_fontsize_unit'] : '' );
@@ -122,8 +134,15 @@ if ( 'button' === $cswp_button_hide['cswp_button_type'] ) {
 	$cswp_toggle_css = 'style="display:none"';
 	$cswp_button_css = 'style="display:none"';
 }
+else if( 'symbol' === $cswp_button_hide['cswp_button_type'] ) {
+	$cswp_symbol_css = 'style="display:block"';
+	$cswp_dropdown_css = 'style="display:none"';
+	$cswp_toggle_css = 'style="display:none"';
+	$cswp_button_css = 'style="display:none"';
+}
 else {
 	$cswp_dropdown_css = 'style="display:block"';
+	$cswp_symbol_css = 'style="display:none"';
 	$cswp_toggle_css = 'style="display:none"';
 	$cswp_button_css = 'style="display:none"';
 }
@@ -1015,6 +1034,133 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</td>
 		</tr>
 		</table>
+</div>
+<div class="cswp_hide_upload" id="cswp_hide_upload" <?php echo wp_kses_post( $cswp_symbol_css );?> >
+	<table class="form-table" >
+		<tr>
+			<td class="cswp_table_row" scope="row">
+				<code class="cswp_code"><label for="CSWPDropdown"> <?php esc_attr_e( 'Symbol', 'advanced-currency-switcher' ); ?></label></code>
+			</td>
+		</tr>
+		<tr >
+			<th class="cswp_table_row" scope="row">
+				<label for="CSWPFontSize"><?php esc_attr_e( 'Font Size', 'advanced-currency-switcher' ); ?></label>
+			</th>
+			<td class="cswp_table_td">
+			<?php
+			echo '<input type="number" name="cswp_symbol_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_symbol_fs ) . '"  >&nbsp';
+			?>
+			<select name="cswp_symbol_fontsize_unit">
+				<?php
+				if ( 'px' === $cswp_symbol_fontsize_unit ) {
+
+					echo '<option selected value="px">px</option>';
+				} else {
+
+					echo '<option  value="px">px</option>';
+				}
+				if ( 'em' === $cswp_symbol_fontsize_unit ) {
+
+					echo '<option selected value="em">em</option>';
+				} else {
+
+					echo '<option  value="em">em</option>';
+				}
+				if ( 'rem' === $cswp_symbol_fontsize_unit ) {
+
+					echo '<option selected value="rem">rem</option>';
+				} else {
+
+					echo '<option  value="rem">rem</option>';
+				}
+				?>
+			</select>
+			<p class="description">
+			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
+			</p>  
+			</td>
+		</tr>
+		<tr >
+			<th class="cswp_table_row" scope="row">
+				<label for="CSWPTextColor"> <?php esc_attr_e( 'Text Color', 'advanced-currency-switcher' ); ?></label>
+			</th>  
+			<td class="cswp_table_td">
+			<?php
+			if ( isset( $cswp_symbol_tc ) ) {
+
+				echo '<input name="cswp_symbol_text_color" class="my-color-field" value="' . esc_attr( $cswp_symbol_tc ) . '">';
+			} else {
+				?>
+			<input name="cswp_symbol_text_color" class="my-color-field" value="#333333">
+				<?php
+			}
+			?>
+			</td>
+		</tr>
+		<tr>
+			<th class="cswp_table_row" scope="row"> 
+				<label for="CSWPBackgroundColor"> <?php esc_attr_e( 'Background Color', 'advanced-currency-switcher' ); ?></label>
+			</th>
+			<td class="cswp_table_td">
+			<?php
+			echo '<div id="cswp_rt_bg">';
+			if ( isset( $cswp_symbol_bc ) ) {
+
+				echo '<input  name="cswp_symbol_background_color" class="my-color-field" value="' . esc_attr( $cswp_symbol_bc ) . '">';
+			} else {
+				?>
+			<input  name="cswp_symbol_background_color" class="my-color-field" value="#eeeeee">
+				<?php
+			}
+			echo '</div>';
+			?>
+			</td>
+		</tr>
+		<tr>
+		<th class="cswp_table_row" scope="row">
+		<label for="CSWPpadding"><?php esc_attr_e( 'Padding', 'advanced-currency-switcher' ); ?></label>
+		</th>
+			<td class="cswp_table_td">
+				<?php
+				echo '<input step="any" id="cswp_padding" type="number" name="cswp_symbol_padding_top" class="small-text" value="' . esc_attr( $cswp_symbol_pt ) . '" >';
+				echo '<input step="any" id="cswp_padding" type="number" name="cswp_symbol_padding_right" class="small-text" value="' . esc_attr( $cswp_symbol_pr ) . '" >';
+				echo '<input step="any" id="cswp_padding" type="number" name="cswp_symbol_padding_bottom" class="small-text" value="' . esc_attr( $cswp_symbol_pb ) . '" >';
+				echo '<input step="any" id="cswp_padding" type="number" name="cswp_symbol_padding_left" class="small-text" value="' . esc_attr( $cswp_symbol_pl ) . '" >';
+				?>
+			<select name="cswp_symbol_padding_unit">
+				<?php
+				if ( 'px' === $cswp_symbol_pu ) {
+
+					echo '<option selected  value="px">px</option>';
+				} else {
+
+					echo '<option value="px">px</option>';
+				}
+				if ( 'em' === $cswp_symbol_pu ) {
+
+					echo '<option selected value="em">em</option>';
+				} else {
+
+					echo '<option value="em">em</option>';
+				}
+				if ( 'rem' === $cswp_symbol_pu ) {
+
+					echo '<option selected value="rem">rem</option>';
+				} else {
+
+					echo '<option value="rem">rem</option>';
+				}
+				?>
+			</select>
+			<p class="description cswp-label-style">
+				<label class="cswp-top">TOP</label>
+				<label class="cswp-right">RIGHT</label>
+				<label class="cswp-bottom">BOTTOM</label>
+				<label class="cswp-left">LEFT</label>                  
+			</p> 
+			</td> 
+		</tr>
+	</table>
 </div>
 		<tr>
 			<th class="cswp_table_row">

@@ -22,6 +22,8 @@ $api_key_status = isset( $cswp_get_form_value['api_key_status'] ) ? $cswp_get_fo
 
 $cswp_frequency_reload = isset( $cswp_get_form_value['frequency_reload'] ) ? $cswp_get_form_value['frequency_reload'] : '';
 
+$cswp_symbol_position = isset( $cswp_get_form_value['cswp_symbol_position'] ) ? $cswp_get_form_value['cswp_symbol_position'] : 'left';
+
 $cswp_button_type_value = isset( $cswp_get_form_value['cswp_button_type'] ) ? $cswp_get_form_value['cswp_button_type'] : '';
 
 $cswp_decimal_place_value = isset( $cswp_get_form_value['decimalradio'] ) ? $cswp_get_form_value['decimalradio'] : '';
@@ -70,6 +72,7 @@ $apitext_aud = isset( $cswp_apirate_values['aud'] ) ? $cswp_apirate_values['aud'
 $convertbtn = CS_Loader::cswp_load_currency_button_data();
 
 update_option( 'currencybtn', $convertbtn );
+
 
 $cswp_usd_button = isset( $convertbtn['USD'] ) ? $convertbtn['USD'] : '';
 
@@ -346,12 +349,25 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 	<!--  set the html code for Apikey value and frequency update time -->
 	<table class="form-table">
 		<tr>
+			<th>Position Of Symbol</th>
+			<td>
+				<select name="cswp_symbol_position" id="cswp_symbol_position">
+						<option value="left" <?php  selected( $cswp_symbol_position, 'left' ); ?>>Left</option>
+						<option value="right" <?php selected( $cswp_symbol_position, 'right' ); ?>>Right</option>
+				</select>
+				<p class="description cswp_apidescription">
+					<?php esc_html_e( 'Select position to display the currency symbol at frontend.', 'advanced-currency-switcher' ); ?>
+				</p>
+			</td>
+		</tr>
+		<tr>
 			<th>Display Type</th>
 			<td>
 				<select name="cswp_button_type" id="cswp_button_type">
 						<option value="dropdown" <?php selected( $cswp_button_type_value, 'dropdown' ); ?>>Drop Down</option>
 						<option value="toggle" <?php selected( $cswp_button_type_value, 'toggle' ); ?>>Toggle</option>
 						<option value="button" <?php selected( $cswp_button_type_value, 'button' ); ?>>Button</option>
+						<option value="symbol" <?php selected( $cswp_button_type_value, 'symbol' ); ?>>Symbol</option>
 				</select>
 				<p class="description cswp_apidescription">
 					<?php esc_html_e( 'Select how you wish to display the currency conversion action at frontend.', 'advanced-currency-switcher' ); ?>
