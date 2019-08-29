@@ -13,9 +13,10 @@
 wp_enqueue_script( 'cswp-color-picker' );
 wp_enqueue_script( 'cswp-hide-image-upload' );
 
+
 //Dropdown Button
 $cswp_get_form_value = get_option( 'cswp_style_form_data' );
-// $cswp_dd_alignment = ( ! empty( $cswp_get_form_value['cswp_dd_alignment'] ) ? $cswp_get_form_value['cswp_dd_alignment'] : 'left' );
+$cswp_dd_fontsize_unit = ( ! empty( $cswp_get_form_value['cswp_dd_fontsize_unit'] ) ? $cswp_get_form_value['cswp_dd_fontsize_unit'] : 'px' );
 $cswp_dd_fs = ( ! empty( $cswp_get_form_value['cswp_dd_font_size'] ) ? $cswp_get_form_value['cswp_dd_font_size'] : 'inherit' );
 $cswp_dd_bc = ( ! empty( $cswp_get_form_value['cswp_dd_background_color'] ) ? $cswp_get_form_value['cswp_dd_background_color'] : '' );
 $cswp_dd_tc = ( ! empty( $cswp_get_form_value['cswp_dd_text_color'] ) ? $cswp_get_form_value['cswp_dd_text_color'] : '' );
@@ -183,7 +184,10 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 					echo '<option  value="right">Right</option>';
 				}
 				?>
-			</select> 
+			</select>
+			<p class="description">
+			<?php esc_attr_e( 'by default alignment is left.', 'advanced-currency-switcher' ); ?>
+			</p> 
 			</td>
 	</tr>
 	</table>
@@ -201,8 +205,33 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			</th>
 			<td class="cswp_table_td">
 			<?php
-			echo '<input type="number" name="cswp_dd_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_dd_fs ) . '"  >&nbsp px';
+			echo '<input type="number" name="cswp_dd_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_dd_fs ) . '"  >&nbsp';
 			?>
+			<select name="cswp_dd_fontsize_unit">
+				<?php
+				if ( 'px' === $cswp_dd_fontsize_unit ) {
+
+					echo '<option selected value="px">px</option>';
+				} else {
+
+					echo '<option  value="px">px</option>';
+				}
+				if ( 'em' === $cswp_dd_fontsize_unit ) {
+
+					echo '<option selected value="em">em</option>';
+				} else {
+
+					echo '<option  value="em">em</option>';
+				}
+				if ( 'rem' === $cswp_dd_fontsize_unit ) {
+
+					echo '<option selected value="rem">rem</option>';
+				} else {
+
+					echo '<option  value="rem">rem</option>';
+				}
+				?>
+			</select>
 			<p class="description">
 			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
 			</p>  
@@ -427,6 +456,9 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 				}
 				?>
 				</select>
+				<p class="description">
+				<?php esc_attr_e( 'by default style is one.', 'advanced-currency-switcher' ); ?>
+				</p>
 			</td> 
 		</tr>
 		<tr>
@@ -455,6 +487,9 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 				}
 				?>
 				</select>
+				<p class="description">
+				<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
+				</p>
 		</td>
 		</tr>
 		<tr >
@@ -790,6 +825,9 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 				}
 				?>
 				</select>
+				<p class="description">
+				<?php esc_attr_e( 'by default style is none.', 'advanced-currency-switcher' ); ?>
+				</p>
 			</td> 
 		</tr>
 		<tr>
@@ -818,6 +856,9 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 				}
 				?>
 				</select>
+				<p class="description">
+				<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
+				</p>  
 		</td>
 		</tr>
 		<tr >
@@ -862,7 +903,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 				?>
 			</select>
 			<p class="description">
-			<?php esc_attr_e( 'By Default Alignment is Left.', 'advanced-currency-switcher' ); ?>
+			<?php esc_attr_e( 'by default alignment is left.', 'advanced-currency-switcher' ); ?>
 			</p>  
 			</td>
 		</tr>

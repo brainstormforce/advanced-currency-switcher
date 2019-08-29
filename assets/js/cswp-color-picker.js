@@ -1,4 +1,4 @@
- 
+
   // Color Picker JS
   (function ( $ ) {
 

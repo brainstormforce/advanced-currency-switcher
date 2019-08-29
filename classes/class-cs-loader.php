@@ -205,6 +205,7 @@ class CS_Loader {
 			//For Dropdown
 			// $cswp_dd_alignment = ! empty( $_POST['cswp_dd_alignment'] ) ? sanitize_text_field( $_POST['cswp_dd_alignment'] ) : '';
 			$cswp_dd_font_size = ! empty( $_POST['cswp_dd_font_size'] ) ? sanitize_text_field( $_POST['cswp_dd_font_size'] ) : '';
+			$cswp_dd_fontsize_unit = ! empty( $_POST['cswp_dd_fontsize_unit'] ) ? sanitize_text_field( $_POST['cswp_dd_fontsize_unit'] ) : '';
 			$cswp_dd_background_color = ! empty( $_POST['cswp_dd_background_color'] ) ? sanitize_hex_color( $_POST['cswp_dd_background_color'] ) : '';
 			$cswp_dd_text_color = ! empty( $_POST['cswp_dd_text_color'] ) ? sanitize_hex_color( $_POST['cswp_dd_text_color'] ) : '';
 			$cswp_dd_padding_top = ( ! empty( $_POST['cswp_dd_padding_top'] ) ? floatval( $_POST['cswp_dd_padding_top'] ) : '' );
@@ -327,6 +328,7 @@ class CS_Loader {
 				//For Dropdown
 				// 'cswp_dd_alignment'                      => $cswp_dd_alignment,
 				'cswp_dd_font_size'                      => $cswp_dd_font_size,
+				'cswp_dd_fontsize_unit'					 => $cswp_dd_fontsize_unit,
 				'cswp_dd_text_color'                     => $cswp_dd_text_color,
 				'cswp_dd_background_color'               => $cswp_dd_background_color,
 				'cswp_dd_padding_top'                    => $cswp_dd_padding_top,

@@ -70,6 +70,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			//For Dropdown
 			// $cswp_dd_alignment = ( ! empty( $cswp_get_form_value['cswp_dd_alignment'] ) ? $cswp_get_form_value['cswp_dd_alignment'] : 'left' );
 			$cswp_dd_fs = ( ! empty( $cswp_get_form_value['cswp_dd_font_size'] ) ? $cswp_get_form_value['cswp_dd_font_size'] : 16 );
+			$cswp_dd_fontsize_unit = ( ! empty( $cswp_get_form_value['cswp_dd_fontsize_unit'] ) ? $cswp_get_form_value['cswp_dd_fontsize_unit'] : 'px' );
 			$cswp_dd_bc = ( ! empty( $cswp_get_form_value['cswp_dd_background_color'] ) ? $cswp_get_form_value['cswp_dd_background_color'] : 'inherit' );
 			$cswp_dd_tc = ( ! empty( $cswp_get_form_value['cswp_dd_text_color'] ) ? $cswp_get_form_value['cswp_dd_text_color'] : 'inherit' );
 			$cswp_dd_pt = ( ! empty( $cswp_get_form_value['cswp_dd_padding_top'] ) ? $cswp_get_form_value['cswp_dd_padding_top'] : 0.76);
@@ -145,7 +146,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 
 			.cs-currency-buttons .cs-currency-name-dropdown {
 
-				font-size: <?php echo $cswp_dd_fs; ?>px;
+				font-size: <?php echo $cswp_dd_fs; echo $cswp_dd_fontsize_unit; ?>;
 
 				background: <?php echo $cswp_dd_bc; ?>;
 
