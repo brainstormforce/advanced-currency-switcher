@@ -98,7 +98,7 @@ class CS_Loader {
 	 * @return void
 	 */
 	public function define_constant() {
-		define( 'CSWP_CURRENCY_SWITCHER_VER', '1.0.1' );
+		define( 'CSWP_CURRENCY_SWITCHER_VER', '1.0.2' );
 
 		define( 'CSWP_CURRENCY_SWITCH_FILE', trailingslashit( dirname( dirname( __FILE__ ) ) ) . 'currency-switcher.php' );
 
@@ -447,7 +447,6 @@ class CS_Loader {
 	public function cswp_load_scripts() {
 
 		wp_register_style( 'cswp-style', CSWP_PLUGIN_URL . '/assets/css/buttonhide.css', CSWP_CURRENCY_SWITCHER_VER, true );
-		
 		wp_register_script( 'cswp-script', CSWP_PLUGIN_URL . 'assets/js/cs-script.js', array( 'jquery' ), CSWP_CURRENCY_SWITCHER_VER, true );
 
 		$cswp_get_form_value = self::cswp_load_all_data();

@@ -349,6 +349,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 				<select name="cswp_button_type" >
 						<option value="dropdown" <?php selected( $cswp_button_type_value, 'dropdown' ); ?>>Drop Down</option>
 						<option value="toggle" <?php selected( $cswp_button_type_value, 'toggle' ); ?>>Toggle</option>
+						<option value="button" <?php selected( $cswp_button_type_value, 'button' ); ?>>Button</option>
 				</select>
 				<p class="description cswp_apidescription">
 					<?php esc_html_e( 'Select how you wish to display the currency conversion action at frontend.', 'advanced-currency-switcher' ); ?>

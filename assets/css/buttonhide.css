@@ -11,3 +11,12 @@
 .cs-converter-wrap {
     display: inline-block;
 }
+.cswp_button_change{
+	 display: inline-block;
+}
+.cs-currency-name-btn.cswpactive{
+	opacity: 1;
+}
+.cs-currency-name-btn {
+	opacity: 0.5;
+}

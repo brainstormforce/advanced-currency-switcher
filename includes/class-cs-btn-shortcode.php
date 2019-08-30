@@ -81,7 +81,6 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 
 							$currencybtn      = CS_Loader::cswp_load_currency_button_data();
 							$currencydropdown = CS_Loader::cswp_load_currency_button_data();
-
 							if ( ! empty( $currencybtn ) ) {
 								foreach ( $currencybtn as $cswp_base_value ) {
 									if ( $cswp_base_value === $base_value_select['basecurency'] ) {
@@ -167,6 +166,37 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 							<?php } ?>
 						</select>
 					<?php
+				}
+			} elseif ( 'button' === $base_value_select['cswp_button_type'] ) {
+
+				if ( is_array( $currencybtn ) ) {
+					echo '<div class="cswp_button_change">';
+					foreach ( $currencybtn as $currencyname ) {
+
+						$currency_symbol = $this->get_currency_symbol( $currencyname );
+						?>
+						<button class="cs-currency-name-btn 
+						<?php
+						if ( $base_value_select['basecurency'] === $currencyname ) {
+							echo 'cswpactive'; }
+						?>
+						" id="cstoggleto<?php echo esc_attr( $currencyname ); ?>"
+						data-currency-name="<?php echo esc_attr( $currencyname ); ?>" data-currency-symbol="<?php echo esc_attr( $currency_symbol ); ?>"> 
+														<?php
+														if ( 'USD' === $currencyname ) {
+															echo trim( $manual_button_text_value[0] );
+														} elseif ( 'INR' === $currencyname ) {
+															echo trim( $manual_button_text_value[1] );
+														} elseif ( 'EUR' === $currencyname ) {
+															echo trim( $manual_button_text_value[2] );
+														} elseif ( 'AUD' === $currencyname ) {
+															echo trim( $manual_button_text_value[3] );
+														}
+														?>
+						</button>
+						<?php
+					}
+					echo '</div>';
 				}
 			}
 			?>
