@@ -76,7 +76,13 @@
     }
     );
 
-
+     $('.cs-currency-name-btn').click(function (e) {
+        $(this).addClass( 'cswpactive' );
+        $(this).siblings( '.cs-currency-name-btn' ).removeClass( 'cswpactive' );
+        var currency_name = $(this).attr('data-currency-name') || '';
+        cs_currency_calculations( currency_name );
+     }); 
+    
     $('.cs-currency-name-dropdown').change(function () {
           var currency_name = $('.cs-currency-name-dropdown').val() || '';
           cs_currency_calculations( currency_name );
