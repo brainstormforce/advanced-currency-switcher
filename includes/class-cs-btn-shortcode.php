@@ -194,6 +194,10 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			}
 
 			.cs-currency-buttons .cswp_symbol_change .cs-currency-name-btn {
+				cursor: pointer;
+
+				text-decoration: none;
+
 				font-size: <?php echo $cswp_symbol_fs; echo $cswp_symbol_fontsize_unit; ?>;
 
 				background: <?php echo $cswp_symbol_bc; ?>;

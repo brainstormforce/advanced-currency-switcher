@@ -123,14 +123,17 @@ $cswp_icon = ( ! empty( $cswp_value['cswp_icon'] ) ? $cswp_value['cswp_icon'] : 
 $cswp_button_hide = get_option( 'cswp_form_data' );
 if ( 'button' === $cswp_button_hide['cswp_button_type'] ) {
 	$cswp_button_css = 'style="display:block"';
+	$cswp_symbol_css = 'style="display:none"';
 	$cswp_toggle_css = 'style="display:none"';
 	$cswp_dropdown_css = 'style="display:none"';
 } else if ( 'toggle' === $cswp_button_hide['cswp_button_type'] ) {
 	$cswp_toggle_css = 'style="display:block"';
+	$cswp_symbol_css = 'style="display:none"';
 	$cswp_button_css = 'style="display:none"';
 	$cswp_dropdown_css = 'style="display:none"';
 } else if ( 'dropdown' === $cswp_button_hide['cswp_button_type'] ) {
 	$cswp_dropdown_css = 'style="display:block"';
+	$cswp_symbol_css = 'style="display:none"';
 	$cswp_toggle_css = 'style="display:none"';
 	$cswp_button_css = 'style="display:none"';
 }
@@ -224,7 +227,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			</th>
 			<td class="cswp_table_td">
 			<?php
-			echo '<input type="number" name="cswp_dd_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_dd_fs ) . '"  >&nbsp';
+			echo '<input type="number" name="cswp_dd_font_size" min="0" class="small-text" value="' . esc_attr( $cswp_dd_fs ) . '"  >&nbsp';
 			?>
 			<select name="cswp_dd_fontsize_unit">
 				<?php
@@ -351,7 +354,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			</th>
 			<td class="cswp_table_td">
 			<?php
-			echo '<input type="number" name="cswp_tgl_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_tgl_fs ) . '"  >&nbsp';
+			echo '<input type="number" name="cswp_tgl_font_size" min="0" class="small-text" value="' . esc_attr( $cswp_tgl_fs ) . '"  >&nbsp';
 			?>
 			<select name="cswp_tgl_fontsize_unit">
 				<?php
@@ -486,7 +489,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</th>
 			<td class="cswp_table_td">
 				<?php
-				echo '<input step="any" id="cswp_border" type="number" name="cswp_tgl_border_width" class="small-text" value="' . esc_attr( $cswp_tgl_bw ) . '" >';
+				echo '<input step="any" id="cswp_border" type="number" name="cswp_tgl_border_width" class="small-text" min="0" value="' . esc_attr( $cswp_tgl_bw ) . '" >';
 				?>
 				<select name="cswp_tgl_border_unit">
 				<?php
@@ -517,7 +520,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			</th>
 			<td class="cswp_table_td">
 			<?php
-			echo '<input type="number" name="cswp_tgl_border_radius" max="50" min="0" class="small-text" value="' . esc_attr( $cswp_tgl_br ) . '"  >&nbsp px';
+			echo '<input type="number" name="cswp_tgl_border_radius" min="0" class="small-text" value="' . esc_attr( $cswp_tgl_br ) . '"  >&nbsp px';
 			?>
 			<p class="description">
 			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
@@ -626,7 +629,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			</th>
 			<td class="cswp_table_td">
 			<?php
-			echo '<input type="number" name="cswp_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_font_size ) . '"  >';
+			echo '<input type="number" name="cswp_font_size" min="0" class="small-text" value="' . esc_attr( $cswp_font_size ) . '"  >';
 			?>
 			<select name="cswp_fontsize_unit">
 				<?php
@@ -855,7 +858,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 		</th>
 			<td class="cswp_table_td">
 				<?php
-				echo '<input step="any" id="cswp_border" type="number" name="cswp_border_width" class="small-text" value="' . esc_attr( $cswp_border_width ) . '" >';
+				echo '<input step="any" id="cswp_border" type="number" name="cswp_border_width" class="small-text" min="0" value="' . esc_attr( $cswp_border_width ) . '" >';
 				?>
 				<select name="cswp_border_unit">
 				<?php
@@ -886,7 +889,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			</th>
 			<td class="cswp_table_td">
 			<?php
-			echo '<input type="number" name="cswp_border_radius" max="50" min="0" class="small-text" value="' . esc_attr( $cswp_border_radius ) . '"  >&nbsp px';
+			echo '<input type="number" name="cswp_border_radius" min="0" class="small-text" value="' . esc_attr( $cswp_border_radius ) . '"  >&nbsp px';
 			?>
 			<p class="description">
 			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
@@ -932,7 +935,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			</th>
 			<td class="cswp_table_td">
 			<?php
-			echo '<input type="number" name="cswp_icon_width" class="small-text" value="' . esc_attr( $cswp_icon_width ) . '"  >&nbsp px';
+			echo '<input type="number" name="cswp_icon_width" min="0" class="small-text" value="' . esc_attr( $cswp_icon_width ) . '"  >&nbsp px';
 			?>
 			<p class="description">
 			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
@@ -945,7 +948,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			</th>
 			<td class="cswp_table_td">
 			<?php
-			echo '<input type="number" name="cswp_icon_height" class="small-text" value="' . esc_attr( $cswp_icon_height ) . '"  >&nbsp px';
+			echo '<input type="number" name="cswp_icon_height" min="0" class="small-text" value="' . esc_attr( $cswp_icon_height ) . '"  >&nbsp px';
 			?>
 			<p class="description">
 			<?php esc_attr_e( 'Keep blank for default value.', 'advanced-currency-switcher' ); ?>
@@ -1048,7 +1051,7 @@ $base_value_select                   = CS_Loader::cswp_load_all_data();
 			</th>
 			<td class="cswp_table_td">
 			<?php
-			echo '<input type="number" name="cswp_symbol_font_size" max="50" min="10" class="small-text" value="' . esc_attr( $cswp_symbol_fs ) . '"  >&nbsp';
+			echo '<input type="number" name="cswp_symbol_font_size" min="0" class="small-text" value="' . esc_attr( $cswp_symbol_fs ) . '"  >&nbsp';
 			?>
 			<select name="cswp_symbol_fontsize_unit">
 				<?php

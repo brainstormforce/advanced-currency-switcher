@@ -349,7 +349,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 	<!--  set the html code for Apikey value and frequency update time -->
 	<table class="form-table">
 		<tr>
-			<th>Position Of Symbol</th>
+			<th>Position of Symbol</th>
 			<td>
 				<select name="cswp_symbol_position" id="cswp_symbol_position">
 						<option value="left" <?php  selected( $cswp_symbol_position, 'left' ); ?>>Left</option>
