@@ -352,7 +352,7 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 			<th>Position of Symbol</th>
 			<td>
 				<select name="cswp_symbol_position" id="cswp_symbol_position">
-						<option value="left" <?php  selected( $cswp_symbol_position, 'left' ); ?>>Left</option>
+						<option value="left" <?php selected( $cswp_symbol_position, 'left' ); ?>>Left</option>
 						<option value="right" <?php selected( $cswp_symbol_position, 'right' ); ?>>Right</option>
 				</select>
 				<p class="description cswp_apidescription">
