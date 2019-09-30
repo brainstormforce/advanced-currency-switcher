@@ -88,5 +88,5 @@
           cs_currency_calculations( currency_name );
     });
 
-
+    
 } )(jQuery);

@@ -53,10 +53,13 @@ if ( ! class_exists( 'CS_Currency_Shortcode' ) ) {
 			$getval        = (float) $attributes['value'];
 			$price_convert = (float) $attributes['value'];
 			ob_start();
+			$cswp_form_data = get_option( 'cswp_form_data' );
+
+			$cswp_symbol_position = ( ! empty( $cswp_form_data['cswp_symbol_position'] ) ? $cswp_form_data['cswp_symbol_position'] : 'left' );
 			?>
 			<!--  Create custom div and span for display price -->
 			<div class="cs-converter-wrap" >
-				<span class="cs-convertor-wrap-symbol" id="cswp_symbol"></span>
+				<span class="cs-convertor-wrap-symbol" id="cswp_symbol" style="float:<?php echo $cswp_symbol_position; ?>"></span>
 				<span id="cs-convertor-wrap" class="cs-convertor-wrap-data" value_convert="<?php echo esc_attr( $price_convert ); ?>">
 					<?php
 					echo esc_attr( $getval );

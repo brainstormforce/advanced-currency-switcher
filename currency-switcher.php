@@ -12,8 +12,8 @@
 /**
  * Plugin Name:     Advanced Currency Switcher
  * Plugin URI:      https://www.brainstormforce.com/
- * Description:     This is automated currency converter, that displays product/service prices in different currencies. Visitors can easily switch currency rates in real-time so that you don't lose potential customers because of lack of ready currency conversions.
- * Version:         1.0.2
+ * Description:     To convert one currency value into other.
+ * Version:         1.0.1
  * Author:          Brainstrom Force
  * Author URI:      https://www.brainstormforce.com/
  * Text Domain:     cswp
