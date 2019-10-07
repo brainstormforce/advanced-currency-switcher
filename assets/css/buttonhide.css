@@ -6,7 +6,7 @@
 .cs-convertor-wrap-symbol, 
 .cs-convertor-wrap-data {
     display: inline-block;
-    float: left;
+    /*float: left;*/
 }
 .cs-converter-wrap {
     display: inline-block;

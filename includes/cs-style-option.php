@@ -176,27 +176,11 @@ if ( ! empty( $currencybtn ) ) {
 			<td class="cswp_table_td">
 			<select name="cswp_alignment">
 				<?php
-				if ( 'left' === $cswp_alignment ) {
-
-					echo '<option selected value="left">Left</option>';
-				} else {
-
-					echo '<option  value="left">Left</option>';
-				}
-				if ( 'center' === $cswp_alignment ) {
-
-					echo '<option selected value="center">Center</option>';
-				} else {
-
-					echo '<option  value="center">Center</option>';
-				}
-				if ( 'right' === $cswp_alignment ) {
-
-					echo '<option selected value="right">Right</option>';
-				} else {
-
-					echo '<option  value="right">Right</option>';
-				}
+				echo "
+				<option value='left' " . selected( $cswp_alignment, 'left', false ) . ">Left</option>
+				<option value='center' " . selected( $cswp_alignment, 'center', false ) . ">Center</option>
+				<option value='right' " . selected( $cswp_alignment, 'right', false ) . '>Right</option>         
+				';
 				?>
 			</select>
 			<p class="description">
@@ -223,27 +207,11 @@ if ( ! empty( $currencybtn ) ) {
 			?>
 			<select name="cswp_dd_fontsize_unit">
 				<?php
-				if ( 'px' === $cswp_dd_fontsize_unit ) {
-
-					echo '<option selected value="px">px</option>';
-				} else {
-
-					echo '<option  value="px">px</option>';
-				}
-				if ( 'em' === $cswp_dd_fontsize_unit ) {
-
-					echo '<option selected value="em">em</option>';
-				} else {
-
-					echo '<option  value="em">em</option>';
-				}
-				if ( 'rem' === $cswp_dd_fontsize_unit ) {
-
-					echo '<option selected value="rem">rem</option>';
-				} else {
-
-					echo '<option  value="rem">rem</option>';
-				}
+				echo "
+				<option value='px' " . selected( $cswp_dd_fontsize_unit, 'px', false ) . ">px</option>
+				<option value='em' " . selected( $cswp_dd_fontsize_unit, 'em', false ) . ">em</option>
+				<option value='rem' " . selected( $cswp_dd_fontsize_unit, 'rem', false ) . '>rem</option>         
+				';
 				?>
 			</select>
 			<p class="description">
@@ -300,27 +268,11 @@ if ( ! empty( $currencybtn ) ) {
 				?>
 			<select name="cswp_dd_padding_unit">
 				<?php
-				if ( 'px' === $cswp_dd_pu ) {
-
-					echo '<option selected  value="px">px</option>';
-				} else {
-
-					echo '<option value="px">px</option>';
-				}
-				if ( 'em' === $cswp_dd_pu ) {
-
-					echo '<option selected value="em">em</option>';
-				} else {
-
-					echo '<option value="em">em</option>';
-				}
-				if ( 'rem' === $cswp_dd_pu ) {
-
-					echo '<option selected value="rem">rem</option>';
-				} else {
-
-					echo '<option value="rem">rem</option>';
-				}
+				echo "
+				<option value='px' " . selected( $cswp_dd_pu, 'px', false ) . ">px</option>
+				<option value='em' " . selected( $cswp_dd_pu, 'em', false ) . ">em</option>
+				<option value='rem' " . selected( $cswp_dd_pu, 'rem', false ) . '>rem</option>         
+				';
 				?>
 			</select>
 			<p class="description cswp-label-style">
@@ -350,27 +302,11 @@ if ( ! empty( $currencybtn ) ) {
 			?>
 			<select name="cswp_tgl_fontsize_unit">
 				<?php
-				if ( 'px' === $cswp_tgl_fontsize_unit ) {
-
-					echo '<option selected value="px">px</option>';
-				} else {
-
-					echo '<option  value="px">px</option>';
-				}
-				if ( 'em' === $cswp_tgl_fontsize_unit ) {
-
-					echo '<option selected value="em">em</option>';
-				} else {
-
-					echo '<option  value="em">em</option>';
-				}
-				if ( 'rem' === $cswp_tgl_fontsize_unit ) {
-
-					echo '<option selected value="rem">rem</option>';
-				} else {
-
-					echo '<option  value="rem">rem</option>';
-				}
+				echo "
+				<option value='px' " . selected( $cswp_tgl_fontsize_unit, 'px', false ) . ">px</option>
+				<option value='em' " . selected( $cswp_tgl_fontsize_unit, 'em', false ) . ">em</option>
+				<option value='rem' " . selected( $cswp_tgl_fontsize_unit, 'rem', false ) . '>rem</option>         
+				';
 				?>
 			</select>
 			<p class="description">
@@ -404,27 +340,11 @@ if ( ! empty( $currencybtn ) ) {
 				?>
 			<select name="cswp_tgl_padding_unit">
 				<?php
-				if ( 'px' === $cswp_tgl_pu ) {
-
-					echo '<option  selected value="px">px</option>';
-				} else {
-
-					echo '<option  value="px">px</option>';
-				}
-				if ( 'em' === $cswp_tgl_pu ) {
-
-					echo '<option  selected value="em">em</option>';
-				} else {
-
-					echo '<option  value="em">em</option>';
-				}
-				if ( 'rem' === $cswp_tgl_pu ) {
-
-					echo '<option selected value="rem">rem</option>';
-				} else {
-
-					echo '<option  value="rem">rem</option>';
-				}
+				echo "
+				<option value='px' " . selected( $cswp_tgl_pu, 'px', false ) . ">px</option>
+				<option value='em' " . selected( $cswp_tgl_pu, 'em', false ) . ">em</option>
+				<option value='rem' " . selected( $cswp_tgl_pu, 'rem', false ) . '>rem</option>         
+				';
 				?>
 			</select>
 			<p class="description cswp-label-style">
@@ -447,27 +367,11 @@ if ( ! empty( $currencybtn ) ) {
 		<td class="cswp_table_td">
 				<select name="cswp_tgl_border_style">
 				<?php
-				if ( 'none' === $cswp_tgl_bs ) {
-
-					echo '<option selected value="none">None</option>';
-				} else {
-
-					echo '<option  value="none">None</option>';
-				}
-				if ( 'solid' === $cswp_tgl_bs ) {
-
-					echo '<option selected value="solid">Solid</option>';
-				} else {
-
-					echo '<option  value="solid">Solid</option>';
-				}
-				if ( 'double' === $cswp_tgl_bs ) {
-
-					echo '<option selected value="double">Double</option>';
-				} else {
-
-					echo '<option  value="double">Double</option>';
-				}
+				echo "
+				<option value='none' " . selected( $cswp_tgl_bs, 'none', false ) . ">None</option>
+				<option value='solid' " . selected( $cswp_tgl_bs, 'solid', false ) . ">Solid</option>
+				<option value='double' " . selected( $cswp_tgl_bs, 'double', false ) . '>Double</option>         
+				';
 				?>
 				</select>
 				<p class="description">
@@ -485,20 +389,11 @@ if ( ! empty( $currencybtn ) ) {
 				?>
 				<select name="cswp_tgl_border_unit">
 				<?php
-				if ( 'px' === $cswp_tgl_bu ) {
-
-					echo '<option selected value="px">px</option>';
-				} else {
-
-					echo '<option  value="px">px</option>';
-				}
-				if ( 'em' === $cswp_tgl_bu ) {
-
-					echo '<option selected value="em">em</option>';
-				} else {
-
-					echo '<option  value="em">em</option>';
-				}
+				echo "
+				<option value='px' " . selected( $cswp_tgl_bu, 'px', false ) . ">px</option>
+				<option value='em' " . selected( $cswp_tgl_bu, 'em', false ) . ">em</option>
+				<option value='rem' " . selected( $cswp_tgl_bu, 'rem', false ) . '>rem</option>         
+				';
 				?>
 				</select>
 				<p class="description">
@@ -625,27 +520,11 @@ if ( ! empty( $currencybtn ) ) {
 			?>
 			<select name="cswp_fontsize_unit">
 				<?php
-				if ( 'px' === $cswp_fontsize_unit ) {
-
-					echo '<option selected value="px">px</option>';
-				} else {
-
-					echo '<option  value="px">px</option>';
-				}
-				if ( 'em' === $cswp_fontsize_unit ) {
-
-					echo '<option selected value="em">em</option>';
-				} else {
-
-					echo '<option  value="em">em</option>';
-				}
-				if ( 'rem' === $cswp_fontsize_unit ) {
-
-					echo '<option selected value="rem">rem</option>';
-				} else {
-
-					echo '<option  value="rem">rem</option>';
-				}
+				echo "
+				<option value='px' " . selected( $cswp_fontsize_unit, 'px', false ) . ">px</option>
+				<option value='em' " . selected( $cswp_fontsize_unit, 'em', false ) . ">em</option>
+				<option value='rem' " . selected( $cswp_fontsize_unit, 'rem', false ) . '>rem</option>         
+				';
 				?>
 			</select>
 			<p class="description">
@@ -679,27 +558,11 @@ if ( ! empty( $currencybtn ) ) {
 				?>
 			<select name="cswp_padding_unit">
 				<?php
-				if ( 'px' === $cswp_padding_unit ) {
-
-					echo '<option selected value="px">px</option>';
-				} else {
-
-					echo '<option  value="px">px</option>';
-				}
-				if ( 'em' === $cswp_padding_unit ) {
-
-					echo '<option selected value="em">em</option>';
-				} else {
-
-					echo '<option  value="em">em</option>';
-				}
-				if ( 'rem' === $cswp_padding_unit ) {
-
-					echo '<option selected value="rem">rem</option>';
-				} else {
-
-					echo '<option  value="rem">rem</option>';
-				}
+				echo "
+				<option value='px' " . selected( $cswp_padding_unit, 'px', false ) . ">px</option>
+				<option value='em' " . selected( $cswp_padding_unit, 'em', false ) . ">em</option>
+				<option value='rem' " . selected( $cswp_padding_unit, 'rem', false ) . '>rem</option>         
+				';
 				?>
 			</select>
 			<p class="description cswp-label-style">
@@ -816,27 +679,11 @@ if ( ! empty( $currencybtn ) ) {
 		<td class="cswp_table_td">
 				<select name="cswp_border_style">
 				<?php
-				if ( 'none' === $cswp_border_style ) {
-
-					echo '<option selected value="none">None</option>';
-				} else {
-
-					echo '<option  value="none">None</option>';
-				}
-				if ( 'solid' === $cswp_border_style ) {
-
-					echo '<option selected value="solid">Solid</option>';
-				} else {
-
-					echo '<option  value="solid">Solid</option>';
-				}
-				if ( 'double' === $cswp_border_style ) {
-
-					echo '<option selected value="double">Double</option>';
-				} else {
-
-					echo '<option  value="double">Double</option>';
-				}
+				echo "
+				<option value='none' " . selected( $cswp_border_style, 'none', false ) . ">None</option>
+				<option value='solid' " . selected( $cswp_border_style, 'solid', false ) . ">Solid</option>
+				<option value='double' " . selected( $cswp_border_style, 'double', false ) . '>Double</option>         
+				';
 				?>
 				</select>
 				<p class="description">
@@ -854,20 +701,9 @@ if ( ! empty( $currencybtn ) ) {
 				?>
 				<select name="cswp_border_unit">
 				<?php
-				if ( 'px' === $cswp_border_unit ) {
-
-					echo '<option selected value="px">px</option>';
-				} else {
-
-					echo '<option  value="px">px</option>';
-				}
-				if ( 'em' === $cswp_border_unit ) {
-
-					echo '<option selected value="em">em</option>';
-				} else {
-
-					echo '<option  value="em">em</option>';
-				}
+				echo "
+				<option value='px' " . selected( $cswp_border_unit, 'px', false ) . ">px</option>
+				<option value='em' " . selected( $cswp_border_unit, 'em', false ) . '>em</option>';
 				?>
 				</select>
 				<p class="description">
@@ -900,20 +736,10 @@ if ( ! empty( $currencybtn ) ) {
 			<td class="cswp_table_td">
 			<select name="cswp_icon_align">
 				<?php
-				if ( 'right' === $cswp_icon_align ) {
-
-					echo '<option selected value="left">Left</option>';
-				} else {
-
-					echo '<option  value="left">Left</option>';
-				}
-				if ( 'right' === $cswp_icon_align ) {
-
-					echo '<option selected value="right">Right</option>';
-				} else {
-
-					echo '<option  value="right">Right</option>';
-				}
+				echo "
+				<option value='left' " . selected( $cswp_icon_align, 'left', false ) . ">Left</option>
+				<option value='right' " . selected( $cswp_icon_align, 'right', false ) . '>Right</option>         
+				';
 				?>
 			</select>
 			<p class="description">
@@ -960,27 +786,11 @@ if ( ! empty( $currencybtn ) ) {
 				?>
 			<select name="cswp_spacing_unit">
 				<?php
-				if ( 'px' === $cswp_spacing_unit ) {
-
-					echo '<option selected value="px">px</option>';
-				} else {
-
-					echo '<option  value="px">px</option>';
-				}
-				if ( 'em' === $cswp_spacing_unit ) {
-
-					echo '<option selected value="em">em</option>';
-				} else {
-
-					echo '<option  value="em">em</option>';
-				}
-				if ( 'rem' === $cswp_spacing_unit ) {
-
-					echo '<option selected value="rem">rem</option>';
-				} else {
-
-					echo '<option  value="rem">rem</option>';
-				}
+				echo "
+				<option value='px' " . selected( $cswp_spacing_unit, 'px', false ) . ">px</option>
+				<option value='em' " . selected( $cswp_spacing_unit, 'em', false ) . ">em</option>
+				<option value='rem' " . selected( $cswp_spacing_unit, 'rem', false ) . '>rem</option>         
+				';
 				?>
 			</select>
 			<p class="description cswp-label-style">
@@ -1046,27 +856,11 @@ if ( ! empty( $currencybtn ) ) {
 			?>
 			<select name="cswp_symbol_fontsize_unit">
 				<?php
-				if ( 'px' === $cswp_symbol_fontsize_unit ) {
-
-					echo '<option selected value="px">px</option>';
-				} else {
-
-					echo '<option  value="px">px</option>';
-				}
-				if ( 'em' === $cswp_symbol_fontsize_unit ) {
-
-					echo '<option selected value="em">em</option>';
-				} else {
-
-					echo '<option  value="em">em</option>';
-				}
-				if ( 'rem' === $cswp_symbol_fontsize_unit ) {
-
-					echo '<option selected value="rem">rem</option>';
-				} else {
-
-					echo '<option  value="rem">rem</option>';
-				}
+				echo "
+				<option value='px' " . selected( $cswp_symbol_fontsize_unit, 'px', false ) . ">px</option>
+				<option value='em' " . selected( $cswp_symbol_fontsize_unit, 'em', false ) . ">em</option>
+				<option value='rem' " . selected( $cswp_symbol_fontsize_unit, 'rem', false ) . '>rem</option>         
+				';
 				?>
 			</select>
 			<p class="description">
@@ -1123,27 +917,11 @@ if ( ! empty( $currencybtn ) ) {
 				?>
 			<select name="cswp_symbol_padding_unit">
 				<?php
-				if ( 'px' === $cswp_symbol_pu ) {
-
-					echo '<option selected  value="px">px</option>';
-				} else {
-
-					echo '<option value="px">px</option>';
-				}
-				if ( 'em' === $cswp_symbol_pu ) {
-
-					echo '<option selected value="em">em</option>';
-				} else {
-
-					echo '<option value="em">em</option>';
-				}
-				if ( 'rem' === $cswp_symbol_pu ) {
-
-					echo '<option selected value="rem">rem</option>';
-				} else {
-
-					echo '<option value="rem">rem</option>';
-				}
+				echo "
+				<option value='px' " . selected( $cswp_symbol_pu, 'px', false ) . ">px</option>
+				<option value='em' " . selected( $cswp_symbol_pu, 'em', false ) . ">em</option>
+				<option value='rem' " . selected( $cswp_symbol_pu, 'rem', false ) . '>rem</option>         
+				';
 				?>
 			</select>
 			<p class="description cswp-label-style">
