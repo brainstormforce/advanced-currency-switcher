@@ -79,16 +79,16 @@ if ( isset( $_GET['tab'] ) ) {
 
 	if ( 'cs_settings' === $_GET['tab'] ) {
 
-		require_once 'cs-settings-frontend.php';
+		require_once CSWP_PLUGIN_DIR . '/includes/cs-settings-frontend.php';
 
 	} elseif ( 'user-manual' === $_GET['tab'] ) {
 
-		require_once 'cs-user-manual.php';
+		require_once CSWP_PLUGIN_DIR . '/includes/cs-user-manual.php';
 	} elseif ( 'style' === $_GET['tab'] ) {
 
-		require_once 'cs-style-option.php';
+		require_once CSWP_PLUGIN_DIR . '/includes/cs-style-option.php';
 	}
 } else {
 
-	require_once 'cs-settings-frontend.php';
+		require_once CSWP_PLUGIN_DIR . '/includes/cs-settings-frontend.php';
 }
