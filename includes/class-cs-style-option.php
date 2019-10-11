@@ -52,6 +52,8 @@ if ( ! class_exists( 'CS_Style_Option' ) ) {
 			// Store form inputs values in variable.
 			wp_enqueue_script( 'cswp-color-picker' );
 			wp_enqueue_script( 'cswp-hide-image-upload' );
+			wp_register_style( 'cswp-style-option', CSWP_PLUGIN_URL . '/assets/css/cswp-style-option.css', CSWP_CURRENCY_SWITCHER_VER, true );
+			wp_enqueue_style( 'cswp-style-option', CSWP_PLUGIN_URL . '/assets/css/cs-styles.css', '', CSWP_CURRENCY_SWITCHER_VER );
 		}
 
 		/**
@@ -154,31 +156,31 @@ if ( ! class_exists( 'CS_Style_Option' ) ) {
 			$cswp_button_hide = get_option( 'cswp_form_data' );
 
 			if ( 'button' === $cswp_button_hide['cswp_button_type'] ) {
-				$cswp_button_css   = 'style="display:block"';
-				$cswp_symbol_css   = 'style="display:none"';
-				$cswp_toggle_css   = 'style="display:none"';
-				$cswp_dropdown_css = 'style="display:none"';
-			} elseif ( 'toggle' === $cswp_button_hide['cswp_button_type'] ) {
-				$cswp_toggle_css   = 'style="display:block"';
-				$cswp_symbol_css   = 'style="display:none"';
-				$cswp_button_css   = 'style="display:none"';
-				$cswp_dropdown_css = 'style="display:none"';
-			} elseif ( 'dropdown' === $cswp_button_hide['cswp_button_type'] ) {
-				$cswp_dropdown_css = 'style="display:block"';
-				$cswp_symbol_css   = 'style="display:none"';
-				$cswp_toggle_css   = 'style="display:none"';
-				$cswp_button_css   = 'style="display:none"';
-			} elseif ( 'symbol' === $cswp_button_hide['cswp_button_type'] ) {
-				$cswp_symbol_css   = 'style="display:block"';
-				$cswp_dropdown_css = 'style="display:none"';
-				$cswp_toggle_css   = 'style="display:none"';
-				$cswp_button_css   = 'style="display:none"';
-			} else {
-				$cswp_dropdown_css = 'style="display:block"';
-				$cswp_symbol_css   = 'style="display:none"';
-				$cswp_toggle_css   = 'style="display:none"';
-				$cswp_button_css   = 'style="display:none"';
-			}
+			$cswp_button_css   = 'class=cswp-block-css';
+			$cswp_symbol_css   = 'class=cswp-none-css';
+			$cswp_toggle_css   = 'class=cswp-none-css';
+			$cswp_dropdown_css = 'class=cswp-none-css';
+		} elseif ( 'toggle' === $cswp_button_hide['cswp_button_type'] ) {
+			$cswp_toggle_css   = 'class=cswp-block-css';
+			$cswp_symbol_css   = 'class=cswp-none-css';
+			$cswp_button_css   = 'class=cswp-none-css';
+			$cswp_dropdown_css = 'class=cswp-none-css';
+		} elseif ( 'dropdown' === $cswp_button_hide['cswp_button_type'] ) {
+			$cswp_dropdown_css = 'class=cswp-block-css';
+			$cswp_symbol_css   = 'class=cswp-none-css';
+			$cswp_toggle_css   = 'class=cswp-none-css';
+			$cswp_button_css   = 'class=cswp-none-css';
+		} elseif ( 'symbol' === $cswp_button_hide['cswp_button_type'] ) {
+			$cswp_symbol_css   = 'class=cswp-block-css';
+			$cswp_dropdown_css = 'class=cswp-none-css';
+			$cswp_toggle_css   = 'class=cswp-none-css';
+			$cswp_button_css   = 'class=cswp-none-css';
+		} else {
+			$cswp_dropdown_css = 'class=cswp-block-css';
+			$cswp_symbol_css   = 'class=cswp-none-css';
+			$cswp_toggle_css   = 'class=cswp-none-css';
+			$cswp_button_css   = 'class=cswp-none-css';
+		}
 
 			$currencybtn       = CS_Loader::cswp_load_currency_button_data();
 			$base_value_select = CS_Loader::cswp_load_all_data();
@@ -225,7 +227,7 @@ if ( ! class_exists( 'CS_Style_Option' ) ) {
 		</tr>
 		</table>
 
-	<div class="cswp_hide_upload" id="cswp_hide_upload" <?php echo wp_kses_post( $cswp_dropdown_css ); ?> >
+	<div <?php echo $cswp_dropdown_css; ?> id="cswp_hide_upload" >
 		<table class="form-table" >
 			<tr>
 				<td class="cswp_table_row" scope="row">
@@ -320,7 +322,7 @@ if ( ! class_exists( 'CS_Style_Option' ) ) {
 			</tr>
 		</table>
 	</div>
-	<div class="cswp_hide_upload" id="cswp_hide_upload" <?php echo wp_kses_post( $cswp_toggle_css ); ?> >
+	<div <?php echo $cswp_toggle_css; ?> id="cswp_hide_upload"  >
 	<table class="form-table" >
 			<tr>
 				<td class="cswp_table_row" scope="row">
@@ -538,7 +540,7 @@ if ( ! class_exists( 'CS_Style_Option' ) ) {
 		</table>
 		<br><br>
 	</div>
-		<div class="cswp_hide_upload" id="cswp_hide_upload" <?php echo wp_kses_post( $cswp_button_css ); ?> >
+		<div <?php echo $cswp_button_css; ?> id="cswp_hide_upload" >
 		<table class="form-table">
 			<tr>
 				<td class="cswp_table_row" scope="row">
@@ -874,7 +876,7 @@ if ( ! class_exists( 'CS_Style_Option' ) ) {
 			</tr>
 			</table>
 	</div>
-	<div class="cswp_hide_upload" id="cswp_hide_upload" <?php echo wp_kses_post( $cswp_symbol_css ); ?> >
+	<div <?php echo $cswp_symbol_css; ?> id="cswp_hide_upload"  >
 		<table class="form-table" >
 			<tr>
 				<td class="cswp_table_row" scope="row">
