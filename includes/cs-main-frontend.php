@@ -50,7 +50,7 @@ if ( isset( $_GET['tab'] ) ) {
 		<?php esc_html_e( 'Global Settings', 'advanced-currency-switcher' ); ?>
 	</a>
 
-	<a href='<?php echo esc_url( add_query_arg( 'tab', 'style', '?page=currency_switch&tab=style' ) ); ?>' class="nav-tab tb
+	<a href='<?php echo esc_url( add_query_arg( 'tab', 'style', '?page=currency_switch' ) ); ?>' class="nav-tab tb
 	<?php
 	if ( 'style' === $active_tab ) {
 		echo 'nav-tab-active';
@@ -60,7 +60,7 @@ if ( isset( $_GET['tab'] ) ) {
 		<?php esc_html_e( 'Style', 'advanced-currency-switcher' ); ?>
 	</a>
 
-	<a href='<?php echo esc_url( add_query_arg( 'tab', 'user-manual', '?page=currency_switch&tab=user-manual' ) ); ?>' class="nav-tab tb
+	<a href='<?php echo esc_url( add_query_arg( 'tab', 'user-manual', '?page=currency_switch' ) ); ?>' class="nav-tab tb
 	<?php
 	if ( 'user-manual' === $active_tab ) {
 		echo 'nav-tab-active';

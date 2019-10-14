@@ -56,6 +56,20 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 		}
 
 		/**
+		 * Check Empty or Not.
+		 *
+		 * @param array  $array   Array from which the property's value should be retrieved.
+		 * @param string $prop    Name of the property to be retrieved.
+		 * @param string $default Optional.
+		 * @since 1.0.2
+		 * @return array of object if not empty.
+		 */
+		public function cswp_get_prop( $array, $prop, $default = null ) {
+
+			return ( ! empty( $array[ $prop ] ) ? $array[ $prop ] : $default );
+		}
+
+		/**
 		 * Get style data.
 		 *
 		 * @since  1.0.0
@@ -68,71 +82,71 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			$cswp_currency_array = $cswp_get_form_value['cswp_icon_array'];
 
 			// For Dropdown.
-			$cswp_dd_fs            = ( ! empty( $cswp_get_form_value['cswp_dd_font_size'] ) ? $cswp_get_form_value['cswp_dd_font_size'] : 16 );
-			$cswp_dd_fontsize_unit = ( ! empty( $cswp_get_form_value['cswp_dd_fontsize_unit'] ) ? $cswp_get_form_value['cswp_dd_fontsize_unit'] : 'px' );
-			$cswp_dd_bc            = ( ! empty( $cswp_get_form_value['cswp_dd_background_color'] ) ? $cswp_get_form_value['cswp_dd_background_color'] : 'inherit' );
-			$cswp_dd_tc            = ( ! empty( $cswp_get_form_value['cswp_dd_text_color'] ) ? $cswp_get_form_value['cswp_dd_text_color'] : 'inherit' );
-			$cswp_dd_pt            = ( ! empty( $cswp_get_form_value['cswp_dd_padding_top'] ) ? $cswp_get_form_value['cswp_dd_padding_top'] : 0.76 );
-			$cswp_dd_pr            = ( ! empty( $cswp_get_form_value['cswp_dd_padding_right'] ) ? $cswp_get_form_value['cswp_dd_padding_right'] : 0.76 );
-			$cswp_dd_pl            = ( ! empty( $cswp_get_form_value['cswp_dd_padding_left'] ) ? $cswp_get_form_value['cswp_dd_padding_left'] : 0.76 );
-			$cswp_dd_pb            = ( ! empty( $cswp_get_form_value['cswp_dd_padding_bottom'] ) ? $cswp_get_form_value['cswp_dd_padding_bottom'] : 0.76 );
-			$cswp_dd_pu            = ( ! empty( $cswp_get_form_value['cswp_dd_padding_unit'] ) ? $cswp_get_form_value['cswp_dd_padding_unit'] : 'rem' );
+			$cswp_dd_fs            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_dd_font_size', 16 );
+			$cswp_dd_fontsize_unit = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_dd_fontsize_unit', 'px' );
+			$cswp_dd_bc            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_dd_background_color', 'inherit' );
+			$cswp_dd_tc            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_dd_text_color', 'inherit' );
+			$cswp_dd_pt            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_dd_padding_top', 0.76 );
+			$cswp_dd_pr            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_dd_padding_right', 0.76 );
+			$cswp_dd_pl            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_dd_padding_left', 0.76 );
+			$cswp_dd_pb            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_dd_padding_bottom', 0.76 );
+			$cswp_dd_pu            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_dd_padding_unit', 'rem' );
 
 			// For Symbol.
-			$cswp_symbol_fs            = ( ! empty( $cswp_get_form_value['cswp_symbol_font_size'] ) ? $cswp_get_form_value['cswp_symbol_font_size'] : 16 );
-			$cswp_symbol_fontsize_unit = ( ! empty( $cswp_get_form_value['cswp_symbol_fontsize_unit'] ) ? $cswp_get_form_value['cswp_symbol_fontsize_unit'] : 'px' );
-			$cswp_symbol_bc            = ( ! empty( $cswp_get_form_value['cswp_symbol_background_color'] ) ? $cswp_get_form_value['cswp_symbol_background_color'] : 'inherit' );
-			$cswp_symbol_tc            = ( ! empty( $cswp_get_form_value['cswp_symbol_text_color'] ) ? $cswp_get_form_value['cswp_symbol_text_color'] : 'inherit' );
-			$cswp_symbol_pt            = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_top'] ) ? $cswp_get_form_value['cswp_symbol_padding_top'] : 0.76 );
-			$cswp_symbol_pr            = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_right'] ) ? $cswp_get_form_value['cswp_symbol_padding_right'] : 0.76 );
-			$cswp_symbol_pl            = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_left'] ) ? $cswp_get_form_value['cswp_symbol_padding_left'] : 0.76 );
-			$cswp_symbol_pb            = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_bottom'] ) ? $cswp_get_form_value['cswp_symbol_padding_bottom'] : 0.76 );
-			$cswp_symbol_pu            = ( ! empty( $cswp_get_form_value['cswp_symbol_padding_unit'] ) ? $cswp_get_form_value['cswp_symbol_padding_unit'] : 'rem' );
+			$cswp_symbol_fs            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_symbol_font_size', 16 );
+			$cswp_symbol_fontsize_unit = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_symbol_fontsize_unit', 'px' );
+			$cswp_symbol_bc            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_symbol_background_color', 'inherit' );
+			$cswp_symbol_tc            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_symbol_text_color', 'inherit' );
+			$cswp_symbol_pt            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_symbol_padding_top', 0.76 );
+			$cswp_symbol_pr            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_symbol_padding_right', 0.76 );
+			$cswp_symbol_pl            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_symbol_padding_left', 0.76 );
+			$cswp_symbol_pb            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_symbol_padding_bottom', 0.76 );
+			$cswp_symbol_pu            = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_symbol_padding_unit', 'rem' );
 
 			// For Toggle.
-			$cswp_tgl_fs                     = ( ! empty( $cswp_get_form_value['cswp_tgl_font_size'] ) ? $cswp_get_form_value['cswp_tgl_font_size'] : 'inherit' );
-			$cswp_tgl_fontsize_unit          = ( ! empty( $cswp_get_form_value['cswp_tgl_fontsize_unit'] ) ? $cswp_get_form_value['cswp_tgl_fontsize_unit'] : 'px' );
-			$cswp_tgl_bc                     = ( ! empty( $cswp_get_form_value['cswp_tgl_background_color'] ) ? $cswp_get_form_value['cswp_tgl_background_color'] : '' );
-			$cswp_tgl_tc                     = ( ! empty( $cswp_get_form_value['cswp_tgl_text_color'] ) ? $cswp_get_form_value['cswp_tgl_text_color'] : '' );
-			$cswp_tgl_pt                     = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_top'] ) ? $cswp_get_form_value['cswp_tgl_padding_top'] : 0.76 );
-			$cswp_tgl_pr                     = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_right'] ) ? $cswp_get_form_value['cswp_tgl_padding_right'] : 0.76 );
-			$cswp_tgl_pl                     = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_left'] ) ? $cswp_get_form_value['cswp_tgl_padding_left'] : 0.76 );
-			$cswp_tgl_pb                     = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_bottom'] ) ? $cswp_get_form_value['cswp_tgl_padding_bottom'] : 0.76 );
-			$cswp_tgl_pu                     = ( ! empty( $cswp_get_form_value['cswp_tgl_padding_unit'] ) ? $cswp_get_form_value['cswp_tgl_padding_unit'] : 'rem' );
-			$cswp_tgl_fw                     = ( ! empty( $cswp_get_form_value['cswp_tgl_font_weight'] ) ? $cswp_get_form_value['cswp_tgl_font_weight'] : '700' );
-			$cswp_tgl_br                     = ( ! empty( $cswp_get_form_value['cswp_tgl_border_radius'] ) ? $cswp_get_form_value['cswp_tgl_border_radius'] : 5 );
-			$cswp_tgl_bw                     = ( ! empty( $cswp_get_form_value['cswp_tgl_border_width'] ) ? $cswp_get_form_value['cswp_tgl_border_width'] : 2 );
-			$cswp_tgl_bs                     = ( ! empty( $cswp_get_form_value['cswp_tgl_border_style'] ) ? $cswp_get_form_value['cswp_tgl_border_style'] : 'inherit' );
-			$cswp_tgl_bu                     = ( ! empty( $cswp_get_form_value['cswp_tgl_border_unit'] ) ? $cswp_get_form_value['cswp_tgl_border_unit'] : 'px' );
-			$cswp_tgl_borderc                = ( ! empty( $cswp_get_form_value['cswp_tgl_border_color'] ) ? $cswp_get_form_value['cswp_tgl_border_color'] : 'buttonface' );
-			$cswp_tgl_text_hover_color       = ( ! empty( $cswp_get_form_value['cswp_tgl_text_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_text_hover_color'] : '' );
-			$cswp_tgl_background_hover_color = ( ! empty( $cswp_get_form_value['cswp_tgl_hover_color'] ) ? $cswp_get_form_value['cswp_tgl_hover_color'] : '' );
+			$cswp_tgl_fs                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_font_size', 'inherit' );
+			$cswp_tgl_fontsize_unit          = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_fontsize_unit', 'px' );
+			$cswp_tgl_bc                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_background_color', '' );
+			$cswp_tgl_tc                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_text_color', '' );
+			$cswp_tgl_pt                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_padding_top', 0.76 );
+			$cswp_tgl_pr                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_padding_right', 0.76 );
+			$cswp_tgl_pl                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_padding_left', 0.76 );
+			$cswp_tgl_pb                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_padding_bottom', 0.76 );
+			$cswp_tgl_pu                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_padding_unit', 'rem' );
+			$cswp_tgl_fw                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_font_weight', '700' );
+			$cswp_tgl_br                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_border_radius', 5 );
+			$cswp_tgl_bw                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_border_width', 2 );
+			$cswp_tgl_bs                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_border_style', 'inherit' );
+			$cswp_tgl_bu                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_border_unit', 'px' );
+			$cswp_tgl_borderc                = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_border_color', 'buttonface' );
+			$cswp_tgl_text_hover_color       = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_text_hover_color', '' );
+			$cswp_tgl_background_hover_color = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_tgl_hover_color', '' );
 
 			// For Button.
-			$cswp_button_align                = ( ! empty( $cswp_get_form_value['cswp_alignment'] ) ? $cswp_get_form_value['cswp_alignment'] : 'left' );
-			$cswp_btn_fs                      = ( ! empty( $cswp_get_form_value['cswp_font_size'] ) ? $cswp_get_form_value['cswp_font_size'] : 16 );
-			$cswp_btn_fsu                     = ( ! empty( $cswp_get_form_value['cswp_fontsize_unit'] ) ? $cswp_get_form_value['cswp_fontsize_unit'] : 'px' );
-			$cswp_btn_bc                      = ( ! empty( $cswp_get_form_value['cswp_background_color'] ) ? $cswp_get_form_value['cswp_background_color'] : '' );
-			$cswp_btn_tc                      = ( ! empty( $cswp_get_form_value['cswp_text_color'] ) ? $cswp_get_form_value['cswp_text_color'] : '' );
-			$cswp_btn_pt                      = ( ! empty( $cswp_get_form_value['cswp_padding_top'] ) ? $cswp_get_form_value['cswp_padding_top'] : 0.76 );
-			$cswp_btn_pr                      = ( ! empty( $cswp_get_form_value['cswp_padding_right'] ) ? $cswp_get_form_value['cswp_padding_right'] : 0.76 );
-			$cswp_btn_pl                      = ( ! empty( $cswp_get_form_value['cswp_padding_left'] ) ? $cswp_get_form_value['cswp_padding_left'] : 0.76 );
-			$cswp_btn_pb                      = ( ! empty( $cswp_get_form_value['cswp_padding_bottom'] ) ? $cswp_get_form_value['cswp_padding_bottom'] : 0.76 );
-			$cswp_btn_pu                      = ( ! empty( $cswp_get_form_value['cswp_padding_unit'] ) ? $cswp_get_form_value['cswp_padding_unit'] : 'inherit' );
-			$cswp_icon_st                     = ( ! empty( $cswp_get_form_value['cswp_spacing_top'] ) ? $cswp_get_form_value['cswp_spacing_top'] : 5 );
-			$cswp_icon_sr                     = ( ! empty( $cswp_get_form_value['cswp_spacing_right'] ) ? $cswp_get_form_value['cswp_spacing_right'] : 5 );
-			$cswp_icon_sl                     = ( ! empty( $cswp_get_form_value['cswp_spacing_left'] ) ? $cswp_get_form_value['cswp_spacing_left'] : 5 );
-			$cswp_icon_sb                     = ( ! empty( $cswp_get_form_value['cswp_spacing_bottom'] ) ? $cswp_get_form_value['cswp_spacing_bottom'] : 5 );
-			$cswp_icon_su                     = ( ! empty( $cswp_get_form_value['cswp_spacing_unit'] ) ? $cswp_get_form_value['cswp_spacing_unit'] : 'px' );
-			$cswp_btn_fw                      = ( ! empty( $cswp_get_form_value['cswp_font_weight'] ) ? $cswp_get_form_value['cswp_font_weight'] : 'inherit' );
-			$cswp_btn_br                      = ( ! empty( $cswp_get_form_value['cswp_border_radius'] ) ? $cswp_get_form_value['cswp_border_radius'] : 5 );
-			$cswp_btn_bw                      = ( ! empty( $cswp_get_form_value['cswp_border_width'] ) ? $cswp_get_form_value['cswp_border_width'] : 2 );
-			$cswp_btn_bs                      = ( ! empty( $cswp_get_form_value['cswp_border_style'] ) ? $cswp_get_form_value['cswp_border_style'] : 'none' );
-			$cswp_btn_bu                      = ( ! empty( $cswp_get_form_value['cswp_border_unit'] ) ? $cswp_get_form_value['cswp_border_unit'] : 'px' );
-			$cswp_btn_borderc                 = ( ! empty( $cswp_get_form_value['cswp_border_color'] ) ? $cswp_get_form_value['cswp_border_color'] : 'buttonface' );
-			$cswp_btn_text_hover_color        = ( ! empty( $cswp_get_form_value['cswp_text_hover_color'] ) ? $cswp_get_form_value['cswp_text_hover_color'] : '' );
-			$cswp_btn_background_hover_color  = ( ! empty( $cswp_get_form_value['cswp_hover_color'] ) ? $cswp_get_form_value['cswp_hover_color'] : '' );
-			$cswp_btn_active_background_color = ( ! empty( $cswp_get_form_value['cswp_active_button_background_color'] ) ? $cswp_get_form_value['cswp_active_button_background_color'] : '' );
+			$cswp_button_align                = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_alignment', 'left' );
+			$cswp_btn_fs                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_font_size', 16 );
+			$cswp_btn_fsu                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_fontsize_unit', 'px' );
+			$cswp_btn_bc                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_background_color', '' );
+			$cswp_btn_tc                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_text_color', '' );
+			$cswp_btn_pt                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_padding_top', 0.76 );
+			$cswp_btn_pr                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_padding_right', 0.76 );
+			$cswp_btn_pl                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_padding_left', 0.76 );
+			$cswp_btn_pb                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_padding_bottom', 0.76 );
+			$cswp_btn_pu                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_padding_unit', 'inherit' );
+			$cswp_icon_st                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_spacing_top', 5 );
+			$cswp_icon_sr                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_spacing_right', 5 );
+			$cswp_icon_sl                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_spacing_left', 5 );
+			$cswp_icon_sb                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_spacing_bottom', 5 );
+			$cswp_icon_su                     = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_spacing_unit', 'px' );
+			$cswp_btn_fw                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_font_weight', 'inherit' );
+			$cswp_btn_br                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_border_radius', 5 );
+			$cswp_btn_bw                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_border_width', 2 );
+			$cswp_btn_bs                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_border_style', 'none' );
+			$cswp_btn_bu                      = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_border_unit', 'px' );
+			$cswp_btn_borderc                 = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_border_color', 'buttonface' );
+			$cswp_btn_text_hover_color        = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_text_hover_color', '' );
+			$cswp_btn_background_hover_color  = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_hover_color', '' );
+			$cswp_btn_active_background_color = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_active_button_background_color', '' );
 			if ( 'inherit' !== $cswp_btn_text_hover_color && 'inherit' !== $cswp_btn_active_background_color ) {
 				$important = '!important';
 			} elseif ( 'inherit' !== $cswp_btn_active_background_color ) {
@@ -142,9 +156,9 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 			} else {
 				$important = '';
 			}
-			$cswp_btn_icon_align  = ( ! empty( $cswp_get_form_value['cswp_icon_align'] ) ? $cswp_get_form_value['cswp_icon_align'] : 'left' );
-			$cswp_btn_icon_width  = ( ! empty( $cswp_get_form_value['cswp_icon_width'] ) ? $cswp_get_form_value['cswp_icon_width'] : 15 );
-			$cswp_btn_icon_height = ( ! empty( $cswp_get_form_value['cswp_icon_height'] ) ? $cswp_get_form_value['cswp_icon_height'] : 15 );
+			$cswp_btn_icon_align  = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_icon_align', 'left' );
+			$cswp_btn_icon_width  = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_icon_width', 15 );
+			$cswp_btn_icon_height = $this->cswp_get_prop( $cswp_get_form_value, 'cswp_icon_height', 15 );
 
 			?>
 			<style type="text/css">
@@ -429,8 +443,7 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 				border-radius:
 					<?php
 						echo $cswp_btn_br;
-					?>
-					px;
+					?>px;
 				;
 
 				border:
