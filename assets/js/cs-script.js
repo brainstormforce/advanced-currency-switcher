@@ -6,7 +6,6 @@
         if( $( '.cs-currency-name' ).length ) {
             $( '.cs-currency-name' ).hide();
             $( '.cs-currency-name' ).eq(0).show();
-            //$( '.cs-convertor-wrap-symbol' ).html( csVars.base_currency_symbol );
         }
     });
 

@@ -5,8 +5,6 @@
         $('#upload_imageUSD').val("");
     });
     $('#upload_image_buttonUSD').click(function(e) {
-       console.log($('#upload_image_buttonUSD').attr('id'));
-       // console.log($('#cswp_hide_upload').attr('id'));
         e.preventDefault();
         var custom_uploaderUSD;
         //If the uploader object has already been created, reopen the dialog
@@ -26,7 +24,7 @@
 
         //When a file is selected, grab the URL and set it as the text field's value
         custom_uploaderUSD.on('select', function() {
-            console.log(custom_uploaderUSD.state().get('selection').toJSON());
+            
             attachment = custom_uploaderUSD.state().get('selection').first().toJSON();
             $('#upload_imageUSD').val(attachment.url);
         });
@@ -39,7 +37,7 @@
         $('#upload_imageEUR').val("");
     });
     $('#upload_image_buttonEUR').click(function(e) {
-        console.log($('#upload_image_buttonEUR').attr('id'));
+        
         e.preventDefault();
         var custom_uploaderEUR;
         //If the uploader object has already been created, reopen the dialog
@@ -72,7 +70,7 @@
         $('#upload_imageAUD').val("");
     });
     $('#upload_image_buttonAUD').click(function(e) {
-        console.log($('#upload_image_buttonAUD').attr('id'));
+        
         e.preventDefault();
         var custom_uploaderAUR;
         //If the uploader object has already been created, reopen the dialog
@@ -92,7 +90,7 @@
 
         //When a file is selected, grab the URL and set it as the text field's value
         custom_uploaderAUR.on('select', function() {
-            console.log(custom_uploaderAUR.state().get('selection').toJSON());
+            
             attachment = custom_uploaderAUR.state().get('selection').first().toJSON();
             $('#upload_imageAUD').val(attachment.url);
         });
@@ -105,7 +103,7 @@
         $('#upload_imageINR').val("");
     });
        $('#upload_image_buttonINR').click(function(e) {
-        console.log($('#upload_image_buttonINR').attr('id'));
+       
         e.preventDefault();
         var custom_uploaderINR;
         //If the uploader object has already been created, reopen the dialog
@@ -125,7 +123,7 @@
 
         //When a file is selected, grab the URL and set it as the text field's value
         custom_uploaderINR.on('select', function() {
-            console.log(custom_uploaderINR.state().get('selection').toJSON());
+           
             attachment = custom_uploaderINR.state().get('selection').first().toJSON();
             $('#upload_imageINR').val(attachment.url);
         });
