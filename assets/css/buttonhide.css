@@ -1,12 +1,6 @@
-/*Currency Rate icon size*/
-/*.cs-convertor-wrap-symbol{
-    font-size: 30px;
-}
-*/
 .cs-convertor-wrap-symbol, 
 .cs-convertor-wrap-data {
     display: inline-block;
-    /*float: left;*/
 }
 .cs-converter-wrap {
     display: inline-block;
