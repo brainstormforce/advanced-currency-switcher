@@ -27,14 +27,14 @@ if ( ! class_exists( 'CS_Style_Option' ) ) {
 		 *
 		 * @access private
 		 * @var $instance
-		 * @since 1.0.2
+		 * @since 1.0.3
 		 */
 		private static $instance;
 
 		/**
 		 * Initiator
 		 *
-		 * @since 1.0.2
+		 * @since 1.0.3
 		 * @return object initialized object of class.
 		 */
 		public static function get_instance() {
@@ -62,7 +62,7 @@ if ( ! class_exists( 'CS_Style_Option' ) ) {
 		 * @param array  $array   Array from which the property's value should be retrieved.
 		 * @param string $prop    Name of the property to be retrieved.
 		 * @param string $default Optional.
-		 * @since 1.0.2
+		 * @since 1.0.3
 		 * @return array of object if not empty.
 		 */
 		public function cswp_get_prop( $array, $prop, $default = null ) {
@@ -73,7 +73,7 @@ if ( ! class_exists( 'CS_Style_Option' ) ) {
 		/**
 		 * Style settings.
 		 *
-		 * @since 1.0.2
+		 * @since 1.0.3
 		 */
 		public function cswp_style_data() {
 			// Dropdown Button.
