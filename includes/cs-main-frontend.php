@@ -27,10 +27,12 @@ if ( isset( $_GET['tab'] ) ) {
 
 		$active_tab = 'cs_settings';
 
+	} elseif ( 'style' === $_GET['tab'] ) {
+
+		$active_tab = 'style';
+
 	} elseif ( 'user-manual' === $_GET['tab'] ) {
-
 		$active_tab = 'user-manual';
-
 	}
 }
 
@@ -48,7 +50,17 @@ if ( isset( $_GET['tab'] ) ) {
 		<?php esc_html_e( 'Global Settings', 'advanced-currency-switcher' ); ?>
 	</a>
 
-	<a href="?page=currency_switch&tab=user-manual" class="nav-tab tb
+	<a href='<?php echo esc_url( add_query_arg( 'tab', 'style', '?page=currency_switch' ) ); ?>' class="nav-tab tb
+	<?php
+	if ( 'style' === $active_tab ) {
+		echo 'nav-tab-active';
+	}
+	?>
+	">
+		<?php esc_html_e( 'Style', 'advanced-currency-switcher' ); ?>
+	</a>
+
+	<a href='<?php echo esc_url( add_query_arg( 'tab', 'user-manual', '?page=currency_switch' ) ); ?>' class="nav-tab tb
 	<?php
 	if ( 'user-manual' === $active_tab ) {
 		echo 'nav-tab-active';
@@ -67,13 +79,16 @@ if ( isset( $_GET['tab'] ) ) {
 
 	if ( 'cs_settings' === $_GET['tab'] ) {
 
-		require_once 'cs-settings-frontend.php';
+		require_once CSWP_PLUGIN_DIR . '/includes/cs-settings-frontend.php';
 
 	} elseif ( 'user-manual' === $_GET['tab'] ) {
 
-		require_once 'cs-user-manual.php';
+		require_once CSWP_PLUGIN_DIR . '/includes/cs-user-manual.php';
+	} elseif ( 'style' === $_GET['tab'] ) {
+
+		require_once CSWP_PLUGIN_DIR . '/includes/class-cs-style-option.php';
 	}
 } else {
 
-	require_once 'cs-settings-frontend.php';
+		require_once CSWP_PLUGIN_DIR . '/includes/cs-settings-frontend.php';
 }

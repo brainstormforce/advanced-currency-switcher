@@ -84,6 +84,10 @@ The Currency Switcher plugin is just an addon to help users get an idea of how m
 
 ## Changelog ##
 
+### 1.0.3 ###
+- Added Symbol option for display.
+- Added Style for Currency display type.
+
 ### 1.0.1 ###
 - Remove duplicate JS file that is being loaded.
 - Reduce the space between currency symbol and the price.

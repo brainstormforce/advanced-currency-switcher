@@ -24,12 +24,11 @@ class CS_Loader {
 	 * Constructor
 	 */
 	public function __construct() {
-
 		$this->define_constant();
-
 		add_action( 'wp_enqueue_scripts', array( $this, 'cswp_load_scripts' ) );
 		self::includes();
 		add_action( 'admin_enqueue_scripts', array( $this, 'load_backend_script' ) );
+		add_action( 'init', array( $this, 'cswp_style_form_data' ) );
 		add_action( 'init', array( $this, 'cswp_save_form_data' ) );
 		add_action( 'wp_ajax_ccs_validate', array( $this, 'cs_validate_api_key' ) );
 		add_filter( 'cron_schedules', array( $this, 'cron_schedules' ) );
@@ -98,7 +97,7 @@ class CS_Loader {
 	 * @return void
 	 */
 	public function define_constant() {
-		define( 'CSWP_CURRENCY_SWITCHER_VER', '1.0.2' );
+		define( 'CSWP_CURRENCY_SWITCHER_VER', '1.0.1' );
 
 		define( 'CSWP_CURRENCY_SWITCH_FILE', trailingslashit( dirname( dirname( __FILE__ ) ) ) . 'currency-switcher.php' );
 
@@ -191,6 +190,232 @@ class CS_Loader {
 	}
 
 	/**
+	 * Function that save style form data
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
+	public function cswp_style_form_data() {
+
+		if ( ! isset( $_POST['cs-style-form'] ) ) {
+			return;
+		}
+		if ( ! empty( $_POST['cs-style-form'] ) && wp_verify_nonce( sanitize_text_field( $_POST['cs-style-form'] ), 'cs-style-form-nonce' ) ) {
+
+			// For Dropdown.
+			$cswp_dd_font_size        = ! empty( $_POST['cswp_dd_font_size'] ) ? sanitize_text_field( $_POST['cswp_dd_font_size'] ) : '';
+			$cswp_dd_fontsize_unit    = ! empty( $_POST['cswp_dd_fontsize_unit'] ) ? sanitize_text_field( $_POST['cswp_dd_fontsize_unit'] ) : '';
+			$cswp_dd_background_color = ! empty( $_POST['cswp_dd_background_color'] ) ? sanitize_hex_color( $_POST['cswp_dd_background_color'] ) : '';
+			$cswp_dd_text_color       = ! empty( $_POST['cswp_dd_text_color'] ) ? sanitize_hex_color( $_POST['cswp_dd_text_color'] ) : '';
+			$cswp_dd_padding_top      = ( ! empty( $_POST['cswp_dd_padding_top'] ) ? floatval( $_POST['cswp_dd_padding_top'] ) : '' );
+			$cswp_dd_padding_right    = ( ! empty( $_POST['cswp_dd_padding_right'] ) ? floatval( $_POST['cswp_dd_padding_right'] ) : '' );
+			$cswp_dd_padding_bottom   = ( ! empty( $_POST['cswp_dd_padding_bottom'] ) ? floatval( $_POST['cswp_dd_padding_bottom'] ) : '' );
+			$cswp_dd_padding_left     = ( ! empty( $_POST['cswp_dd_padding_left'] ) ? floatval( $_POST['cswp_dd_padding_left'] ) : '' );
+			$cswp_dd_padding_unit     = ( ! empty( $_POST['cswp_dd_padding_unit'] ) ? sanitize_text_field( $_POST['cswp_dd_padding_unit'] ) : '' );
+
+			// For Symbol.
+			$cswp_symbol_font_size        = ! empty( $_POST['cswp_symbol_font_size'] ) ? sanitize_text_field( $_POST['cswp_symbol_font_size'] ) : '';
+			$cswp_symbol_fontsize_unit    = ! empty( $_POST['cswp_symbol_fontsize_unit'] ) ? sanitize_text_field( $_POST['cswp_symbol_fontsize_unit'] ) : '';
+			$cswp_symbol_background_color = ! empty( $_POST['cswp_symbol_background_color'] ) ? sanitize_hex_color( $_POST['cswp_symbol_background_color'] ) : '';
+			$cswp_symbol_text_color       = ! empty( $_POST['cswp_symbol_text_color'] ) ? sanitize_hex_color( $_POST['cswp_symbol_text_color'] ) : '';
+			$cswp_symbol_padding_top      = ( ! empty( $_POST['cswp_symbol_padding_top'] ) ? floatval( $_POST['cswp_symbol_padding_top'] ) : '' );
+			$cswp_symbol_padding_right    = ( ! empty( $_POST['cswp_symbol_padding_right'] ) ? floatval( $_POST['cswp_symbol_padding_right'] ) : '' );
+			$cswp_symbol_padding_bottom   = ( ! empty( $_POST['cswp_symbol_padding_bottom'] ) ? floatval( $_POST['cswp_symbol_padding_bottom'] ) : '' );
+			$cswp_symbol_padding_left     = ( ! empty( $_POST['cswp_symbol_padding_left'] ) ? floatval( $_POST['cswp_symbol_padding_left'] ) : '' );
+			$cswp_symbol_padding_unit     = ( ! empty( $_POST['cswp_symbol_padding_unit'] ) ? sanitize_text_field( $_POST['cswp_symbol_padding_unit'] ) : '' );
+
+			// For Toggle.
+			$cswp_tgl_font_size        = ( ! empty( $_POST['cswp_tgl_font_size'] ) ? sanitize_text_field( $_POST['cswp_tgl_font_size'] ) : '' );
+			$cswp_tgl_fontsize_unit    = ( ! empty( $_POST['cswp_tgl_fontsize_unit'] ) ? sanitize_text_field( $_POST['cswp_tgl_fontsize_unit'] ) : '' );
+			$cswp_tgl_background_color = ( ! empty( $_POST['cswp_tgl_background_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_background_color'] ) : '' );
+			$cswp_tgl_text_color       = ( ! empty( $_POST['cswp_tgl_text_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_text_color'] ) : '' );
+			$cswp_tgl_padding_top      = ( ! empty( $_POST['cswp_tgl_padding_top'] ) ? floatval( $_POST['cswp_tgl_padding_top'] ) : '' );
+			$cswp_tgl_padding_right    = ( ! empty( $_POST['cswp_tgl_padding_right'] ) ? floatval( $_POST['cswp_tgl_padding_right'] ) : '' );
+			$cswp_tgl_padding_left     = ( ! empty( $_POST['cswp_tgl_padding_left'] ) ? floatval( $_POST['cswp_tgl_padding_left'] ) : '' );
+			$cswp_tgl_padding_bottom   = ( ! empty( $_POST['cswp_tgl_padding_bottom'] ) ? floatval( $_POST['cswp_tgl_padding_bottom'] ) : '' );
+			$cswp_tgl_padding_unit     = ( ! empty( $_POST['cswp_tgl_padding_unit'] ) ? sanitize_text_field( $_POST['cswp_tgl_padding_unit'] ) : '' );
+			$cswp_tgl_font_weight      = ( ! empty( $_POST['cswp_tgl_font_weight'] ) ? sanitize_text_field( $_POST['cswp_tgl_font_weight'] ) : '' );
+			$cswp_tgl_border_radius    = ( ! empty( $_POST['cswp_tgl_border_radius'] ) ? sanitize_text_field( $_POST['cswp_tgl_border_radius'] ) : '' );
+			$cswp_tgl_border_width     = ( ! empty( $_POST['cswp_tgl_border_width'] ) ? sanitize_text_field( $_POST['cswp_tgl_border_width'] ) : '' );
+			$cswp_tgl_border_style     = ( ! empty( $_POST['cswp_tgl_border_style'] ) ? sanitize_text_field( $_POST['cswp_tgl_border_style'] ) : '' );
+			$cswp_tgl_border_unit      = ( ! empty( $_POST['cswp_tgl_border_unit'] ) ? sanitize_text_field( $_POST['cswp_tgl_border_unit'] ) : 'px' );
+			$cswp_tgl_border_color     = ( ! empty( $_POST['cswp_tgl_border_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_border_color'] ) : '' );
+			$cswp_tgl_text_hover_color = ( ! empty( $_POST['cswp_tgl_text_hover_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_text_hover_color'] ) : '' );
+			$cswp_tgl_hover_color      = ( ! empty( $_POST['cswp_tgl_hover_color'] ) ? sanitize_hex_color( $_POST['cswp_tgl_hover_color'] ) : '' );
+
+			$cswp_alignment = ! empty( $_POST['cswp_alignment'] ) ? sanitize_text_field( $_POST['cswp_alignment'] ) : '';
+
+			$cswp_font_size = ! empty( $_POST['cswp_font_size'] ) ? sanitize_text_field( $_POST['cswp_font_size'] ) : '';
+
+			$cswp_fontsize_unit = ( ! empty( $_POST['cswp_fontsize_unit'] ) ? sanitize_text_field( $_POST['cswp_fontsize_unit'] ) : '' );
+
+			$cswp_button_width = ! empty( $_POST['cswp_button_width'] ) ? sanitize_text_field( $_POST['cswp_button_width'] ) : '';
+
+			$cswp_font_weight = ! empty( $_POST['cswp_font_weight'] ) ? sanitize_text_field( $_POST['cswp_font_weight'] ) : '';
+
+			$cswp_text_color = ! empty( $_POST['cswp_text_color'] ) ? sanitize_hex_color( $_POST['cswp_text_color'] ) : '';
+
+			$cswp_hover_color = ! empty( $_POST['cswp_hover_color'] ) ? sanitize_hex_color( $_POST['cswp_hover_color'] ) : '';
+
+			$cswp_text_hover_color = ! empty( $_POST['cswp_text_hover_color'] ) ? sanitize_hex_color( $_POST['cswp_text_hover_color'] ) : '';
+
+			$cswp_background_color = ! empty( $_POST['cswp_background_color'] ) ? sanitize_hex_color( $_POST['cswp_background_color'] ) : '';
+
+			$cswp_active_button_background_color = ! empty( $_POST['cswp_active_button_background_color'] ) ? sanitize_hex_color( $_POST['cswp_active_button_background_color'] ) : '';
+
+			$cswp_padding_top = ( ! empty( $_POST['cswp_padding_top'] ) ? floatval( $_POST['cswp_padding_top'] ) : '' );
+
+			$cswp_padding_right = ( ! empty( $_POST['cswp_padding_right'] ) ? floatval( $_POST['cswp_padding_right'] ) : '' );
+
+			$cswp_padding_bottom = ( ! empty( $_POST['cswp_padding_bottom'] ) ? floatval( $_POST['cswp_padding_bottom'] ) : '' );
+
+			$cswp_padding_left = ( ! empty( $_POST['cswp_padding_left'] ) ? floatval( $_POST['cswp_padding_left'] ) : '' );
+
+			$cswp_spacing_top = ( ! empty( $_POST['cswp_spacing_top'] ) ? floatval( $_POST['cswp_spacing_top'] ) : '' );
+
+			$cswp_spacing_right = ( ! empty( $_POST['cswp_spacing_right'] ) ? floatval( $_POST['cswp_spacing_right'] ) : '' );
+
+			$cswp_spacing_bottom = ( ! empty( $_POST['cswp_spacing_bottom'] ) ? floatval( $_POST['cswp_spacing_bottom'] ) : '' );
+
+			$cswp_spacing_left = ( ! empty( $_POST['cswp_spacing_left'] ) ? floatval( $_POST['cswp_spacing_left'] ) : '' );
+
+			$cswp_spacing_unit = ( ! empty( $_POST['cswp_spacing_unit'] ) ? sanitize_text_field( $_POST['cswp_spacing_unit'] ) : '' );
+
+			$cswp_border_width = ( ! empty( $_POST['cswp_border_width'] ) ? floatval( $_POST['cswp_border_width'] ) : 0 );
+
+			$cswp_border_style = ( ! empty( $_POST['cswp_border_style'] ) ? sanitize_text_field( $_POST['cswp_border_style'] ) : 'none' );
+
+			$cswp_border_color = ( ! empty( $_POST['cswp_border_color'] ) ? sanitize_hex_color( $_POST['cswp_border_color'] ) : '' );
+
+			$cswp_icon_width = ( ! empty( $_POST['cswp_icon_width'] ) ? sanitize_text_field( $_POST['cswp_icon_width'] ) : '' );
+
+			$cswp_icon_height = ( ! empty( $_POST['cswp_icon_height'] ) ? sanitize_text_field( $_POST['cswp_icon_height'] ) : '' );
+
+			$cswp_padding_unit = ( ! empty( $_POST['cswp_padding_unit'] ) ? sanitize_text_field( $_POST['cswp_padding_unit'] ) : '' );
+
+			$cswp_border_unit = ( ! empty( $_POST['cswp_border_unit'] ) ? sanitize_text_field( $_POST['cswp_border_unit'] ) : '' );
+
+			$cswp_border_style = ( ! empty( $_POST['cswp_border_style'] ) ? sanitize_text_field( $_POST['cswp_border_style'] ) : '' );
+
+			$cswp_border_radius = ! empty( $_POST['cswp_border_radius'] ) ? sanitize_text_field( $_POST['cswp_border_radius'] ) : '';
+
+			$cswp_icon_align = ! empty( $_POST['cswp_icon_align'] ) ? sanitize_text_field( $_POST['cswp_icon_align'] ) : '';
+
+			$cswp_button = get_option( 'cswp_currency_button_type' );
+
+			$currencybtn       = self::cswp_load_currency_button_data();
+			$base_value_select = self::cswp_load_all_data();
+
+			if ( ! empty( $currencybtn ) ) {
+				foreach ( $currencybtn as $cswp_base_value ) {
+					if ( $cswp_base_value === $base_value_select['basecurency'] ) {
+						continue;
+					}
+					$curbtn[] = $cswp_base_value;
+				}
+				if ( ! empty( $curbtn ) && is_array( $curbtn ) ) {
+					array_push( $curbtn, $base_value_select['basecurency'] );
+					$currencybtn = array_combine( $curbtn, $curbtn );
+				}
+			}
+
+			$cswp_icon_array = array(
+				'USD' => '',
+				'AUD' => '',
+				'EUR' => '',
+				'INR' => '',
+			);
+			$cswp_icon       = array();
+			foreach ( $currencybtn as $cswp_button_value ) {
+				$cswp_icon_list                        = ! empty( $_POST[ 'cswp_icon' . $cswp_button_value ] ) ? esc_url_raw( $_POST[ 'cswp_icon' . $cswp_button_value ] ) : '';
+				$cswp_icon_array[ $cswp_button_value ] = $cswp_icon_list;
+				array_push( $cswp_icon, $cswp_icon_list );
+			}
+
+			$save = array(
+				// For Dropdown.
+				'cswp_dd_font_size'                   => $cswp_dd_font_size,
+				'cswp_dd_fontsize_unit'               => $cswp_dd_fontsize_unit,
+				'cswp_dd_text_color'                  => $cswp_dd_text_color,
+				'cswp_dd_background_color'            => $cswp_dd_background_color,
+				'cswp_dd_padding_top'                 => $cswp_dd_padding_top,
+				'cswp_dd_padding_right'               => $cswp_dd_padding_right,
+				'cswp_dd_padding_bottom'              => $cswp_dd_padding_bottom,
+				'cswp_dd_padding_left'                => $cswp_dd_padding_left,
+				'cswp_dd_padding_unit'                => $cswp_dd_padding_unit,
+
+				// For Dropdown.
+				'cswp_symbol_font_size'               => $cswp_symbol_font_size,
+				'cswp_symbol_fontsize_unit'           => $cswp_symbol_fontsize_unit,
+				'cswp_symbol_text_color'              => $cswp_symbol_text_color,
+				'cswp_symbol_background_color'        => $cswp_symbol_background_color,
+				'cswp_symbol_padding_top'             => $cswp_symbol_padding_top,
+				'cswp_symbol_padding_right'           => $cswp_symbol_padding_right,
+				'cswp_symbol_padding_bottom'          => $cswp_symbol_padding_bottom,
+				'cswp_symbol_padding_left'            => $cswp_symbol_padding_left,
+				'cswp_symbol_padding_unit'            => $cswp_symbol_padding_unit,
+
+				// For Toggle.
+				'cswp_tgl_font_size'                  => $cswp_tgl_font_size,
+				'cswp_tgl_fontsize_unit'              => $cswp_tgl_fontsize_unit,
+				'cswp_tgl_font_weight'                => $cswp_tgl_font_weight,
+				'cswp_tgl_text_color'                 => $cswp_tgl_text_color,
+				'cswp_tgl_text_hover_color'           => $cswp_tgl_text_hover_color,
+				'cswp_tgl_background_color'           => $cswp_tgl_background_color,
+				'cswp_tgl_hover_color'                => $cswp_tgl_hover_color,
+				'cswp_tgl_padding_top'                => $cswp_tgl_padding_top,
+				'cswp_tgl_padding_right'              => $cswp_tgl_padding_right,
+				'cswp_tgl_padding_bottom'             => $cswp_tgl_padding_bottom,
+				'cswp_tgl_padding_left'               => $cswp_tgl_padding_left,
+				'cswp_tgl_padding_unit'               => $cswp_tgl_padding_unit,
+				'cswp_tgl_border_radius'              => $cswp_tgl_border_radius,
+				'cswp_tgl_border_width'               => $cswp_tgl_border_width,
+				'cswp_tgl_border_style'               => $cswp_tgl_border_style,
+				'cswp_tgl_border_color'               => $cswp_tgl_border_color,
+				'cswp_tgl_border_unit'                => $cswp_tgl_border_unit,
+
+				'cswp_button_width'                   => $cswp_button_width,
+				'cswp_alignment'                      => $cswp_alignment,
+				'cswp_font_size'                      => $cswp_font_size,
+				'cswp_fontsize_unit'                  => $cswp_fontsize_unit,
+				'cswp_font_weight'                    => $cswp_font_weight,
+				'cswp_text_color'                     => $cswp_text_color,
+				'cswp_background_color'               => $cswp_background_color,
+
+				'cswp_padding_top'                    => $cswp_padding_top,
+				'cswp_padding_right'                  => $cswp_padding_right,
+				'cswp_padding_bottom'                 => $cswp_padding_bottom,
+				'cswp_padding_left'                   => $cswp_padding_left,
+				'cswp_padding_unit'                   => $cswp_padding_unit,
+
+				'cswp_spacing_top'                    => $cswp_spacing_top,
+				'cswp_spacing_right'                  => $cswp_spacing_right,
+				'cswp_spacing_bottom'                 => $cswp_spacing_bottom,
+				'cswp_spacing_left'                   => $cswp_spacing_left,
+				'cswp_spacing_unit'                   => $cswp_spacing_unit,
+
+				'cswp_border_radius'                  => $cswp_border_radius,
+				'cswp_border_width'                   => $cswp_border_width,
+				'cswp_border_style'                   => $cswp_border_style,
+				'cswp_border_color'                   => $cswp_border_color,
+				'cswp_border_unit'                    => $cswp_border_unit,
+
+				'cswp_hover_color'                    => $cswp_hover_color,
+				'cswp_text_hover_color'               => $cswp_text_hover_color,
+
+				'cswp_active_button_background_color' => $cswp_active_button_background_color,
+				'cswp_icon_align'                     => $cswp_icon_align,
+				'cswp_icon_width'                     => $cswp_icon_width,
+				'cswp_icon_height'                    => $cswp_icon_height,
+
+				'cswp_icon'                           => $cswp_icon,
+				'cswp_icon_array'                     => $cswp_icon_array,
+			);
+			update_option( 'cswp_style_form_data', $save );
+
+		}
+	}
+	/**
 	 * Function that save all form data
 	 *
 	 * @since  1.0.0
@@ -221,10 +446,11 @@ class CS_Loader {
 			$decimalradio = 0;
 		}
 
-		$form_type        = isset( $_POST['cswp_form_select'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_form_select'] ) ) : '';
-		$cswp_button_type = isset( $_POST['cswp_button_type'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_button_type'] ) ) : '';
-		$cswp_vlaue_style = isset( $_POST['cswp_vlaue_style'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_vlaue_style'] ) ) : '';
-		$frequency_reload = isset( $_POST['frequency_reload'] ) ? sanitize_text_field( wp_unslash( $_POST['frequency_reload'] ) ) : 'manual';
+		$form_type            = isset( $_POST['cswp_form_select'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_form_select'] ) ) : '';
+		$cswp_button_type     = isset( $_POST['cswp_button_type'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_button_type'] ) ) : '';
+		$cswp_vlaue_style     = isset( $_POST['cswp_vlaue_style'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_vlaue_style'] ) ) : '';
+		$frequency_reload     = isset( $_POST['frequency_reload'] ) ? sanitize_text_field( wp_unslash( $_POST['frequency_reload'] ) ) : 'manual';
+		$cswp_symbol_position = isset( $_POST['cswp_symbol_position'] ) ? sanitize_text_field( wp_unslash( $_POST['cswp_symbol_position'] ) ) : 'manual';
 
 		if ( isset( $_POST['currency_button'] ) ) {
 
@@ -255,22 +481,23 @@ class CS_Loader {
 			$eur_symbol = isset( $_POST['eur-symbol'] ) ? wp_kses_post( wp_unslash( $_POST['eur-symbol'] ) ) : '';
 			$aud_symbol = isset( $_POST['aud-symbol'] ) ? wp_kses_post( wp_unslash( $_POST['aud-symbol'] ) ) : '';
 		$savevalues     = array(
-			'basecurency'      => $basecurency,
-			'cswp_form_select' => $form_type,
-			'api_key'          => $api_key,
-			'frequency_reload' => $frequency_reload,
-			'cswp_button_type' => $cswp_button_type,
-			'decimalradio'     => $decimalradio,
+			'basecurency'          => $basecurency,
+			'cswp_form_select'     => $form_type,
+			'api_key'              => $api_key,
+			'cswp_symbol_position' => $cswp_symbol_position,
+			'frequency_reload'     => $frequency_reload,
+			'cswp_button_type'     => $cswp_button_type,
+			'decimalradio'         => $decimalradio,
 
-			'usd-text'         => $usd_text,
-			'inr-text'         => $inr_text,
-			'eur-text'         => $eur_text,
-			'aud-text'         => $aud_text,
+			'usd-text'             => $usd_text,
+			'inr-text'             => $inr_text,
+			'eur-text'             => $eur_text,
+			'aud-text'             => $aud_text,
 
-			'usd-symbol'       => $usd_symbol,
-			'inr-symbol'       => $inr_symbol,
-			'eur-symbol'       => $eur_symbol,
-			'aud-symbol'       => $aud_symbol,
+			'usd-symbol'           => $usd_symbol,
+			'inr-symbol'           => $inr_symbol,
+			'eur-symbol'           => $eur_symbol,
+			'aud-symbol'           => $aud_symbol,
 		);
 
 		// Merging both array.
@@ -281,6 +508,7 @@ class CS_Loader {
 
 		// Store $update_option array value in database option table.
 		update_option( 'cswp_form_data', $savevalues );
+
 		// values from usermanual currency rate.
 		if ( 'manualrate' === $_POST['cswp_form_select'] ) {
 
@@ -424,9 +652,21 @@ class CS_Loader {
 	 * @return void
 	 */
 	public function load_backend_script() {
-
+		$cswp_get_button_value = $this->cswp_load_currency_button_data();
 		wp_register_script( 'cswp-backend-script', CSWP_PLUGIN_URL . 'assets/js/exchange.js', array( 'jquery' ), CSWP_CURRENCY_SWITCHER_VER, true );
-
+		wp_enqueue_media();
+		wp_register_script( 'cswp-image-upload', CSWP_PLUGIN_URL . 'assets/js/cs_image_upload.js', array( 'jquery' ), CSWP_CURRENCY_SWITCHER_VER, true );
+		wp_enqueue_script( 'cswp-image-upload' );
+		wp_localize_script(
+			'cswp-image-upload',
+			'cswp_image_upload_vars',
+			array(
+				'cswp_get_button_value' => $cswp_get_button_value,
+			),
+			true
+		);
+		wp_register_script( 'cswp-color-picker', CSWP_PLUGIN_URL . 'assets/js/cswp-color-picker.js', array( 'jquery', 'wp-color-picker' ), CSWP_CURRENCY_SWITCHER_VER, true );
+		wp_enqueue_style( 'wp-color-picker' );
 		wp_enqueue_script( 'cswp-backend-script' );
 		wp_enqueue_style( 'cswp-style', CSWP_PLUGIN_URL . '/assets/css/cs-styles.css', '', CSWP_CURRENCY_SWITCHER_VER );
 
@@ -456,6 +696,7 @@ class CS_Loader {
 		$currency_symbol_add   = array();
 
 		// perform wp_localize_script() for currency rate and setting page value which use in javascript.
+
 		if ( isset( $cswp_get_form_value['cswp_form_select'] ) ) {
 
 			if ( 'apirate' === $cswp_get_form_value['cswp_form_select'] ) {
@@ -508,7 +749,6 @@ class CS_Loader {
 		wp_localize_script( 'cswp-script', 'csVars', $currency_rate );
 	}
 }
-
 /**
  * Initialize the class only after all the plugins are loaded.
  *
