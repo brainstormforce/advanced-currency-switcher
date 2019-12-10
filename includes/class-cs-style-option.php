@@ -156,31 +156,31 @@ if ( ! class_exists( 'CS_Style_Option' ) ) {
 			$cswp_button_hide = get_option( 'cswp_form_data' );
 
 			if ( 'button' === $cswp_button_hide['cswp_button_type'] ) {
-			$cswp_button_css   = 'class=cswp-block-css';
-			$cswp_symbol_css   = 'class=cswp-none-css';
-			$cswp_toggle_css   = 'class=cswp-none-css';
-			$cswp_dropdown_css = 'class=cswp-none-css';
-		} elseif ( 'toggle' === $cswp_button_hide['cswp_button_type'] ) {
-			$cswp_toggle_css   = 'class=cswp-block-css';
-			$cswp_symbol_css   = 'class=cswp-none-css';
-			$cswp_button_css   = 'class=cswp-none-css';
-			$cswp_dropdown_css = 'class=cswp-none-css';
-		} elseif ( 'dropdown' === $cswp_button_hide['cswp_button_type'] ) {
-			$cswp_dropdown_css = 'class=cswp-block-css';
-			$cswp_symbol_css   = 'class=cswp-none-css';
-			$cswp_toggle_css   = 'class=cswp-none-css';
-			$cswp_button_css   = 'class=cswp-none-css';
-		} elseif ( 'symbol' === $cswp_button_hide['cswp_button_type'] ) {
-			$cswp_symbol_css   = 'class=cswp-block-css';
-			$cswp_dropdown_css = 'class=cswp-none-css';
-			$cswp_toggle_css   = 'class=cswp-none-css';
-			$cswp_button_css   = 'class=cswp-none-css';
-		} else {
-			$cswp_dropdown_css = 'class=cswp-block-css';
-			$cswp_symbol_css   = 'class=cswp-none-css';
-			$cswp_toggle_css   = 'class=cswp-none-css';
-			$cswp_button_css   = 'class=cswp-none-css';
-		}
+				$cswp_button_css   = 'class=cswp-block-css';
+				$cswp_symbol_css   = 'class=cswp-none-css';
+				$cswp_toggle_css   = 'class=cswp-none-css';
+				$cswp_dropdown_css = 'class=cswp-none-css';
+			} elseif ( 'toggle' === $cswp_button_hide['cswp_button_type'] ) {
+				$cswp_toggle_css   = 'class=cswp-block-css';
+				$cswp_symbol_css   = 'class=cswp-none-css';
+				$cswp_button_css   = 'class=cswp-none-css';
+				$cswp_dropdown_css = 'class=cswp-none-css';
+			} elseif ( 'dropdown' === $cswp_button_hide['cswp_button_type'] ) {
+				$cswp_dropdown_css = 'class=cswp-block-css';
+				$cswp_symbol_css   = 'class=cswp-none-css';
+				$cswp_toggle_css   = 'class=cswp-none-css';
+				$cswp_button_css   = 'class=cswp-none-css';
+			} elseif ( 'symbol' === $cswp_button_hide['cswp_button_type'] ) {
+				$cswp_symbol_css   = 'class=cswp-block-css';
+				$cswp_dropdown_css = 'class=cswp-none-css';
+				$cswp_toggle_css   = 'class=cswp-none-css';
+				$cswp_button_css   = 'class=cswp-none-css';
+			} else {
+				$cswp_dropdown_css = 'class=cswp-block-css';
+				$cswp_symbol_css   = 'class=cswp-none-css';
+				$cswp_toggle_css   = 'class=cswp-none-css';
+				$cswp_button_css   = 'class=cswp-none-css';
+			}
 
 			$currencybtn       = CS_Loader::cswp_load_currency_button_data();
 			$base_value_select = CS_Loader::cswp_load_all_data();

@@ -443,7 +443,8 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 				border-radius:
 					<?php
 						echo $cswp_btn_br;
-					?>px;
+					?>
+					px;
 				;
 
 				border:

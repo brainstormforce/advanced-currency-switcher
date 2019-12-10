@@ -352,8 +352,8 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 			<th>Position of Symbol</th>
 			<td>
 				<select name="cswp_symbol_position" id="cswp_symbol_position">
-						<option value="left" <?php selected( $cswp_symbol_position, 'left' ); ?>>Left</option>
-						<option value="right" <?php selected( $cswp_symbol_position, 'right' ); ?>>Right</option>
+						<option value="left" <?php selected( $cswp_symbol_position, 'left' ); ?>><?php esc_html_e( 'Left', 'advanced-currency-switcher' ); ?></option>
+						<option value="right" <?php selected( $cswp_symbol_position, 'right' ); ?>><?php esc_html_e( 'Right', 'advanced-currency-switcher' ); ?></option>
 				</select>
 				<p class="description cswp_apidescription">
 					<?php esc_html_e( 'Select position to display the currency symbol at frontend.', 'advanced-currency-switcher' ); ?>
@@ -364,10 +364,10 @@ if ( get_option( 'apinotfree' ) === 'emptyapi' ) {
 			<th>Display Type</th>
 			<td>
 				<select name="cswp_button_type" id="cswp_button_type">
-						<option value="dropdown" <?php selected( $cswp_button_type_value, 'dropdown' ); ?>>Drop Down</option>
-						<option value="toggle" <?php selected( $cswp_button_type_value, 'toggle' ); ?>>Toggle</option>
-						<option value="button" <?php selected( $cswp_button_type_value, 'button' ); ?>>Button</option>
-						<option value="symbol" <?php selected( $cswp_button_type_value, 'symbol' ); ?>>Symbol</option>
+						<option value="dropdown" <?php selected( $cswp_button_type_value, 'dropdown' ); ?>><?php esc_html_e( 'Drop Down', 'advanced-currency-switcher' ); ?></option>
+						<option value="toggle" <?php selected( $cswp_button_type_value, 'toggle' ); ?>><?php esc_html_e( 'Toggle', 'advanced-currency-switcher' ); ?></option>
+						<option value="button" <?php selected( $cswp_button_type_value, 'button' ); ?>><?php esc_html_e( 'Button', 'advanced-currency-switcher' ); ?></option>
+						<option value="symbol" <?php selected( $cswp_button_type_value, 'symbol' ); ?>><?php esc_html_e( 'Symbol', 'advanced-currency-switcher' ); ?></option>
 				</select>
 				<p class="description cswp_apidescription">
 					<?php esc_html_e( 'Select how you wish to display the currency conversion action at frontend.', 'advanced-currency-switcher' ); ?>
