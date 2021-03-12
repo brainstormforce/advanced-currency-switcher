@@ -4,8 +4,8 @@ Donate link: https://www.paypal.me/BrainstormForce
 Tags: Currency switcher, Currency converter, Multi-currency, Currency plugin, Multi currency plugin
 Requires at least: 4.2
 Requires PHP: 5.3
-Tested up to: 5.6
-Stable tag: 1.0.2
+Tested up to: 5.7
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -89,6 +89,9 @@ The Currency Switcher plugin is just an addon to help users get an idea of how m
 6. User Manual to See How to Get Started.
 
 == Changelog ==
+
+= 1.0.3 =
+- Fix: Added compatibility with WordPress v5.7 for jQuery migration warnings.
 
 = 1.0.2 =
 - Add Button option in Display type.
