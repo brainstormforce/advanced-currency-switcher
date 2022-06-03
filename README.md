@@ -1,21 +1,21 @@
 # Currency Switcher for WordPress #
-**Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce)  
-**Donate link:** https://www.paypal.me/BrainstormForce  
-**Tags:** Currency switcher, Currency converter, Multi-currency, Currency plugin, Multi currency plugin  
-**Requires at least:** 4.2  
-**Requires PHP:** 5.3  
-**Tested up to:** 5.9  
-**Stable tag:** 1.0.3  
-**License:** GPLv2 or later  
-**License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
+**Contributors:** [brainstormforce](https://profiles.wordpress.org/brainstormforce)
+**Donate link:** https://www.paypal.me/BrainstormForce
+**Tags:** Currency switcher, Currency converter, Multi-currency, Currency plugin, Multi currency plugin
+**Requires at least:** 4.2
+**Requires PHP:** 5.3
+**Tested up to:** 6.0
+**Stable tag:** 1.0.4
+**License:** GPLv2 or later
+**License URI:** https://www.gnu.org/licenses/gpl-2.0.html
 
-The Currency Switcher plugin provides an easier way to let users switch between currencies in real time to help them make a purchase decision. 
+The Currency Switcher plugin provides an easier way to let users switch between currencies in real time to help them make a purchase decision.
 
 **The easiest way to allow website visitors switch currencies with one click!**
 
 With the constantly changing exchange rates it is difficult for an eCommerce website to keep updating the pricing plans in different currencies. This lack of information at times results in the loss of potential customers who do not find ready information they are looking for.
 
-The Currency Switcher plugin is a powerful solution that helps you display an automated currency converter on your website. With this handy plugin, one can cater to users coming from the United States, European countries, India and Australia. 
+The Currency Switcher plugin is a powerful solution that helps you display an automated currency converter on your website. With this handy plugin, one can cater to users coming from the United States, European countries, India and Australia.
 
 ## How does this work? ##
 
@@ -62,13 +62,13 @@ Install the Currency Switcher plugin like any other WordPress plugin. Open Setti
 Select the conversion method through Global settings and add the respective shortcodes on the desired page.
 
 ### Where can I add a currency switcher on my website? ###
-The Currency Switcher plugin gives you a shortcode to be added. Therefore, you can add a currency switcher any place that accepts shortcodes on your website. 
+The Currency Switcher plugin gives you a shortcode to be added. Therefore, you can add a currency switcher any place that accepts shortcodes on your website.
 
 ### What are the switcher types available? ###
-As of now, the Currency Switcher plugin gives you two switcher types to choose from - A drop down or a button. 
+As of now, the Currency Switcher plugin gives you two switcher types to choose from - A drop down or a button.
 
 ### How to update the currency according to the latest exchange rate? ###
-The Currency Switcher plugin allows you to select a feasible method to update currency. You can do it manually or opt to use the Open Exchange Rate API. 
+The Currency Switcher plugin allows you to select a feasible method to update currency. You can do it manually or opt to use the Open Exchange Rate API.
 
 ### Do I need to have the paid version of the Open Exchange Rate API? ###
 The Currency Switcher plugin works with both - the free and paid versions of Open Exchange Rate API. However, we'd recommend you to opt for the paid version since the free one has a limited number of requests that can be passed and you get conversion rates based on USD only.
@@ -89,6 +89,9 @@ The Currency Switcher plugin is just an addon to help users get an idea of how m
 6. User Manual to See How to Get Started.
 
 ## Changelog ##
+
+### 1.0.4 ###
+* Improvement: esc_url_raw() applied to prevent potential XSS issues.
 
 ### 1.0.3 ###
 - Fix: Added compatibility with WordPress v5.7 for jQuery migration warnings.

@@ -98,7 +98,7 @@ class CS_Loader {
 	 * @return void
 	 */
 	public function define_constant() {
-		define( 'CSWP_CURRENCY_SWITCHER_VER', '1.0.3' );
+		define( 'CSWP_CURRENCY_SWITCHER_VER', '1.0.4' );
 
 		define( 'CSWP_CURRENCY_SWITCH_FILE', trailingslashit( dirname( dirname( __FILE__ ) ) ) . 'currency-switcher.php' );
 
@@ -124,7 +124,7 @@ class CS_Loader {
 
 		$data = (array) get_option( 'cswp_form_data', array() );
 
-		$cswp_str = add_query_arg( 'app_id', $api_key, 'https://openexchangerates.org/api/latest.json' );
+		$cswp_str = esc_url_raw( add_query_arg( 'app_id', $api_key, 'https://openexchangerates.org/api/latest.json' ) );
 
 		$cswp_str = wp_remote_post( $cswp_str );
 
@@ -303,12 +303,14 @@ class CS_Loader {
 		} elseif ( 'apirate' === $_POST['cswp_form_select'] ) {
 
 			$data = '';
-			$data = add_query_arg(
-				array(
-					'app_id' => $api_key,
-					'base'   => $basecurency,
-				),
-				'https://openexchangerates.org/api/latest.json'
+			$data = esc_url_raw(
+				add_query_arg(
+					array(
+						'app_id' => $api_key,
+						'base'   => $basecurency,
+					),
+					'https://openexchangerates.org/api/latest.json'
+				)
 			);
 			$data = wp_remote_post( $data, array( 'timeout' => '300' ) );
 			if ( ! is_wp_error( $data ) ) {
@@ -387,12 +389,14 @@ class CS_Loader {
 			)
 		);
 		if ( ! empty( $sotred_data['basecurency'] ) && ! empty( $sotred_data['api_key'] ) ) {
-			$data = add_query_arg(
-				array(
-					'app_id' => $sotred_data['api_key'],
-					'base'   => $sotred_data['basecurency'],
-				),
-				'https://openexchangerates.org/api/latest.json'
+			$data = esc_url_raw(
+				add_query_arg(
+					array(
+						'app_id' => $sotred_data['api_key'],
+						'base'   => $sotred_data['basecurency'],
+					),
+					'https://openexchangerates.org/api/latest.json'
+				)
 			);
 			$data = wp_remote_post( $data );
 			$data = json_decode( $data['body'] );
