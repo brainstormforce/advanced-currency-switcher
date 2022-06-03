@@ -124,7 +124,7 @@ class CS_Loader {
 
 		$data = (array) get_option( 'cswp_form_data', array() );
 
-		$cswp_str = esc_url( add_query_arg( 'app_id', $api_key, 'https://openexchangerates.org/api/latest.json' ) );
+		$cswp_str = esc_url_raw( add_query_arg( 'app_id', $api_key, 'https://openexchangerates.org/api/latest.json' ) );
 
 		$cswp_str = wp_remote_post( $cswp_str );
 
@@ -303,7 +303,7 @@ class CS_Loader {
 		} elseif ( 'apirate' === $_POST['cswp_form_select'] ) {
 
 			$data = '';
-			$data = esc_url(
+			$data = esc_url_raw(
 				add_query_arg(
 					array(
 						'app_id' => $api_key,
@@ -389,7 +389,7 @@ class CS_Loader {
 			)
 		);
 		if ( ! empty( $sotred_data['basecurency'] ) && ! empty( $sotred_data['api_key'] ) ) {
-			$data = esc_url(
+			$data = esc_url_raw(
 				add_query_arg(
 					array(
 						'app_id' => $sotred_data['api_key'],

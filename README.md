@@ -91,7 +91,7 @@ The Currency Switcher plugin is just an addon to help users get an idea of how m
 ## Changelog ##
 
 ### 1.0.4 ###
-* Improvement: Escaped URLs wherever required.
+* Improvement: esc_url_raw() applied to prevent potential XSS issues.
 
 ### 1.0.3 ###
 - Fix: Added compatibility with WordPress v5.7 for jQuery migration warnings.
