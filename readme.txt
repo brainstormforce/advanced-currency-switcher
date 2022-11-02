@@ -1,6 +1,5 @@
 === Currency Switcher for WordPress ===
 Contributors: pratikchaskar
-Donate link: https://www.paypal.me/BrainstormForce
 Tags: Currency switcher, Currency converter, Multi-currency, Currency plugin, Multi currency plugin
 Requires at least: 4.2
 Requires PHP: 5.3
