@@ -1,12 +1,12 @@
 # Currency Switcher for WordPress #
-**Contributors:** [pratikchaskar](https://profiles.wordpress.org/pratikchaskar)  
-**Tags:** Currency switcher, Currency converter, Multi-currency, Currency plugin, Multi currency plugin  
-**Requires at least:** 4.2  
-**Requires PHP:** 5.3  
-**Tested up to:** 6.1  
-**Stable tag:** 1.0.5  
-**License:** GPLv2 or later  
-**License URI:** https://www.gnu.org/licenses/gpl-2.0.html  
+**Contributors:** [pratikchaskar](https://profiles.wordpress.org/pratikchaskar)
+**Tags:** Currency switcher, Currency converter, Multi-currency, Currency plugin, Multi currency plugin
+**Requires at least:** 4.2
+**Requires PHP:** 5.3
+**Tested up to:** 6.2
+**Stable tag:** 1.0.5
+**License:** GPLv2 or later
+**License URI:** https://www.gnu.org/licenses/gpl-2.0.html
 
 The Currency Switcher plugin provides an easier way to let users switch between currencies in real time to help them make a purchase decision.
 
