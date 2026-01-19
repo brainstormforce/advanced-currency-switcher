@@ -5,8 +5,8 @@
  * @category PHP
  * @package  Currency_Switcher
  * @author   Display Name <ahemads@bsf.io>
- * @license  https://brainstormforce.com
- * @link     https://brainstormforce.com
+ * @license  https://pratikchaskar.com/
+ * @link     https://pratikchaskar.com/
  */
 
 ?>

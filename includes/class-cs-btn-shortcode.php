@@ -5,8 +5,8 @@
  * @category PHP
  * @package  Currency_Switcher
  * @author   Display Name <ahemads@bsf.io>
- * @license  https://brainstormforce.com
- * @link     https://brainstormforce.com
+ * @license  https://pratikchaskar.com/
+ * @link     https://pratikchaskar.com/
  */
 
 if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
@@ -18,8 +18,8 @@ if ( ! class_exists( 'CS_Btn_Shortcode' ) ) {
 	 * @category PHP
 	 * @package  Currency_Switcher
 	 * @author   Display Name <ahemads@bsf.io>
-	 * @license  https://brainstormforce.com
-	 * @link     https://brainstormforce.com
+	 * @license  https://pratikchaskar.com/
+	 * @link     https://pratikchaskar.com/
 	 */
 	class CS_Btn_Shortcode {
 
