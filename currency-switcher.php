@@ -5,15 +5,15 @@
  * @category PHP
  * @package  Currency_Switcher
  * @author   Display Name <ahemads@bsf.io>
- * @license  https://brainstormforce.com
- * @link     https://brainstormforce.com
+ * @license  https://pratikchaskar.com/
+ * @link     https://pratikchaskar.com/
  */
 
 /**
  * Plugin Name:     Advanced Currency Switcher
- * Plugin URI:      https://www.brainstormforce.com/
+ * Plugin URI:      https://www.pratikchaskar.com/
  * Description:     This is automated currency converter, that displays product/service prices in different currencies. Visitors can easily switch currency rates in real-time so that you don't lose potential customers because of lack of ready currency conversions.
- * Version:         1.0.5
+ * Version:         1.0.6
  * Author:          Pratik Chaskar
  * Author URI:      https://pratikchaskar.com/
  * Text Domain:     cswp
@@ -24,8 +24,8 @@
  * @category PHP
  * @package  Currency_Convertor_Addon
  * @author   Display Name <ahemads@bsf.io>
- * @license  https://brainstormforce.com
- * @link     https://brainstormforce.com
+ * @license  https://pratikchaskar.com/
+ * @link     https://pratikchaskar.com/
  */
 
 require_once 'classes/class-cs-loader.php';

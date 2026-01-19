@@ -5,8 +5,8 @@
  * @category PHP
  * @package  Currency_Switcher
  * @author   Display Name <username@ahemads.com>
- * @license  http://brainstormforce.com
- * @link     http://brainstormforce.com
+ * @license  https://pratikchaskar.com/
+ * @link     https://pratikchaskar.com/
  */
 
 /**
@@ -16,8 +16,8 @@
  * @category PHP
  * @package  Currency_Switcher
  * @author   Display Name <ahemads@bsf.io>
- * @license  https://brainstormforce.com
- * @link     https://brainstormforce.com
+ * @license  https://pratikchaskar.com/
+ * @link     https://pratikchaskar.com/
  */
 class CS_Loader {
 	/**
@@ -98,7 +98,7 @@ class CS_Loader {
 	 * @return void
 	 */
 	public function define_constant() {
-		define( 'CSWP_CURRENCY_SWITCHER_VER', '1.0.5' );
+		define( 'CSWP_CURRENCY_SWITCHER_VER', '1.0.6' );
 
 		define( 'CSWP_CURRENCY_SWITCH_FILE', trailingslashit( dirname( dirname( __FILE__ ) ) ) . 'currency-switcher.php' );
 
